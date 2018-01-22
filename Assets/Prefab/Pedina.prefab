@@ -20,11 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4137960646004980}
   - component: {fileID: 33890454181779760}
+  - component: {fileID: 64641129698088910}
   - component: {fileID: 23235435012226420}
   - component: {fileID: 95915374398018262}
   - component: {fileID: 114820047233248068}
-  - component: {fileID: 114862855055275194}
-  - component: {fileID: 65479889081108252}
   m_Layer: 0
   m_Name: Pedina
   m_TagString: Untagged
@@ -39,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128518370189898}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 2, z: 2.01}
+  m_LocalPosition: {x: -4, y: 2, z: 8.01}
   m_LocalScale: {x: 108.318794, y: 108.318794, z: 108.318794}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,8 +85,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128518370189898}
   m_Mesh: {fileID: 4300000, guid: e1c2f06e192f7a04cbb9832ae3d21b16, type: 3}
---- !u!65 &65479889081108252
-BoxCollider:
+--- !u!64 &64641129698088910
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -95,9 +94,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.025841976, y: 0.0586597, z: 0.021245828}
-  m_Center: {x: -0.0022980736, y: 0.013820129, z: 0}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: e1c2f06e192f7a04cbb9832ae3d21b16, type: 3}
 --- !u!95 &95915374398018262
 Animator:
   serializedVersion: 3
@@ -128,16 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   offset: {x: 0, y: 2, z: 0}
---- !u!114 &114862855055275194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1128518370189898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc47ee3d7bcd81143aa5f95b8b664419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected: 0
-  offset: {x: 0, y: 2, z: 0}
+  speed: 10

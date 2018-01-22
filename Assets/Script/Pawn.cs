@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pawn : MonoBehaviour {
+public class Pawn : MonoBehaviour
+{
     public bool selected;
     public Vector3 offset;
     private BoardManager bm;
+    public float speed;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         bm = FindObjectOfType<BoardManager>();
         selected = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private void OnMouseDown()
     {
@@ -38,21 +42,29 @@ public class Pawn : MonoBehaviour {
 
     private void PawnMovement(int boxindex1, int boxindex2, Box currentBox)
     {
-            if (boxindex1 == currentBox.index1 + 1 && boxindex2 == currentBox.index2)
-            {
-                transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
-            }
-            else if (boxindex1 == currentBox.index1 - 1 && boxindex2 == currentBox.index2)
-            {
-                transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
-            }
-            else if (boxindex2 == currentBox.index2 + 1 && boxindex1 == currentBox.index1)
-            {
-                transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
-            }
-            else if (boxindex2 == currentBox.index2 - 1 && boxindex1 == currentBox.index1)
-            {
-                transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
-            }
+        if (boxindex1 == currentBox.index1 + 1 && boxindex2 == currentBox.index2)
+        {
+            transform.LookAt(new Vector3(bm.boxCoordinates[boxindex1][boxindex2].position.x, transform.position.y, bm.boxCoordinates[boxindex1][boxindex2].position.z));
+            transform.Rotate(new Vector3(0, 90,0));
+            transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
+        }
+        else if (boxindex1 == currentBox.index1 - 1 && boxindex2 == currentBox.index2)
+        {
+            transform.LookAt(new Vector3(bm.boxCoordinates[boxindex1][boxindex2].position.x, transform.position.y, bm.boxCoordinates[boxindex1][boxindex2].position.z));
+            transform.Rotate(new Vector3(0, 1f, 0), 90);
+            transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
+        }
+        else if (boxindex2 == currentBox.index2 + 1 && boxindex1 == currentBox.index1)
+        {
+            transform.LookAt(new Vector3(bm.boxCoordinates[boxindex1][boxindex2].position.x, transform.position.y, bm.boxCoordinates[boxindex1][boxindex2].position.z));
+            transform.Rotate(new Vector3(0, 1f, 0), 90);
+            transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
+        }
+        else if (boxindex2 == currentBox.index2 - 1 && boxindex1 == currentBox.index1)
+        {
+            transform.LookAt(new Vector3(bm.boxCoordinates[boxindex1][boxindex2].position.x, transform.position.y, bm.boxCoordinates[boxindex1][boxindex2].position.z));
+            transform.Rotate(new Vector3(0, 1f, 0), 90);
+            transform.position = bm.boxCoordinates[boxindex1][boxindex2].position + offset;
+        }
     }
 }
