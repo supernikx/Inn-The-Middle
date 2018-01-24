@@ -45,31 +45,10 @@ public class Pawn : MonoBehaviour
 
     private void PawnMovement(int boxindex1, int boxindex2, Transform boxToMove)
     {
-        if (boxindex1 == currentBox.index1 + 1 && boxindex2 == currentBox.index2)
+        if ((boxindex1 == currentBox.index1 + 1 || boxindex1 == currentBox.index1 - 1 || boxindex1 == currentBox.index1) && (boxindex2 == currentBox.index2 || boxindex2 == currentBox.index2+1 || boxindex2 == currentBox.index2-1))
         {
             transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
             transform.Rotate(new Vector3(0, 90,0));
-            transform.position = boxToMove.position + offset;
-            currentBox = boxToMove.GetComponent<Box>();
-        }
-        else if (boxindex1 == currentBox.index1 - 1 && boxindex2 == currentBox.index2)
-        {
-            transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
-            transform.Rotate(new Vector3(0, 1f, 0), 90);
-            transform.position = boxToMove.position + offset;
-            currentBox = boxToMove.GetComponent<Box>();
-        }
-        else if (boxindex2 == currentBox.index2 + 1 && boxindex1 == currentBox.index1)
-        {
-            transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
-            transform.Rotate(new Vector3(0, 1f, 0), 90);
-            transform.position = boxToMove.position + offset;
-            currentBox = boxToMove.GetComponent<Box>();
-        }
-        else if (boxindex2 == currentBox.index2 - 1 && boxindex1 == currentBox.index1)
-        {
-            transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
-            transform.Rotate(new Vector3(0, 1f, 0), 90);
             transform.position = boxToMove.position + offset;
             currentBox = boxToMove.GetComponent<Box>();
         }
