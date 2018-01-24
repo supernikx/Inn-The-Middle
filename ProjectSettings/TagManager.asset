@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Box2
   - Box1
+  - board1
+  - board2
   layers:
   - Default
   - TransparentFX

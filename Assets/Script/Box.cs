@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Box : MonoBehaviour {
     private BoardManager bm;
-    public int index1,index2;
+    public int index1,index2,board;
+    public bool walkable;
 	// Use this for initialization
 	void Start () {
+        walkable = true;
         bm = FindObjectOfType<BoardManager>();
     }
 
     private void OnMouseDown()
     {
-       bm.BoxClicked(index1,index2);
+       bm.BoxClicked(gameObject.GetComponent<Box>());
     }
 }

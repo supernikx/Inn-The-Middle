@@ -4,19 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
-    private Transform[] boxtemppositions;
-    private Box[] allbox;
-    public Transform[][] boxCoordinates;
+    public Transform[][] board1,board2;
     private Pawn[] pawns;
     private Pawn pawnSelected;
-    private Player player;
-    public int row, column;
 
     // Use this for initialization
     void Start () {
         pawns = FindObjectsOfType<Pawn>();
-        boxCoordinates = new Transform[row][];
-        OrganizeBoxes();
+        SetPawnsPlayer();
 	}
 	
 	// Update is called once per frame
@@ -24,120 +19,49 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 
-    public void BoxClicked(int i, int j)
+    public void BoxClicked(Box boxclicked)
     {
-        if (pawnSelected != null)
+        if (pawnSelected != null && boxclicked.walkable == true)
         {
-            if (player == Player.player1)
+            if (pawnSelected.player==Player.player1 && boxclicked.board == 1 || pawnSelected.player == Player.player2 && boxclicked.board == 2)
             {
-                pawnSelected.Move(i, j, 1);
-            }
-            else if (player == Player.player2)
-            {
-                pawnSelected.Move(i, j, 2);
+                pawnSelected.Move(boxclicked.index1, boxclicked.index2);
             }
             pawnSelected = null;
         }
     }
+
     public void PawnSelected(Pawn selected)
     {
-        for (int i = 0; i < pawns.Length; i++)
+        if (pawnSelected != null)
         {
-            pawns[i].selected = false;
-        }
-        if (GetPawnBox(selected.transform.position).tag == "Box1")
-        {
-            player = Player.player1;
-        }
-        else if (GetPawnBox(selected.transform.position).tag == "Box2")
-        {
-            player = Player.player2;
+            pawnSelected.selected = false;
         }
         selected.selected = true;
         pawnSelected = selected;
     }
-    public Box GetPawnBox(Vector3 playerposition)
+
+    public void SetPawnsPlayer()
     {
-        Box currentbox = boxCoordinates[0][0].GetComponent<Box>();
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < column; j++)
+        for (int k=0;k<pawns.Length;k++) {
+            for (int i = 0; i < board1.Length; i++)
             {
-                if (boxCoordinates[i][j].position.x == playerposition.x && boxCoordinates[i][j].position.z == playerposition.z)
+                for (int j = 0; j < board1.Length; j++)
                 {
-                    currentbox = boxCoordinates[i][j].GetComponent<Box>();
+                    if (Mathf.Approximately(pawns[k].transform.position.x,board1[i][j].position.x) && Mathf.Approximately(pawns[k].transform.position.z,board1[i][j].position.z))
+                    {
+                        pawns[k].player = Player.player1;
+                        pawns[k].currentBox = board1[i][j].GetComponent<Box>();
+                        break;
+                    }
+                    else if (Mathf.Approximately(pawns[k].transform.position.x,board2[i][j].position.x) && Mathf.Approximately(pawns[k].transform.position.z,board2[i][j].position.z))
+                    {
+                        pawns[k].player = Player.player2;
+                        pawns[k].currentBox = board2[i][j].GetComponent<Box>();
+                        break;
+                    }
                 }
             }
-        }
-        return currentbox.GetComponent<Box>();
-    }
-    private void PrintCoordiate()
-    {
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < column; j++)
-            {
-                Debug.Log(boxCoordinates[i][j]);
-            }
-        }
-    }
-    private void OrganizeBoxes()
-    {
-        allbox = FindObjectsOfType<Box>();
-        boxtemppositions = new Transform[allbox.Length];
-        for (int i = 0; i < allbox.Length; i++)
-        {
-            boxtemppositions[i] = allbox[i].GetComponent<Transform>();
-        }
-        Array.Sort(boxtemppositions,Vector3Compare);
-        int k = 0;
-        for (int i = 0; i < row; i++)
-        {
-            boxCoordinates[i] = new Transform[column];
-            for (int j = 0; j < column; j++)
-            {
-                boxCoordinates[i][j] = boxtemppositions[k];
-                boxCoordinates[i][j].gameObject.GetComponent<Box>().index1 = i;
-                boxCoordinates[i][j].gameObject.GetComponent<Box>().index2 = j;
-                k++;
-            }
-        }
-    }
-    private int Vector3Compare(Transform value1, Transform value2)
-    {
-        if (value1.position.x > value2.position.x)
-        {
-            return -1;
-        }
-        else if (value1.position.x == value2.position.x)
-        {
-            if (value1.position.y < value2.position.y)
-            {
-                return -1;
-            }
-            else if (value1.position.y == value2.position.y)
-            {
-                if (value1.position.z < value2.position.z)
-                {
-                    return -1;
-                }
-                else if (value1.position.z == value2.position.z)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
-            else
-            {
-                return 1;
-            }
-        }
-        else
-        {
-            return 1;
         }
     }
 }
