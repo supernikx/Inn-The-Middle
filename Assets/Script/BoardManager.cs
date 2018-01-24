@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
-    public Transform[][] board1,board2;
+    public Transform[][] board1, board2;
     private Pawn[] pawns;
     private Pawn pawnSelected;
 
