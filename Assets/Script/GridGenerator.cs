@@ -9,7 +9,6 @@ public class GridGenerator : MonoBehaviour
     public BoardManager bm;
     public Transform[][] tilePositions;
     private BoardsGenerator bg;
-
     private void Awake()
     {
         bg = FindObjectOfType<BoardsGenerator>();

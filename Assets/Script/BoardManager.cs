@@ -41,6 +41,7 @@ public class BoardManager : MonoBehaviour {
         pawnSelected = selected;
     }
 
+    //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
     public void SetPawnsPlayer()
     {
         for (int k=0;k<pawns.Length;k++) {

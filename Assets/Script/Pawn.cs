@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Pawn : MonoBehaviour
 {
@@ -49,7 +50,8 @@ public class Pawn : MonoBehaviour
         {
             transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
             transform.Rotate(new Vector3(0, 90,0));
-            transform.position = boxToMove.position + offset;
+            //transform.position = boxToMove.position + offset;
+            transform.DOMove(boxToMove.position + offset, speed);
             currentBox = boxToMove.GetComponent<Box>();
         }
     }
