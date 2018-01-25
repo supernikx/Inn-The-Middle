@@ -28,13 +28,18 @@ public class GridGenerator : MonoBehaviour
         tilePositions = new Transform[row][];
         for (int x = 0; x < row; x++)
         {
-            tilePositions[x] = new Transform[column];
+            int xToUSe = x;
+            if (tag == "board2")
+            {
+                xToUSe = row - x - 1;
+            }
+            tilePositions[xToUSe] = new Transform[column];
             for (int y = 0; y < column; y++)
             {
-                tilePositions[x][y] = Instantiate(TilePrefab, new Vector3(transform.position.x + x * size, transform.position.y, transform.position.z + y * size), transform.rotation, transform).transform;
-                tilePositions[x][y].parent = board.transform;
-                Box b = tilePositions[x][y].GetComponent<Box>();
-                b.index1 = x;
+                tilePositions[xToUSe][y] = Instantiate(TilePrefab, new Vector3(transform.position.x + x * size, transform.position.y, transform.position.z + y * size), transform.rotation, transform).transform;
+                tilePositions[xToUSe][y].parent = board.transform;
+                Box b = tilePositions[xToUSe][y].GetComponent<Box>();
+                b.index1 = xToUSe;
                 b.index2 = y;
                 if (tag == "board1")
                 {
@@ -43,7 +48,7 @@ public class GridGenerator : MonoBehaviour
                 else if (tag == "board2")
                 {
                     b.board = 2;
-                }
+                }     
             }
         }
     }
