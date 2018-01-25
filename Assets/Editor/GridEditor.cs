@@ -10,8 +10,6 @@ public class GridEditor : Editor {
     private void OnEnable()
     {
         grid = (BoardsGenerator)target;
-        grid.board1.DestroyGrid();
-        grid.board1.oneTime = true;
     }
     public override void OnInspectorGUI()
     {
