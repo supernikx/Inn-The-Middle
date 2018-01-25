@@ -32,3 +32,14 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Resources.meta
+Assets/Demigiant/DOTween/Examples.meta
+Assets/Demigiant/DOTween/Editor/Imgs.meta
+Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll.meta
+Assets/Demigiant/DOTween/Editor.meta
+Assets/Demigiant/DOTween/DOTween50.dll.meta
+Assets/Demigiant/DOTween/DOTween46.dll.meta
+Assets/Demigiant/DOTween/DOTween43.dll.meta
+Assets/Demigiant/DOTween/DOTween.dll.meta
+Assets/Demigiant/DOTween.meta
+Assets/Demigiant.meta
