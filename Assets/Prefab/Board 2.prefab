@@ -52,7 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 1190535317840012, guid: 0c61ed9429e94044a91f0ad8cd023cf2, type: 2}
-  bm: {fileID: 0}
-  row: 5
-  column: 5
-  oneTime: 0
+  bm: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
