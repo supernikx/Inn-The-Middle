@@ -38,8 +38,7 @@ public class BoardManager : MonoBehaviour {
                 }
                 pawnSelected = null;
             }
-
-            if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
             {
                 if (pawnSelected.player == Player.player2 && boxclicked.board == 2)
                 {
