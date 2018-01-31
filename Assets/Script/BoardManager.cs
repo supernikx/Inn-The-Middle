@@ -57,7 +57,7 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
-            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement && boxclicked.walkable)
+            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
             {
                 Movement(boxclicked);
             }
@@ -70,40 +70,52 @@ public class BoardManager : MonoBehaviour
                 DeselectPawn();
             }
         }
-        else
-        {
-            DeselectPawn();
-        }
     }
 
     private void Movement(Box boxclicked)
     {
-        if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+        if (CheckFreeBox(boxclicked) && boxclicked.walkable)
         {
-            if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
             {
-                turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+                {
+                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+                }
+                else
+                {
+                    DeselectPawn();
+                }
+            }
+            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            {
+                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+                {
+                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+                }
+                else
+                {
+                    DeselectPawn();
+                }
             }
             else
             {
                 DeselectPawn();
             }
         }
-        else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+    }
+
+    private bool CheckFreeBox(Box boxclicked)
+    {
+        for (int i = 0; i < pawns.Length; i++)
         {
-            if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
-            {
-                turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
-            }
-            else
+            if (pawns[i].currentBox == boxclicked && pawns[i] != pawnSelected)
             {
                 DeselectPawn();
+                return false;
             }
         }
-        else
-        {
-            DeselectPawn();
-        }
+        return true;
     }
 
     private void Attack(Box boxclicked)
