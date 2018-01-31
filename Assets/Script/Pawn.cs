@@ -24,7 +24,7 @@ public class Pawn : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         bm.PawnSelected(gameObject.GetComponent<Pawn>());
     }

@@ -8,9 +8,14 @@ public class BoardManager : MonoBehaviour {
     private Pawn[] pawns;
     private Pawn pawnSelected;
 
+
+
+    private TurnManager turnManager;
+
     // Use this for initialization
     void Start () {
         pawns = FindObjectsOfType<Pawn>();
+        turnManager = FindObjectOfType<TurnManager>();
         SetPawnsPlayer();
 	}
 	
@@ -23,12 +28,43 @@ public class BoardManager : MonoBehaviour {
     {
         if (pawnSelected != null && boxclicked.walkable == true)
         {
+            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+            {
+                if (pawnSelected.player == Player.player1 && boxclicked.board == 1)
+                {
+                    pawnSelected.Move(boxclicked.index1, boxclicked.index2);
+                    turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
+                    Debug.Log(turnManager.playerTurn);
+                }
+                pawnSelected = null;
+            }
+
+            if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            {
+                if (pawnSelected.player == Player.player2 && boxclicked.board == 2)
+                {
+                    pawnSelected.Move(boxclicked.index1, boxclicked.index2);
+                    turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
+                    Debug.Log(turnManager.playerTurn);
+                }
+                pawnSelected = null;
+            }
+        }
+
+
+
+
+
+
+        //codice originale
+        /*if (pawnSelected != null && boxclicked.walkable == true)
+        {
             if (pawnSelected.player==Player.player1 && boxclicked.board == 1 || pawnSelected.player == Player.player2 && boxclicked.board == 2)
             {
                 pawnSelected.Move(boxclicked.index1, boxclicked.index2);
             }
             pawnSelected = null;
-        }
+        }*/
     }
 
     public void PawnSelected(Pawn selected)
