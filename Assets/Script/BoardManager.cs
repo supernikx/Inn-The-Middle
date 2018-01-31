@@ -55,9 +55,9 @@ public class BoardManager : MonoBehaviour
 
     public void BoxClicked(Box boxclicked)
     {
-        if (pawnSelected != null && boxclicked.walkable == true)
+        if (pawnSelected != null)
         {
-            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
+            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement && boxclicked.walkable)
             {
                 Movement(boxclicked);
             }

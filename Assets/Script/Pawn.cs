@@ -103,7 +103,7 @@ public class Pawn : MonoBehaviour
         int currentColumn = currentBox.index2;
         foreach (Attack a in pattern)
         {
-            if (currentColumn + a.index2 == boxToAttack.index2 && a.index1 - currentBox.index1 == boxToAttack.index1)
+            if (currentColumn + a.index2 == boxToAttack.index2 && a.index1 - currentBox.index1 == boxToAttack.index1 && boxToAttack.walkable)
                 return true;
         }
         return false;
