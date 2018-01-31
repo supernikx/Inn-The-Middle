@@ -27,7 +27,7 @@ public class BoardManager : MonoBehaviour
 
     }
 
-
+    
     public void PassTurn()
     {
         if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
@@ -39,7 +39,7 @@ public class BoardManager : MonoBehaviour
                 Debug.Log(pawnSelected.player + " ha saltato l'attacco");
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                pawnSelected = null;
+                DeselectPawn();
             }
             else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
             {
@@ -48,7 +48,7 @@ public class BoardManager : MonoBehaviour
                 Debug.Log(pawnSelected.player + " ha saltato l'attacco");
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                pawnSelected = null;
+                DeselectPawn();
             }
         }
     }
@@ -67,12 +67,12 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
-                pawnSelected = null;
+                DeselectPawn();
             }
         }
         else
         {
-            pawnSelected = null;
+            DeselectPawn();
         }
     }
 
@@ -86,7 +86,7 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
-                pawnSelected = null;
+                DeselectPawn();
             }
         }
         else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
@@ -97,8 +97,12 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
-                pawnSelected = null;
+                DeselectPawn();
             }
+        }
+        else
+        {
+            DeselectPawn();
         }
     }
 
@@ -112,7 +116,7 @@ public class BoardManager : MonoBehaviour
                 turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
                 Debug.Log(pawnSelected.player + " ha attaccato");
-                pawnSelected = null;
+                DeselectPawn();
             }
         }
         else if (pawnSelected.player == Player.player2 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
@@ -123,7 +127,7 @@ public class BoardManager : MonoBehaviour
                 turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
                 Debug.Log(pawnSelected.player + " ha attaccato");
-                pawnSelected = null;
+                DeselectPawn();
             }
         }
     }
@@ -136,13 +140,22 @@ public class BoardManager : MonoBehaviour
             {
                 if (pawnSelected != null)
                 {
-                    pawnSelected.selected = false;
-                    pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                    DeselectPawn();
                 }
                 selected.selected = true;
                 pawnSelected = selected;
                 pawnSelected.GetComponent<Renderer>().material.color = Color.white;
             }
+        }
+    }
+
+    private void DeselectPawn()
+    {
+        if (pawnSelected != null)
+        {
+            pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+            pawnSelected.selected = false;
+            pawnSelected = null;
         }
     }
 
