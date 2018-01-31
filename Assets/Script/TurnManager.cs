@@ -9,7 +9,7 @@ public class TurnManager : MonoBehaviour {
     /// <summary> PlayerTurn corrente </summary>
     public PlayerTurn playerTurn;
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { selection, movement, attack };
+    public enum PlayTurnState { movement, attack };
     /// <summary> PlayTurnState corrente </summary>
     public PlayTurnState currentTurnState;
 
@@ -28,9 +28,6 @@ public class TurnManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        pawnScript = FindObjectOfType<Pawn>();
-
-
         playerTurn = PlayerTurn.P1_turn;
     }
 
@@ -64,57 +61,44 @@ public class TurnManager : MonoBehaviour {
     /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
     void PlayTurn()
     {
-        if (!strategicTurn)
+        if (pawnScript != null)
         {
-            // Inizio macroturno di gioco con stato di selezione, movimento e attacco
-
-            if (playerTurn == PlayerTurn.P1_turn && pawnScript.player == Player.player1)
+            if (!strategicTurn)
             {
-                if (currentTurnState == PlayTurnState.selection)
+                // Inizio macroturno di gioco con stato di selezione, movimento e attacco
+
+                if (playerTurn == PlayerTurn.P1_turn && pawnScript.player == Player.player1)
                 {
-                    pawnScript.OnMouseDown();
-                    playerTurn = PlayerTurn.P2_turn;
+
+                    if (currentTurnState == PlayTurnState.movement)
+                    {
+                        //muovi pedina selezionata
+                        currentTurnState = PlayTurnState.attack;
+                    }
+                    if (currentTurnState == PlayTurnState.attack)
+                    {
+                        //attacca e passa turno
+                        playerTurn = PlayerTurn.P2_turn;
+                    }
+                }
 
 
+                if (playerTurn == PlayerTurn.P2_turn && pawnScript.player == Player.player2)
+                {
 
-                    currentTurnState = PlayTurnState.movement;
+                    if (currentTurnState == PlayTurnState.movement)
+                    {
+                        //muovi pedina selezionata
+                        currentTurnState = PlayTurnState.attack;
+                    }
+                    if (currentTurnState == PlayTurnState.attack)
+                    {
+                        //attacca e passa turno
+                        playerTurn = PlayerTurn.P2_turn;
+                    }
                 }
-                if (currentTurnState == PlayTurnState.movement)
-                {
-                    //muovi pedina selezionata
-                    currentTurnState = PlayTurnState.attack;
-                }
-                if (currentTurnState == PlayTurnState.attack)
-                {
-                    //attacca e passa turno
-                    playerTurn = PlayerTurn.P2_turn;
-                }
+
             }
-
-
-            if (playerTurn == PlayerTurn.P2_turn && pawnScript.player == Player.player2)
-            {
-                if (currentTurnState == PlayTurnState.selection)
-                {
-                    pawnScript.OnMouseDown();
-                    playerTurn = PlayerTurn.P1_turn;
-
-
-
-                    currentTurnState = PlayTurnState.movement;
-                }
-                if (currentTurnState == PlayTurnState.movement)
-                {
-                    //muovi pedina selezionata
-                    currentTurnState = PlayTurnState.attack;
-                }
-                if (currentTurnState == PlayTurnState.attack)
-                {
-                    //attacca e passa turno
-                    playerTurn = PlayerTurn.P2_turn;
-                }
-            }
-
         }
     }
 

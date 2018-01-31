@@ -21,20 +21,19 @@ public class BoardManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        AttackTest();
 	}
 
     public void BoxClicked(Box boxclicked)
     {
-        if (pawnSelected != null && boxclicked.walkable == true)
+        if (pawnSelected != null && boxclicked.walkable == true && turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
         {
             if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
             {
                 if (pawnSelected.player == Player.player1 && boxclicked.board == 1)
                 {
                     pawnSelected.Move(boxclicked.index1, boxclicked.index2);
-                    turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
-                    Debug.Log(turnManager.playerTurn);
+                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
                 }
                 pawnSelected = null;
             }
@@ -43,8 +42,8 @@ public class BoardManager : MonoBehaviour {
                 if (pawnSelected.player == Player.player2 && boxclicked.board == 2)
                 {
                     pawnSelected.Move(boxclicked.index1, boxclicked.index2);
-                    turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
-                    Debug.Log(turnManager.playerTurn);
+                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+
                 }
                 pawnSelected = null;
             }
@@ -65,6 +64,30 @@ public class BoardManager : MonoBehaviour {
             pawnSelected = null;
         }*/
     }
+
+    //test attacco
+    void AttackTest()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+            {
+                turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                Debug.Log(pawnSelected.player + " ha attaccato");
+            }
+            else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+            {
+                turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                Debug.Log(pawnSelected.player + " ha attaccato");
+            }
+        } 
+
+
+
+    }
+
 
     public void PawnSelected(Pawn selected)
     {
