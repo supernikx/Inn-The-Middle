@@ -24,7 +24,14 @@ public class BoardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Q) && turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+        {
+            turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
+            turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+            Debug.Log(pawnSelected.player + " ha saltato l'attacco");
+            pawnSelected.DisableAttackPattern();
+            pawnSelected = null;
+        }
     }
 
     public void BoxClicked(Box boxclicked)
