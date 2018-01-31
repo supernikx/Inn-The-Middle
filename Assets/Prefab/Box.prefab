@@ -131,5 +131,5 @@ MonoBehaviour:
   index2: 0
   board: 0
   walkable: 0
-  attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
+  showedBox: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}

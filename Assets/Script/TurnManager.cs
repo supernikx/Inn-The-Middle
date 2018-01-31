@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
 
@@ -21,21 +22,22 @@ public class TurnManager : MonoBehaviour {
     /// <summary> Numero di pedine rimanenti per giocatore </summary>
     public int P1PawnsLeft, P2PawnsLeft;
 
-
-
+    /// <summary> Testo per indicare di chi è il turno </summary>
+    public Text P1text, P2text;
 
     Pawn pawnScript;
     // Use this for initialization
     void Start()
     {
         playerTurn = PlayerTurn.P1_turn;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayTurn();
-
+        TurnCheckText();
 
 
 
@@ -55,6 +57,19 @@ public class TurnManager : MonoBehaviour {
         }*/
     }
 
+    public void TurnCheckText()
+    {
+        if (playerTurn == PlayerTurn.P1_turn)
+        {
+            P1text.enabled = true;
+            P2text.enabled = false;
+        }
+        else if (playerTurn == PlayerTurn.P2_turn)
+        {
+            P2text.enabled = true;
+            P1text.enabled = false;
+        }
+    }
 
 
 

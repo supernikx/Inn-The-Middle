@@ -13,12 +13,15 @@ public class Pawn : MonoBehaviour
     public float speed;
     public int startIndex1, startIndex2;
     public List<Attack> pattern;
+    public Color pawnColor;
+    
 
     // Use this for initialization
     void Start()
     {
         bm = FindObjectOfType<BoardManager>();
         selected = false;
+        pawnColor = GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
