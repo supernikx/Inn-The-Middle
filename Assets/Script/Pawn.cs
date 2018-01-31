@@ -37,7 +37,7 @@ public class Pawn : MonoBehaviour
 
     public bool Move(int boxindex1, int boxindex2)
     {
-        Transform boxToMove=currentBox.transform;
+        Transform boxToMove=null;
         if (player == Player.player1)
         {
             boxToMove = bm.board1[boxindex1][boxindex2];
@@ -53,6 +53,10 @@ public class Pawn : MonoBehaviour
 
     private bool PawnMovement(int boxindex1, int boxindex2, Transform boxToMove)
     {
+        if (boxToMove.GetComponent<Box>() == currentBox)
+        {
+            return false;
+        }
         if ((boxindex1 == currentBox.index1 + 1 || boxindex1 == currentBox.index1 - 1 || boxindex1 == currentBox.index1) && (boxindex2 == currentBox.index2 || boxindex2 == currentBox.index2+1 || boxindex2 == currentBox.index2-1))
         {
             transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
