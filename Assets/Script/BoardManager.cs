@@ -132,14 +132,17 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.currentTurnState != TurnManager.PlayTurnState.attack)
         {
-            if (pawnSelected != null)
+            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)
             {
-                pawnSelected.selected = false;
-                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                if (pawnSelected != null)
+                {
+                    pawnSelected.selected = false;
+                    pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                }
+                selected.selected = true;
+                pawnSelected = selected;
+                pawnSelected.GetComponent<Renderer>().material.color = Color.white;
             }
-            selected.selected = true;
-            pawnSelected = selected;
-            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 
