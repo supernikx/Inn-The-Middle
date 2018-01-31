@@ -129,3 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index1: 0
   index2: 0
+  board: 0
+  walkable: 0
+  attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
+  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
