@@ -103,6 +103,11 @@ public class BoardManager : MonoBehaviour
                 DeselectPawn();
             }
         }
+        else
+        {
+            DeselectPawn();
+        }
+
     }
 
     private bool CheckFreeBox(Box boxclicked)
