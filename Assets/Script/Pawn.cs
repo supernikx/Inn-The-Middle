@@ -5,17 +5,24 @@ using DG.Tweening;
 
 public class Pawn : MonoBehaviour
 {
+    //variabili pubbliche
     public bool selected;
     public Vector3 offset;
-    private BoardManager bm;
     public Player player;
     public Box currentBox;
     public float speed;
     public int startIndex1, startIndex2;
-    public List<Attack> pattern;
     public Color pawnColor;
-    
+    /// <summary>
+    /// Lista che contiene il pattern d'attacco, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
+    /// </summary>
+    public List<Attack> pattern;
 
+    //variabili private
+    private BoardManager bm;
+
+
+    //parte di codice con funzioni private
     // Use this for initialization
     void Start()
     {
@@ -24,33 +31,14 @@ public class Pawn : MonoBehaviour
         pawnColor = GetComponent<Renderer>().material.color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void OnMouseDown()
-    {
-        bm.PawnSelected(gameObject.GetComponent<Pawn>());
-    }
-
-    public bool Move(int boxindex1, int boxindex2)
-    {
-        Transform boxToMove=null;
-        if (player == Player.player1)
-        {
-            boxToMove = bm.board1[boxindex1][boxindex2];
-        }
-        else if (player == Player.player2)
-        {
-            boxToMove = bm.board2[boxindex1][boxindex2];
-        }
-        selected = false;
-        return PawnMovement(boxindex1, boxindex2, boxToMove);
-        
-    }
-
+    /// <summary>
+    /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
+    /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
+    /// </summary>
+    /// <param name="boxindex1"></param>
+    /// <param name="boxindex2"></param>
+    /// <param name="boxToMove"></param>
+    /// <returns></returns>
     private bool PawnMovement(int boxindex1, int boxindex2, Transform boxToMove)
     {
         if (boxToMove.GetComponent<Box>() == currentBox)
@@ -69,35 +57,28 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
-    public bool Attack(int boxindex1, int boxindex2)
+    /// <summary>
+    /// Funzione che controlla se boxToAttack rispetta il pattern di attacco della pedina, esegue l'attacco colorando la casella attaccata e disabilitando il pattern visuale
+    /// altrimenti ritorna false
+    /// </summary>
+    /// <param name="boxToAttack"></param>
+    private bool PawnAttack(Box boxToAttack)
     {
-        Box boxToAttack = null;
-        if (player == Player.player1)
-        {
-            boxToAttack = bm.board2[boxindex1][boxindex2].GetComponent<Box>();
-        }
-        else if (player == Player.player2)
-        {
-            boxToAttack = bm.board1[boxindex1][boxindex2].GetComponent<Box>();
-        }
         if (CheckAttackPattern(boxToAttack))
         {
-            PawnAttack(boxToAttack);
+            boxToAttack.AttackBox();
+            DisableAttackPattern();
             return true;
         }
-        else
-        {
-            Debug.Log("nope");
-            return false;
-        }
+        Debug.Log("nope");
+        return false;
     }
 
-    private void PawnAttack(Box boxToAttack)
-    {
-        boxToAttack.AttackBox();
-        DisableAttackPattern();
-    }
-
+    /// <summary>
+    /// Confronta boxToAttack con i valori inseriti dentro la variabile pattern, in caso la box fa parte del pattern di questa pedina ritorna true, altrimenti ritorna false
+    /// </summary>
+    /// <param name="boxToAttack"></param>
+    /// <returns></returns>
     private bool CheckAttackPattern(Box boxToAttack)
     {
         int currentColumn = currentBox.index2;
@@ -109,6 +90,21 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
+
+    //identifica la zona di codice con le funzioni pubbliche
+    #region API
+
+    /// <summary>
+    /// Funzione che viene chiamata ogni volta che la pedina viene premuta, e che richiama la funzione del BoardManager PawnSelected
+    /// </summary>
+    public void OnMouseDown()
+    {
+        bm.PawnSelected(gameObject.GetComponent<Pawn>());
+    }
+
+    /// <summary>
+    /// Mostra sulla board avversaria le caselle attaccabili da questa pedina
+    /// </summary>
     public void ShowAttackPattern()
     {
         int currentColumn = currentBox.index2;
@@ -134,6 +130,9 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disabilita la visione sulla board avversaria le caselle attaccabili da questa pedina
+    /// </summary>
     public void DisableAttackPattern()
     {
         int currentColumn = currentBox.index2;
@@ -158,4 +157,49 @@ public class Pawn : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board opposta in base a che player appartiene la pedina, passa tutto a PawnAttack
+    /// ritorna true in caso l'attacco sia avvenuto, mentre ritorna false se non è avvenuto
+    /// </summary>
+    /// <param name="boxindex1"></param>
+    /// <param name="boxindex2"></param>
+    /// <returns></returns>
+    public bool Attack(int boxindex1, int boxindex2)
+    {
+        Box boxToAttack = null;
+        if (player == Player.player1)
+        {
+            boxToAttack = bm.board2[boxindex1][boxindex2].GetComponent<Box>();
+        }
+        else if (player == Player.player2)
+        {
+            boxToAttack = bm.board1[boxindex1][boxindex2].GetComponent<Box>();
+        }
+        return PawnAttack(boxToAttack);
+    }
+
+    /// <summary>
+    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board in base a che player appartiene la pedina, passa tutto a PawnMovement 
+    /// ritorna true in caso il movimento sia avvenuto, mentre ritorna false se non è avvenuto
+    /// </summary>
+    /// <param name="boxindex1"></param>
+    /// <param name="boxindex2"></param>
+    /// <returns></returns>
+    public bool Move(int boxindex1, int boxindex2)
+    {
+        Transform boxToMove = null;
+        if (player == Player.player1)
+        {
+            boxToMove = bm.board1[boxindex1][boxindex2];
+        }
+        else if (player == Player.player2)
+        {
+            boxToMove = bm.board2[boxindex1][boxindex2];
+        }
+        selected = false;
+        return PawnMovement(boxindex1, boxindex2, boxToMove);
+    }
+
+    #endregion
 }

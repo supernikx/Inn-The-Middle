@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
+    //variabili pubbliche
     public GameObject TilePrefab;
     public BoardManager bm;
     public Transform[][] tilePositions;
+
+    //variabili private
     private BoardsGenerator bg;
+
+    //funzioni private
     private void Awake()
     {
         bg = FindObjectOfType<BoardsGenerator>();
@@ -15,6 +20,30 @@ public class GridGenerator : MonoBehaviour
         SetBoards();
     }
 
+    /// <summary>
+    /// Funzione che imposta l'array generato all'interno delle variabili board del BoardManager in base al player
+    /// </summary>
+    private void SetBoards()
+    {
+        if (tag == "board1")
+        {
+            bm.board1 = tilePositions;
+        }
+        else if (tag == "board2")
+        {
+            bm.board2 = tilePositions;
+        }
+    }
+
+
+    //identifica la zona di codice con le funzioni pubbliche
+    #region API
+
+    /// <summary>
+    /// Funzione che crea la griglia, viene chiamata all'inizio del gioco e nell'editor dal BoardsGenerator, genera una griglia ricevendo in input righe e colonne, come caselle usa il TilePrefab
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="column"></param>
     public void CreateGrid(int row, int column)
     {
         if (transform.Find("Board"))
@@ -52,15 +81,5 @@ public class GridGenerator : MonoBehaviour
         }
     }
 
-    private void SetBoards()
-    {
-        if (tag == "board1")
-        {
-            bm.board1 = tilePositions;
-        }
-        else if (tag == "board2")
-        {
-            bm.board2 = tilePositions;
-        }
-    }
+    #endregion
 }

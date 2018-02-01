@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
+    //variabili pubbliche
     public Transform[][] board1, board2;
+
+    //variabili private
     private Pawn[] pawns;
     private Pawn pawnSelected;
-
     private TurnManager turnManager;
 
     // Use this for initialization
@@ -21,60 +23,14 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    
-    public void PassTurn()
-    {
-        if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
-        {
-            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
-            {
-                turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
-                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
-                pawnSelected.DisableAttackPattern();
-                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                DeselectPawn();
-            }
-            else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
-            {
-                turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
-                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
-                pawnSelected.DisableAttackPattern();
-                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                DeselectPawn();
-            }
-        }
-    }
-
-    public void BoxClicked(Box boxclicked)
-    {
-        if (pawnSelected != null)
-        {
-            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
-            {
-                Movement(boxclicked);
-            }
-            else if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
-            {
-                Attack(boxclicked);
-            }
-            else
-            {
-                DeselectPawn();
-            }
-        }
-    }
-
+    /// <summary>
+    /// Funzione che passandogli la casella cliccata fa i primi controlli relativi al turno e alla fase del turno per poi passare i dati della casella alla funzione Movement della classe pawn
+    /// se il movimento va a buon fine cambia la fase del turno da movimento ad attacco
+    /// </summary>
+    /// <param name="boxclicked"></param>
     private void Movement(Box boxclicked)
     {
-        if (CheckFreeBox(boxclicked) && boxclicked.walkable)
+        if (CheckFreeBox(boxclicked))
         {
             if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
             {
@@ -110,19 +66,34 @@ public class BoardManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
+    /// se è libera ritorna true, altrimenti se è occupata ritorna false
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    /// <returns></returns>
     private bool CheckFreeBox(Box boxclicked)
     {
-        for (int i = 0; i < pawns.Length; i++)
+        if (boxclicked.walkable)
         {
-            if (pawns[i].currentBox == boxclicked && pawns[i] != pawnSelected)
+            for (int i = 0; i < pawns.Length; i++)
             {
-                DeselectPawn();
-                return false;
+                if (pawns[i].currentBox == boxclicked && pawns[i] != pawnSelected)
+                {
+                    DeselectPawn();
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
+    /// <summary>
+    /// Funzione che passandogli la casella cliccata fa i primi controlli relativi al turno e alla fase del turno per poi passare i dati della casella alla funzione Attack della classe pawn
+    /// se l'attacco va a buon fine passa il turno all'altro giocatre e reimposta la fase del turno in movimento
+    /// </summary>
+    /// <param name="boxclicked"></param>
     private void Attack(Box boxclicked)
     {
         if (pawnSelected.player == Player.player1 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
@@ -149,23 +120,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public void PawnSelected(Pawn selected)
-    {
-        if (turnManager.currentTurnState != TurnManager.PlayTurnState.attack)
-        {
-            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)
-            {
-                if (pawnSelected != null)
-                {
-                    DeselectPawn();
-                }
-                selected.selected = true;
-                pawnSelected = selected;
-                pawnSelected.GetComponent<Renderer>().material.color = Color.white;
-            }
-        }
-    }
-
+    /// <summary>
+    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
+    /// </summary>
     private void DeselectPawn()
     {
         if (pawnSelected != null)
@@ -177,7 +134,7 @@ public class BoardManager : MonoBehaviour
     }
 
     //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
-    public void SetPawnsPlayer()
+    private void SetPawnsPlayer()
     {
         for (int i = 0; i < pawns.Length; i++)
         {
@@ -185,15 +142,93 @@ public class BoardManager : MonoBehaviour
             {
                 pawns[i].transform.position = board1[pawns[i].startIndex1][pawns[i].startIndex2].position + pawns[i].offset;
                 pawns[i].currentBox = board1[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>();
-            }else if (pawns[i].player == Player.player2)
+            }
+            else if (pawns[i].player == Player.player2)
             {
                 pawns[i].transform.position = board2[pawns[i].startIndex1][pawns[i].startIndex2].position + pawns[i].offset;
                 pawns[i].currentBox = board2[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>();
             }
         }
     }
+
+    //identifica la zona di codice con le funzioni pubbliche
+    #region API
+
+    /// <summary>
+    /// Funzione che imposta nella variabile pawnSelected l'oggetto Pawn passato in input, solo se la pedina selezionata appartiene al giocatore del turno in corso e se la fase del turno e quella di movimento
+    /// prima di impostarla chiama la funzione DeselectPawn per resettare l'oggetto pawnSelected precedente
+    /// </summary>
+    /// <param name="selected"></param>
+    public void PawnSelected(Pawn selected)
+    {
+        if ((turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.currentTurnState != TurnManager.PlayTurnState.attack)
+        {
+            if (pawnSelected != null)
+            {
+                DeselectPawn();
+            }
+            selected.selected = true;
+            pawnSelected = selected;
+            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+        }
+    }
+
+    /// <summary>
+    /// Funzione che salta la fase d'attacco del player corrente e passa il turno
+    /// </summary>
+    public void PassTurn()
+    {
+        if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+        {
+            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+            {
+                turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
+                pawnSelected.DisableAttackPattern();
+                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                DeselectPawn();
+            }
+            else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            {
+                turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
+                pawnSelected.DisableAttackPattern();
+                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                DeselectPawn();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Funzione che viene chiamata quando si clicca una casella e la si riceve in input, si controlla che fase del turno è e si passano le informazioni della casella alle funzioni interessate
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    public void BoxClicked(Box boxclicked)
+    {
+        if (pawnSelected != null)
+        {
+            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
+            {
+                Movement(boxclicked);
+            }
+            else if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+            {
+                Attack(boxclicked);
+            }
+            else
+            {
+                DeselectPawn();
+            }
+        }
+    }
+
+    #endregion
 }
 
-public enum Player {
-    player1,player2
+//enumeratore che contiene i player possibili
+public enum Player
+{
+    player1, player2
 }

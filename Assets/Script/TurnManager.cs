@@ -39,12 +39,6 @@ public class TurnManager : MonoBehaviour {
         PlayTurn();
         TurnCheckText();
 
-
-
-
-
-
-
         //da usare una volta implementata la fase strategica
         /*if (P2PawnsLeft > 0 && strategicTurn)
         {
@@ -70,8 +64,6 @@ public class TurnManager : MonoBehaviour {
             P1text.enabled = false;
         }
     }
-
-
 
     /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
     void PlayTurn()
@@ -116,9 +108,6 @@ public class TurnManager : MonoBehaviour {
             }
         }
     }
-
-
-
 
     /// <summary> Funzione del macroturno strategico con turni dei player e posizionamento pedine </summary>
     void StrategyTurn()
