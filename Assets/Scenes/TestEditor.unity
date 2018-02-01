@@ -8956,7 +8956,7 @@ Prefab:
     - target: {fileID: 114820047233248068, guid: 884d971ab52c9a84e9a8a84cff3ebf8b,
         type: 2}
       propertyPath: startIndex1
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114820047233248068, guid: 884d971ab52c9a84e9a8a84cff3ebf8b,
         type: 2}
