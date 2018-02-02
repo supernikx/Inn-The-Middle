@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TurnManager : MonoBehaviour {
 
@@ -23,7 +24,8 @@ public class TurnManager : MonoBehaviour {
     public int P1PawnsLeft, P2PawnsLeft;
 
     /// <summary> Testo per indicare di chi è il turno </summary>
-    public Text P1text, P2text;
+    
+    public TextMeshProUGUI p1text, p2text;
 
     Pawn pawnScript;
     // Use this for initialization
@@ -55,13 +57,13 @@ public class TurnManager : MonoBehaviour {
     {
         if (playerTurn == PlayerTurn.P1_turn)
         {
-            P1text.enabled = true;
-            P2text.enabled = false;
+            p1text.enabled = true;
+            p2text.enabled = false;
         }
         else if (playerTurn == PlayerTurn.P2_turn)
         {
-            P2text.enabled = true;
-            P1text.enabled = false;
+            p2text.enabled = true;
+            p1text.enabled = false;
         }
     }
 
