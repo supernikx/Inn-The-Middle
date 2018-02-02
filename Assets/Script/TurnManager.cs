@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour {
     /// <summary> PlayerTurn corrente </summary>
     public PlayerTurn playerTurn;
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { movement, attack };
+    public enum PlayTurnState { selection, movement, attack };
     /// <summary> PlayTurnState corrente </summary>
     public PlayTurnState currentTurnState;
 
@@ -29,20 +29,26 @@ public class TurnManager : MonoBehaviour {
     /// <summary> Testo per indicare di chi è il turno </summary>
     
     public TextMeshProUGUI p1text, p2text;
+    public TextMeshProUGUI p1phase, p2phase;
 
     Pawn pawnScript;
+    
+
     // Use this for initialization
     void Start()
     {
         playerTurn = PlayerTurn.P1_turn;
+
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayTurn();
+        
         TurnCheckText();
+        PhaseCheckText();
 
         //da usare una volta implementata la fase strategica
         /*if (P2PawnsLeft > 0 && strategicTurn)
@@ -70,7 +76,39 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
+    public void PhaseCheckText()
+    {
+        if (playerTurn == PlayerTurn.P1_turn)
+        {
+            p1phase.enabled = true;
+            p2phase.enabled = false;
+            if (currentTurnState == PlayTurnState.movement)
+            {
+                p1phase.text = "Movement phase";
+            }
+            else if (currentTurnState == PlayTurnState.attack)
+            {
+                p1phase.text = "Attack phase";
+            }
+        }
+        else if (playerTurn == PlayerTurn.P2_turn)
+        {
+            p2phase.enabled = true;
+            p1phase.enabled = false;
+            if (currentTurnState == PlayTurnState.movement)
+            {
+                p2phase.text = "Movement phase";
+            }
+            else if (currentTurnState == PlayTurnState.attack)
+            {
+                p2phase.text = "Attack phase";
+            }
+        }
+    }
+
+
+
+   /* /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
     void PlayTurn()
     {
         if (pawnScript != null)
@@ -129,5 +167,5 @@ public class TurnManager : MonoBehaviour {
             P2PawnsLeft--;
             playerTurn = PlayerTurn.P1_turn;
         }
-    }
+    }*/
 }
