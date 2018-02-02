@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour {
     /// <summary> PlayerTurn corrente </summary>
     public PlayerTurn playerTurn;
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { selection, movement, attack };
+    public enum PlayTurnState { movement, attack };
     /// <summary> PlayTurnState corrente </summary>
     public PlayTurnState currentTurnState;
 
