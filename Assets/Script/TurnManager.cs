@@ -15,11 +15,14 @@ public class TurnManager : MonoBehaviour {
     /// <summary> PlayTurnState corrente </summary>
     public PlayTurnState currentTurnState;
 
+    [HideInInspector]
     /// <summary> Booleana che indica se il macroturno StrategicTurn è ancora attivo o no (temporaneamente false in assenza di fase strategica)</summary>
     public bool strategicTurn = false;
 
+    [HideInInspector]
     /// <summary> Numero massimo di pedine per giocatore </summary>
     public int P1Pawns, P2Pawns;
+    [HideInInspector]
     /// <summary> Numero di pedine rimanenti per giocatore </summary>
     public int P1PawnsLeft, P2PawnsLeft;
 
