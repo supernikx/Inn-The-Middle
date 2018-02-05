@@ -23,6 +23,38 @@ public class BoardManager : MonoBehaviour
 
     }
 
+
+    private void CheckBox()
+    {
+        if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && turnManager.currentTurnState == TurnManager.PlayTurnState.check)
+        {
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                if (pawns[i].currentBox != pawns[i].currentBox.walkable)
+                {
+                    Debug.Log(pawns[i] + " è in casella !walkable");
+                    pawns[i].RandomizePattern();
+                }
+            }
+
+            turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+        }
+        else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && turnManager.currentTurnState == TurnManager.PlayTurnState.check)
+        {
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                if (pawns[i].currentBox != pawns[i].currentBox.walkable)
+                {
+                    Debug.Log(pawns[i] + " è in casella !walkable");
+                    pawns[i].RandomizePattern();
+                }
+            }
+
+            turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+        }
+    }
+
+
     /// <summary>
     /// Funzione che passandogli la casella cliccata fa i primi controlli relativi al turno e alla fase del turno per poi passare i dati della casella alla funzione Movement della classe pawn
     /// se il movimento va a buon fine cambia la fase del turno da movimento ad attacco
@@ -102,9 +134,10 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.check;
                 Debug.Log(pawnSelected.player + " ha attaccato");
                 DeselectPawn();
+                CheckBox();
             }
         }
         else if (pawnSelected.player == Player.player2 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
@@ -113,9 +146,10 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
+                turnManager.currentTurnState = TurnManager.PlayTurnState.check;
                 Debug.Log(pawnSelected.player + " ha attaccato");
                 DeselectPawn();
+                CheckBox();
             }
         }
     }

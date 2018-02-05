@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour {
     /// <summary> PlayerTurn corrente </summary>
     public PlayerTurn playerTurn;
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { movement, attack };
+    public enum PlayTurnState { check, movement, attack };
     /// <summary> PlayTurnState corrente </summary>
     public PlayTurnState currentTurnState;
 
@@ -38,28 +38,14 @@ public class TurnManager : MonoBehaviour {
     void Start()
     {
         playerTurn = PlayerTurn.P1_turn;
-
-
-
+        currentTurnState = PlayTurnState.movement;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         TurnCheckText();
         PhaseCheckText();
-
-        //da usare una volta implementata la fase strategica
-        /*if (P2PawnsLeft > 0 && strategicTurn)
-        {
-            StrategyTurn();
-        }
-        else if (P1PawnsLeft <= 0 && P2PawnsLeft <= 0)
-        {
-            strategicTurn = false;
-            PlayTurn();
-        }*/
     }
 
     public void TurnCheckText()
@@ -82,7 +68,11 @@ public class TurnManager : MonoBehaviour {
         {
             p1phase.enabled = true;
             p2phase.enabled = false;
-            if (currentTurnState == PlayTurnState.movement)
+            if (currentTurnState == PlayTurnState.check)
+            {
+                p1phase.text = "Check phase";
+            }
+            else if (currentTurnState == PlayTurnState.movement)
             {
                 p1phase.text = "Movement phase";
             }
@@ -95,7 +85,11 @@ public class TurnManager : MonoBehaviour {
         {
             p2phase.enabled = true;
             p1phase.enabled = false;
-            if (currentTurnState == PlayTurnState.movement)
+            if (currentTurnState == PlayTurnState.check)
+            {
+                p2phase.text = "Check phase";
+            }
+            else if (currentTurnState == PlayTurnState.movement)
             {
                 p2phase.text = "Movement phase";
             }
@@ -108,64 +102,64 @@ public class TurnManager : MonoBehaviour {
 
 
 
-   /* /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
-    void PlayTurn()
-    {
-        if (pawnScript != null)
-        {
-            if (!strategicTurn)
-            {
-                // Inizio macroturno di gioco con stato di selezione, movimento e attacco
+    /* /// <summary> Funzione del macroturno di gioco con fase di selezione, movimento e attacco delle pedine </summary>
+     void PlayTurn()
+     {
+         if (pawnScript != null)
+         {
+             if (!strategicTurn)
+             {
+                 // Inizio macroturno di gioco con stato di selezione, movimento e attacco
 
-                if (playerTurn == PlayerTurn.P1_turn && pawnScript.player == Player.player1)
-                {
+                 if (playerTurn == PlayerTurn.P1_turn && pawnScript.player == Player.player1)
+                 {
 
-                    if (currentTurnState == PlayTurnState.movement)
-                    {
-                        //muovi pedina selezionata
-                        currentTurnState = PlayTurnState.attack;
-                    }
-                    if (currentTurnState == PlayTurnState.attack)
-                    {
-                        //attacca e passa turno
-                        playerTurn = PlayerTurn.P2_turn;
-                    }
-                }
+                     if (currentTurnState == PlayTurnState.movement)
+                     {
+                         //muovi pedina selezionata
+                         currentTurnState = PlayTurnState.attack;
+                     }
+                     if (currentTurnState == PlayTurnState.attack)
+                     {
+                         //attacca e passa turno
+                         playerTurn = PlayerTurn.P2_turn;
+                     }
+                 }
 
 
-                if (playerTurn == PlayerTurn.P2_turn && pawnScript.player == Player.player2)
-                {
+                 if (playerTurn == PlayerTurn.P2_turn && pawnScript.player == Player.player2)
+                 {
 
-                    if (currentTurnState == PlayTurnState.movement)
-                    {
-                        //muovi pedina selezionata
-                        currentTurnState = PlayTurnState.attack;
-                    }
-                    if (currentTurnState == PlayTurnState.attack)
-                    {
-                        //attacca e passa turno
-                        playerTurn = PlayerTurn.P2_turn;
-                    }
-                }
+                     if (currentTurnState == PlayTurnState.movement)
+                     {
+                         //muovi pedina selezionata
+                         currentTurnState = PlayTurnState.attack;
+                     }
+                     if (currentTurnState == PlayTurnState.attack)
+                     {
+                         //attacca e passa turno
+                         playerTurn = PlayerTurn.P2_turn;
+                     }
+                 }
 
-            }
-        }
-    }
+             }
+         }
+     }
 
-    /// <summary> Funzione del macroturno strategico con turni dei player e posizionamento pedine </summary>
-    void StrategyTurn()
-    {
-        if (playerTurn == PlayerTurn.P1_turn)
-        {
-            // Selezione di una pedina (su 4) da posizionare sulla griglia
-            P1PawnsLeft--;
-            playerTurn = PlayerTurn.P2_turn;
-        }
-        else if (playerTurn == PlayerTurn.P2_turn)
-        {
-            // Selezione di una pedina (su 4) da posizionare sulla griglia
-            P2PawnsLeft--;
-            playerTurn = PlayerTurn.P1_turn;
-        }
-    }*/
+     /// <summary> Funzione del macroturno strategico con turni dei player e posizionamento pedine </summary>
+     void StrategyTurn()
+     {
+         if (playerTurn == PlayerTurn.P1_turn)
+         {
+             // Selezione di una pedina (su 4) da posizionare sulla griglia
+             P1PawnsLeft--;
+             playerTurn = PlayerTurn.P2_turn;
+         }
+         else if (playerTurn == PlayerTurn.P2_turn)
+         {
+             // Selezione di una pedina (su 4) da posizionare sulla griglia
+             P2PawnsLeft--;
+             playerTurn = PlayerTurn.P1_turn;
+         }
+     }*/
 }
