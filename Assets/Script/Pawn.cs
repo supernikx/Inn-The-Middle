@@ -25,6 +25,7 @@ public class Pawn : MonoBehaviour
     //variabili private
     private BoardManager bm;
     private MeshRenderer mr;
+    private Transform[][] myboard, enemyboard;
 
     //parte di codice con funzioni private
     // Use this for initialization
@@ -34,6 +35,7 @@ public class Pawn : MonoBehaviour
         selected = false;
         mr = GetComponent<MeshRenderer>();
         pawnColor = mr.material.color;
+        SetBoards();
         RandomizePattern();
     }
 
@@ -64,15 +66,22 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che controlla se boxToAttack rispetta il pattern di attacco della pedina, esegue l'attacco colorando la casella attaccata e disabilitando il pattern visuale
+    /// Funzione che controlla se boxToAttack è una casella del pattern e se nel pattern è presente una pedina avversaria esegue l'attacco colorando tutte le caselle nel range del pattern e disabilitando il pattern visuale
     /// altrimenti ritorna false
     /// </summary>
     /// <param name="boxToAttack"></param>
     private bool PawnAttack(Box boxToAttack)
     {
-        if (CheckAttackPattern(boxToAttack))
+        if (CheckAttackPattern() && boxToAttack.pattern)
         {
-            boxToAttack.AttackBox();
+            int currentColumn = currentBox.index2;
+            foreach (Pattern a in patterns[activePattern].pattern)
+            {
+                if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                {
+                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
+                }
+            }
             DisableAttackPattern();
             return true;
         }
@@ -81,21 +90,45 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Confronta boxToAttack con i valori inseriti dentro la variabile pattern, in caso la box fa parte del pattern di questa pedina ritorna true, altrimenti ritorna false
+    /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
     /// </summary>
-    /// <param name="boxToAttack"></param>
     /// <returns></returns>
-    private bool CheckAttackPattern(Box boxToAttack)
+    private bool CheckAttackPattern()
     {
         int currentColumn = currentBox.index2;
         foreach (Pattern a in patterns[activePattern].pattern)
         {
-            if (currentColumn + a.index2 == boxToAttack.index2 && a.index1 - currentBox.index1 == boxToAttack.index1 && boxToAttack.walkable)
-                return true;
+            foreach (Pawn p in bm.pawns)
+            {
+                if (p.player != player)
+                {
+                    if (((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                    {
+                        Debug.Log("c'è una pedina avversaria nel pattern");
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
 
+    /// <summary>
+    /// Funzione che imposta qual'è la nostra board e qual'è quella dell'avversario
+    /// </summary>
+    private void SetBoards()
+    {
+        if (player == Player.player1)
+        {
+            myboard = bm.board1;
+            enemyboard = bm.board2;
+        }
+        else if (player == Player.player2)
+        {
+            myboard = bm.board2;
+            enemyboard = bm.board1;
+        }
+    }
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
@@ -116,22 +149,9 @@ public class Pawn : MonoBehaviour
         int currentColumn = currentBox.index2;
         foreach (Pattern a in patterns[activePattern].pattern)
         {
-            for (int index1 = 0; index1 < bm.board1.Length; index1++)
+            if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
             {
-                for (int index2 = 0; index2 < bm.board1[index1].Length; index2++)
-                {
-                    if (currentColumn + a.index2 == index2 && a.index1 - currentBox.index1 == index1)
-                    {
-                        if (player == Player.player1)
-                        {
-                            bm.board2[index1][index2].GetComponent<Box>().ShowBox();
-                        }
-                        else if (player == Player.player2)
-                        {
-                            bm.board1[index1][index2].GetComponent<Box>().ShowBox();
-                        }
-                    }
-                }
+                enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBox();
             }
         }
     }
@@ -144,28 +164,15 @@ public class Pawn : MonoBehaviour
         int currentColumn = currentBox.index2;
         foreach (Pattern a in patterns[activePattern].pattern)
         {
-            for (int index1 = 0; index1 < bm.board1.Length; index1++)
+            if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
             {
-                for (int index2 = 0; index2 < bm.board1[index1].Length; index2++)
-                {
-                    if (currentColumn + a.index2 == index2 && a.index1 - currentBox.index1 == index1)
-                    {
-                        if (player == Player.player1)
-                        {
-                            bm.board2[index1][index2].GetComponent<Box>().SetAsDefault();
-                        }
-                        else if (player == Player.player2)
-                        {
-                            bm.board1[index1][index2].GetComponent<Box>().SetAsDefault();
-                        }
-                    }
-                }
+                enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
             }
         }
     }
 
     /// <summary>
-    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board opposta in base a che player appartiene la pedina, passa tutto a PawnAttack
+    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board opposta, passa la box e gli index a PawnAttack
     /// ritorna true in caso l'attacco sia avvenuto, mentre ritorna false se non è avvenuto
     /// </summary>
     /// <param name="boxindex1"></param>
@@ -173,20 +180,12 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool Attack(int boxindex1, int boxindex2)
     {
-        Box boxToAttack = null;
-        if (player == Player.player1)
-        {
-            boxToAttack = bm.board2[boxindex1][boxindex2].GetComponent<Box>();
-        }
-        else if (player == Player.player2)
-        {
-            boxToAttack = bm.board1[boxindex1][boxindex2].GetComponent<Box>();
-        }
+        Box boxToAttack = enemyboard[boxindex1][boxindex2].GetComponent<Box>();
         return PawnAttack(boxToAttack);
     }
 
     /// <summary>
-    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board in base a che player appartiene la pedina, passa tutto a PawnMovement 
+    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board, passa la box e gli indici a PawnMovement 
     /// ritorna true in caso il movimento sia avvenuto, mentre ritorna false se non è avvenuto
     /// </summary>
     /// <param name="boxindex1"></param>
@@ -194,15 +193,7 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool Move(int boxindex1, int boxindex2)
     {
-        Transform boxToMove = null;
-        if (player == Player.player1)
-        {
-            boxToMove = bm.board1[boxindex1][boxindex2];
-        }
-        else if (player == Player.player2)
-        {
-            boxToMove = bm.board2[boxindex1][boxindex2];
-        }
+        Transform boxToMove = myboard[boxindex1][boxindex2];
         selected = false;
         return PawnMovement(boxindex1, boxindex2, boxToMove);
     }

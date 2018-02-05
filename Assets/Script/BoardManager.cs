@@ -8,9 +8,9 @@ public class BoardManager : MonoBehaviour
 {
     //variabili pubbliche
     public Transform[][] board1, board2;
+    public Pawn[] pawns;
 
     //variabili private
-    private Pawn[] pawns;
     private Pawn pawnSelected;
     private TurnManager turnManager;
 
