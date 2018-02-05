@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Attack {
-    public List<Pattern> pattern;
-    public Material patternMaterial;
+public class Pattern
+{
+    public int index1, index2;
 }

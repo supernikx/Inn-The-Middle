@@ -13,14 +13,18 @@ public class Pawn : MonoBehaviour
     public float speed;
     public int startIndex1, startIndex2;
     public Color pawnColor;
+    [Space]
+    [Header("Attack Settings")]
+    [SerializeField]
+    private int activePattern;
     /// <summary>
-    /// Lista che contiene il pattern d'attacco, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
+    /// Lista che contiene i pattern d'attacco e il colore del pattern, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
     /// </summary>
-    public List<Attack> pattern;
+    public List<Attack> patterns;
 
     //variabili private
     private BoardManager bm;
-
+    private MeshRenderer mr;
 
     //parte di codice con funzioni private
     // Use this for initialization
@@ -28,7 +32,9 @@ public class Pawn : MonoBehaviour
     {
         bm = FindObjectOfType<BoardManager>();
         selected = false;
-        pawnColor = GetComponent<Renderer>().material.color;
+        mr = GetComponent<MeshRenderer>();
+        pawnColor = mr.material.color;
+        RandomizePattern();
     }
 
     /// <summary>
@@ -82,7 +88,7 @@ public class Pawn : MonoBehaviour
     private bool CheckAttackPattern(Box boxToAttack)
     {
         int currentColumn = currentBox.index2;
-        foreach (Attack a in pattern)
+        foreach (Pattern a in patterns[activePattern].pattern)
         {
             if (currentColumn + a.index2 == boxToAttack.index2 && a.index1 - currentBox.index1 == boxToAttack.index1 && boxToAttack.walkable)
                 return true;
@@ -108,7 +114,7 @@ public class Pawn : MonoBehaviour
     public void ShowAttackPattern()
     {
         int currentColumn = currentBox.index2;
-        foreach (Attack a in pattern)
+        foreach (Pattern a in patterns[activePattern].pattern)
         {
             for (int index1 = 0; index1 < bm.board1.Length; index1++)
             {
@@ -136,7 +142,7 @@ public class Pawn : MonoBehaviour
     public void DisableAttackPattern()
     {
         int currentColumn = currentBox.index2;
-        foreach (Attack a in pattern)
+        foreach (Pattern a in patterns[activePattern].pattern)
         {
             for (int index1 = 0; index1 < bm.board1.Length; index1++)
             {
@@ -199,6 +205,13 @@ public class Pawn : MonoBehaviour
         }
         selected = false;
         return PawnMovement(boxindex1, boxindex2, boxToMove);
+    }
+
+    public void RandomizePattern()
+    {
+        activePattern = Random.Range(0, patterns.Count);
+        mr.material = patterns[activePattern].patternMaterial;
+        pawnColor = mr.material.color;
     }
 
     #endregion
