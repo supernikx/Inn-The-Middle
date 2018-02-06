@@ -32,7 +32,7 @@ public class BoardManager : MonoBehaviour
             {
                 if (pawns[i].currentBox != pawns[i].currentBox.walkable)
                 {
-                    Debug.Log(pawns[i] + " è in casella !walkable");
+                    CustomLogger.Log(pawns[i] + " è in casella !walkable");
                     pawns[i].RandomizePattern();
                 }
             }
@@ -45,7 +45,7 @@ public class BoardManager : MonoBehaviour
             {
                 if (pawns[i].currentBox != pawns[i].currentBox.walkable)
                 {
-                    Debug.Log(pawns[i] + " è in casella !walkable");
+                    CustomLogger.Log(pawns[i] + " è in casella !walkable");
                     pawns[i].RandomizePattern();
                 }
             }
@@ -68,6 +68,7 @@ public class BoardManager : MonoBehaviour
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
+                    CustomLogger.Log(pawnSelected.player + " si è mosso");
                     turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
                 }
                 else
@@ -79,6 +80,7 @@ public class BoardManager : MonoBehaviour
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
+                    CustomLogger.Log(pawnSelected.player + " si è mosso");
                     turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
                 }
                 else
@@ -135,7 +137,7 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.check;
-                Debug.Log(pawnSelected.player + " ha attaccato");
+                CustomLogger.Log(pawnSelected.player + " ha attaccato");
                 DeselectPawn();
                 CheckBox();
             }
@@ -147,7 +149,7 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.check;
-                Debug.Log(pawnSelected.player + " ha attaccato");
+                CustomLogger.Log(pawnSelected.player + " ha attaccato");
                 DeselectPawn();
                 CheckBox();
             }
@@ -218,7 +220,7 @@ public class BoardManager : MonoBehaviour
             {
                 turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
-                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
+                CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 DeselectPawn();
@@ -227,7 +229,7 @@ public class BoardManager : MonoBehaviour
             {
                 turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
                 turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
-                Debug.Log(pawnSelected.player + " ha saltato l'attacco");
+                CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 DeselectPawn();

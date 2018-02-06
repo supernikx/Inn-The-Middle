@@ -85,7 +85,7 @@ public class Pawn : MonoBehaviour
                         {
                             enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
                             pHit++;
-                            Debug.Log("c'è una pedina avversaria nel pattern");
+                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         }
                     }
                 }
@@ -95,10 +95,10 @@ public class Pawn : MonoBehaviour
                 DisableAttackPattern();
                 return true;
             }
-            Debug.Log("nope");
+            CustomLogger.Log("nope");
             return false;
         }
-        Debug.Log("nope");
+        CustomLogger.Log("nope");
         return false;
     }
 
@@ -117,7 +117,7 @@ public class Pawn : MonoBehaviour
                 {
                     if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
                     {
-                        Debug.Log("c'è una pedina avversaria nel pattern");
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         return true;
                     }
                 }
@@ -221,6 +221,9 @@ public class Pawn : MonoBehaviour
         return PawnMovement(boxindex1, boxindex2, boxToMove);
     }
 
+    /// <summary>
+    /// Funzione che randomizza il pattern della pedina e gli assegna il colore corrispondente
+    /// </summary>
     public void RandomizePattern()
     {
         activePattern = Random.Range(0, patterns.Count);
