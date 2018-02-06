@@ -53,10 +53,10 @@ public class Pawn : MonoBehaviour
         {
             return false;
         }
-        if ((boxindex1 == currentBox.index1 + 1 || boxindex1 == currentBox.index1 - 1 || boxindex1 == currentBox.index1) && (boxindex2 == currentBox.index2 || boxindex2 == currentBox.index2+1 || boxindex2 == currentBox.index2-1))
+        if ((boxindex1 == currentBox.index1 + 1 || boxindex1 == currentBox.index1 - 1 || boxindex1 == currentBox.index1) && (boxindex2 == currentBox.index2 || boxindex2 == currentBox.index2 + 1 || boxindex2 == currentBox.index2 - 1))
         {
             transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
-            transform.Rotate(new Vector3(0, 90,0));
+            transform.Rotate(new Vector3(0, 90, 0));
             transform.DOMove(boxToMove.position + offset, speed);
             currentBox = boxToMove.GetComponent<Box>();
             ShowAttackPattern();
@@ -74,14 +74,14 @@ public class Pawn : MonoBehaviour
     {
         if (boxToAttack.pattern)
         {
-            int currentColumn = currentBox.index2,pHit=0;
+            int currentColumn = currentBox.index2, pHit = 0;
             foreach (Pattern a in patterns[activePattern].pattern)
             {
                 foreach (Pawn p in bm.pawns)
                 {
                     if (p.player != player)
                     {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)) && enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().walkable)
                         {
                             enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
                             pHit++;
@@ -167,9 +167,9 @@ public class Pawn : MonoBehaviour
                 enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
             }
 
-            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1-a.index1 < myboard.Length && currentBox.index1 - a.index1 -1 >= 0))
+            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
             {
-                myboard[currentBox.index1-a.index1-1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
+                myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
             }
         }
     }
