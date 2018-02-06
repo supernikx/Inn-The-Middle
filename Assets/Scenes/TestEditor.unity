@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: bd3d85a5062f3b045a812ffcc5e82e13,
+  m_LightingDataAsset: {fileID: 112000002, guid: 1dd0f6145012f0a4587e2e5d5481c09c,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -162,8 +162,10 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &34466050
 Animator:
   serializedVersion: 3
@@ -406,8 +408,10 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &104738769
 Animator:
   serializedVersion: 3
@@ -528,8 +532,10 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &186459160
 Animator:
   serializedVersion: 3
@@ -650,8 +656,10 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &216751024
 Animator:
   serializedVersion: 3
@@ -772,8 +780,10 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &281283561
 Animator:
   serializedVersion: 3
@@ -894,8 +904,10 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &282887741
 Animator:
   serializedVersion: 3
@@ -1016,8 +1028,10 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &313997705
 Animator:
   serializedVersion: 3
@@ -1149,8 +1163,10 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &320356982
 Animator:
   serializedVersion: 3
@@ -1271,8 +1287,10 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &339985314
 Animator:
   serializedVersion: 3
@@ -1393,8 +1411,10 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &346496327
 Animator:
   serializedVersion: 3
@@ -1515,8 +1535,10 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &370379332
 Animator:
   serializedVersion: 3
@@ -1637,8 +1659,10 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &431738480
 Animator:
   serializedVersion: 3
@@ -1759,8 +1783,10 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &452603030
 Animator:
   serializedVersion: 3
@@ -1881,8 +1907,10 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &472025834
 Animator:
   serializedVersion: 3
@@ -2003,8 +2031,10 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &488730331
 Animator:
   serializedVersion: 3
@@ -2125,8 +2155,10 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &490696141
 Animator:
   serializedVersion: 3
@@ -2735,8 +2767,10 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &626992301
 Animator:
   serializedVersion: 3
@@ -2928,8 +2962,10 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &678423139
 Animator:
   serializedVersion: 3
@@ -3050,8 +3086,10 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &707165120
 Animator:
   serializedVersion: 3
@@ -3172,8 +3210,10 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &747220445
 Animator:
   serializedVersion: 3
@@ -3294,8 +3334,10 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &756336824
 Animator:
   serializedVersion: 3
@@ -3416,8 +3458,10 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &770407023
 Animator:
   serializedVersion: 3
@@ -3824,8 +3868,10 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &882077446
 Animator:
   serializedVersion: 3
@@ -3946,8 +3992,10 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &890746028
 Animator:
   serializedVersion: 3
@@ -4130,8 +4178,10 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &931133161
 Animator:
   serializedVersion: 3
@@ -4470,8 +4520,10 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &991304033
 Animator:
   serializedVersion: 3
@@ -4592,8 +4644,10 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1002260380
 Animator:
   serializedVersion: 3
@@ -4714,8 +4768,10 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1010649138
 Animator:
   serializedVersion: 3
@@ -4888,8 +4944,10 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1012718695
 Animator:
   serializedVersion: 3
@@ -5010,8 +5068,10 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1015902328
 Animator:
   serializedVersion: 3
@@ -5132,8 +5192,10 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1035878433
 Animator:
   serializedVersion: 3
@@ -5374,8 +5436,10 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1083477864
 Animator:
   serializedVersion: 3
@@ -5561,8 +5625,10 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1091338256
 Animator:
   serializedVersion: 3
@@ -5683,8 +5749,10 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1107602345
 Animator:
   serializedVersion: 3
@@ -5960,8 +6028,10 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1189957902
 Animator:
   serializedVersion: 3
@@ -6082,8 +6152,10 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1217708558
 Animator:
   serializedVersion: 3
@@ -6204,8 +6276,10 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1221550463
 Animator:
   serializedVersion: 3
@@ -6326,8 +6400,10 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1262581989
 Animator:
   serializedVersion: 3
@@ -6597,7 +6673,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f1a625bc6d56f0342ae989d99653aaef, type: 2}
+      objectReference: {fileID: 2100000, guid: 5a506049a39d23f44a58c0e6dde97b7b, type: 2}
     - target: {fileID: 4137960646004980, guid: 884d971ab52c9a84e9a8a84cff3ebf8b, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
@@ -6653,8 +6729,10 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1307800219
 Animator:
   serializedVersion: 3
@@ -6775,8 +6853,10 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1309902691
 Animator:
   serializedVersion: 3
@@ -7172,8 +7252,10 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1337246214
 Animator:
   serializedVersion: 3
@@ -7294,8 +7376,10 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1339105706
 Animator:
   serializedVersion: 3
@@ -7416,8 +7500,10 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1360848459
 Animator:
   serializedVersion: 3
@@ -7691,8 +7777,10 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1391473441
 Animator:
   serializedVersion: 3
@@ -7813,8 +7901,10 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1411888292
 Animator:
   serializedVersion: 3
@@ -7935,8 +8025,10 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1412488266
 Animator:
   serializedVersion: 3
@@ -8057,8 +8149,10 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1413354477
 Animator:
   serializedVersion: 3
@@ -8179,8 +8273,10 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1434243823
 Animator:
   serializedVersion: 3
@@ -8433,8 +8529,10 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1448443396
 Animator:
   serializedVersion: 3
@@ -8663,8 +8761,10 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1547951930
 Animator:
   serializedVersion: 3
@@ -8841,8 +8941,10 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1588325879
 Animator:
   serializedVersion: 3
@@ -9013,8 +9115,10 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1651903342
 Animator:
   serializedVersion: 3
@@ -9257,8 +9361,10 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1668857630
 Animator:
   serializedVersion: 3
@@ -9379,8 +9485,10 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1723494960
 Animator:
   serializedVersion: 3
@@ -9501,8 +9609,10 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1736439678
 Animator:
   serializedVersion: 3
@@ -9623,8 +9733,10 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1779854350
 Animator:
   serializedVersion: 3
@@ -9889,8 +10001,10 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1841113948
 Animator:
   serializedVersion: 3
@@ -10011,8 +10125,10 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1891839332
 Animator:
   serializedVersion: 3
@@ -10133,8 +10249,10 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1921627375
 Animator:
   serializedVersion: 3
@@ -10417,8 +10535,10 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &1948007179
 Animator:
   serializedVersion: 3
@@ -10539,8 +10659,10 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &2049633396
 Animator:
   serializedVersion: 3
@@ -10814,8 +10936,10 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &2060255556
 Animator:
   serializedVersion: 3
@@ -10996,8 +11120,10 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &2082892769
 Animator:
   serializedVersion: 3
@@ -11118,8 +11244,10 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
+  pattern: 0
   attackedBox: {fileID: 2100000, guid: 0551a428108e03c468ea00a6bdf6ad7e, type: 2}
-  showedBox: {fileID: 2100000, guid: f18e46a11beb4524aa944a403c23ca6f, type: 2}
+  showedBoxEnemy: {fileID: 0}
+  showedBoxMy: {fileID: 0}
 --- !u!95 &2132017644
 Animator:
   serializedVersion: 3
@@ -11289,7 +11417,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f1a625bc6d56f0342ae989d99653aaef, type: 2}
+      objectReference: {fileID: 2100000, guid: 5a506049a39d23f44a58c0e6dde97b7b, type: 2}
     - target: {fileID: 114820047233248068, guid: 884d971ab52c9a84e9a8a84cff3ebf8b,
         type: 2}
       propertyPath: pattern.Array.data[0].index1

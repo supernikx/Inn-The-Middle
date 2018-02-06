@@ -156,7 +156,7 @@ MonoBehaviour:
       index2: 0
     - index1: 2
       index2: 1
-    patternMaterial: {fileID: 2100000, guid: f1a625bc6d56f0342ae989d99653aaef, type: 2}
+    patternMaterial: {fileID: 2100000, guid: 5a506049a39d23f44a58c0e6dde97b7b, type: 2}
   - pattern:
     - index1: 0
       index2: 1
