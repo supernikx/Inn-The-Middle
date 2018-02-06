@@ -7,7 +7,7 @@ public class Box : MonoBehaviour {
     //variabili pubbliche
     public int index1,index2,board;
     public bool walkable,pattern;
-    public Material attackedBox, showedBox;
+    public Material attackedBox, showedBoxEnemy, showedBoxMy;
 
     //variabili private
     private BoardManager bm;
@@ -48,11 +48,23 @@ public class Box : MonoBehaviour {
     /// <summary>
     /// Funzione che sostituisce il materiale attuale con il materiale showBox, solo se la casella ha la variabile walkable true
     /// </summary>
-    public void ShowBox()
+    public void ShowBoxEnemy()
     {
         if (walkable)
         {
-            mr.material = showedBox;
+            mr.material = showedBoxEnemy;
+            pattern = true;
+        }
+    }
+
+    /// <summary>
+    /// Funzione che sostituisce il materiale attuale con il materiale showBox, solo se la casella ha la variabile walkable true
+    /// </summary>
+    public void ShowBoxMy()
+    {
+        if (walkable)
+        {
+            mr.material = showedBoxMy;
             pattern = true;
         }
     }

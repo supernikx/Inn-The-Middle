@@ -151,7 +151,12 @@ public class Pawn : MonoBehaviour
         {
             if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
             {
-                enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBox();
+                enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+            }
+
+            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1-a.index1 < myboard.Length && currentBox.index1 - a.index1 -1 >= 0))
+            {
+                myboard[currentBox.index1-a.index1-1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
             }
         }
     }
@@ -167,6 +172,11 @@ public class Pawn : MonoBehaviour
             if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
             {
                 enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+            }
+
+            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+            {
+                myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
             }
         }
     }
