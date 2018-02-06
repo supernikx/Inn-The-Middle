@@ -72,18 +72,31 @@ public class Pawn : MonoBehaviour
     /// <param name="boxToAttack"></param>
     private bool PawnAttack(Box boxToAttack)
     {
-        if (CheckAttackPattern() && boxToAttack.pattern)
+        if (boxToAttack.pattern)
         {
-            int currentColumn = currentBox.index2;
+            int currentColumn = currentBox.index2,pHit=0;
             foreach (Pattern a in patterns[activePattern].pattern)
             {
-                if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                foreach (Pawn p in bm.pawns)
                 {
-                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
+                    if (p.player != player)
+                    {
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        {
+                            enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
+                            pHit++;
+                            Debug.Log("c'è una pedina avversaria nel pattern");
+                        }
+                    }
                 }
             }
-            DisableAttackPattern();
-            return true;
+            if (pHit > 0)
+            {
+                DisableAttackPattern();
+                return true;
+            }
+            Debug.Log("nope");
+            return false;
         }
         Debug.Log("nope");
         return false;
@@ -102,7 +115,7 @@ public class Pawn : MonoBehaviour
             {
                 if (p.player != player)
                 {
-                    if (((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                    if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
                     {
                         Debug.Log("c'è una pedina avversaria nel pattern");
                         return true;
