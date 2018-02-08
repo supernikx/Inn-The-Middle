@@ -13,6 +13,7 @@ public class BoardManager : MonoBehaviour
     public Transform[][] board1, board2;
     public Pawn[] pawns;
     public Pawn pawnSelected;
+    public bool movementSkipped;
 
 
 
@@ -36,7 +37,7 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        movementSkipped = false;
         pawns = FindObjectsOfType<Pawn>();
         turnManager = FindObjectOfType<TurnManager>();
         SetPawnsPlayer();
@@ -213,6 +214,7 @@ public class BoardManager : MonoBehaviour
         {
             pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
             pawnSelected.DisableMovementBoxes();
+            pawnSelected.DisableAttackPattern();
             pawnSelected.selected = false;
             pawnSelected = null;
         }
@@ -256,6 +258,17 @@ public class BoardManager : MonoBehaviour
             pawnSelected.GetComponent<Renderer>().material.color = Color.white;
             pawnSelected.ShowMovementBoxes();
         }
+        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        {
+            if (pawnSelected != null)
+            {
+                DeselectPawn();
+            }
+            selected.selected = true;
+            pawnSelected = selected;
+            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+            pawnSelected.ShowAttackPattern();
+        }
         else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
         {
             if (pawnSelected != null)
@@ -276,6 +289,8 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
         {
+            DeselectPawn();
+            movementSkipped = true;
             turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
             CustomLogger.Log("Il player ha saltato il movimento");
         }

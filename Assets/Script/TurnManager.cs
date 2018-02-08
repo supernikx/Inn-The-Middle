@@ -123,7 +123,7 @@ public class TurnManager : MonoBehaviour {
 
                 break;
             case PlayTurnState.movement:
-
+                BoardManager.Instance.movementSkipped = false;
                 break;
             case PlayTurnState.attack:
 
