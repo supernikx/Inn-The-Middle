@@ -6,8 +6,8 @@ public class Box : MonoBehaviour {
     
     //variabili pubbliche
     public int index1,index2,board;
-    public bool walkable,pattern;
-    public Material attackedBox, showedBoxEnemy, showedBoxMy;
+    public bool walkable, pattern, free;
+    public Material attackedBox, showedBoxEnemy, showedBoxMy, showedMovement;
 
     //variabili private
     private BoardManager bm;
@@ -15,6 +15,12 @@ public class Box : MonoBehaviour {
     private Material defaultMaterial;
 
     //parte di codice con funzioni private
+
+    private void Awake()
+    {
+        free = true;
+    }
+
     // Use this for initialization
     void Start () {
         mr = GetComponent<MeshRenderer>();
@@ -43,6 +49,16 @@ public class Box : MonoBehaviour {
         mr.material = attackedBox;
         walkable = false;
         pattern = false;
+        free = false;
+    }
+
+    /// <summary>
+    /// Funzione che sostituisce il material attuale con il material della variabile showedMovement
+    /// </summary>
+    public void ShowBoxMovement()
+    {
+        if (walkable && free)
+            mr.material = showedMovement;
     }
 
     /// <summary>

@@ -132,6 +132,8 @@ MonoBehaviour:
   board: 0
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
-  showedBoxEnemy: {fileID: 2100000, guid: febb6f3b360eaeb478a3f0d30fe77969, type: 2}
-  showedBoxMy: {fileID: 2100000, guid: 32d5a2c5440e7de40b6f45eae3b45699, type: 2}
+  showedBoxEnemy: {fileID: 2100000, guid: dad9ffa8e45981d4095ef39ef19dad72, type: 2}
+  showedBoxMy: {fileID: 2100000, guid: 859ae04115e7db14fbcf98b0761068a5, type: 2}
+  showedMovement: {fileID: 2100000, guid: 80575cd8a72050845b1e885c990affdd, type: 2}

@@ -58,8 +58,10 @@ public class Pawn : MonoBehaviour
             transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
             transform.Rotate(new Vector3(0, 90, 0));
             transform.DOMove(boxToMove.position + offset, speed);
+            DisableMovementBoxes();
+            currentBox.free = true;
             currentBox = boxToMove.GetComponent<Box>();
-            ShowAttackPattern();
+            currentBox.free = false;
             return true;
         }
         return false;
@@ -152,6 +154,42 @@ public class Pawn : MonoBehaviour
     public void OnMouseDown()
     {
         bm.PawnSelected(gameObject.GetComponent<Pawn>());
+    }
+
+    /// <summary>
+    /// Funzione che mostra le caselle in cui questa pedina può muoversi
+    /// </summary>
+    public void ShowMovementBoxes()
+    {
+        for (int index1 = 0; index1 < myboard.Length; index1++)
+        {
+            for (int index2 = 0; index2 < myboard[0].Length; index2++)
+            {
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1) 
+                    && myboard[index1][index2].GetComponent<Box>()!=currentBox)
+                {
+                    myboard[index1][index2].GetComponent<Box>().ShowBoxMovement();
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Funzione che disabilita la visione delle caselle in cui può muoversi questa pedina
+    /// </summary>
+    public void DisableMovementBoxes()
+    {
+        for (int index1 = 0; index1 < myboard.Length; index1++)
+        {
+            for (int index2 = 0; index2 < myboard[0].Length; index2++)
+            {
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1) 
+                    && myboard[index1][index2].GetComponent<Box>() != currentBox)
+                {
+                    myboard[index1][index2].GetComponent<Box>().SetAsDefault();
+                }
+            }
+        }
     }
 
     /// <summary>
