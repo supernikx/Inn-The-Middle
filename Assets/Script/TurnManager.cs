@@ -62,7 +62,11 @@ public class TurnManager : MonoBehaviour {
     public TextMeshProUGUI p1phase, p2phase;
 
     Pawn pawnScript;
-    
+
+    public GameObject skipAttackButton;
+    public GameObject skipMovementButton;
+    public GameObject attackButton;
+
 
     // Use this for initialization
     void Start()
@@ -116,10 +120,13 @@ public class TurnManager : MonoBehaviour {
                 }
                 BoardManager.Instance.DeselectPawn();
                 BoardManager.Instance.CheckBox();
+
                 break;
             case PlayTurnState.movement:
+
                 break;
             case PlayTurnState.attack:
+
                 break;
             default:
                 break;
@@ -154,14 +161,24 @@ public class TurnManager : MonoBehaviour {
             if (CurrentTurnState == PlayTurnState.check)
             {
                 p1phase.text = "Check phase";
+                skipAttackButton.SetActive(false);
+                skipMovementButton.SetActive(false);
+                attackButton.SetActive(false);
+
             }
             else if (CurrentTurnState == PlayTurnState.movement)
             {
                 p1phase.text = "Movement phase";
+                skipMovementButton.SetActive(true);
+                skipAttackButton.SetActive(false);
+                attackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.attack)
             {
                 p1phase.text = "Attack phase";
+                skipAttackButton.SetActive(true);
+                attackButton.SetActive(true);
+                skipMovementButton.SetActive(false);
             }
         }
         else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
@@ -171,14 +188,23 @@ public class TurnManager : MonoBehaviour {
             if (CurrentTurnState == PlayTurnState.check)
             {
                 p2phase.text = "Check phase";
+                skipAttackButton.SetActive(false);
+                skipMovementButton.SetActive(false);
+                attackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.movement)
             {
                 p2phase.text = "Movement phase";
+                skipMovementButton.SetActive(true);
+                skipAttackButton.SetActive(false);
+                attackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.attack)
             {
                 p2phase.text = "Attack phase";
+                skipAttackButton.SetActive(true);
+                attackButton.SetActive(true);
+                skipMovementButton.SetActive(false);
             }
         }
     }

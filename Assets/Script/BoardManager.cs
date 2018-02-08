@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class BoardManager : MonoBehaviour
 {
@@ -13,9 +13,13 @@ public class BoardManager : MonoBehaviour
     public Transform[][] board1, board2;
     public Pawn[] pawns;
     public Pawn pawnSelected;
-    
+
+
+
     //variabili private
     private TurnManager turnManager;
+
+
 
     private void Awake()
     {
@@ -232,7 +236,6 @@ public class BoardManager : MonoBehaviour
                     return;
                 }
             }
-            CustomLogger.Log("sono arrivato");
             DeselectPawn();
             turnManager.CurrentTurnState = TurnManager.PlayTurnState.movement;
         }
@@ -271,19 +274,25 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public void PassTurn()
     {
-        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+        {
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
+            CustomLogger.Log("Il player ha saltato il movimento");
+        }
+        else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
             if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
-                CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
+                CustomLogger.Log("Player 1 ha saltato l'attacco");
                 turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
             }
             else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
-                CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
-                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;   
+                CustomLogger.Log("Player 2 ha saltato l'attacco");
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
             }
         }
+
     }
 
     /// <summary>

@@ -163,9 +163,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &54593
 Animator:
   serializedVersion: 3
@@ -287,9 +289,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &883136
 Animator:
   serializedVersion: 3
@@ -411,9 +415,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &13321070
 Animator:
   serializedVersion: 3
@@ -535,9 +541,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &24953995
 Animator:
   serializedVersion: 3
@@ -659,9 +667,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &43350989
 Animator:
   serializedVersion: 3
@@ -783,9 +793,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &43456549
 Animator:
   serializedVersion: 3
@@ -907,9 +919,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &44940766
 Animator:
   serializedVersion: 3
@@ -1031,9 +1045,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &48946603
 Animator:
   serializedVersion: 3
@@ -1155,9 +1171,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &56508227
 Animator:
   serializedVersion: 3
@@ -1279,9 +1297,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &69622792
 Animator:
   serializedVersion: 3
@@ -1525,9 +1545,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &90477955
 Animator:
   serializedVersion: 3
@@ -1600,6 +1622,128 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 90477952}
   m_Mesh: {fileID: 4300000, guid: c9e1783b22078934b9e8fc6e1510638c, type: 3}
+--- !u!1 &126060266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 126060267}
+  - component: {fileID: 126060270}
+  - component: {fileID: 126060269}
+  - component: {fileID: 126060268}
+  m_Layer: 5
+  m_Name: AttackButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &126060267
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126060266}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 463689456}
+  m_Father: {fileID: 1461400944}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 96, y: 30}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &126060268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126060266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 126060269}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 880729957}
+        m_MethodName: PassTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &126060269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126060266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &126060270
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126060266}
 --- !u!1 &126421074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,9 +1793,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &126421077
 Animator:
   serializedVersion: 3
@@ -1773,9 +1919,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &135986688
 Animator:
   serializedVersion: 3
@@ -1897,9 +2045,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &136371202
 Animator:
   serializedVersion: 3
@@ -2021,9 +2171,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &138358045
 Animator:
   serializedVersion: 3
@@ -2128,7 +2280,7 @@ RectTransform:
   - {fileID: 309383425}
   - {fileID: 1818540296}
   m_Father: {fileID: 1461400944}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2360,6 +2512,80 @@ Transform:
   m_PrefabParentObject: {fileID: 4984715524601220, guid: a9b9e3ae8497d5e49b675ef08431632f,
     type: 2}
   m_PrefabInternal: {fileID: 1571707390}
+--- !u!1 &463689455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 463689456}
+  - component: {fileID: 463689458}
+  - component: {fileID: 463689457}
+  m_Layer: 5
+  m_Name: AttackText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &463689456
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463689455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 126060267}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &463689457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463689455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Attack
+--- !u!222 &463689458
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463689455}
 --- !u!1 &488237850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,9 +2635,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &488237853
 Animator:
   serializedVersion: 3
@@ -2615,9 +2843,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &563572806
 Animator:
   serializedVersion: 3
@@ -2872,7 +3102,7 @@ RectTransform:
   m_Children:
   - {fileID: 2054336531}
   m_Father: {fileID: 1461400944}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3047,9 +3277,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &582447681
 Animator:
   serializedVersion: 3
@@ -3171,9 +3403,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &600503077
 Animator:
   serializedVersion: 3
@@ -3401,9 +3635,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &625918512
 Animator:
   serializedVersion: 3
@@ -3487,7 +3723,7 @@ GameObject:
   - component: {fileID: 626695133}
   - component: {fileID: 626695132}
   m_Layer: 5
-  m_Name: PassTurnText
+  m_Name: SkipAttackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3599,9 +3835,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &631580792
 Animator:
   serializedVersion: 3
@@ -3723,9 +3961,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &642253673
 Animator:
   serializedVersion: 3
@@ -3829,7 +4069,7 @@ RectTransform:
   - {fileID: 1658629726}
   - {fileID: 77708355}
   m_Father: {fileID: 1461400944}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.453, y: 0.40547213}
   m_AnchorMax: {x: 0.5543624, y: 0.5946853}
@@ -3869,6 +4109,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657037451}
+--- !u!1 &657339472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 657339473}
+  - component: {fileID: 657339475}
+  - component: {fileID: 657339474}
+  m_Layer: 5
+  m_Name: SkipMovementText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &657339473
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657339472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 827596834}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &657339474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657339472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Skip Movement
+--- !u!222 &657339475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657339472}
 --- !u!1 &658333697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,9 +4300,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &682562353
 Animator:
   serializedVersion: 3
@@ -4110,9 +4426,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &740051831
 Animator:
   serializedVersion: 3
@@ -4234,9 +4552,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &742206732
 Animator:
   serializedVersion: 3
@@ -4358,9 +4678,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &758856284
 Animator:
   serializedVersion: 3
@@ -4462,7 +4784,7 @@ RectTransform:
   m_Children:
   - {fileID: 564800998}
   m_Father: {fileID: 1461400944}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -4588,6 +4910,128 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 795179029}
+--- !u!1 &827596833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 827596834}
+  - component: {fileID: 827596837}
+  - component: {fileID: 827596836}
+  - component: {fileID: 827596835}
+  m_Layer: 5
+  m_Name: SkipMovementButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &827596834
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827596833}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 657339473}
+  m_Father: {fileID: 1461400944}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -0.6, y: 30}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &827596835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827596833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 827596836}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 880729957}
+        m_MethodName: PassTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &827596836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827596833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &827596837
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827596833}
 --- !u!1 &862256609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,9 +5146,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &862840011
 Animator:
   serializedVersion: 3
@@ -4832,9 +5278,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &881087897
 Animator:
   serializedVersion: 3
@@ -5018,9 +5466,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &934515435
 Animator:
   serializedVersion: 3
@@ -5105,7 +5555,7 @@ GameObject:
   - component: {fileID: 945551991}
   - component: {fileID: 945551990}
   m_Layer: 5
-  m_Name: PassTurnButton
+  m_Name: SkipAttackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5127,7 +5577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: -88, y: 30}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945551990
@@ -5454,9 +5904,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1004139246
 Animator:
   serializedVersion: 3
@@ -5578,9 +6030,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1011313096
 Animator:
   serializedVersion: 3
@@ -5874,9 +6328,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1084226849
 Animator:
   serializedVersion: 3
@@ -6063,9 +6519,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1095925946
 Animator:
   serializedVersion: 3
@@ -6247,9 +6705,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1172009761
 Animator:
   serializedVersion: 3
@@ -6594,9 +7054,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1204894110
 Animator:
   serializedVersion: 3
@@ -6718,9 +7180,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1224782911
 Animator:
   serializedVersion: 3
@@ -6932,9 +7396,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1265667542
 Animator:
   serializedVersion: 3
@@ -7171,9 +7637,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1316521840
 Animator:
   serializedVersion: 3
@@ -7448,9 +7916,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1335509345
 Animator:
   serializedVersion: 3
@@ -7694,9 +8164,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1336881418
 Animator:
   serializedVersion: 3
@@ -7818,9 +8290,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1357307926
 Animator:
   serializedVersion: 3
@@ -8095,9 +8569,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1399109526
 Animator:
   serializedVersion: 3
@@ -8219,9 +8695,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1404800781
 Animator:
   serializedVersion: 3
@@ -8374,9 +8852,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1441914571
 Animator:
   serializedVersion: 3
@@ -8636,10 +9116,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 945551989}
+  - {fileID: 126060267}
   - {fileID: 795179030}
   - {fileID: 568656290}
   - {fileID: 657037452}
   - {fileID: 153329671}
+  - {fileID: 827596834}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8697,9 +9179,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1469439224
 Animator:
   serializedVersion: 3
@@ -8832,9 +9316,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1500654082
 Animator:
   serializedVersion: 3
@@ -9122,9 +9608,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1556208113
 Animator:
   serializedVersion: 3
@@ -9269,8 +9757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39ec0d1efc22f94c9c41f6e5af71b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTurn: 0
-  currentTurnState: 0
   strategicTurn: 0
   P1Pawns: 0
   P2Pawns: 0
@@ -9280,6 +9766,9 @@ MonoBehaviour:
   p2text: {fileID: 568656291}
   p1phase: {fileID: 564800999}
   p2phase: {fileID: 2054336532}
+  skipAttackButton: {fileID: 945551988}
+  skipMovementButton: {fileID: 827596833}
+  attackButton: {fileID: 126060266}
 --- !u!114 &1622944296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9352,9 +9841,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1628713365
 Animator:
   serializedVersion: 3
@@ -9476,9 +9967,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1657355030
 Animator:
   serializedVersion: 3
@@ -9722,9 +10215,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1683991971
 Animator:
   serializedVersion: 3
@@ -9846,9 +10341,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1722716500
 Animator:
   serializedVersion: 3
@@ -9970,9 +10467,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1762062810
 Animator:
   serializedVersion: 3
@@ -10094,9 +10593,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1776451924
 Animator:
   serializedVersion: 3
@@ -10478,9 +10979,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1875864991
 Animator:
   serializedVersion: 3
@@ -10602,9 +11105,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1888506419
 Animator:
   serializedVersion: 3
@@ -10929,9 +11434,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1958279514
 Animator:
   serializedVersion: 3
@@ -11053,9 +11560,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1982903848
 Animator:
   serializedVersion: 3
@@ -11177,9 +11686,11 @@ MonoBehaviour:
   board: 2
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &1986329696
 Animator:
   serializedVersion: 3
@@ -11301,9 +11812,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2030465055
 Animator:
   serializedVersion: 3
@@ -11578,9 +12091,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2054400810
 Animator:
   serializedVersion: 3
@@ -11702,9 +12217,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2082091072
 Animator:
   serializedVersion: 3
@@ -11826,9 +12343,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2086366662
 Animator:
   serializedVersion: 3
@@ -11950,9 +12469,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2130290074
 Animator:
   serializedVersion: 3
@@ -12180,9 +12701,11 @@ MonoBehaviour:
   board: 1
   walkable: 0
   pattern: 0
+  free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
   showedBoxMy: {fileID: 2100000, guid: 4090b7f7cbaf31e4b8b246c137d662ae, type: 2}
+  showedMovement: {fileID: 0}
 --- !u!95 &2143557288
 Animator:
   serializedVersion: 3
