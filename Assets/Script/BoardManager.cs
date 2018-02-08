@@ -6,43 +6,39 @@ using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
+
+    public static BoardManager Instance;
+
     //variabili pubbliche
     public Transform[][] board1, board2;
     public Pawn[] pawns;
-
+    public Pawn pawnSelected;
+    
     //variabili private
-    private Pawn pawnSelected;
     private TurnManager turnManager;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            GameObject.Destroy(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
+
         pawns = FindObjectsOfType<Pawn>();
         turnManager = FindObjectOfType<TurnManager>();
         SetPawnsPlayer();
     }
 
-    /// <summary>
-    /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi
-    /// </summary>
-    private void CheckBox()
-    {
-        if (turnManager.currentTurnState == TurnManager.PlayTurnState.check)
-        {
-            for (int i = 0; i < pawns.Length; i++)
-            {
-                if (!pawns[i].currentBox.walkable)
-                {
-                    CustomLogger.Log(pawns[i] + " è in casella !walkable");
-                    pawns[i].RandomizePattern();
-                    PawnSelected(pawns[i]);
-                    return;
-                }
-            }
-            DeselectPawn();
-            turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
-        }
-    }
+
 
     /// <summary>
     /// Funzione che obbliga il giocatore a muoversi durante la fase di check non deselezionando mai la pedina finchè non si è mossa in una delle caselle disponibili
@@ -52,7 +48,7 @@ public class BoardManager : MonoBehaviour
     {
         if (CheckFreeBox(boxclicked))
         {
-            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
@@ -65,7 +61,7 @@ public class BoardManager : MonoBehaviour
                     CustomLogger.Log("Casella non valida");
                 }
             }
-            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
@@ -98,26 +94,26 @@ public class BoardManager : MonoBehaviour
     {
         if (CheckFreeBox(boxclicked))
         {
-            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
                     pawnSelected.ShowAttackPattern();
-                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+                    turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                 }
                 else
                 {
                     DeselectPawn();
                 }
             }
-            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
                     pawnSelected.ShowAttackPattern();
-                    turnManager.currentTurnState = TurnManager.PlayTurnState.attack;
+                    turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                 }
                 else
                 {
@@ -157,45 +153,27 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     private void Attack(Box boxclicked)
     {
-        if (pawnSelected.player == Player.player1 && boxclicked.board == 2 && turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+        if (pawnSelected.player == Player.player1 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
         {
             if (pawnSelected.Attack(boxclicked.index1, boxclicked.index2))
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.check;
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                DeselectPawn();
-                CheckBox();
             }
         }
-        else if (pawnSelected.player == Player.player2 && boxclicked.board == 1 && turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+        else if (pawnSelected.player == Player.player2 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
         {
             if (pawnSelected.Attack(boxclicked.index1, boxclicked.index2))
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-                turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.check;
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                DeselectPawn();
-                CheckBox();
             }
         }
     }
 
-    /// <summary>
-    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
-    /// </summary>
-    private void DeselectPawn()
-    {
-        if (pawnSelected != null)
-        {
-            pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-            pawnSelected.DisableMovementBoxes();
-            pawnSelected.selected = false;
-            pawnSelected = null;
-        }
-    }
+
 
     //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
     private void SetPawnsPlayer()
@@ -220,6 +198,47 @@ public class BoardManager : MonoBehaviour
     //identifica la zona di codice con le funzioni pubbliche
     #region API
 
+
+
+    /// <summary>
+    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
+    /// </summary>
+    public void DeselectPawn()
+    {
+        if (pawnSelected != null)
+        {
+            pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+            pawnSelected.DisableMovementBoxes();
+            pawnSelected.selected = false;
+            pawnSelected = null;
+        }
+    }
+
+
+    /// <summary>
+    /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi
+    /// </summary>
+    public void CheckBox()
+    {
+        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
+        {
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                if (!pawns[i].currentBox.walkable)
+                {
+                    CustomLogger.Log(pawns[i] + " è in casella !walkable");
+                    pawns[i].RandomizePattern();
+                    PawnSelected(pawns[i]);
+                    return;
+                }
+            }
+            CustomLogger.Log("sono arrivato");
+            DeselectPawn();
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movement;
+        }
+    }
+
+
     /// <summary>
     /// Funzione che imposta nella variabile pawnSelected l'oggetto Pawn passato in input, solo se la pedina selezionata appartiene al giocatore del turno in corso e se la fase del turno e quella di movimento
     /// prima di impostarla chiama la funzione DeselectPawn per resettare l'oggetto pawnSelected precedente
@@ -227,14 +246,14 @@ public class BoardManager : MonoBehaviour
     /// <param name="selected"></param>
     public void PawnSelected(Pawn selected)
     {
-        if (pawnSelected == null && turnManager.currentTurnState == TurnManager.PlayTurnState.check)
+        if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
         {
             selected.selected = true;
             pawnSelected = selected;
             pawnSelected.GetComponent<Renderer>().material.color = Color.white;
             pawnSelected.ShowMovementBoxes();
         }
-        else if ((turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
+        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
         {
             if (pawnSelected != null)
             {
@@ -252,23 +271,17 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public void PassTurn()
     {
-        if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
-            if (turnManager.playerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
-                turnManager.playerTurn = TurnManager.PlayerTurn.P2_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
                 CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
-                pawnSelected.DisableAttackPattern();
-                DeselectPawn();
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
             }
-            else if (turnManager.playerTurn == TurnManager.PlayerTurn.P2_turn)
+            else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
-                turnManager.playerTurn = TurnManager.PlayerTurn.P1_turn;
-                turnManager.currentTurnState = TurnManager.PlayTurnState.movement;
                 CustomLogger.Log(pawnSelected.player + " ha saltato l'attacco");
-                pawnSelected.DisableAttackPattern();
-                DeselectPawn();
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;   
             }
         }
     }
@@ -281,15 +294,15 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
-            if (turnManager.currentTurnState == TurnManager.PlayTurnState.movement)
+            if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
             {
                 Movement(boxclicked);
             }
-            else if (turnManager.currentTurnState == TurnManager.PlayTurnState.attack)
+            else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
             {
                 Attack(boxclicked);
             }
-            else if (turnManager.currentTurnState == TurnManager.PlayTurnState.check)
+            else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
             {
                 MovementCheckPhase(boxclicked);
             }
