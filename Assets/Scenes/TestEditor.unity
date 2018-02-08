@@ -162,7 +162,6 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -288,7 +287,6 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -414,7 +412,6 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -540,7 +537,6 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -666,7 +662,6 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -792,7 +787,6 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -918,7 +912,6 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1044,7 +1037,6 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1170,7 +1162,6 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1296,7 +1287,6 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1544,7 +1534,6 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1699,7 +1688,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 880729957}
-        m_MethodName: PassTurn
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1792,7 +1781,6 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -1918,7 +1906,6 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -2044,7 +2031,6 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -2170,7 +2156,6 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -2634,7 +2619,6 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -2842,7 +2826,6 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -3276,7 +3259,6 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -3402,7 +3384,6 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -3634,7 +3615,6 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -3834,7 +3814,6 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -3960,7 +3939,6 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -4299,7 +4277,6 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -4425,7 +4402,6 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -4551,7 +4527,6 @@ MonoBehaviour:
   index2: 7
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -4677,7 +4652,6 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -5145,7 +5119,6 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -5277,7 +5250,6 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -5465,7 +5437,6 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -5903,7 +5874,6 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -6029,7 +5999,6 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -6327,7 +6296,6 @@ MonoBehaviour:
   index2: 4
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -6518,7 +6486,6 @@ MonoBehaviour:
   index2: 5
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -6704,7 +6671,6 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -7053,7 +7019,6 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -7179,7 +7144,6 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -7395,7 +7359,6 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -7636,7 +7599,6 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -7915,7 +7877,6 @@ MonoBehaviour:
   index2: 5
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -8163,7 +8124,6 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -8289,7 +8249,6 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -8568,7 +8527,6 @@ MonoBehaviour:
   index2: 6
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -8694,7 +8652,6 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -8851,7 +8808,6 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -9178,7 +9134,6 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -9315,7 +9270,6 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -9607,7 +9561,6 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -9840,7 +9793,6 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -9966,7 +9918,6 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -10214,7 +10165,6 @@ MonoBehaviour:
   index2: 7
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -10340,7 +10290,6 @@ MonoBehaviour:
   index2: 1
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -10466,7 +10415,6 @@ MonoBehaviour:
   index2: 2
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -10592,7 +10540,6 @@ MonoBehaviour:
   index2: 0
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -10978,7 +10925,6 @@ MonoBehaviour:
   index2: 3
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -11104,7 +11050,6 @@ MonoBehaviour:
   index2: 2
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -11433,7 +11378,6 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -11559,7 +11503,6 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -11685,7 +11628,6 @@ MonoBehaviour:
   index2: 4
   board: 2
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -11811,7 +11753,6 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -12090,7 +12031,6 @@ MonoBehaviour:
   index2: 3
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -12216,7 +12156,6 @@ MonoBehaviour:
   index2: 0
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -12342,7 +12281,6 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -12468,7 +12406,6 @@ MonoBehaviour:
   index2: 6
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}
@@ -12700,7 +12637,6 @@ MonoBehaviour:
   index2: 1
   board: 1
   walkable: 0
-  pattern: 0
   free: 0
   attackedBox: {fileID: 2100000, guid: da70224006ac3804cb3ed7f876e415b0, type: 2}
   showedBoxEnemy: {fileID: 2100000, guid: 5d19fe26255ab0f498104f770f45433d, type: 2}

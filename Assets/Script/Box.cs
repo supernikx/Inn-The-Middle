@@ -6,7 +6,7 @@ public class Box : MonoBehaviour {
     
     //variabili pubbliche
     public int index1,index2,board;
-    public bool walkable, pattern, free;
+    public bool walkable, free;
     public Material attackedBox, showedBoxEnemy, showedBoxMy, showedMovement;
 
     //variabili private
@@ -26,7 +26,6 @@ public class Box : MonoBehaviour {
         mr = GetComponent<MeshRenderer>();
         defaultMaterial = mr.material;
         walkable = true;
-        pattern = false;
         bm = FindObjectOfType<BoardManager>();
     }
 
@@ -48,7 +47,6 @@ public class Box : MonoBehaviour {
     {
         mr.material = attackedBox;
         walkable = false;
-        pattern = false;
         free = false;
     }
 
@@ -69,7 +67,6 @@ public class Box : MonoBehaviour {
         if (walkable)
         {
             mr.material = showedBoxEnemy;
-            pattern = true;
         }
     }
 
@@ -81,7 +78,6 @@ public class Box : MonoBehaviour {
         if (walkable)
         {
             mr.material = showedBoxMy;
-            pattern = true;
         }
     }
 
@@ -93,7 +89,6 @@ public class Box : MonoBehaviour {
         if (walkable)
         {
             mr.material = defaultMaterial;
-            pattern = false;
         }
     }
 

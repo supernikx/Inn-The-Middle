@@ -68,43 +68,6 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che controlla se boxToAttack è una casella del pattern e se nel pattern è presente una pedina avversaria esegue l'attacco colorando tutte le caselle nel range del pattern e disabilitando il pattern visuale
-    /// altrimenti ritorna false
-    /// </summary>
-    /// <param name="boxToAttack"></param>
-    private bool PawnAttack(Box boxToAttack)
-    {
-        if (boxToAttack.pattern)
-        {
-            int currentColumn = currentBox.index2, pHit = 0;
-            foreach (Pattern a in patterns[activePattern].pattern)
-            {
-                foreach (Pawn p in bm.pawns)
-                {
-                    if (p.player != player)
-                    {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)) && enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().walkable)
-                        {
-                            enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
-                            pHit++;
-                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                        }
-                    }
-                }
-            }
-            if (pHit > 0)
-            {
-                DisableAttackPattern();
-                return true;
-            }
-            CustomLogger.Log("nope");
-            return false;
-        }
-        CustomLogger.Log("nope");
-        return false;
-    }
-
-    /// <summary>
     /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
     /// </summary>
     /// <returns></returns>
@@ -165,8 +128,8 @@ public class Pawn : MonoBehaviour
         {
             for (int index2 = 0; index2 < myboard[0].Length; index2++)
             {
-                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1) 
-                    && myboard[index1][index2].GetComponent<Box>()!=currentBox)
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1)
+                    && myboard[index1][index2].GetComponent<Box>() != currentBox)
                 {
                     myboard[index1][index2].GetComponent<Box>().ShowBoxMovement();
                 }
@@ -183,7 +146,7 @@ public class Pawn : MonoBehaviour
         {
             for (int index2 = 0; index2 < myboard[0].Length; index2++)
             {
-                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1) 
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1)
                     && myboard[index1][index2].GetComponent<Box>() != currentBox)
                 {
                     myboard[index1][index2].GetComponent<Box>().SetAsDefault();
@@ -233,16 +196,34 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board opposta, passa la box e gli index a PawnAttack
-    /// ritorna true in caso l'attacco sia avvenuto, mentre ritorna false se non è avvenuto
+    /// Funzione che effettua l'attaco per tutto il pattern se è presente una pedina avversaria al suo interno, ritorna true se l'attacco è andato a buon fine o false se non è avvenuto
     /// </summary>
-    /// <param name="boxindex1"></param>
-    /// <param name="boxindex2"></param>
     /// <returns></returns>
-    public bool Attack(int boxindex1, int boxindex2)
+    public bool Attack()
     {
-        Box boxToAttack = enemyboard[boxindex1][boxindex2].GetComponent<Box>();
-        return PawnAttack(boxToAttack);
+        int currentColumn = currentBox.index2, pHit = 0;
+        foreach (Pattern a in patterns[activePattern].pattern)
+        {
+            foreach (Pawn p in bm.pawns)
+            {
+                if (p.player != player)
+                {
+                    if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)) && enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().walkable)
+                    {
+                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
+                        pHit++;
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                    }
+                }
+            }
+        }
+        if (pHit > 0)
+        {
+            DisableAttackPattern();
+            return true;
+        }
+        CustomLogger.Log("nope");
+        return false;
     }
 
     /// <summary>
