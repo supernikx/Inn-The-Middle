@@ -180,17 +180,20 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     public void Attack()
     {
-        if (pawnSelected.Attack())
+        if (pawnSelected != null)
         {
-            pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
-            CustomLogger.Log(pawnSelected.player + " ha attaccato");
-            if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (pawnSelected.Attack())
             {
-                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
-            }
-            else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-            {
-                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                CustomLogger.Log(pawnSelected.player + " ha attaccato");
+                if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                }
+                else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                }
             }
         }
     }
@@ -266,6 +269,7 @@ public class BoardManager : MonoBehaviour
             selected.selected = true;
             pawnSelected = selected;
             pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+            pawnSelected.ShowAttackPattern();
             pawnSelected.ShowMovementBoxes();
         }
     }

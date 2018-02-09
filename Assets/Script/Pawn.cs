@@ -59,6 +59,7 @@ public class Pawn : MonoBehaviour
             transform.Rotate(new Vector3(0, 90, 0));
             transform.DOMove(boxToMove.position + offset, speed);
             DisableMovementBoxes();
+            DisableAttackPattern();
             currentBox.free = true;
             currentBox = boxToMove.GetComponent<Box>();
             currentBox.free = false;
