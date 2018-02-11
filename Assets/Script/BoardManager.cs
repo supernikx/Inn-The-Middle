@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +12,12 @@ public class BoardManager : MonoBehaviour
 
     //variabili pubbliche
     public Transform[][] board1, board2;
-    public Pawn[] pawns;
+    public List<Pawn> pawns;
     public Pawn pawnSelected;
     public bool movementSkipped;
 
-
-
     //variabili private
     private TurnManager turnManager;
-
 
 
     private void Awake()
@@ -34,11 +32,28 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack) && pawnSelected != null)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                pawnSelected.pattern1 = !pawnSelected.pattern1;
+                pawnSelected.DisableAttackPattern();
+                pawnSelected.ShowAttackPattern();
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+                {
+                    pawnSelected.ShowMovementBoxes();
+                }
+            }
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
         movementSkipped = false;
-        pawns = FindObjectsOfType<Pawn>();
+        pawns = FindObjectsOfType<Pawn>().ToList();
         turnManager = FindObjectOfType<TurnManager>();
         SetPawnsPlayer();
     }
@@ -149,11 +164,10 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
-
     //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
     private void SetPawnsPlayer()
     {
-        for (int i = 0; i < pawns.Length; i++)
+        for (int i = 0; i < pawns.Count; i++)
         {
             if (pawns[i].player == Player.player1)
             {
@@ -220,7 +234,7 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
         {
-            for (int i = 0; i < pawns.Length; i++)
+            for (int i = 0; i < pawns.Count; i++)
             {
                 if (!pawns[i].currentBox.walkable)
                 {
