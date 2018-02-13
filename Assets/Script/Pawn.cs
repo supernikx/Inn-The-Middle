@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using DG.Tweening;
+using cakeslice;
 
 public class Pawn : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class Pawn : MonoBehaviour
         pawnColor = mr.material.color;
         SetBoards();
         RandomizePattern();
+
+        gameObject.GetComponent<Outline>().eraseRenderer = true;
     }
 
     /// <summary>

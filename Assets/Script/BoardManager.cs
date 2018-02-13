@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 
 
 public class BoardManager : MonoBehaviour
@@ -19,7 +20,6 @@ public class BoardManager : MonoBehaviour
     //variabili private
     private TurnManager turnManager;
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -30,6 +30,7 @@ public class BoardManager : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
+
     }
 
     private void Update()
@@ -254,7 +255,7 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
-            pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+            pawnSelected.GetComponent<Outline>().eraseRenderer = true;
             pawnSelected.DisableMovementBoxes();
             pawnSelected.DisableAttackPattern();
             pawnSelected.selected = false;
@@ -295,7 +296,7 @@ public class BoardManager : MonoBehaviour
         {
             selected.selected = true;
             pawnSelected = selected;
-            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+            pawnSelected.GetComponent<Outline>().eraseRenderer = false;
             pawnSelected.ShowMovementBoxes();
         }
         else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
@@ -307,7 +308,7 @@ public class BoardManager : MonoBehaviour
             }
             selected.selected = true;
             pawnSelected = selected;
-            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+            pawnSelected.GetComponent<Outline>().eraseRenderer = false;
             pawnSelected.ShowAttackPattern();
         }
         else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -318,7 +319,7 @@ public class BoardManager : MonoBehaviour
             }
             selected.selected = true;
             pawnSelected = selected;
-            pawnSelected.GetComponent<Renderer>().material.color = Color.white;
+            pawnSelected.GetComponent<Outline>().eraseRenderer = false;
             pawnSelected.ShowAttackPattern();
             pawnSelected.ShowMovementBoxes();
         }
