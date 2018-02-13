@@ -38,7 +38,7 @@ public class BoardManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                pawnSelected.pattern1 = !pawnSelected.pattern1;
+                pawnSelected.ChangePatternSide();
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.ShowAttackPattern();
                 if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -183,10 +183,21 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Funzione che toglie il marchio di Kill a tutte le pedine
+    /// </summary>
+    private void UnmarkKillPawns()
+    {
+        foreach (Pawn p in pawns)
+        {
+            if (p.killMarker)
+                p.killMarker = false;
+        }
+    }
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
-
 
     /// <summary>
     /// Funzione che richiama la funzione Attack della pawnselected e se avviene l'attacco passa il turno
@@ -197,6 +208,30 @@ public class BoardManager : MonoBehaviour
         if (pawnSelected != null)
         {
             if (pawnSelected.Attack())
+            {
+                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
+                CustomLogger.Log(pawnSelected.player + " ha attaccato");
+                if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                }
+                else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Funzione che richiama la funzione SuperAttack della pawnselected e se avviene l'attacco passa il turno
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    public void SuperAttack()
+    {
+        if (pawnSelected != null)
+        {
+            if (pawnSelected.SuperAttack())
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
@@ -267,6 +302,7 @@ public class BoardManager : MonoBehaviour
         {
             if (pawnSelected != null)
             {
+                UnmarkKillPawns();
                 DeselectPawn();
             }
             selected.selected = true;
@@ -285,6 +321,25 @@ public class BoardManager : MonoBehaviour
             pawnSelected.GetComponent<Renderer>().material.color = Color.white;
             pawnSelected.ShowAttackPattern();
             pawnSelected.ShowMovementBoxes();
+        }
+    }
+
+    /// <summary>
+    /// Funzione che prende in input una pedina con il bool killMarker=true e la uccide
+    /// </summary>
+    /// <param name="pawnToKill"></param>
+    public void KillPawnMarked(Pawn pawnToKill)
+    {
+        pawnSelected.KillPawn(pawnToKill);
+        UnmarkKillPawns();
+        CustomLogger.Log(pawnSelected.player + " ha attaccato");
+        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        {
+            turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+        }
+        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        {
+            turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
         }
     }
 

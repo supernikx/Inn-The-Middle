@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -21,19 +22,22 @@ public class Pawn : MonoBehaviour
     /// Lista che contiene i pattern d'attacco e il colore del pattern, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
     /// </summary>
     public List<Attack> patterns;
-    public bool pattern1;
+    public bool killMarker;
+
 
     //variabili private
     private BoardManager bm;
     private MeshRenderer mr;
     private Transform[][] myboard, enemyboard;
+    private bool pattern1;
 
     //parte di codice con funzioni private
     // Use this for initialization
     void Start()
     {
-        bm = FindObjectOfType<BoardManager>();
+        bm = BoardManager.Instance;
         selected = false;
+        killMarker = false;
         mr = GetComponent<MeshRenderer>();
         pawnColor = mr.material.color;
         SetBoards();
@@ -86,6 +90,14 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione chiamata quando quest'oggetto viene distrutto e che lo rimuove dalla lista delle pedina
+    /// </summary>
+    private void OnDestroy()
+    {
+        bm.pawns.Remove(this);
+    }
+
     //identifica la zona di codice con le funzioni pubbliche
     #region API
 
@@ -94,7 +106,14 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        bm.PawnSelected(gameObject.GetComponent<Pawn>());
+        if (killMarker)
+        {
+            bm.KillPawnMarked(this);
+        }
+        else
+        {
+            bm.PawnSelected(this);
+        }
     }
 
     /// <summary>
@@ -301,57 +320,93 @@ public class Pawn : MonoBehaviour
     public bool Attack()
     {
         int currentColumn = currentBox.index2, pHit = 0;
-
+        List<Pattern> patternToCheck;
         if (patterns[activePattern].pattern2.Count > 0 && !pattern1)
         {
-            foreach (Pattern a in patterns[activePattern].pattern2)
-            {
-                foreach (Pawn p in bm.pawns)
-                {
-                    if (p.player != player)
-                    {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)) && enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().walkable)
-                        {
-                            enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
-                            pHit++;
-                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                        }
-                    }
-                }
-            }
-            if (pHit > 0)
-            {
-                DisableAttackPattern();
-                return true;
-            }
-            CustomLogger.Log("nope");
-            return false;
+            patternToCheck = patterns[activePattern].pattern2;
         }
         else
         {
-            foreach (Pattern a in patterns[activePattern].pattern)
+            patternToCheck = patterns[activePattern].pattern;
+        }
+
+        foreach (Pattern p in patternToCheck)
+        {
+            for (int i = 0; i < bm.pawns.Count; i++)
             {
-                foreach (Pawn p in bm.pawns)
+                if (bm.pawns[i].player != player)
                 {
-                    if (p.player != player)
+                    if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0)) && ((bm.pawns[i].currentBox.index1 == p.index1 - currentBox.index1) && (bm.pawns[i].currentBox.index2 == currentColumn + p.index2)) && enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().walkable)
                     {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)) && enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().walkable)
+                        enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().AttackBox();
+                        pHit++;
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                    }
+                }
+            }
+        }
+        if (pHit > 0)
+        {
+            DisableAttackPattern();
+            return true;
+        }
+        CustomLogger.Log("nope");
+        return false;
+    }
+
+    /// <summary>
+    /// Funzione che effettua l'attaco per tutto il pattern se è presente una pedina avversaria al suo interno distruggendo la prima, ritorna true se l'attacco è andato a buon fine o false se non è avvenuto
+    /// </summary>
+    /// <returns></returns>
+    public bool SuperAttack()
+    {
+        int currentColumn = currentBox.index2;
+        Pawn pawnToKill = null;
+        List<Pattern> patternToCheck;
+        if (patterns[activePattern].pattern2.Count > 0 && !pattern1)
+        {
+            patternToCheck = patterns[activePattern].pattern2;
+        }
+        else
+        {
+            patternToCheck = patterns[activePattern].pattern;
+        }
+
+        foreach (Pattern p in patternToCheck)
+        {
+            for (int i = 0; i < bm.pawns.Count; i++)
+            {
+                if (bm.pawns[i].player != player)
+                {
+                    if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0)) && ((bm.pawns[i].currentBox.index1 == p.index1 - currentBox.index1) && (bm.pawns[i].currentBox.index2 == currentColumn + p.index2)) && enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().walkable)
+                    {
+                        if (pawnToKill == null)
                         {
-                            enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().AttackBox();
-                            pHit++;
-                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                            pawnToKill = bm.pawns[i];
+                        }
+                        else if ((pawnToKill.currentBox.index1 > bm.pawns[i].currentBox.index1 && pawnToKill.currentBox.index2 == bm.pawns[i].currentBox.index2) || (pawnToKill.currentBox.index1 == bm.pawns[i].currentBox.index1 && Math.Abs(currentColumn - pawnToKill.currentBox.index2) > Math.Abs(currentColumn - bm.pawns[i].currentBox.index2)))
+                        {
+                            pawnToKill = bm.pawns[i];
+                        }
+                        else if (pawnToKill.currentBox.index1 == bm.pawns[i].currentBox.index1 && Math.Abs(currentColumn - pawnToKill.currentBox.index2) == Math.Abs(currentColumn - bm.pawns[i].currentBox.index2))
+                        {
+                            CustomLogger.Log("Scegli chi uccidere");
+                            pawnToKill.killMarker = true;
+                            bm.pawns[i].killMarker = true;
+                            return false;
                         }
                     }
                 }
             }
-            if (pHit > 0)
-            {
-                DisableAttackPattern();
-                return true;
-            }
-            CustomLogger.Log("nope");
-            return false;
         }
+        if (pawnToKill != null)
+        {
+            KillPawn(pawnToKill);
+            CustomLogger.Log("Pedina Uccisa");
+            return true;
+        }
+        CustomLogger.Log("nope");
+        return false;
     }
 
     /// <summary>
@@ -369,13 +424,33 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che prende in input una pedina e la distrugge disattivando tutte le funzioni necessarie
+    /// </summary>
+    /// <param name="pawnToKill"></param>
+    public void KillPawn(Pawn pawnToKill)
+    {
+        pawnToKill.DisableAttackPattern();
+        pawnToKill.currentBox.free = true;
+        pawnToKill.currentBox = null;
+        DestroyImmediate(pawnToKill.gameObject);
+    }
+
+    /// <summary>
     /// Funzione che randomizza il pattern della pedina e gli assegna il colore corrispondente
     /// </summary>
     public void RandomizePattern()
     {
-        activePattern = Random.Range(0, patterns.Count);
+        activePattern = UnityEngine.Random.Range(0, patterns.Count);
         mr.material = patterns[activePattern].patternMaterial;
         pawnColor = mr.material.color;
+    }
+
+    /// <summary>
+    /// Funzione che cambia il lato del pattern nel caso ce ne siano 2
+    /// </summary>
+    public void ChangePatternSide()
+    {
+        pattern1 = !pattern1;
     }
 
     #endregion

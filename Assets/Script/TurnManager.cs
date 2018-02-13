@@ -66,6 +66,7 @@ public class TurnManager : MonoBehaviour {
     public GameObject skipAttackButton;
     public GameObject skipMovementButton;
     public GameObject attackButton;
+    public GameObject superAttackButton;
 
 
     // Use this for initialization
@@ -174,7 +175,7 @@ public class TurnManager : MonoBehaviour {
                 skipAttackButton.SetActive(false);
                 skipMovementButton.SetActive(false);
                 attackButton.SetActive(false);
-
+                superAttackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.movement)
             {
@@ -182,12 +183,14 @@ public class TurnManager : MonoBehaviour {
                 skipMovementButton.SetActive(true);
                 skipAttackButton.SetActive(false);
                 attackButton.SetActive(false);
+                superAttackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.attack)
             {
                 p1phase.text = "Attack phase";
                 skipAttackButton.SetActive(true);
                 attackButton.SetActive(true);
+                superAttackButton.SetActive(true);
                 skipMovementButton.SetActive(false);
             }
         }
@@ -201,6 +204,7 @@ public class TurnManager : MonoBehaviour {
                 skipAttackButton.SetActive(false);
                 skipMovementButton.SetActive(false);
                 attackButton.SetActive(false);
+                superAttackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.movement)
             {
@@ -208,12 +212,14 @@ public class TurnManager : MonoBehaviour {
                 skipMovementButton.SetActive(true);
                 skipAttackButton.SetActive(false);
                 attackButton.SetActive(false);
+                superAttackButton.SetActive(false);
             }
             else if (CurrentTurnState == PlayTurnState.attack)
             {
                 p2phase.text = "Attack phase";
                 skipAttackButton.SetActive(true);
                 attackButton.SetActive(true);
+                superAttackButton.SetActive(true);
                 skipMovementButton.SetActive(false);
             }
         }
