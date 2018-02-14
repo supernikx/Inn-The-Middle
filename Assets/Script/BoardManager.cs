@@ -165,6 +165,40 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
+    /// se è libera ritorna true, altrimenti se è occupata ritorna false
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    /// <returns></returns>
+    private bool CheckFreeBoxes(Pawn pawnToCheck)
+    {
+        Transform[][] boardToUse;
+        Box currentBox = pawnToCheck.currentBox;
+        if (pawnToCheck.player == Player.player1)
+        {
+            boardToUse = board1;
+        }
+        else
+        {
+            boardToUse = board2;
+        }
+
+        for (int index1 = 0; index1 < boardToUse.Length; index1++)
+        {
+            for (int index2 = 0; index2 < boardToUse[0].Length; index2++)
+            {
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1)
+                    && boardToUse[index1][index2].GetComponent<Box>() != currentBox && CheckFreeBox(boardToUse[index1][index2].GetComponent<Box>()))
+                {
+                    return true;
+                }
+            }
+        }
+        CustomLogger.Log("Non c'è una casella libera");
+        return false;
+    }
+
     //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
     private void SetPawnsPlayer()
     {
@@ -274,10 +308,19 @@ public class BoardManager : MonoBehaviour
             {
                 if (!pawns[i].currentBox.walkable)
                 {
-                    CustomLogger.Log(pawns[i] + " è in casella !walkable");
-                    pawns[i].RandomizePattern();
-                    PawnSelected(pawns[i]);
-                    return;
+                    if (CheckFreeBoxes(pawns[i]))
+                    {
+                        CustomLogger.Log(pawns[i] + " è in casella !walkable");
+                        pawns[i].RandomizePattern();
+                        PawnSelected(pawns[i]);
+                        return;
+                    }
+                    else
+                    {
+                        CustomLogger.Log(pawns[i] + " non ha caselle libere adiacenti");
+                        pawns[i].KillPawn(pawns[i]);
+                        CheckBox();
+                    }
                 }
             }
             DeselectPawn();
