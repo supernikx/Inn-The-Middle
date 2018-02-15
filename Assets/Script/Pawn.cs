@@ -42,7 +42,7 @@ public class Pawn : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
         pawnColor = mr.material.color;
         SetBoards();
-        RandomizePattern();
+        //RandomizePattern();
 
         gameObject.GetComponent<Outline>().eraseRenderer = true;
     }
@@ -444,6 +444,13 @@ public class Pawn : MonoBehaviour
     public void RandomizePattern()
     {
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
+        mr.material = patterns[activePattern].patternMaterial;
+        pawnColor = mr.material.color;
+    }
+
+    public void ChangePattern(int index)
+    {
+        activePattern = index;
         mr.material = patterns[activePattern].patternMaterial;
         pawnColor = mr.material.color;
     }

@@ -11,8 +11,8 @@ public class DraftManager : MonoBehaviour
     public PlayerDraftTurn currentDraftTurn;
 
     public List<DraftPawn> pawns;
-    public List<DraftPawn> P1_pawns;
-    public List<DraftPawn> P2_pawns;
+    public List<int> p1_pawns_picks;
+    public List<int> p2_pawns_picks;
     BoardManager bm;
 
     public bool hasDrafted;

@@ -31,7 +31,6 @@ public class DraftPawn : MonoBehaviour
     public void RandomizeColor()
     {
         indexNumber = pawnColorIndex[(Random.Range(0, pawnColor.Length))];
-        Debug.Log(indexNumber);
         if (indexNumber == pawnColorIndex[0])
         {
             gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[0];
@@ -48,6 +47,7 @@ public class DraftPawn : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[3];
         }
+        
     }
 
 
@@ -57,7 +57,22 @@ public class DraftPawn : MonoBehaviour
         {
             if (dm.currentDraftTurn == DraftManager.PlayerDraftTurn.P1_draft)
             {
-                dm.P1_pawns.Add(this);
+                if (indexNumber == 0)
+                {
+                    dm.p1_pawns_picks.Add(0);
+                }
+                else if (indexNumber == 1)
+                {
+                    dm.p1_pawns_picks.Add(1);
+                }
+                else if (indexNumber == 2)
+                {
+                    dm.p1_pawns_picks.Add(2);
+                }
+                else if (indexNumber == 3)
+                {
+                    dm.p1_pawns_picks.Add(3);
+                }
                 dm.pawns.Remove(this);
                 dm.p1_picks[i].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -67,7 +82,22 @@ public class DraftPawn : MonoBehaviour
             }
             else if (dm.currentDraftTurn == DraftManager.PlayerDraftTurn.P2_draft)
             {
-                dm.P2_pawns.Add(this);
+                if (indexNumber == 0)
+                {
+                    dm.p2_pawns_picks.Add(0);
+                }
+                else if (indexNumber == 1)
+                {
+                    dm.p2_pawns_picks.Add(1);
+                }
+                else if (indexNumber == 2)
+                {
+                    dm.p2_pawns_picks.Add(2);
+                }
+                else if (indexNumber == 3)
+                {
+                    dm.p2_pawns_picks.Add(3);
+                }
                 dm.pawns.Remove(this);
                 dm.p2_picks[o].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;

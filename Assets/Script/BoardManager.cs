@@ -19,6 +19,7 @@ public class BoardManager : MonoBehaviour
 
     //variabili private
     private TurnManager turnManager;
+    private DraftManager dm;
 
     private void Awake()
     {
@@ -53,10 +54,12 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        dm = FindObjectOfType<DraftManager>();
         movementSkipped = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
         turnManager = FindObjectOfType<TurnManager>();
         SetPawnsPlayer();
+        SetPawnsPattern();
     }
 
     /// <summary>
@@ -215,6 +218,26 @@ public class BoardManager : MonoBehaviour
                 pawns[i].transform.position = board2[pawns[i].startIndex1][pawns[i].startIndex2].position + pawns[i].offset;
                 pawns[i].currentBox = board2[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>();
                 board2[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>().free = false;
+            }
+        }
+        
+    }
+    //funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
+    private void SetPawnsPattern()
+    {
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < pawns.Count; i++)
+        {
+            if (pawns[i].player == Player.player1)
+            {
+                pawns[i].ChangePattern(dm.p1_pawns_picks[j]);
+                j++;
+            }
+            else if (pawns[i].player == Player.player2)
+            {
+                pawns[i].ChangePattern(dm.p2_pawns_picks[k]);
+                k++;
             }
         }
     }
