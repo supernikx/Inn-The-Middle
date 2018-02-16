@@ -5,17 +5,15 @@ using UnityEngine;
 public class DraftPawn : MonoBehaviour
 {
 
-
+    //variabili per confrontare un numero random e il colore da assegnare al pawn
     public int[] pawnColorIndex;
     int indexNumber;
-
     public Color[] pawnColor = new Color[3];
     Color color;
 
     DraftManager dm;
-
-
     static int i, o;
+
     // Use this for initialization
     void Start()
     {
@@ -25,7 +23,6 @@ public class DraftPawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void RandomizeColor()
