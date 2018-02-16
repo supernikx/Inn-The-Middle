@@ -33,17 +33,18 @@ public class Pawn : MonoBehaviour
     private bool pattern1;
 
     //parte di codice con funzioni private
+    private void Awake()
+    {
+        mr = GetComponent<MeshRenderer>();
+    }
     // Use this for initialization
     void Start()
     {
-        bm = BoardManager.Instance;
         selected = false;
         killMarker = false;
-        mr = GetComponent<MeshRenderer>();
         pawnColor = mr.material.color;
+        bm = BoardManager.Instance;
         SetBoards();
-        //RandomizePattern();
-
         gameObject.GetComponent<Outline>().eraseRenderer = true;
     }
 
