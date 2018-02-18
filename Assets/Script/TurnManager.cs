@@ -25,6 +25,12 @@ public class TurnManager : MonoBehaviour {
             }
         }
     }
+
+
+    public enum MacroPhase { draft, placing, game };
+    public MacroPhase CurrentMacroPhase;
+
+
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
     public enum PlayTurnState { check, movement, attack };
     /// <summary> PlayTurnState corrente </summary>
@@ -45,34 +51,36 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    [HideInInspector]
-    /// <summary> Booleana che indica se il macroturno StrategicTurn è ancora attivo o no (temporaneamente false in assenza di fase strategica)</summary>
-    public bool strategicTurn = false;
-
-    [HideInInspector]
-    /// <summary> Numero massimo di pedine per giocatore </summary>
-    public int P1Pawns, P2Pawns;
-    [HideInInspector]
-    /// <summary> Numero di pedine rimanenti per giocatore </summary>
-    public int P1PawnsLeft, P2PawnsLeft;
+    DraftManager dm;
 
     /// <summary> Testo per indicare di chi è il turno </summary>
-    
+    [Header("Text references")]
     public TextMeshProUGUI p1text, p2text;
     public TextMeshProUGUI p1phase, p2phase;
 
-    Pawn pawnScript;
-
+    [Header("Button references")]
     public GameObject skipAttackButton;
     public GameObject skipMovementButton;
     public GameObject attackButton;
     public GameObject superAttackButton;
 
+    [Header("Camera references")]
+    public Camera mainCam;
+    public Camera draftCam;
+
+    [Header("UI Holders references")]
+    public GameObject draftUI;
+    public GameObject gameUI;
 
     // Use this for initialization
     void Start()
     {
+        mainCam.enabled = false;
+        gameUI.SetActive(false);
+        dm = FindObjectOfType<DraftManager>();
+
         CurrentPlayerTurn = PlayerTurn.P1_turn;
+        CurrentMacroPhase = MacroPhase.draft;
     }
 
     // Update is called once per frame
@@ -146,7 +154,32 @@ public class TurnManager : MonoBehaviour {
 
     void OnTurnStart(PlayerTurn newTurn)
     {
-        CurrentTurnState = PlayTurnState.check;
+        switch (CurrentMacroPhase)
+        {
+            case MacroPhase.draft:
+                if (dm.pawns.Count == 0)
+                {
+                    draftCam.enabled = false;
+                    mainCam.enabled = true;
+                    draftUI.SetActive(false);
+                    gameUI.SetActive(true);
+                    BoardManager.Instance.SetPawnsPattern();
+                    BoardManager.Instance.SetPawnsPlayer();
+                    CurrentMacroPhase = MacroPhase.game;
+                }
+                break;
+            case MacroPhase.placing:
+                //if (pawns to place == 0)
+                //{
+                //     CurrentMacroPhase = MacroPhase.game;
+                //}
+            case MacroPhase.game:
+                CurrentTurnState = PlayTurnState.check;
+                break;
+            default:
+                Debug.Log("Errore: nessuna macrofase");
+                break;
+        }
     }
 
     public void TurnCheckText()

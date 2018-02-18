@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
     public void ReloadLevel()
     {
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("DraftPhase");
+        SceneManager.LoadScene(scene.name);
         Time.timeScale = 1f;
     }
 

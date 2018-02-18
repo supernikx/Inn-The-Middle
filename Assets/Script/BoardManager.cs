@@ -58,8 +58,6 @@ public class BoardManager : MonoBehaviour
         movementSkipped = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
         turnManager = FindObjectOfType<TurnManager>();
-        SetPawnsPlayer();
-        SetPawnsPattern();
     }
 
     /// <summary>
@@ -203,7 +201,7 @@ public class BoardManager : MonoBehaviour
     }
 
     //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
-    private void SetPawnsPlayer()
+    public void SetPawnsPlayer()
     {
         for (int i = 0; i < pawns.Count; i++)
         {
@@ -223,7 +221,7 @@ public class BoardManager : MonoBehaviour
         
     }
     //funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
-    private void SetPawnsPattern()
+    public void SetPawnsPattern()
     {
         int j = 0;
         int k = 0;

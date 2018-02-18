@@ -12,12 +12,14 @@ public class DraftPawn : MonoBehaviour
     Color color;
 
     DraftManager dm;
+    TurnManager tm;
     static int i, o;
 
     // Use this for initialization
     void Start()
     {
         dm = FindObjectOfType<DraftManager>();
+        tm = FindObjectOfType<TurnManager>();
     }
 
     // Update is called once per frame
@@ -52,55 +54,25 @@ public class DraftPawn : MonoBehaviour
     {
         if (dm.hasDrafted)
         {
-            if (dm.currentDraftTurn == DraftManager.PlayerDraftTurn.P1_draft)
+            if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
-                if (indexNumber == 0)
-                {
-                    dm.p1_pawns_picks.Add(0);
-                }
-                else if (indexNumber == 1)
-                {
-                    dm.p1_pawns_picks.Add(1);
-                }
-                else if (indexNumber == 2)
-                {
-                    dm.p1_pawns_picks.Add(2);
-                }
-                else if (indexNumber == 3)
-                {
-                    dm.p1_pawns_picks.Add(3);
-                }
+                dm.p1_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
                 dm.p1_picks[i].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 i++;
-                dm.currentDraftTurn = DraftManager.PlayerDraftTurn.P2_draft;
+                tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
             }
-            else if (dm.currentDraftTurn == DraftManager.PlayerDraftTurn.P2_draft)
+            else if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
-                if (indexNumber == 0)
-                {
-                    dm.p2_pawns_picks.Add(0);
-                }
-                else if (indexNumber == 1)
-                {
-                    dm.p2_pawns_picks.Add(1);
-                }
-                else if (indexNumber == 2)
-                {
-                    dm.p2_pawns_picks.Add(2);
-                }
-                else if (indexNumber == 3)
-                {
-                    dm.p2_pawns_picks.Add(3);
-                }
+                dm.p2_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
                 dm.p2_picks[o].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 o++;
-                dm.currentDraftTurn = DraftManager.PlayerDraftTurn.P1_draft;
+                tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
             }
 
             if (dm.pawns.Count == 0)

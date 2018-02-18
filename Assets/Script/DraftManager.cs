@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class DraftManager : MonoBehaviour
 {
 
-    public enum PlayerDraftTurn { P1_draft, P2_draft };
-    public PlayerDraftTurn currentDraftTurn;
-
     public List<DraftPawn> pawns;
     public List<int> p1_pawns_picks;
     public List<int> p2_pawns_picks;
@@ -21,13 +18,18 @@ public class DraftManager : MonoBehaviour
 
     public GameObject draftButton, playButton;
 
+
+    private void Awake()
+    {
+        pawns = FindObjectsOfType<DraftPawn>().ToList();
+    }
+
+
     // Use this for initialization
     void Start()
     {
 
-        pawns = FindObjectsOfType<DraftPawn>().ToList();
-        currentDraftTurn = PlayerDraftTurn.P1_draft;
-        DontDestroyOnLoad(this);
+
     }
 
     // Update is called once per frame
