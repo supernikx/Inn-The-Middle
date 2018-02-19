@@ -365,7 +365,7 @@ public class Pawn : MonoBehaviour
     public bool SuperAttack()
     {
         int currentColumn = currentBox.index2;
-        Pawn pawnToKill = null;
+        List <Pawn> pawnsToKill = null;
         List<Pattern> patternToCheck;
         if (patterns[activePattern].pattern2.Count > 0 && !pattern1)
         {
@@ -384,33 +384,28 @@ public class Pawn : MonoBehaviour
                 {
                     if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0)) && ((bm.pawns[i].currentBox.index1 == p.index1 - currentBox.index1) && (bm.pawns[i].currentBox.index2 == currentColumn + p.index2)) && enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().walkable)
                     {
-                        if (pawnToKill == null)
-                        {
-                            pawnToKill = bm.pawns[i];
-                        }
-                        else if ((pawnToKill.currentBox.index1 > bm.pawns[i].currentBox.index1 && pawnToKill.currentBox.index2 == bm.pawns[i].currentBox.index2) || (pawnToKill.currentBox.index1 == bm.pawns[i].currentBox.index1 && Math.Abs(currentColumn - pawnToKill.currentBox.index2) > Math.Abs(currentColumn - bm.pawns[i].currentBox.index2)))
-                        {
-                            pawnToKill = bm.pawns[i];
-                        }
-                        else if (pawnToKill.currentBox.index1 == bm.pawns[i].currentBox.index1 && Math.Abs(currentColumn - pawnToKill.currentBox.index2) == Math.Abs(currentColumn - bm.pawns[i].currentBox.index2))
-                        {
-                            CustomLogger.Log("Scegli chi uccidere");
-                            pawnToKill.killMarker = true;
-                            bm.pawns[i].killMarker = true;
-                            return false;
-                        }
+                        pawnsToKill.Add(bm.pawns[i]);
                     }
                 }
             }
         }
-        if (pawnToKill != null)
+
+        switch (pawnsToKill.Count)
         {
-            KillPawn(pawnToKill);
-            CustomLogger.Log("Pedina Uccisa");
-            return true;
+            case 0:
+                return false;
+            case 1:
+                KillPawn(pawnsToKill[0]);
+                CustomLogger.Log("Pedina Uccisa");
+                return true;
+            default:
+                foreach (Pawn p in pawnsToKill)
+                {
+                    p.killMarker = true;
+                }
+                CustomLogger.Log("Scegli la pedina da uccidere");
+                return false;
         }
-        CustomLogger.Log("nope");
-        return false;
     }
 
     /// <summary>
