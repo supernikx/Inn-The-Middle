@@ -28,7 +28,22 @@ public class TurnManager : MonoBehaviour {
 
 
     public enum MacroPhase { draft, placing, game };
-    public MacroPhase CurrentMacroPhase;
+    private MacroPhase _currentMacroPhase;
+    public MacroPhase CurrentMacroPhase
+    {
+        get
+        {
+            return _currentMacroPhase;
+        }
+        set
+        {
+            if (MacroPhaseChange(value))
+            {
+                _currentMacroPhase = value;
+                OnMacroPhaseStart(_currentMacroPhase);
+            }
+        }
+    }
 
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
@@ -119,11 +134,33 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
+    bool MacroPhaseChange(MacroPhase newPhase)
+    {
+        switch (newPhase)
+        {
+            case MacroPhase.draft:
+                if (CurrentMacroPhase != MacroPhase.draft)
+                    return false;
+                return true;
+            case MacroPhase.placing:
+                if (CurrentMacroPhase != MacroPhase.draft)
+                    return false;
+                return true;
+            case MacroPhase.game:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     void OnStateEnter(PlayTurnState newState)
     {
         switch (newState)
         {
             case PlayTurnState.check:
+                BoardManager.Instance.movementSkipped = false;
+                BoardManager.Instance.superAttackPressed = false;
+                BoardManager.Instance.UnmarkKillPawns();
                 if (BoardManager.Instance.pawnSelected != null)
                 {
                     BoardManager.Instance.pawnSelected.DisableAttackPattern();
@@ -132,8 +169,7 @@ public class TurnManager : MonoBehaviour {
                 BoardManager.Instance.CheckBox();
 
                 break;
-            case PlayTurnState.movement:
-                BoardManager.Instance.movementSkipped = false;
+            case PlayTurnState.movement:   
                 break;
             case PlayTurnState.attack:
                 if (BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
@@ -147,6 +183,22 @@ public class TurnManager : MonoBehaviour {
                         CurrentPlayerTurn = PlayerTurn.P1_turn;
                     }
                 }
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnMacroPhaseStart(MacroPhase newPhase)
+    {
+        switch (newPhase)
+        {
+            case MacroPhase.draft:
+                break;
+            case MacroPhase.placing:
+                break;
+            case MacroPhase.game:
+                CurrentTurnState = PlayTurnState.check;
                 break;
             default:
                 break;

@@ -15,7 +15,7 @@ public class BoardManager : MonoBehaviour
     public Transform[][] board1, board2;
     public List<Pawn> pawns;
     public Pawn pawnSelected;
-    public bool movementSkipped;
+    public bool movementSkipped, superAttackPressed;
 
     //variabili private
     private TurnManager turnManager;
@@ -56,6 +56,7 @@ public class BoardManager : MonoBehaviour
     {
         dm = FindObjectOfType<DraftManager>();
         movementSkipped = false;
+        superAttackPressed = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
         turnManager = FindObjectOfType<TurnManager>();
     }
@@ -239,21 +240,26 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-    
+
+
+    //identifica la zona di codice con le funzioni pubbliche
+    #region API
+
     /// <summary>
     /// Funzione che toglie il marchio di Kill a tutte le pedine
     /// </summary>
-    private void UnmarkKillPawns()
+    public void UnmarkKillPawns()
     {
         foreach (Pawn p in pawns)
         {
             if (p.killMarker)
+            {
+                p.GetComponent<Outline>().eraseRenderer = true;
+                p.GetComponent<Outline>().color = 2;
                 p.killMarker = false;
+            }
         }
     }
-
-    //identifica la zona di codice con le funzioni pubbliche
-    #region API
 
     /// <summary>
     /// Funzione che richiama la funzione Attack della pawnselected e se avviene l'attacco passa il turno
@@ -261,7 +267,7 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     public void Attack()
     {
-        if (pawnSelected != null)
+        if (pawnSelected != null && !superAttackPressed)
         {
             if (pawnSelected.Attack())
             {
@@ -285,8 +291,9 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     public void SuperAttack()
     {
-        if (pawnSelected != null)
+        if (pawnSelected != null && !superAttackPressed)
         {
+            superAttackPressed = true;
             if (pawnSelected.SuperAttack())
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
@@ -363,11 +370,10 @@ public class BoardManager : MonoBehaviour
             pawnSelected.GetComponent<Outline>().eraseRenderer = false;
             pawnSelected.ShowMovementBoxes();
         }
-        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
             if (pawnSelected != null)
             {
-                UnmarkKillPawns();
                 DeselectPawn();
             }
             selected.selected = true;
@@ -444,21 +450,20 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
-            if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+            switch (turnManager.CurrentTurnState)
             {
-                Movement(boxclicked);
-            }
-            else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
-            {
-                CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
-            }
-            else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
-            {
-                MovementCheckPhase(boxclicked);
-            }
-            else
-            {
-                DeselectPawn();
+                case TurnManager.PlayTurnState.check:
+                    MovementCheckPhase(boxclicked);
+                    break;
+                case TurnManager.PlayTurnState.movement:
+                    Movement(boxclicked);
+                    break;
+                case TurnManager.PlayTurnState.attack:
+                    CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
+                    break;
+                default:
+                    DeselectPawn();
+                    break;
             }
         }
     }

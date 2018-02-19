@@ -365,7 +365,7 @@ public class Pawn : MonoBehaviour
     public bool SuperAttack()
     {
         int currentColumn = currentBox.index2;
-        List <Pawn> pawnsToKill = null;
+        List<Pawn> pawnsToKill = new List<Pawn>();
         List<Pattern> patternToCheck;
         if (patterns[activePattern].pattern2.Count > 0 && !pattern1)
         {
@@ -393,6 +393,7 @@ public class Pawn : MonoBehaviour
         switch (pawnsToKill.Count)
         {
             case 0:
+                CustomLogger.Log("Nessuna pedina nel Pattern");
                 return false;
             case 1:
                 KillPawn(pawnsToKill[0]);
@@ -402,6 +403,8 @@ public class Pawn : MonoBehaviour
                 foreach (Pawn p in pawnsToKill)
                 {
                     p.killMarker = true;
+                    p.GetComponent<Outline>().color = 0;
+                    p.GetComponent<Outline>().eraseRenderer = false;
                 }
                 CustomLogger.Log("Scegli la pedina da uccidere");
                 return false;
