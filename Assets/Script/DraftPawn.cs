@@ -15,11 +15,14 @@ public class DraftPawn : MonoBehaviour
     TurnManager tm;
     static int i, o;
 
+    static int picksLeft;
     // Use this for initialization
     void Start()
     {
         dm = FindObjectOfType<DraftManager>();
         tm = FindObjectOfType<TurnManager>();
+
+        picksLeft = 1;
     }
 
     // Update is called once per frame
@@ -62,7 +65,12 @@ public class DraftPawn : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 i++;
-                tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                picksLeft--;
+                if (picksLeft == 0)
+                {
+                    tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                    picksLeft = 2;
+                }
             }
             else if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
@@ -72,7 +80,12 @@ public class DraftPawn : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 o++;
-                tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                picksLeft--;
+                if (picksLeft == 0)
+                {
+                    tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                    picksLeft = 2;
+                }
             }
         }
     }
