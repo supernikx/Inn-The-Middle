@@ -74,11 +74,6 @@ public class DraftPawn : MonoBehaviour
                 o++;
                 tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
             }
-
-            if (dm.pawns.Count == 0)
-            {
-                dm.playButton.SetActive(true);
-            }
         }
     }
 }
