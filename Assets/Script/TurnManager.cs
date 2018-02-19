@@ -77,6 +77,7 @@ public class TurnManager : MonoBehaviour {
     {
         mainCam.enabled = false;
         gameUI.SetActive(false);
+
         dm = FindObjectOfType<DraftManager>();
 
         CurrentPlayerTurn = PlayerTurn.P1_turn;

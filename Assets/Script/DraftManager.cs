@@ -16,7 +16,7 @@ public class DraftManager : MonoBehaviour
 
     public Image[] p1_picks, p2_picks;
 
-    public GameObject draftButton, playButton;
+    public GameObject draftButton;
 
 
     private void Awake()
