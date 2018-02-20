@@ -27,29 +27,29 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.VR;
 
-namespace cakeslice
+namespace PawnOutlineNameSpace
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Camera))]
     [ExecuteInEditMode]
-    public class OutlineEffect : MonoBehaviour
+    public class PawnOutlineEffect : MonoBehaviour
     {
-        private static OutlineEffect m_instance;
-        public static OutlineEffect Instance
+        private static PawnOutlineEffect m_instance;
+        public static PawnOutlineEffect Instance
         {
             get
             {
                 if(Equals(m_instance, null))
                 {
-                    return m_instance = FindObjectOfType(typeof(OutlineEffect)) as OutlineEffect;
+                    return m_instance = FindObjectOfType(typeof(PawnOutlineEffect)) as PawnOutlineEffect;
                 }
 
                 return m_instance;
             }
         }
-        private OutlineEffect() { }
+        private PawnOutlineEffect() { }
 
-        private readonly LinkedSet<Outline> outlines = new LinkedSet<Outline>();
+        private readonly PawnLinkedSet<PawnOutline> outlines = new PawnLinkedSet<PawnOutline>();
 
         [Range(1.0f, 6.0f)]
         public float lineThickness = 1.25f;
@@ -58,9 +58,9 @@ namespace cakeslice
         [Range(0, 1)]
         public float fillAmount = 0.2f;
 
-        public Color lineColor0 = Color.red;
-        public Color lineColor1 = Color.green;
-        public Color lineColor2 = Color.blue;
+        public Color PawnSelected = Color.blue;
+        public Color PawnMarkedToKill = Color.red;
+        
 
         public bool additiveRendering = false;
 
@@ -173,7 +173,7 @@ namespace cakeslice
             commandBuffer.Clear();
             if(outlines != null)
             {
-                foreach(Outline outline in outlines)
+                foreach(PawnOutline outline in outlines)
                 {
                     LayerMask l = sourceCamera.cullingMask;
 
@@ -242,9 +242,9 @@ namespace cakeslice
 
         private void OnEnable()
         {
-            Outline[] o = FindObjectsOfType<Outline>();
+            PawnOutline[] o = FindObjectsOfType<PawnOutline>();
 
-            foreach(Outline oL in o)
+            foreach(PawnOutline oL in o)
             {
                 oL.enabled = false;
                 oL.enabled = true;
@@ -355,9 +355,8 @@ namespace cakeslice
                 }
                 outlineShaderMaterial.SetFloat("_LineIntensity", lineIntensity);
                 outlineShaderMaterial.SetFloat("_FillAmount", fillAmount);
-                outlineShaderMaterial.SetColor("_LineColor1", lineColor0 * lineColor0);
-                outlineShaderMaterial.SetColor("_LineColor2", lineColor1 * lineColor1);
-                outlineShaderMaterial.SetColor("_LineColor3", lineColor2 * lineColor2);
+                outlineShaderMaterial.SetColor("_LineColor2", PawnMarkedToKill * PawnMarkedToKill);
+                outlineShaderMaterial.SetColor("_LineColor1", PawnSelected * PawnSelected);
                 if(flipY)
                     outlineShaderMaterial.SetInt("_FlipY", 1);
                 else
@@ -392,13 +391,13 @@ namespace cakeslice
 #endif
         }
 
-        public void AddOutline(Outline outline)
+        public void AddOutline(PawnOutline outline)
         {
             if(!outlines.Contains(outline))
                 outlines.Add(outline);
         }
 
-        public void RemoveOutline(Outline outline)
+        public void RemoveOutline(PawnOutline outline)
         {
             if(outlines.Contains(outline))
                 outlines.Remove(outline);

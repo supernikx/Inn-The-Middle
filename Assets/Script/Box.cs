@@ -1,31 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BoxOutlineNameSpace;
 
-public class Box : MonoBehaviour {
-    
+public class Box : MonoBehaviour
+{
+
     //variabili pubbliche
-    public int index1,index2,board;
+    public int index1, index2, board;
     public bool walkable, free;
-    public Material attackedBox, showedBoxEnemy, showedBoxMy, showedMovement;
+    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black;
+    public Element element;
 
     //variabili private
     private BoardManager bm;
     private MeshRenderer mr;
-    private Material defaultMaterial;
+    private BoxOutline outline;
 
     //parte di codice con funzioni private
 
     private void Awake()
     {
+        mr = GetComponent<MeshRenderer>();
+        outline = GetComponent<BoxOutline>();
         free = true;
     }
 
     // Use this for initialization
-    void Start () {
-        mr = GetComponent<MeshRenderer>();
-        defaultMaterial = mr.material;
+    void Start()
+    {
         walkable = true;
+        outline.eraseRenderer = true;
         bm = FindObjectOfType<BoardManager>();
     }
 
@@ -34,7 +39,7 @@ public class Box : MonoBehaviour {
     /// </summary>
     private void OnMouseDown()
     {
-       bm.BoxClicked(gameObject.GetComponent<Box>());
+        bm.BoxClicked(gameObject.GetComponent<Box>());
     }
 
     //identifica la zona di codice con le funzioni pubbliche
@@ -45,9 +50,9 @@ public class Box : MonoBehaviour {
     /// </summary>
     public void AttackBox()
     {
-        mr.material = attackedBox;
         walkable = false;
         free = false;
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -56,28 +61,33 @@ public class Box : MonoBehaviour {
     public void ShowBoxMovement()
     {
         if (walkable && free)
-            mr.material = showedMovement;
-    }
-
-    /// <summary>
-    /// Funzione che sostituisce il materiale attuale con il materiale showBox, solo se la casella ha la variabile walkable true
-    /// </summary>
-    public void ShowBoxEnemy()
-    {
-        if (walkable)
         {
-            mr.material = showedBoxEnemy;
+            outline.color = 0;
+            outline.eraseRenderer = false;
         }
     }
 
     /// <summary>
     /// Funzione che sostituisce il materiale attuale con il materiale showBox, solo se la casella ha la variabile walkable true
     /// </summary>
-    public void ShowBoxMy()
+    public void ShowBoxActivePattern()
     {
         if (walkable)
         {
-            mr.material = showedBoxMy;
+            outline.color = 1;
+            outline.eraseRenderer = false;
+        }
+    }
+
+    /// <summary>
+    /// Funzione che sostituisce il materiale attuale con il materiale showBox, solo se la casella ha la variabile walkable true
+    /// </summary>
+    public void ShowBoxOtherPattern()
+    {
+        if (walkable)
+        {
+            outline.color = 2;
+            outline.eraseRenderer = false;
         }
     }
 
@@ -88,7 +98,31 @@ public class Box : MonoBehaviour {
     {
         if (walkable)
         {
-            mr.material = defaultMaterial;
+            outline.eraseRenderer = true;
+        }
+    }
+
+    /// <summary>
+    /// Funzione che imposta l'elemento della casella
+    /// </summary>
+    /// <param name="_element"></param>
+    public void SetElement(Element _element)
+    {
+        element = _element;
+        switch (element)
+        {
+            case Element.Purple:
+                mr.material = elementPurple;
+                break;
+            case Element.Orange:
+                mr.material = elementOrange;
+                break;
+            case Element.Azure:
+                mr.material = elementAzure;
+                break;
+            default:
+                mr.material = neutral_white;
+                break;
         }
     }
 

@@ -7,6 +7,7 @@ public class BoardsGenerator : MonoBehaviour
     public int x;
     public int y;
     public GridGenerator board1, board2;
+    public List<BoardPattern> boardPattern;
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
@@ -33,3 +34,11 @@ public class BoardsGenerator : MonoBehaviour
 
     #endregion
 }
+
+[System.Serializable]
+public class BoardPattern
+{
+    public Element boxElement;
+}
+
+public enum Element { Purple, Orange, Azure, Neutral };

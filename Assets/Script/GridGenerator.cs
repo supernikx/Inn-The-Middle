@@ -17,6 +17,7 @@ public class GridGenerator : MonoBehaviour
     {
         bg = FindObjectOfType<BoardsGenerator>();
         CreateGrid(bg.x, bg.y);
+        SetElements();
         SetBoards();
     }
 
@@ -32,6 +33,22 @@ public class GridGenerator : MonoBehaviour
         else if (tag == "board2")
         {
             bm.board2 = tilePositions;
+        }
+    }
+
+    /// <summary>
+    /// Funzione che imposta gli elementi sulla board come nel pattern presente in BoardsGenerator
+    /// </summary>
+    private void SetElements()
+    {
+        int k = 0;
+        for (int i = 0; i < tilePositions.Length; i++)
+        {
+            for (int j = 0; j < tilePositions[i].Length; j++)
+            {
+                tilePositions[i][j].GetComponent<Box>().SetElement(bg.boardPattern[k].boxElement);
+                k++;
+            }
         }
     }
 

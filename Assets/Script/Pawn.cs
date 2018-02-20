@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using DG.Tweening;
-using cakeslice;
+using PawnOutlineNameSpace;
 
 public class Pawn : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class Pawn : MonoBehaviour
         pawnColor = mr.material.color;
         bm = BoardManager.Instance;
         SetBoards();
-        gameObject.GetComponent<Outline>().eraseRenderer = true;
+        gameObject.GetComponent<PawnOutline>().eraseRenderer = true;
     }
 
     /// <summary>
@@ -171,12 +171,12 @@ public class Pawn : MonoBehaviour
                 {
                     if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
+                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
 
                     if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
+                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
                 }
 
@@ -184,12 +184,12 @@ public class Pawn : MonoBehaviour
                 {
                     if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
 
                     if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
                 }
             }
@@ -200,12 +200,12 @@ public class Pawn : MonoBehaviour
 
                     if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
+                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
 
                     if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxMy();
+                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
                 }
 
@@ -213,12 +213,12 @@ public class Pawn : MonoBehaviour
                 {
                     if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
 
                     if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
                 }
             }
@@ -229,12 +229,12 @@ public class Pawn : MonoBehaviour
             {
                 if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
                 {
-                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
 
                 if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
                 {
-                    myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxEnemy();
+                    myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
             }
         }
@@ -400,11 +400,12 @@ public class Pawn : MonoBehaviour
                 CustomLogger.Log("Pedina Uccisa");
                 return true;
             default:
+                bm.superAttackPressed = true;
                 foreach (Pawn p in pawnsToKill)
                 {
                     p.killMarker = true;
-                    p.GetComponent<Outline>().color = 0;
-                    p.GetComponent<Outline>().eraseRenderer = false;
+                    p.GetComponent<PawnOutline>().color = 1;
+                    p.GetComponent<PawnOutline>().eraseRenderer = false;
                 }
                 CustomLogger.Log("Scegli la pedina da uccidere");
                 return false;

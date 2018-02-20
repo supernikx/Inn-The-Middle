@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23235435012226420}
   - component: {fileID: 95915374398018262}
   - component: {fileID: 114820047233248068}
-  - component: {fileID: 114739771661482076}
+  - component: {fileID: 114601331724460034}
   m_Layer: 0
   m_Name: Pedina
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114739771661482076
+--- !u!114 &114601331724460034
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 2
+  color: 0
   eraseRenderer: 0
   originalLayer: 0
   originalMaterials: []

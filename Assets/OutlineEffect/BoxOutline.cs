@@ -25,12 +25,13 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using PawnOutlineNameSpace;
 
-namespace cakeslice
+namespace BoxOutlineNameSpace
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Renderer))]
-    public class Outline : MonoBehaviour
+    public class BoxOutline : MonoBehaviour
     {
         public Renderer Renderer { get; private set; }
 
@@ -49,11 +50,11 @@ namespace cakeslice
 
         void OnEnable()
         {
-			IEnumerable<OutlineEffect> effects = Camera.allCameras.AsEnumerable()
-				.Select(c => c.GetComponent<OutlineEffect>())
+			IEnumerable<BoxOutlineEffect> effects = Camera.allCameras.AsEnumerable()
+				.Select(c => c.GetComponent<BoxOutlineEffect>())
 				.Where(e => e != null);
 
-			foreach (OutlineEffect effect in effects)
+			foreach (BoxOutlineEffect effect in effects)
             {
                 effect.AddOutline(this);
             }
@@ -61,11 +62,11 @@ namespace cakeslice
 
         void OnDisable()
         {
-			IEnumerable<OutlineEffect> effects = Camera.allCameras.AsEnumerable()
-				.Select(c => c.GetComponent<OutlineEffect>())
+			IEnumerable<BoxOutlineEffect> effects = Camera.allCameras.AsEnumerable()
+				.Select(c => c.GetComponent<BoxOutlineEffect>())
 				.Where(e => e != null);
 
-			foreach (OutlineEffect effect in effects)
+			foreach (BoxOutlineEffect effect in effects)
             {
                 effect.RemoveOutline(this);
             }

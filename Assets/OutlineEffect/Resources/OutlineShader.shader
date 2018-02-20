@@ -37,7 +37,7 @@ Shader "Hidden/OutlineEffect"
 		{
 			Tags{ "RenderType" = "Opaque" }
 			LOD 200
-			ZTest Always
+			//ZTest Always
 			ZWrite Off
 			Cull Off
 
@@ -109,7 +109,7 @@ Shader "Hidden/OutlineEffect"
 		{
 			Tags { "RenderType"="Opaque" }
 			LOD 200
-			ZTest Always
+			//ZTest Always
 			ZWrite Off
 			Cull Off
 			

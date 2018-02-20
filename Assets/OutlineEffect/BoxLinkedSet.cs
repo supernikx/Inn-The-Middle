@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace cakeslice
+namespace BoxOutlineNameSpace
 {
-	public class LinkedSet<T> : IEnumerable<T>
+	public class BoxLinkedSet<T> : IEnumerable<T>
 	{
 
 		private LinkedList<T> list;
 
 		private Dictionary<T, LinkedListNode<T>> dictionary;
 
-		public LinkedSet()
+		public BoxLinkedSet()
 		{
 			list = new LinkedList<T>();
 			dictionary = new Dictionary<T, LinkedListNode<T>>();
 		}
 
-		public LinkedSet(IEqualityComparer<T> comparer)
+		public BoxLinkedSet(IEqualityComparer<T> comparer)
 		{
 			list = new LinkedList<T>();
 			dictionary = new Dictionary<T, LinkedListNode<T>>(comparer);
