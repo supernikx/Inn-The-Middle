@@ -66,7 +66,7 @@ public class DraftPawn : MonoBehaviour
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 i++;
                 picksLeft--;
-                if (picksLeft == 0)
+                if (picksLeft == 0 || dm.pawns.Count == 0)
                 {
                     tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
                     picksLeft = 2;
@@ -81,7 +81,7 @@ public class DraftPawn : MonoBehaviour
                 gameObject.GetComponent<MeshCollider>().enabled = false;
                 o++;
                 picksLeft--;
-                if (picksLeft == 0)
+                if (picksLeft == 0 || dm.pawns.Count == 0)
                 {
                     tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
                     picksLeft = 2;
