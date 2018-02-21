@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     TurnManager tm;
+    BoardManager bm;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
@@ -17,7 +19,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI p2text;
 
     [Header("Phase Text")]
-    public TextMeshProUGUI p1phase; 
+    public TextMeshProUGUI p1phase;
     public TextMeshProUGUI p2phase;
 
     [Header("Button references")]
@@ -33,16 +35,19 @@ public class UIManager : MonoBehaviour {
 
     private void Awake()
     {
+        bm = GetComponent<BoardManager>();
         tm = GetComponent<TurnManager>();
     }
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         gameUI.SetActive(false);
         pausePanel.SetActive(false);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
             pausePanel.SetActive(true);
@@ -53,7 +58,7 @@ public class UIManager : MonoBehaviour {
         {
             ResumeGame();
         }
-	}
+    }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
     public void ResumeGame()
@@ -100,7 +105,14 @@ public class UIManager : MonoBehaviour {
                                 p2phase.text = "Attack phase";
                                 skipAttackButton.SetActive(true);
                                 attackButton.SetActive(true);
-                                superAttackButton.SetActive(true);
+                                if (bm.player2Elements.CheckSuperAttack())
+                                {
+                                    superAttackButton.SetActive(true);
+                                }
+                                else
+                                {
+                                    superAttackButton.SetActive(false);
+                                }
                                 skipMovementButton.SetActive(false);
                                 break;
                             default:
@@ -109,7 +121,7 @@ public class UIManager : MonoBehaviour {
                         break;
                     default:
                         break;
-                }   
+                }
                 break;
             case TurnManager.PlayerTurn.P1_turn:
                 p1text.enabled = true;
@@ -143,7 +155,14 @@ public class UIManager : MonoBehaviour {
                                 p1phase.text = "Attack phase";
                                 skipAttackButton.SetActive(true);
                                 attackButton.SetActive(true);
-                                superAttackButton.SetActive(true);
+                                if (bm.player1Elements.CheckSuperAttack())
+                                {
+                                    superAttackButton.SetActive(true);
+                                }
+                                else
+                                {
+                                    superAttackButton.SetActive(false);
+                                }
                                 skipMovementButton.SetActive(false);
                                 break;
                             default:
@@ -152,7 +171,7 @@ public class UIManager : MonoBehaviour {
                         break;
                     default:
                         break;
-                } 
+                }
                 break;
             default:
                 break;

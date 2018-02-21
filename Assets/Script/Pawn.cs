@@ -388,8 +388,6 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool SuperAttack()
     {
-        if (!myelements.CheckSuperAttack())
-            return false;
         int currentColumn = currentBox.index2;
         List<Pawn> pawnsToKill = new List<Pawn>();
         List<Pattern> patternToCheck;
