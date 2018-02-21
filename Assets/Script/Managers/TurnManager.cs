@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 
 public class TurnManager : MonoBehaviour {
 
@@ -61,40 +61,28 @@ public class TurnManager : MonoBehaviour {
             if (StateChange(value))
             {
                 _currentTurnState = value;
-                OnStateEnter(_currentTurnState);
+                OnStateStart(_currentTurnState);
             }
         }
     }
 
     DraftManager dm;
-
-    /// <summary> Testo per indicare di chi è il turno </summary>
-    [Header("Text references")]
-    public TextMeshProUGUI p1text, p2text;
-    public TextMeshProUGUI p1phase, p2phase;
-
-    [Header("Button references")]
-    public GameObject skipAttackButton;
-    public GameObject skipMovementButton;
-    public GameObject attackButton;
-    public GameObject superAttackButton;
+    UIManager ui;
 
     [Header("Camera references")]
     public Camera mainCam;
     public Camera draftCam;
 
-    [Header("UI Holders references")]
-    public GameObject draftUI;
-    public GameObject gameUI;
+    private void Awake()
+    {
+        ui = GetComponent<UIManager>();
+        dm = GetComponent<DraftManager>();
+    }
 
     // Use this for initialization
     void Start()
     {
         mainCam.enabled = false;
-        gameUI.SetActive(false);
-
-        dm = FindObjectOfType<DraftManager>();
-
         CurrentPlayerTurn = PlayerTurn.P1_turn;
         CurrentMacroPhase = MacroPhase.draft;
     }
@@ -102,8 +90,7 @@ public class TurnManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        TurnCheckText();
-        PhaseCheckText();
+
     }
 
 
@@ -153,8 +140,9 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    void OnStateEnter(PlayTurnState newState)
+    void OnStateStart(PlayTurnState newState)
     {
+        ui.UIChange();
         switch (newState)
         {
             case PlayTurnState.check:
@@ -191,6 +179,7 @@ public class TurnManager : MonoBehaviour {
 
     void OnMacroPhaseStart(MacroPhase newPhase)
     {
+        ui.UIChange();
         switch (newPhase)
         {
             case MacroPhase.draft:
@@ -207,6 +196,7 @@ public class TurnManager : MonoBehaviour {
 
     void OnTurnStart(PlayerTurn newTurn)
     {
+        ui.UIChange();
         switch (CurrentMacroPhase)
         {
             case MacroPhase.draft:
@@ -214,8 +204,8 @@ public class TurnManager : MonoBehaviour {
                 {
                     draftCam.enabled = false;
                     mainCam.enabled = true;
-                    draftUI.SetActive(false);
-                    gameUI.SetActive(true);
+                    ui.draftUI.SetActive(false);
+                    ui.gameUI.SetActive(true);
                     BoardManager.Instance.SetPawnsPattern();
                     BoardManager.Instance.SetPawnsPlayer();
                     CurrentMacroPhase = MacroPhase.game;
@@ -235,79 +225,6 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    public void TurnCheckText()
-    {
-        if (CurrentPlayerTurn == PlayerTurn.P1_turn)
-        {
-            p1text.enabled = true;
-            p2text.enabled = false;
-        }
-        else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
-        {
-            p2text.enabled = true;
-            p1text.enabled = false;
-        }
-    }
 
-    public void PhaseCheckText()
-    {
-        if (CurrentPlayerTurn == PlayerTurn.P1_turn)
-        {
-            p1phase.enabled = true;
-            p2phase.enabled = false;
-            if (CurrentTurnState == PlayTurnState.check)
-            {
-                p1phase.text = "Check phase";
-                skipAttackButton.SetActive(false);
-                skipMovementButton.SetActive(false);
-                attackButton.SetActive(false);
-                superAttackButton.SetActive(false);
-            }
-            else if (CurrentTurnState == PlayTurnState.movement)
-            {
-                p1phase.text = "Movement phase";
-                skipMovementButton.SetActive(true);
-                skipAttackButton.SetActive(false);
-                attackButton.SetActive(false);
-                superAttackButton.SetActive(false);
-            }
-            else if (CurrentTurnState == PlayTurnState.attack)
-            {
-                p1phase.text = "Attack phase";
-                skipAttackButton.SetActive(true);
-                attackButton.SetActive(true);
-                superAttackButton.SetActive(true);
-                skipMovementButton.SetActive(false);
-            }
-        }
-        else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
-        {
-            p2phase.enabled = true;
-            p1phase.enabled = false;
-            if (CurrentTurnState == PlayTurnState.check)
-            {
-                p2phase.text = "Check phase";
-                skipAttackButton.SetActive(false);
-                skipMovementButton.SetActive(false);
-                attackButton.SetActive(false);
-                superAttackButton.SetActive(false);
-            }
-            else if (CurrentTurnState == PlayTurnState.movement)
-            {
-                p2phase.text = "Movement phase";
-                skipMovementButton.SetActive(true);
-                skipAttackButton.SetActive(false);
-                attackButton.SetActive(false);
-                superAttackButton.SetActive(false);
-            }
-            else if (CurrentTurnState == PlayTurnState.attack)
-            {
-                p2phase.text = "Attack phase";
-                skipAttackButton.SetActive(true);
-                attackButton.SetActive(true);
-                superAttackButton.SetActive(true);
-                skipMovementButton.SetActive(false);
-            }
-        }
-    }
+
 }
