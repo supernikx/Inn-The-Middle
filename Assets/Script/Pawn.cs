@@ -30,6 +30,7 @@ public class Pawn : MonoBehaviour
     private BoardManager bm;
     private MeshRenderer mr;
     private Transform[][] myboard, enemyboard;
+    private PlayerElements myelements;
     private bool pattern1;
 
     //parte di codice con funzioni private
@@ -70,6 +71,8 @@ public class Pawn : MonoBehaviour
             DisableMovementBoxes();
             DisableAttackPattern();
             currentBox.free = true;
+            if (currentBox.element == Element.NeutralBlack)
+                currentBox.walkable = true;
             currentBox = boxToMove.GetComponent<Box>();
             currentBox.free = false;
             return true;
@@ -86,11 +89,13 @@ public class Pawn : MonoBehaviour
         {
             myboard = bm.board1;
             enemyboard = bm.board2;
+            myelements = bm.player1Elements;
         }
         else if (player == Player.player2)
         {
             myboard = bm.board2;
             enemyboard = bm.board1;
+            myelements = bm.player2Elements;
         }
     }
 
@@ -112,6 +117,7 @@ public class Pawn : MonoBehaviour
     {
         if (killMarker)
         {
+            bm.pawnSelected.myelements.UseSuperAttack();
             bm.KillPawnMarked(this);
         }
         else
@@ -342,7 +348,25 @@ public class Pawn : MonoBehaviour
                 {
                     if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0)) && ((bm.pawns[i].currentBox.index1 == p.index1 - currentBox.index1) && (bm.pawns[i].currentBox.index2 == currentColumn + p.index2)) && enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().walkable)
                     {
-                        enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().AttackBox();
+                        Box boxToAttack = enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>();
+                        switch (boxToAttack.element)
+                        {
+                            case Element.Purple:
+                            case Element.Orange:
+                            case Element.Azure:
+                                myelements.AddElement(boxToAttack.element);
+                                boxToAttack.AttackBox();
+                                break;
+                            case Element.NeutralWhite:
+                                boxToAttack.ChangeNeutralType();
+                                break;
+                            case Element.NeutralBlack:
+                                KillPawn(bm.pawns[i]);
+                                boxToAttack.ChangeNeutralType();
+                                break;
+                            default:
+                                break;
+                        }
                         pHit++;
                         CustomLogger.Log("c'è una pedina avversaria nel pattern");
                     }
@@ -364,6 +388,8 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool SuperAttack()
     {
+        if (!myelements.CheckSuperAttack())
+            return false;
         int currentColumn = currentBox.index2;
         List<Pawn> pawnsToKill = new List<Pawn>();
         List<Pattern> patternToCheck;
@@ -398,6 +424,7 @@ public class Pawn : MonoBehaviour
             case 1:
                 KillPawn(pawnsToKill[0]);
                 CustomLogger.Log("Pedina Uccisa");
+                myelements.UseSuperAttack();
                 return true;
             default:
                 bm.superAttackPressed = true;

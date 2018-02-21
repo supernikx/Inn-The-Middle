@@ -13,8 +13,11 @@ public class BoardManager : MonoBehaviour
 
     //variabili pubbliche
     public Transform[][] board1, board2;
+    public PlayerElements player1Elements, player2Elements;
     public List<Pawn> pawns;
+    [HideInInspector]
     public Pawn pawnSelected;
+    [HideInInspector]
     public bool movementSkipped, superAttackPressed;
 
     //variabili private

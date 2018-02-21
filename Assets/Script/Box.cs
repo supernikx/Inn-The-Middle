@@ -8,8 +8,8 @@ public class Box : MonoBehaviour
 
     //variabili pubbliche
     public int index1, index2, board;
-    public bool walkable, free;
-    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black;
+    public bool walkable, free, neutralKill;
+    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black, boxToDestroy;
     public Element element;
 
     //variabili private
@@ -50,9 +50,25 @@ public class Box : MonoBehaviour
     /// </summary>
     public void AttackBox()
     {
-        walkable = false;
         free = false;
+        walkable = false;
         gameObject.SetActive(false);
+        //mr.material = boxToDestroy;
+    }
+
+    public void ChangeNeutralType()
+    {
+        if (element == Element.NeutralWhite)
+        {
+            element = Element.NeutralBlack;
+            mr.material = neutral_black;
+            walkable = false;
+        }
+        else if (element == Element.NeutralBlack)
+        {
+            element = Element.NeutralWhite;
+            mr.material = neutral_white;
+        }
     }
 
     /// <summary>
@@ -96,10 +112,7 @@ public class Box : MonoBehaviour
     /// </summary>
     public void SetAsDefault()
     {
-        if (walkable)
-        {
-            outline.eraseRenderer = true;
-        }
+        outline.eraseRenderer = true;
     }
 
     /// <summary>
