@@ -20,6 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4319059142053418}
   - component: {fileID: 114963789058692300}
+  - component: {fileID: 114723618909212632}
+  - component: {fileID: 114616384863812216}
+  - component: {fileID: 114643060664840586}
+  - component: {fileID: 114893752617296308}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -40,6 +44,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114616384863812216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833f4dfc717626a44a0e1fdc69c3bc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114643060664840586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028a7926a8cbe57429f75d6763107a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
+  p1text: {fileID: 0}
+  p2text: {fileID: 0}
+  p1phase: {fileID: 0}
+  p2phase: {fileID: 0}
+  p1elements: {fileID: 0}
+  p2elements: {fileID: 0}
+  skipAttackButton: {fileID: 0}
+  skipMovementButton: {fileID: 0}
+  attackButton: {fileID: 0}
+  superAttackButton: {fileID: 0}
+  draftUI: {fileID: 0}
+  gameUI: {fileID: 0}
+--- !u!114 &114723618909212632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39ec0d1efc22f94c9c41f6e5af71b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  draftCam: {fileID: 0}
+--- !u!114 &114893752617296308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34a9b281ceda4947a71a273108fcadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawns: []
+  p1_pawns_picks: 
+  p2_pawns_picks: 
+  hasDrafted: 0
+  p1_picks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  p2_picks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  draftButton: {fileID: 0}
 --- !u!114 &114963789058692300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,5 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1426caf1a0f6ca469a430b83fc8df49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  row: 10
-  column: 5
+  player1Elements: {fileID: 0}
+  player2Elements: {fileID: 0}
+  pawns: []
+  pawnSelected: {fileID: 0}
+  movementSkipped: 0
+  superAttackPressed: 0

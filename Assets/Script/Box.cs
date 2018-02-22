@@ -39,7 +39,7 @@ public class Box : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
-        bm.BoxClicked(gameObject.GetComponent<Box>());
+        bm.BoxClicked(this);
     }
 
     //identifica la zona di codice con le funzioni pubbliche

@@ -22,6 +22,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI p1phase;
     public TextMeshProUGUI p2phase;
 
+    [Header("Elements Text")]
+    public TextMeshProUGUI p1elements;
+    public TextMeshProUGUI p2elements;
+
+
     [Header("Button references")]
     public GameObject skipAttackButton;
     public GameObject skipMovementButton;
@@ -43,6 +48,9 @@ public class UIManager : MonoBehaviour
     {
         gameUI.SetActive(false);
         pausePanel.SetActive(false);
+        draftUI.SetActive(true);
+        UpdateElementsText();
+
     }
 
     // Update is called once per frame
@@ -68,6 +76,11 @@ public class UIManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void UpdateElementsText()
+    {
+        p1elements.SetText("<color=purple>" + bm.player1Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player1Elements.azureElement + "</color>-<color=orange>" + bm.player1Elements.orangeElement);
+        p2elements.SetText("<color=purple>" + bm.player2Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player2Elements.azureElement + "</color>-<color=orange>" + bm.player2Elements.orangeElement);
+    }
 
     public void UIChange()
     {
@@ -176,5 +189,6 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
+        UpdateElementsText();
     }
 }

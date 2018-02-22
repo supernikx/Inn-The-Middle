@@ -133,11 +133,13 @@ MonoBehaviour:
   board: 0
   walkable: 0
   free: 0
+  neutralKill: 0
   elementPurple: {fileID: 2100000, guid: 10799eece98a5954a939d2301e72d677, type: 2}
   elementOrange: {fileID: 2100000, guid: 33ca1963495d1014fa921616d66727c2, type: 2}
   elementAzure: {fileID: 2100000, guid: 71a6274a71062e2409bbce2c67923580, type: 2}
   neutral_white: {fileID: 2100000, guid: dbafaea5829673e47949f62a0ed9f4e2, type: 2}
   neutral_black: {fileID: 2100000, guid: 7ebb3483b56ad50429d21ccf2ca695f2, type: 2}
+  boxToDestroy: {fileID: 0}
   element: 0
 --- !u!114 &114602797632018970
 MonoBehaviour:
