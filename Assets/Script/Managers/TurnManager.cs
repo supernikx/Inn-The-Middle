@@ -207,15 +207,13 @@ public class TurnManager : MonoBehaviour {
                     ui.draftUI.SetActive(false);
                     ui.gameUI.SetActive(true);
                     BoardManager.Instance.SetPawnsPattern();
-                    BoardManager.Instance.SetPawnsPlayer();
-                    CurrentMacroPhase = MacroPhase.game;
+                    
+                    CurrentMacroPhase = MacroPhase.placing;
+                    //BoardManager.Instance.SetPawnsPlayer();
                 }
-                break;
+                    break;
             case MacroPhase.placing:
-                //if (pawns to place == 0)
-                //{
-                //     CurrentMacroPhase = MacroPhase.game;
-                //}
+                break;
             case MacroPhase.game:
                 CurrentTurnState = PlayTurnState.check;
                 break;
