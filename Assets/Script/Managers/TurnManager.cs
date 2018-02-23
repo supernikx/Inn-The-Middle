@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class TurnManager : MonoBehaviour {
+public class TurnManager : MonoBehaviour
+{
 
     /// <summary> Stato per indicare di chi è il turno </summary>
     public enum PlayerTurn { P2_turn, P1_turn };
@@ -18,11 +19,8 @@ public class TurnManager : MonoBehaviour {
         }
         set
         {
-            if (value != _currentPlayerTurn)
-            {
-                _currentPlayerTurn = value;
-                OnTurnStart(_currentPlayerTurn);
-            }
+            _currentPlayerTurn = value;
+            OnTurnStart(_currentPlayerTurn);
         }
     }
 
@@ -159,7 +157,7 @@ public class TurnManager : MonoBehaviour {
                 BoardManager.Instance.CheckBox();
 
                 break;
-            case PlayTurnState.movement:   
+            case PlayTurnState.movement:
                 break;
             case PlayTurnState.attack:
                 if (BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
@@ -187,8 +185,10 @@ public class TurnManager : MonoBehaviour {
             case MacroPhase.draft:
                 break;
             case MacroPhase.placing:
+                CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
+                CurrentPlayerTurn = PlayerTurn.P1_turn;
                 CurrentTurnState = PlayTurnState.check;
                 break;
             default:
@@ -211,7 +211,7 @@ public class TurnManager : MonoBehaviour {
                     ui.placingUI.SetActive(true);
                     CurrentMacroPhase = MacroPhase.placing;
                 }
-                    break;
+                break;
             case MacroPhase.placing:
                 if (BoardManager.Instance.pawnsToPlace == 0)
                 {

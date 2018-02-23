@@ -161,20 +161,22 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
         {
-            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3)
+            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
                 pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
                 pawnSelected.currentBox = boxclicked;
+                pawnSelected.currentBox.free = false;
                 DeselectPawn();
                 turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
                 pawnsToPlace--;
             }
-            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3)
+            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
                 pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
                 pawnSelected.currentBox = boxclicked;
+                pawnSelected.currentBox.free = false;
                 DeselectPawn();
                 turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
                 pawnsToPlace--;
@@ -379,7 +381,7 @@ public class BoardManager : MonoBehaviour
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
         {
             Debug.Log("In Macro Fase Placing");
-            if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)
+            if (((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)) && !selected.currentBox)
             {
                 if (pawnSelected != null)
                 {
