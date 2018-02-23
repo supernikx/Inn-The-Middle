@@ -204,15 +204,18 @@ public class TurnManager : MonoBehaviour {
                 {
                     draftCam.enabled = false;
                     mainCam.enabled = true;
-                    ui.draftUI.SetActive(false);
-                    ui.gameUI.SetActive(true);
                     BoardManager.Instance.SetPawnsPattern();
-                    
                     CurrentMacroPhase = MacroPhase.placing;
                     //BoardManager.Instance.SetPawnsPlayer();
                 }
                     break;
             case MacroPhase.placing:
+                if (BoardManager.Instance.pawnsToPlace == 0)
+                {
+                    ui.draftUI.SetActive(false);
+                    ui.gameUI.SetActive(true);
+                    CurrentMacroPhase = MacroPhase.game;
+                }
                 break;
             case MacroPhase.game:
                 CurrentTurnState = PlayTurnState.check;

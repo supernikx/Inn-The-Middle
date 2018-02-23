@@ -19,6 +19,7 @@ public class BoardManager : MonoBehaviour
     public Pawn pawnSelected;
     [HideInInspector]
     public bool movementSkipped, superAttackPressed;
+    public int pawnsToPlace;
 
     //variabili private
     private TurnManager turnManager;
@@ -57,6 +58,7 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        pawnsToPlace = 7;
         dm = FindObjectOfType<DraftManager>();
         movementSkipped = false;
         superAttackPressed = false;
@@ -152,6 +154,31 @@ public class BoardManager : MonoBehaviour
         else
         {
             DeselectPawn();
+        }
+    }
+
+    private void PlacingTeleport(Box boxclicked)
+    {
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        {
+            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3)
+            {
+                Debug.Log(boxclicked);
+                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
+                pawnSelected.currentBox = boxclicked;
+                DeselectPawn();
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                pawnsToPlace--;
+            }
+            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3)
+            {
+                Debug.Log(boxclicked);
+                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
+                pawnSelected.currentBox = boxclicked;
+                DeselectPawn();
+                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                pawnsToPlace--;
+            }
         }
     }
 
@@ -319,11 +346,15 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
+            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+            {
+                pawnSelected.DisableMovementBoxes();
+                pawnSelected.DisableAttackPattern();
+            }
             pawnSelected.GetComponent<PawnOutline>().eraseRenderer = true;
-            pawnSelected.DisableMovementBoxes();
-            pawnSelected.DisableAttackPattern();
             pawnSelected.selected = false;
             pawnSelected = null;
+
         }
     }
 
@@ -365,36 +396,54 @@ public class BoardManager : MonoBehaviour
     /// <param name="selected"></param>
     public void PawnSelected(Pawn selected)
     {
-        if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
         {
-            selected.selected = true;
-            pawnSelected = selected;
-            pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-            pawnSelected.ShowMovementBoxes();
-        }
-        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
-        {
-            if (pawnSelected != null)
+            Debug.Log("In Macro Fase Placing");
+            if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)
             {
-                DeselectPawn();
+                if (pawnSelected != null)
+                {
+                    DeselectPawn();
+                }
+                selected.selected = true;
+                pawnSelected = selected;
+                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
             }
-            selected.selected = true;
-            pawnSelected = selected;
-            pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-            pawnSelected.ShowAttackPattern();
         }
-        else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
         {
-            if (pawnSelected != null)
+            if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
             {
-                DeselectPawn();
+                selected.selected = true;
+                pawnSelected = selected;
+                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                pawnSelected.ShowMovementBoxes();
             }
-            selected.selected = true;
-            pawnSelected = selected;
-            pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-            pawnSelected.ShowAttackPattern();
-            pawnSelected.ShowMovementBoxes();
+            else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+            {
+                if (pawnSelected != null)
+                {
+                    DeselectPawn();
+                }
+                selected.selected = true;
+                pawnSelected = selected;
+                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                pawnSelected.ShowAttackPattern();
+            }
+            else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+            {
+                if (pawnSelected != null)
+                {
+                    DeselectPawn();
+                }
+                selected.selected = true;
+                pawnSelected = selected;
+                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                pawnSelected.ShowAttackPattern();
+                pawnSelected.ShowMovementBoxes();
+            }
         }
+
     }
 
     /// <summary>
@@ -452,20 +501,27 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null)
         {
-            switch (turnManager.CurrentTurnState)
+            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
             {
-                case TurnManager.PlayTurnState.check:
-                    MovementCheckPhase(boxclicked);
-                    break;
-                case TurnManager.PlayTurnState.movement:
-                    Movement(boxclicked);
-                    break;
-                case TurnManager.PlayTurnState.attack:
-                    CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
-                    break;
-                default:
-                    DeselectPawn();
-                    break;
+                PlacingTeleport(boxclicked);
+            }
+            else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+            {
+                switch (turnManager.CurrentTurnState)
+                {
+                    case TurnManager.PlayTurnState.check:
+                        MovementCheckPhase(boxclicked);
+                        break;
+                    case TurnManager.PlayTurnState.movement:
+                        Movement(boxclicked);
+                        break;
+                    case TurnManager.PlayTurnState.attack:
+                        CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
+                        break;
+                    default:
+                        DeselectPawn();
+                        break;
+                }
             }
         }
     }
