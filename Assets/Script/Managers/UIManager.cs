@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [Header("Turn Text")]
     public TextMeshProUGUI p1text;
     public TextMeshProUGUI p2text;
+    public GameObject p1PickingText;
+    public GameObject p2PickingText;
 
     [Header("Phase Text")]
     public TextMeshProUGUI p1phase;
@@ -87,15 +89,17 @@ public class UIManager : MonoBehaviour
         switch (tm.CurrentPlayerTurn)
         {
             case TurnManager.PlayerTurn.P2_turn:
-                p2text.enabled = true;
-                p1text.enabled = false;
                 switch (tm.CurrentMacroPhase)
                 {
                     case TurnManager.MacroPhase.draft:
+                        p1PickingText.SetActive(false);
+                        p2PickingText.SetActive(true);
                         break;
                     case TurnManager.MacroPhase.placing:
                         break;
                     case TurnManager.MacroPhase.game:
+                        p2text.enabled = true;
+                        p1text.enabled = false;
                         p2phase.enabled = true;
                         p1phase.enabled = false;
                         switch (tm.CurrentTurnState)
@@ -137,15 +141,17 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             case TurnManager.PlayerTurn.P1_turn:
-                p1text.enabled = true;
-                p2text.enabled = false;
                 switch (tm.CurrentMacroPhase)
                 {
                     case TurnManager.MacroPhase.draft:
+                        p1PickingText.SetActive(true);
+                        p2PickingText.SetActive(false);
                         break;
                     case TurnManager.MacroPhase.placing:
                         break;
                     case TurnManager.MacroPhase.game:
+                        p1text.enabled = true;
+                        p2text.enabled = false;
                         p1phase.enabled = true;
                         p2phase.enabled = false;
                         switch (tm.CurrentTurnState)

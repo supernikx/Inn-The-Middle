@@ -134,6 +134,8 @@ public class TurnManager : MonoBehaviour {
                     return false;
                 return true;
             case MacroPhase.game:
+                if (CurrentMacroPhase != MacroPhase.placing)
+                    return false;
                 return true;
             default:
                 return false;
@@ -205,8 +207,8 @@ public class TurnManager : MonoBehaviour {
                     draftCam.enabled = false;
                     mainCam.enabled = true;
                     BoardManager.Instance.SetPawnsPattern();
+                    ui.draftUI.SetActive(false);
                     CurrentMacroPhase = MacroPhase.placing;
-                    //BoardManager.Instance.SetPawnsPlayer();
                 }
                     break;
             case MacroPhase.placing:

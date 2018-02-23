@@ -13,7 +13,6 @@ public class Pawn : MonoBehaviour
     public Player player;
     public Box currentBox;
     public float speed;
-    public int startIndex1, startIndex2;
     public Color pawnColor;
     [Space]
     [Header("Attack Settings")]

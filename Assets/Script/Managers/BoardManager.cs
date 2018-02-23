@@ -231,26 +231,6 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
-    //metodo provvisorio che identifica posizione della pedina finchè non implementiamo il posizionamento delle pedine ai player
-    public void SetPawnsPlayer()
-    {
-        for (int i = 0; i < pawns.Count; i++)
-        {
-            if (pawns[i].player == Player.player1)
-            {
-                pawns[i].transform.position = board1[pawns[i].startIndex1][pawns[i].startIndex2].position + pawns[i].offset;
-                pawns[i].currentBox = board1[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>();
-                board1[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>().free = false;
-            }
-            else if (pawns[i].player == Player.player2)
-            {
-                pawns[i].transform.position = board2[pawns[i].startIndex1][pawns[i].startIndex2].position + pawns[i].offset;
-                pawns[i].currentBox = board2[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>();
-                board2[pawns[i].startIndex1][pawns[i].startIndex2].GetComponent<Box>().free = false;
-            }
-        }
-        
-    }
     //funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
     public void SetPawnsPattern()
     {
