@@ -21,7 +21,8 @@ public class DraftPawn : MonoBehaviour
     {
         dm = FindObjectOfType<DraftManager>();
         tm = FindObjectOfType<TurnManager>();
-
+        i = 0;
+        o = 0;
         picksLeft = 1;
     }
 

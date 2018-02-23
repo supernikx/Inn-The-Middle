@@ -29,7 +29,8 @@ public class DraftManager : MonoBehaviour
     void Start()
     {
 
-
+        p1_pawns_picks = new List<int>();
+        p2_pawns_picks = new List<int>();
     }
 
     // Update is called once per frame
