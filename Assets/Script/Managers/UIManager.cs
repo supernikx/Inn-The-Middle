@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI p2text;
     public GameObject p1PickingText;
     public GameObject p2PickingText;
+    public GameObject p1placingText, p2placingText;
 
     [Header("Phase Text")]
     public TextMeshProUGUI p1phase;
@@ -38,7 +39,9 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Holders references")]
     public GameObject draftUI;
+    public GameObject placingUI;
     public GameObject gameUI;
+
 
     private void Awake()
     {
@@ -49,6 +52,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameUI.SetActive(false);
+        placingUI.SetActive(false);
         pausePanel.SetActive(false);
         draftUI.SetActive(true);
         UpdateElementsText();
@@ -96,6 +100,8 @@ public class UIManager : MonoBehaviour
                         p2PickingText.SetActive(true);
                         break;
                     case TurnManager.MacroPhase.placing:
+                        p1placingText.SetActive(false);
+                        p2placingText.SetActive(true);
                         break;
                     case TurnManager.MacroPhase.game:
                         p2text.enabled = true;
@@ -148,6 +154,8 @@ public class UIManager : MonoBehaviour
                         p2PickingText.SetActive(false);
                         break;
                     case TurnManager.MacroPhase.placing:
+                        p1placingText.SetActive(true);
+                        p2placingText.SetActive(false);
                         break;
                     case TurnManager.MacroPhase.game:
                         p1text.enabled = true;

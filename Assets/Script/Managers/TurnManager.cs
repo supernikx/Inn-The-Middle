@@ -208,13 +208,14 @@ public class TurnManager : MonoBehaviour {
                     mainCam.enabled = true;
                     BoardManager.Instance.SetPawnsPattern();
                     ui.draftUI.SetActive(false);
+                    ui.placingUI.SetActive(true);
                     CurrentMacroPhase = MacroPhase.placing;
                 }
                     break;
             case MacroPhase.placing:
                 if (BoardManager.Instance.pawnsToPlace == 0)
                 {
-                    ui.draftUI.SetActive(false);
+                    ui.placingUI.SetActive(false);
                     ui.gameUI.SetActive(true);
                     CurrentMacroPhase = MacroPhase.game;
                 }
