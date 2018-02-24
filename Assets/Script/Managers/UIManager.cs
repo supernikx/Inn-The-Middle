@@ -41,6 +41,12 @@ public class UIManager : MonoBehaviour
     public GameObject draftUI;
     public GameObject placingUI;
     public GameObject gameUI;
+    
+
+    [Header("Win Screen and texts")]
+    public GameObject winScreen;
+    public TextMeshProUGUI gameResult;
+
 
 
     private void Awake()
@@ -51,11 +57,13 @@ public class UIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        winScreen.SetActive(false);
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
         draftUI.SetActive(true);
         UpdateElementsText();
+        
 
     }
 

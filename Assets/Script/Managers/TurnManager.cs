@@ -64,17 +64,18 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    DraftManager dm;
-    UIManager ui;
+    public int numberOfTurns;
+    public int turnsWithoutAttack;
 
     [Header("Camera references")]
     public Camera mainCam;
     public Camera draftCam;
 
+    
+
     private void Awake()
     {
-        ui = GetComponent<UIManager>();
-        dm = GetComponent<DraftManager>();
+
     }
 
     // Use this for initialization
@@ -83,6 +84,7 @@ public class TurnManager : MonoBehaviour
         mainCam.enabled = false;
         CurrentPlayerTurn = PlayerTurn.P1_turn;
         CurrentMacroPhase = MacroPhase.draft;
+
     }
 
     // Update is called once per frame
@@ -142,7 +144,7 @@ public class TurnManager : MonoBehaviour
 
     void OnStateStart(PlayTurnState newState)
     {
-        ui.UIChange();
+        BoardManager.Instance.uiManager.UIChange();
         switch (newState)
         {
             case PlayTurnState.check:
@@ -179,7 +181,7 @@ public class TurnManager : MonoBehaviour
 
     void OnMacroPhaseStart(MacroPhase newPhase)
     {
-        ui.UIChange();
+        BoardManager.Instance.uiManager.UIChange();
         switch (newPhase)
         {
             case MacroPhase.draft:
@@ -188,6 +190,7 @@ public class TurnManager : MonoBehaviour
                 CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
+
                 CurrentPlayerTurn = PlayerTurn.P1_turn;
                 CurrentTurnState = PlayTurnState.check;
                 break;
@@ -198,30 +201,36 @@ public class TurnManager : MonoBehaviour
 
     void OnTurnStart(PlayerTurn newTurn)
     {
-        ui.UIChange();
+        BoardManager.Instance.uiManager.UIChange();
         switch (CurrentMacroPhase)
         {
             case MacroPhase.draft:
-                if (dm.pawns.Count == 0)
+                if (BoardManager.Instance.draftManager.pawns.Count == 0)
                 {
                     draftCam.enabled = false;
                     mainCam.enabled = true;
                     BoardManager.Instance.SetPawnsPattern();
-                    ui.draftUI.SetActive(false);
-                    ui.placingUI.SetActive(true);
+                    BoardManager.Instance.uiManager.draftUI.SetActive(false);
+                    BoardManager.Instance.uiManager.placingUI.SetActive(true);
                     CurrentMacroPhase = MacroPhase.placing;
                 }
                 break;
             case MacroPhase.placing:
                 if (BoardManager.Instance.pawnsToPlace == 0)
                 {
-                    ui.placingUI.SetActive(false);
-                    ui.gameUI.SetActive(true);
+                    BoardManager.Instance.uiManager.placingUI.SetActive(false);
+                    BoardManager.Instance.uiManager.gameUI.SetActive(true);
                     CurrentMacroPhase = MacroPhase.game;
                 }
                 break;
             case MacroPhase.game:
                 CurrentTurnState = PlayTurnState.check;
+                numberOfTurns++;
+                if (turnsWithoutAttack >= 8)
+                {
+                    Debug.Log("PASSATI 6 TURNI");
+                    BoardManager.Instance.WinCondition();
+                }
                 break;
             default:
                 Debug.Log("Errore: nessuna macrofase");

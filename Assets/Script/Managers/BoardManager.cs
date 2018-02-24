@@ -20,10 +20,15 @@ public class BoardManager : MonoBehaviour
     [HideInInspector]
     public bool movementSkipped, superAttackPressed;
     public int pawnsToPlace;
+    public int p1pawns, p2pawns;
+    public int p1tiles, p2tiles;
+    public Box[] boxesArray;
 
-    //variabili private
-    private TurnManager turnManager;
-    private DraftManager dm;
+    //managers
+    [Header("Managers")]
+    public TurnManager turnManager;
+    public DraftManager draftManager;
+    public UIManager uiManager;
 
     private void Awake()
     {
@@ -35,7 +40,9 @@ public class BoardManager : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
-
+        draftManager = FindObjectOfType<DraftManager>();
+        turnManager = FindObjectOfType<TurnManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     private void Update()
@@ -58,14 +65,78 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         pawnsToPlace = 7;
-        dm = FindObjectOfType<DraftManager>();
         movementSkipped = false;
         superAttackPressed = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
-        turnManager = FindObjectOfType<TurnManager>();
+        boxesArray = FindObjectsOfType<Box>();
+
+        int i = 0;
+        foreach (Pawn pawn in BoardManager.Instance.pawns)
+        {
+            if (BoardManager.Instance.pawns[i].player == Player.player1)
+            {
+                BoardManager.Instance.p1pawns++;
+                i++;
+            }
+            else if (BoardManager.Instance.pawns[i].player == Player.player2)
+            {
+                BoardManager.Instance.p2pawns++;
+                i++;
+            }
+        }
+
+
+
     }
 
+
+    public void WinCondition()
+    {
+        
+        if (p1pawns > p2pawns)
+        {
+            uiManager.winScreen.SetActive(true);
+            uiManager.gameResult.text = "Player 1 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+        }
+        else if (p2pawns > p1pawns)
+        {
+            uiManager.winScreen.SetActive(true);
+            uiManager.gameResult.text = "Player 2 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+        }
+        else if (p1pawns == p2pawns)
+        {
+            foreach (Box box in boxesArray)
+            {
+                if (box.board == 1)
+                {
+                    p1tiles++;
+                }
+                else if (box.board == 2)
+                {
+                    p2tiles++;
+                }
+            }
+
+
+            if (p1tiles > p2tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Player 1 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (p2tiles > p1tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Player 2 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (p1tiles == p2tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+        }
+    }
     /// <summary>
     /// Funzione che obbliga il giocatore a muoversi durante la fase di check non deselezionando mai la pedina finchè non si è mossa in una delle caselle disponibili
     /// </summary>
@@ -242,12 +313,12 @@ public class BoardManager : MonoBehaviour
         {
             if (pawns[i].player == Player.player1)
             {
-                pawns[i].ChangePattern(dm.p1_pawns_picks[j]);
+                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
                 j++;
             }
             else if (pawns[i].player == Player.player2)
             {
-                pawns[i].ChangePattern(dm.p2_pawns_picks[k]);
+                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
                 k++;
             }
         }

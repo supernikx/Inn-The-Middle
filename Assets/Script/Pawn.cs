@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using PawnOutlineNameSpace;
+using TMPro;
 
 public class Pawn : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public List<Attack> patterns;
     public bool killMarker;
-
 
     //variabili private
     private BoardManager bm;
@@ -328,6 +328,7 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool Attack()
     {
+        BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
         int currentColumn = currentBox.index2, pHit = 0;
         List<Pattern> patternToCheck;
         if (patterns[activePattern].pattern2.Count > 0 && !pattern1)
@@ -387,6 +388,7 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool SuperAttack()
     {
+        BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
         int currentColumn = currentBox.index2;
         List<Pawn> pawnsToKill = new List<Pawn>();
         List<Pattern> patternToCheck;
@@ -460,6 +462,26 @@ public class Pawn : MonoBehaviour
         pawnToKill.currentBox.free = true;
         pawnToKill.currentBox = null;
         DestroyImmediate(pawnToKill.gameObject);
+
+        if (pawnToKill.player == Player.player1)
+        {
+            BoardManager.Instance.p1pawns--;
+            if (BoardManager.Instance.p1pawns <= 0)
+            {
+                BoardManager.Instance.uiManager.winScreen.SetActive(true);
+                BoardManager.Instance.uiManager.gameResult.text = "Player 2 wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+
+            }
+        }
+        else if (pawnToKill.player == Player.player2)
+        {
+            BoardManager.Instance.p2pawns--;
+            if (BoardManager.Instance.p2pawns <= 0)
+            {
+                BoardManager.Instance.uiManager.winScreen.SetActive(true);
+                BoardManager.Instance.uiManager.gameResult.text = "Player 1 wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+            }
+        }
     }
 
     /// <summary>
