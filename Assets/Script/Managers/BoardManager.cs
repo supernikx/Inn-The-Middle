@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour
     public int p1pawns, p2pawns;
     public int p1tiles, p2tiles;
     public Box[] boxesArray;
+    public int placingsLeft;
 
     //managers
     [Header("Managers")]
@@ -65,8 +66,8 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-        pawnsToPlace = 7;
+        placingsLeft = 1;
+        pawnsToPlace = 8;
         movementSkipped = false;
         superAttackPressed = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
@@ -239,8 +240,13 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.currentBox = boxclicked;
                 pawnSelected.currentBox.free = false;
                 DeselectPawn();
-                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
                 pawnsToPlace--;
+                placingsLeft--;
+                if (placingsLeft == 0 || pawnsToPlace == 0)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                    placingsLeft = 2;
+                }
             }
             else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
             {
@@ -249,8 +255,13 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.currentBox = boxclicked;
                 pawnSelected.currentBox.free = false;
                 DeselectPawn();
-                turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
                 pawnsToPlace--;
+                placingsLeft--;
+                if (placingsLeft == 0)
+                {
+                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                    placingsLeft = 2;
+                }
             }
         }
     }
