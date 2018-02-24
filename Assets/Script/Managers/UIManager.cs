@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -47,7 +48,9 @@ public class UIManager : MonoBehaviour
     public GameObject winScreen;
     public TextMeshProUGUI gameResult;
 
-
+    [Header("Pattern images")]
+    public GameObject tooltipPattern;
+    public Image cross, T, L, diagonal;
 
     private void Awake()
     {
@@ -57,6 +60,7 @@ public class UIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        tooltipPattern.SetActive(false);
         winScreen.SetActive(false);
         gameUI.SetActive(false);
         placingUI.SetActive(false);
@@ -108,6 +112,7 @@ public class UIManager : MonoBehaviour
                         p2PickingText.SetActive(true);
                         break;
                     case TurnManager.MacroPhase.placing:
+                        tooltipPattern.SetActive(false);
                         p1placingText.SetActive(false);
                         p2placingText.SetActive(true);
                         break;

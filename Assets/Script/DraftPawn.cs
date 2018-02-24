@@ -90,4 +90,49 @@ public class DraftPawn : MonoBehaviour
             }
         }
     }
+
+
+    private void OnMouseEnter()
+    {
+        if (dm.hasDrafted)
+        {
+            if (indexNumber == 0)
+            {
+                BoardManager.Instance.uiManager.tooltipPattern.SetActive(true);
+                BoardManager.Instance.uiManager.L.enabled = true;
+                BoardManager.Instance.uiManager.T.enabled = false;
+                BoardManager.Instance.uiManager.diagonal.enabled = false;
+                BoardManager.Instance.uiManager.cross.enabled = false;
+            }
+            else if (indexNumber == 1)
+            {
+                BoardManager.Instance.uiManager.tooltipPattern.SetActive(true);
+                BoardManager.Instance.uiManager.T.enabled = true;
+                BoardManager.Instance.uiManager.L.enabled = false;
+                BoardManager.Instance.uiManager.diagonal.enabled = false;
+                BoardManager.Instance.uiManager.cross.enabled = false;
+            }
+            else if (indexNumber == 2)
+            {
+                BoardManager.Instance.uiManager.tooltipPattern.SetActive(true);
+                BoardManager.Instance.uiManager.diagonal.enabled = true;
+                BoardManager.Instance.uiManager.L.enabled = false;
+                BoardManager.Instance.uiManager.T.enabled = false;
+                BoardManager.Instance.uiManager.cross.enabled = false;
+            }
+            else if (indexNumber == 3)
+            {
+                BoardManager.Instance.uiManager.tooltipPattern.SetActive(true);
+                BoardManager.Instance.uiManager.cross.enabled = true;
+                BoardManager.Instance.uiManager.L.enabled = false;
+                BoardManager.Instance.uiManager.T.enabled = false;
+                BoardManager.Instance.uiManager.diagonal.enabled = false;
+            }
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        BoardManager.Instance.uiManager.tooltipPattern.SetActive(false);
+    }
 }
