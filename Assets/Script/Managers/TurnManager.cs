@@ -148,6 +148,7 @@ public class TurnManager : MonoBehaviour
         switch (newState)
         {
             case PlayTurnState.check:
+                turnsWithoutAttack++;
                 BoardManager.Instance.movementSkipped = false;
                 BoardManager.Instance.superAttackPressed = false;
                 BoardManager.Instance.UnmarkKillPawns();
@@ -228,7 +229,7 @@ public class TurnManager : MonoBehaviour
                 numberOfTurns++;
                 if (turnsWithoutAttack >= 8)
                 {
-                    Debug.Log("PASSATI 6 TURNI");
+                    Debug.Log("PASSATI 8 TURNI");
                     BoardManager.Instance.WinCondition();
                 }
                 break;
