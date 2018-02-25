@@ -74,7 +74,7 @@ public class GridGenerator : MonoBehaviour
         for (int x = 0; x < row; x++)
         {
             int xToUSe = x;
-            if (tag == "board2")
+            if (tag == "board1")
             {
                 xToUSe = row - x - 1;
             }

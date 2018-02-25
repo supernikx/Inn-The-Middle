@@ -69,6 +69,10 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   p1text: {fileID: 0}
   p2text: {fileID: 0}
+  p1PickingText: {fileID: 0}
+  p2PickingText: {fileID: 0}
+  p1placingText: {fileID: 0}
+  p2placingText: {fileID: 0}
   p1phase: {fileID: 0}
   p2phase: {fileID: 0}
   p1elements: {fileID: 0}
@@ -78,7 +82,15 @@ MonoBehaviour:
   attackButton: {fileID: 0}
   superAttackButton: {fileID: 0}
   draftUI: {fileID: 0}
+  placingUI: {fileID: 0}
   gameUI: {fileID: 0}
+  winScreen: {fileID: 0}
+  gameResult: {fileID: 0}
+  tooltipPattern: {fileID: 0}
+  cross: {fileID: 0}
+  T: {fileID: 0}
+  L: {fileID: 0}
+  diagonal: {fileID: 0}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39ec0d1efc22f94c9c41f6e5af71b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfTurns: 0
+  turnsWithoutAttack: 0
   mainCam: {fileID: 0}
   draftCam: {fileID: 0}
 --- !u!114 &114893752617296308
@@ -135,3 +149,13 @@ MonoBehaviour:
   pawnSelected: {fileID: 0}
   movementSkipped: 0
   superAttackPressed: 0
+  pawnsToPlace: 0
+  p1pawns: 0
+  p2pawns: 0
+  p1tiles: 0
+  p2tiles: 0
+  boxesArray: []
+  placingsLeft: 0
+  turnManager: {fileID: 0}
+  draftManager: {fileID: 0}
+  uiManager: {fileID: 0}
