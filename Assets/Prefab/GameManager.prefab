@@ -81,9 +81,17 @@ MonoBehaviour:
   skipMovementButton: {fileID: 0}
   attackButton: {fileID: 0}
   superAttackButton: {fileID: 0}
+  choosingPhaseText: {fileID: 0}
+  p1ChoosingPanel: {fileID: 0}
+  p2ChoosingPanel: {fileID: 0}
+  p1ChoosingTextMy: {fileID: 0}
+  p2ChoosingTextMy: {fileID: 0}
+  p1ChoosingTextEnemy: {fileID: 0}
+  p2ChoosingTextEnemy: {fileID: 0}
   draftUI: {fileID: 0}
   placingUI: {fileID: 0}
   gameUI: {fileID: 0}
+  choosingUi: {fileID: 0}
   winScreen: {fileID: 0}
   gameResult: {fileID: 0}
   tooltipPattern: {fileID: 0}

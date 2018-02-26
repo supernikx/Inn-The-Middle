@@ -98,7 +98,7 @@ public class TurnManager : MonoBehaviour
         switch (newState)
         {
             case PlayTurnState.choosing:
-                if (CurrentTurnState != PlayTurnState.choosing)
+                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState!=PlayTurnState.check)
                     return false;
                 return true;
             case PlayTurnState.placing:
@@ -106,7 +106,7 @@ public class TurnManager : MonoBehaviour
                     return false;
                 return true;
             case PlayTurnState.check:
-                if (CurrentTurnState != PlayTurnState.attack && CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.placing)
+                if (CurrentTurnState == PlayTurnState.movement)
                     return false;
                 return true;
             case PlayTurnState.movement:
@@ -165,7 +165,6 @@ public class TurnManager : MonoBehaviour
                 }
                 BoardManager.Instance.DeselectPawn();
                 BoardManager.Instance.CheckBox();
-
                 break;
             case PlayTurnState.movement:
                 break;
@@ -258,6 +257,9 @@ public class TurnManager : MonoBehaviour
         BoardManager.Instance.uiManager.UIChange();
     }
 
+    /// <summary>
+    /// Funzione che cambia turno
+    /// </summary>
     public void ChangeTurn()
     {
         if (CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)

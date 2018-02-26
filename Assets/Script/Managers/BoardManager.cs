@@ -74,16 +74,16 @@ public class BoardManager : MonoBehaviour
         boxesArray = FindObjectsOfType<Box>();
 
         int i = 0;
-        foreach (Pawn pawn in BoardManager.Instance.pawns)
+        foreach (Pawn pawn in pawns)
         {
-            if (BoardManager.Instance.pawns[i].player == Player.player1)
+            if (pawns[i].player == Player.player1)
             {
-                BoardManager.Instance.p1pawns++;
+                p1pawns++;
                 i++;
             }
-            else if (BoardManager.Instance.pawns[i].player == Player.player2)
+            else if (pawns[i].player == Player.player2)
             {
-                BoardManager.Instance.p2pawns++;
+                p2pawns++;
                 i++;
             }
         }
@@ -106,6 +106,7 @@ public class BoardManager : MonoBehaviour
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
+                    pawnSelected.randomized = false;
                     DeselectPawn();
                     CheckBox();
                 }
@@ -119,6 +120,7 @@ public class BoardManager : MonoBehaviour
                 if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
+                    pawnSelected.randomized = false;
                     DeselectPawn();
                     CheckBox();
                 }
@@ -356,8 +358,12 @@ public class BoardManager : MonoBehaviour
                     if (CheckFreeBoxes(pawns[i]))
                     {
                         CustomLogger.Log(pawns[i] + " è in casella !walkable");
-                        pawns[i].RandomizePattern();
                         PawnSelected(pawns[i]);
+                        if (pawns[i].randomized)
+                        {
+                            return;
+                        }
+                        pawns[i].RandomizePattern();
                         return;
                     }
                     else
@@ -490,12 +496,18 @@ public class BoardManager : MonoBehaviour
         {
             if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
             {
-                PlacingTeleport(boxclicked);
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
+                {
+                    PlacingTeleport(boxclicked);
+                }
             }
             else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
             {
                 switch (turnManager.CurrentTurnState)
                 {
+                    case TurnManager.PlayTurnState.choosing:
+                        CustomLogger.Log("Devi prima scegliere il pattern");
+                        break;
                     case TurnManager.PlayTurnState.check:
                         MovementCheckPhase(boxclicked);
                         break;
@@ -648,8 +660,16 @@ public class BoardManager : MonoBehaviour
     public void ChoosePawnPattern(int patternIndex)
     {
         pawnSelected.ChangePattern(patternIndex);
-        DeselectPawn();
-        turnManager.ChangeTurn();
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        {
+            DeselectPawn();
+            turnManager.ChangeTurn();
+        }
+        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+        {
+            uiManager.choosingUi.SetActive(false);
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+        }
     }
     #endregion
 }

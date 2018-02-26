@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class Pawn : MonoBehaviour
 {
     //variabili pubbliche
-    public bool selected;
+    public bool selected,randomized;
     public Vector3 offset;
     public Player player;
     public Box currentBox;
@@ -42,6 +42,7 @@ public class Pawn : MonoBehaviour
     {
         selected = false;
         killMarker = false;
+        randomized = false;
         pawnColor = mr.material.color;
         bm = BoardManager.Instance;
         SetBoards();
@@ -490,10 +491,19 @@ public class Pawn : MonoBehaviour
     public void RandomizePattern()
     {
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
+        if (activePattern == 4 || activePattern == 5)
+        {
+            bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.choosing;
+        }
         mr.material = patterns[activePattern].patternMaterial;
         pawnColor = mr.material.color;
+        randomized = true;
     }
 
+    /// <summary>
+    /// Funzione che imposta il pattern attivo con il valore che gli viene passato
+    /// </summary>
+    /// <param name="index"></param>
     public void ChangePattern(int index)
     {
         activePattern = index;

@@ -101,10 +101,56 @@ public class UIManager : MonoBehaviour
         isPaused = false;
     }
 
-    public void UpdateElementsText()
+    void UpdateElementsText()
     {
         p1elements.SetText("<color=purple>" + bm.player1Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player1Elements.azureElement + "</color>-<color=orange>" + bm.player1Elements.orangeElement);
         p2elements.SetText("<color=purple>" + bm.player2Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player2Elements.azureElement + "</color>-<color=orange>" + bm.player2Elements.orangeElement);
+    }
+
+    void SetChoosingUI()
+    {
+        if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        {
+            if (bm.pawnSelected.activePattern == 4)
+            {
+                p1ChoosingTextEnemy.SetActive(false);
+                p1ChoosingTextMy.SetActive(true);
+                p2ChoosingTextEnemy.SetActive(false);
+                p2ChoosingTextMy.SetActive(false);
+                p1ChoosingPanel.SetActive(true);
+                p2ChoosingPanel.SetActive(false);
+            }
+            else if (bm.pawnSelected.activePattern == 5)
+            {
+                p1ChoosingTextEnemy.SetActive(false);
+                p1ChoosingTextMy.SetActive(false);
+                p2ChoosingTextEnemy.SetActive(true);
+                p2ChoosingTextMy.SetActive(false);
+                p1ChoosingPanel.SetActive(false);
+                p2ChoosingPanel.SetActive(true);
+            }
+        }
+        else if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        {
+            if (bm.pawnSelected.activePattern == 4)
+            {
+                p1ChoosingTextEnemy.SetActive(false);
+                p1ChoosingTextMy.SetActive(false);
+                p2ChoosingTextEnemy.SetActive(false);
+                p2ChoosingTextMy.SetActive(true);
+                p1ChoosingPanel.SetActive(false);
+                p2ChoosingPanel.SetActive(true);
+            }
+            else if (bm.pawnSelected.activePattern == 5)
+            {
+                p1ChoosingTextEnemy.SetActive(true);
+                p1ChoosingTextMy.SetActive(false);
+                p2ChoosingTextEnemy.SetActive(false);
+                p2ChoosingTextMy.SetActive(false);
+                p1ChoosingPanel.SetActive(true);
+                p2ChoosingPanel.SetActive(false);
+            }
+        }
     }
 
     public void UIChange()
@@ -122,24 +168,7 @@ public class UIManager : MonoBehaviour
                         switch (tm.CurrentTurnState)
                         {
                             case TurnManager.PlayTurnState.choosing:
-                                if (bm.pawnSelected.activePattern == 4)
-                                {
-                                    p1ChoosingTextEnemy.SetActive(false);
-                                    p1ChoosingTextMy.SetActive(false);
-                                    p2ChoosingTextEnemy.SetActive(false);
-                                    p2ChoosingTextMy.SetActive(true);
-                                    p1ChoosingPanel.SetActive(false);
-                                    p2ChoosingPanel.SetActive(true);
-                                }
-                                else if (bm.pawnSelected.activePattern == 5)
-                                {
-                                    p1ChoosingTextEnemy.SetActive(true);
-                                    p1ChoosingTextMy.SetActive(false);
-                                    p2ChoosingTextEnemy.SetActive(false);
-                                    p2ChoosingTextMy.SetActive(false);
-                                    p1ChoosingPanel.SetActive(true);
-                                    p2ChoosingPanel.SetActive(false);
-                                }
+                                SetChoosingUI();
                                 break;
                             case TurnManager.PlayTurnState.placing:
                                 tooltipPattern.SetActive(false);
@@ -157,6 +186,16 @@ public class UIManager : MonoBehaviour
                         p1phase.enabled = false;
                         switch (tm.CurrentTurnState)
                         {
+                            case TurnManager.PlayTurnState.choosing:
+                                p2phase.text = "Choosing Phase";
+                                choosingUi.SetActive(true);
+                                choosingPhaseText.SetActive(false);
+                                p1text.enabled = false;
+                                p2text.enabled = false;
+                                p1phase.enabled = false;
+                                p2phase.enabled = false;
+                                SetChoosingUI();
+                                break;
                             case TurnManager.PlayTurnState.check:
                                 p2phase.text = "Check phase";
                                 skipAttackButton.SetActive(false);
@@ -204,24 +243,7 @@ public class UIManager : MonoBehaviour
                         switch (tm.CurrentTurnState)
                         {
                             case TurnManager.PlayTurnState.choosing:
-                                if (bm.pawnSelected.activePattern == 4)
-                                {
-                                    p1ChoosingTextEnemy.SetActive(false);
-                                    p1ChoosingTextMy.SetActive(true);
-                                    p2ChoosingTextEnemy.SetActive(false);
-                                    p2ChoosingTextMy.SetActive(false);
-                                    p1ChoosingPanel.SetActive(true);
-                                    p2ChoosingPanel.SetActive(false);
-                                }
-                                else if (bm.pawnSelected.activePattern == 5)
-                                {
-                                    p1ChoosingTextEnemy.SetActive(false);
-                                    p1ChoosingTextMy.SetActive(false);
-                                    p2ChoosingTextEnemy.SetActive(true);
-                                    p2ChoosingTextMy.SetActive(false);
-                                    p1ChoosingPanel.SetActive(false);
-                                    p2ChoosingPanel.SetActive(true);
-                                }
+                                SetChoosingUI();
                                 break;
                             case TurnManager.PlayTurnState.placing:
                                 tooltipPattern.SetActive(false);
@@ -239,6 +261,16 @@ public class UIManager : MonoBehaviour
                         p2phase.enabled = false;
                         switch (tm.CurrentTurnState)
                         {
+                            case TurnManager.PlayTurnState.choosing:
+                                p1phase.text = "Choosing Phase";
+                                choosingUi.SetActive(true);
+                                choosingPhaseText.SetActive(false);
+                                p1text.enabled = false;
+                                p2text.enabled = false;
+                                p1phase.enabled = false;
+                                p2phase.enabled = false;
+                                SetChoosingUI();
+                                break;
                             case TurnManager.PlayTurnState.check:
                                 p1phase.text = "Check phase";
                                 skipAttackButton.SetActive(false);
