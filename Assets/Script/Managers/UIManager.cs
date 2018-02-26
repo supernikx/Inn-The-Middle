@@ -37,12 +37,21 @@ public class UIManager : MonoBehaviour
     public GameObject attackButton;
     public GameObject superAttackButton;
 
+    [Header("Choosing References")]
+    public GameObject choosingPhaseText;
+    public GameObject p1ChoosingPanel;
+    public GameObject p2ChoosingPanel;
+    public GameObject p1ChoosingTextMy;
+    public GameObject p2ChoosingTextMy;
+    public GameObject p1ChoosingTextEnemy;
+    public GameObject p2ChoosingTextEnemy;
 
     [Header("UI Holders references")]
     public GameObject draftUI;
     public GameObject placingUI;
     public GameObject gameUI;
-    
+    public GameObject choosingUi;
+
 
     [Header("Win Screen and texts")]
     public GameObject winScreen;
@@ -66,9 +75,7 @@ public class UIManager : MonoBehaviour
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
         draftUI.SetActive(true);
-        UpdateElementsText();
-        
-
+        choosingUi.SetActive(false);
     }
 
     // Update is called once per frame
@@ -112,9 +119,36 @@ public class UIManager : MonoBehaviour
                         p2PickingText.SetActive(true);
                         break;
                     case TurnManager.MacroPhase.placing:
-                        tooltipPattern.SetActive(false);
-                        p1placingText.SetActive(false);
-                        p2placingText.SetActive(true);
+                        switch (tm.CurrentTurnState)
+                        {
+                            case TurnManager.PlayTurnState.choosing:
+                                if (bm.pawnSelected.activePattern == 4)
+                                {
+                                    p1ChoosingTextEnemy.SetActive(false);
+                                    p1ChoosingTextMy.SetActive(false);
+                                    p2ChoosingTextEnemy.SetActive(false);
+                                    p2ChoosingTextMy.SetActive(true);
+                                    p1ChoosingPanel.SetActive(false);
+                                    p2ChoosingPanel.SetActive(true);
+                                }
+                                else if (bm.pawnSelected.activePattern == 5)
+                                {
+                                    p1ChoosingTextEnemy.SetActive(true);
+                                    p1ChoosingTextMy.SetActive(false);
+                                    p2ChoosingTextEnemy.SetActive(false);
+                                    p2ChoosingTextMy.SetActive(false);
+                                    p1ChoosingPanel.SetActive(true);
+                                    p2ChoosingPanel.SetActive(false);
+                                }
+                                break;
+                            case TurnManager.PlayTurnState.placing:
+                                tooltipPattern.SetActive(false);
+                                p1placingText.SetActive(false);
+                                p2placingText.SetActive(true);
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case TurnManager.MacroPhase.game:
                         p2text.enabled = true;
@@ -167,8 +201,36 @@ public class UIManager : MonoBehaviour
                         p2PickingText.SetActive(false);
                         break;
                     case TurnManager.MacroPhase.placing:
-                        p1placingText.SetActive(true);
-                        p2placingText.SetActive(false);
+                        switch (tm.CurrentTurnState)
+                        {
+                            case TurnManager.PlayTurnState.choosing:
+                                if (bm.pawnSelected.activePattern == 4)
+                                {
+                                    p1ChoosingTextEnemy.SetActive(false);
+                                    p1ChoosingTextMy.SetActive(true);
+                                    p2ChoosingTextEnemy.SetActive(false);
+                                    p2ChoosingTextMy.SetActive(false);
+                                    p1ChoosingPanel.SetActive(true);
+                                    p2ChoosingPanel.SetActive(false);
+                                }
+                                else if (bm.pawnSelected.activePattern == 5)
+                                {
+                                    p1ChoosingTextEnemy.SetActive(false);
+                                    p1ChoosingTextMy.SetActive(false);
+                                    p2ChoosingTextEnemy.SetActive(true);
+                                    p2ChoosingTextMy.SetActive(false);
+                                    p1ChoosingPanel.SetActive(false);
+                                    p2ChoosingPanel.SetActive(true);
+                                }
+                                break;
+                            case TurnManager.PlayTurnState.placing:
+                                tooltipPattern.SetActive(false);
+                                p1placingText.SetActive(true);
+                                p2placingText.SetActive(false);
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case TurnManager.MacroPhase.game:
                         p1text.enabled = true;

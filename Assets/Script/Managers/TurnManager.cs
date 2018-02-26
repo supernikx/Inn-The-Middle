@@ -45,7 +45,7 @@ public class TurnManager : MonoBehaviour
 
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { check, movement, attack };
+    public enum PlayTurnState {choosing, placing, check, movement, attack};
     /// <summary> PlayTurnState corrente </summary>
     private PlayTurnState _currentTurnState;
     public PlayTurnState CurrentTurnState
@@ -71,7 +71,7 @@ public class TurnManager : MonoBehaviour
     public Camera mainCam;
     public Camera draftCam;
 
-    
+
 
     private void Awake()
     {
@@ -84,7 +84,6 @@ public class TurnManager : MonoBehaviour
         mainCam.enabled = false;
         CurrentPlayerTurn = PlayerTurn.P1_turn;
         CurrentMacroPhase = MacroPhase.draft;
-
     }
 
     // Update is called once per frame
@@ -98,23 +97,25 @@ public class TurnManager : MonoBehaviour
     {
         switch (newState)
         {
-            case PlayTurnState.check:
-                if (CurrentTurnState != PlayTurnState.attack && CurrentTurnState != PlayTurnState.check)
-                {
+            case PlayTurnState.choosing:
+                if (CurrentTurnState != PlayTurnState.choosing)
                     return false;
-                }
+                return true;
+            case PlayTurnState.placing:
+                if (CurrentTurnState != PlayTurnState.choosing)
+                    return false;
+                return true;
+            case PlayTurnState.check:
+                if (CurrentTurnState != PlayTurnState.attack && CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.placing)
+                    return false;
                 return true;
             case PlayTurnState.movement:
                 if (CurrentTurnState != PlayTurnState.check)
-                {
                     return false;
-                }
                 return true;
             case PlayTurnState.attack:
                 if (CurrentTurnState != PlayTurnState.movement)
-                {
                     return false;
-                }
                 return true;
             default:
                 return false;
@@ -144,9 +145,15 @@ public class TurnManager : MonoBehaviour
 
     void OnStateStart(PlayTurnState newState)
     {
-        BoardManager.Instance.uiManager.UIChange();
         switch (newState)
         {
+            case PlayTurnState.choosing:
+                break;
+            case PlayTurnState.placing:
+                BoardManager.Instance.uiManager.choosingUi.SetActive(false);
+                BoardManager.Instance.uiManager.placingUI.SetActive(true);
+                CurrentPlayerTurn = PlayerTurn.P1_turn;
+                break;
             case PlayTurnState.check:
                 turnsWithoutAttack++;
                 BoardManager.Instance.movementSkipped = false;
@@ -178,11 +185,11 @@ public class TurnManager : MonoBehaviour
             default:
                 break;
         }
+        BoardManager.Instance.uiManager.UIChange();
     }
 
     void OnMacroPhaseStart(MacroPhase newPhase)
     {
-        BoardManager.Instance.uiManager.UIChange();
         switch (newPhase)
         {
             case MacroPhase.draft:
@@ -191,18 +198,16 @@ public class TurnManager : MonoBehaviour
                 CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
-
                 CurrentPlayerTurn = PlayerTurn.P1_turn;
-                CurrentTurnState = PlayTurnState.check;
                 break;
             default:
                 break;
         }
+        BoardManager.Instance.uiManager.UIChange();
     }
 
     void OnTurnStart(PlayerTurn newTurn)
     {
-        BoardManager.Instance.uiManager.UIChange();
         switch (CurrentMacroPhase)
         {
             case MacroPhase.draft:
@@ -212,16 +217,29 @@ public class TurnManager : MonoBehaviour
                     mainCam.enabled = true;
                     BoardManager.Instance.SetPawnsPattern();
                     BoardManager.Instance.uiManager.draftUI.SetActive(false);
-                    BoardManager.Instance.uiManager.placingUI.SetActive(true);
+                    BoardManager.Instance.uiManager.choosingUi.SetActive(true);
                     CurrentMacroPhase = MacroPhase.placing;
                 }
                 break;
             case MacroPhase.placing:
-                if (BoardManager.Instance.pawnsToPlace == 0)
+                switch (CurrentTurnState)
                 {
-                    BoardManager.Instance.uiManager.placingUI.SetActive(false);
-                    BoardManager.Instance.uiManager.gameUI.SetActive(true);
-                    CurrentMacroPhase = MacroPhase.game;
+                    case PlayTurnState.choosing:
+                        if (!BoardManager.Instance.CheckPawnToChoose())
+                            CurrentTurnState = PlayTurnState.placing;
+                        else
+                        {
+                            BoardManager.Instance.SetPawnToChoose();
+                        }
+                        break;
+                    case PlayTurnState.placing:
+                        if (BoardManager.Instance.pawnsToPlace == 0)
+                        {
+                            BoardManager.Instance.uiManager.placingUI.SetActive(false);
+                            BoardManager.Instance.uiManager.gameUI.SetActive(true);
+                            CurrentMacroPhase = MacroPhase.game;
+                        }
+                        break;
                 }
                 break;
             case MacroPhase.game:
@@ -237,8 +255,15 @@ public class TurnManager : MonoBehaviour
                 Debug.Log("Errore: nessuna macrofase");
                 break;
         }
+        BoardManager.Instance.uiManager.UIChange();
     }
 
-
+    public void ChangeTurn()
+    {
+        if (CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+            CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+        else if (CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+            CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+    }
 
 }

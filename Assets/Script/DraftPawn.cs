@@ -6,10 +6,8 @@ public class DraftPawn : MonoBehaviour
 {
 
     //variabili per confrontare un numero random e il colore da assegnare al pawn
-    public int[] pawnColorIndex;
     int indexNumber;
-    public Color[] pawnColor = new Color[3];
-    Color color;
+    public Color[] pawnColor;
 
     DraftManager dm;
     TurnManager tm;
@@ -33,24 +31,8 @@ public class DraftPawn : MonoBehaviour
 
     public void RandomizeColor()
     {
-        indexNumber = pawnColorIndex[(Random.Range(0, pawnColor.Length))];
-        if (indexNumber == pawnColorIndex[0])
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[0];
-        }
-        else if (indexNumber == pawnColorIndex[1])
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[1];
-        }
-        else if (indexNumber == pawnColorIndex[2])
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[2];
-        }
-        else if (indexNumber == pawnColorIndex[3])
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[3];
-        }
-        
+        indexNumber = Random.Range(0, pawnColor.Length);
+        gameObject.GetComponent<MeshRenderer>().material.color = pawnColor[indexNumber];
     }
 
 

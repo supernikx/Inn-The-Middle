@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BoxOutlineNameSpace;
+using UnityEngine.EventSystems;
 
 public class Box : MonoBehaviour
 {

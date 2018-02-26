@@ -93,51 +93,6 @@ public class BoardManager : MonoBehaviour
     }
 
 
-    public void WinCondition()
-    {
-        
-        if (p1pawns > p2pawns)
-        {
-            uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Player 1 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-        }
-        else if (p2pawns > p1pawns)
-        {
-            uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Player 2 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-        }
-        else if (p1pawns == p2pawns)
-        {
-            foreach (Box box in boxesArray)
-            {
-                if (box.board == 1)
-                {
-                    p1tiles++;
-                }
-                else if (box.board == 2)
-                {
-                    p2tiles++;
-                }
-            }
-
-
-            if (p1tiles > p2tiles)
-            {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Player 1 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-            }
-            else if (p2tiles > p1tiles)
-            {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Player 2 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-            }
-            else if (p1tiles == p2tiles)
-            {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-            }
-        }
-    }
     /// <summary>
     /// Funzione che obbliga il giocatore a muoversi durante la fase di check non deselezionando mai la pedina finchè non si è mossa in una delle caselle disponibili
     /// </summary>
@@ -231,7 +186,7 @@ public class BoardManager : MonoBehaviour
 
     private void PlacingTeleport(Box boxclicked)
     {
-        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
             if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
             {
@@ -315,27 +270,6 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
-    //funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
-    public void SetPawnsPattern()
-    {
-        int j = 0;
-        int k = 0;
-        for (int i = 0; i < pawns.Count; i++)
-        {
-            if (pawns[i].player == Player.player1)
-            {
-                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
-                j++;
-            }
-            else if (pawns[i].player == Player.player2)
-            {
-                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
-                k++;
-            }
-        }
-    }
-
-
     //identifica la zona di codice con le funzioni pubbliche
     #region API
 
@@ -367,14 +301,7 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
-                {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
-                }
-                else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-                {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
-                }
+                turnManager.ChangeTurn();
             }
         }
     }
@@ -391,14 +318,7 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
-                {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
-                }
-                else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-                {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
-                }
+                turnManager.ChangeTurn();
             }
         }
     }
@@ -460,54 +380,57 @@ public class BoardManager : MonoBehaviour
     /// <param name="selected"></param>
     public void PawnSelected(Pawn selected)
     {
-        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        switch (turnManager.CurrentMacroPhase)
         {
-            Debug.Log("In Macro Fase Placing");
-            if (((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)) && !selected.currentBox)
-            {
-                if (pawnSelected != null)
+            case TurnManager.MacroPhase.placing:
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
                 {
-                    DeselectPawn();
+                    Debug.Log("In Macro Fase Placing");
+                    if (((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)) && !selected.currentBox)
+                    {
+                        if (pawnSelected != null)
+                        {
+                            DeselectPawn();
+                        }
+                        selected.selected = true;
+                        pawnSelected = selected;
+                        pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    }
                 }
-                selected.selected = true;
-                pawnSelected = selected;
-                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-            }
+                break;
+            case TurnManager.MacroPhase.game:
+                if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
+                {
+                    selected.selected = true;
+                    pawnSelected = selected;
+                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.ShowMovementBoxes();
+                }
+                else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+                {
+                    if (pawnSelected != null)
+                    {
+                        DeselectPawn();
+                    }
+                    selected.selected = true;
+                    pawnSelected = selected;
+                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.ShowAttackPattern();
+                }
+                else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
+                {
+                    if (pawnSelected != null)
+                    {
+                        DeselectPawn();
+                    }
+                    selected.selected = true;
+                    pawnSelected = selected;
+                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.ShowAttackPattern();
+                    pawnSelected.ShowMovementBoxes();
+                }
+                break;
         }
-        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
-        {
-            if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
-            {
-                selected.selected = true;
-                pawnSelected = selected;
-                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-                pawnSelected.ShowMovementBoxes();
-            }
-            else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
-            {
-                if (pawnSelected != null)
-                {
-                    DeselectPawn();
-                }
-                selected.selected = true;
-                pawnSelected = selected;
-                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-                pawnSelected.ShowAttackPattern();
-            }
-            else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
-            {
-                if (pawnSelected != null)
-                {
-                    DeselectPawn();
-                }
-                selected.selected = true;
-                pawnSelected = selected;
-                pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
-                pawnSelected.ShowAttackPattern();
-                pawnSelected.ShowMovementBoxes();
-            }
-        }
-
     }
 
     /// <summary>
@@ -590,6 +513,144 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
+    /// </summary>
+    public void SetPawnsPattern()
+    {
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < pawns.Count; i++)
+        {
+            if (pawns[i].player == Player.player1)
+            {
+                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
+                j++;
+            }
+            else if (pawns[i].player == Player.player2)
+            {
+                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
+                k++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Funzione che gestisce le condizioni di vittoria
+    /// </summary>
+    public void WinCondition()
+    {
+
+        if (p1pawns > p2pawns)
+        {
+            uiManager.winScreen.SetActive(true);
+            uiManager.gameResult.text = "Player 1 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+        }
+        else if (p2pawns > p1pawns)
+        {
+            uiManager.winScreen.SetActive(true);
+            uiManager.gameResult.text = "Player 2 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+        }
+        else if (p1pawns == p2pawns)
+        {
+            foreach (Box box in boxesArray)
+            {
+                if (box.board == 1)
+                {
+                    p1tiles++;
+                }
+                else if (box.board == 2)
+                {
+                    p2tiles++;
+                }
+            }
+
+
+            if (p1tiles > p2tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Player 1 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (p2tiles > p1tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Player 2 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (p1tiles == p2tiles)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+        }
+    }
+
+    /// <summary>
+    /// Controlla se sono presenti delle pedine da scegliere (bianche/nere) e ritorna true se ci sono o false se non ci sono
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckPawnToChoose()
+    {
+        bool foundPawn = false;
+        foreach (Pawn p in pawns)
+        {
+            if (p.activePattern == 4 || p.activePattern == 5)
+            {
+                foundPawn = true;
+            }
+        }
+        return foundPawn;
+    }
+
+    /// <summary>
+    /// Imposta la pedina di cui bisogna scegliere il pattern in base al turno del giocatore
+    /// </summary>
+    public void SetPawnToChoose()
+    {
+        bool foundPawn = false;
+        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        {
+            foreach (Pawn p in pawns)
+            {
+                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
+                {
+                    pawnSelected = p;
+                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    foundPawn = true;
+                    CustomLogger.Log("trovata una nel p1");
+                    break;
+                }
+            }
+        }
+        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        {
+            foreach (Pawn p in pawns)
+            {
+                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
+                {
+                    pawnSelected = p;
+                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    foundPawn = true;
+                    CustomLogger.Log("trovata una nel p2");
+                    break;
+                }
+            }
+        }
+        if (foundPawn)
+            return;
+        turnManager.ChangeTurn();
+        CustomLogger.Log("Cambio turno");
+    }
+
+    /// <summary>
+    /// Funzione che imposta il pattern della selectedPawn con il valore passato in input (usata quando viene premuto il pulsante del rispettivo colore)
+    /// </summary>
+    /// <param name="patternIndex"></param>
+    public void ChoosePawnPattern(int patternIndex)
+    {
+        pawnSelected.ChangePattern(patternIndex);
+        DeselectPawn();
+        turnManager.ChangeTurn();
+    }
     #endregion
 }
 

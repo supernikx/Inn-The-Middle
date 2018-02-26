@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using PawnOutlineNameSpace;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Pawn : MonoBehaviour
 {
@@ -17,8 +18,7 @@ public class Pawn : MonoBehaviour
     public Color pawnColor;
     [Space]
     [Header("Attack Settings")]
-    [SerializeField]
-    private int activePattern;
+    public int activePattern;
     /// <summary>
     /// Lista che contiene i pattern d'attacco e il colore del pattern, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
     /// </summary>
