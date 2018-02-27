@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject choosingUi;
 
+    [Header("Main Menu ")]
+    public GameObject mainMenuPanel;
 
     [Header("Win Screen and texts")]
     public GameObject winScreen;
@@ -74,8 +76,9 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
-        draftUI.SetActive(true);
+        draftUI.SetActive(false);
         choosingUi.SetActive(false);
+        mainMenuPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -152,6 +155,43 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    #region MainMenu
+
+    /// <summary>
+    /// Funzione del pulsante start che chiude il main menu e avvia la fase di draft
+    /// </summary>
+    public void StartGame()
+    {
+        mainMenuPanel.SetActive(false);
+        draftUI.SetActive(true);
+    }
+
+    /// <summary>
+    /// Funzione del pulsante Options che mostra le opzioni
+    /// </summary>
+    public void Options()
+    {
+
+    }
+
+    /// <summary>
+    /// Funzione del pulsante tutorial che mostra il tutorial del gioco
+    /// </summary>
+    public void Tutorial()
+    {
+
+    }
+
+    /// <summary>
+    /// Funzione del pulsante Credits che mostra i crediti del gioco
+    /// </summary>
+    public void Credits()
+    {
+
+    }
+
+    #endregion
 
     public void UIChange()
     {
