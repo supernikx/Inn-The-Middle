@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Attack {
+[CreateAssetMenu(fileName = "New Pattern", menuName = "Pattern")]
+public class Attack : ScriptableObject{
     public List<Pattern> pattern,pattern2;
     public Material patternMaterial;
 }
