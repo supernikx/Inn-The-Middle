@@ -506,7 +506,6 @@ public class BoardManager : MonoBehaviour
             switch (turnManager.CurrentTurnState)
             {
                 case TurnManager.PlayTurnState.movement:
-                    DeselectPawn();
                     movementSkipped = true;
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                     CustomLogger.Log("Hai saltato il movimento");
