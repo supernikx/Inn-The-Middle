@@ -25,7 +25,7 @@ public class TurnManager : MonoBehaviour
     }
 
 
-    public enum MacroPhase { draft, placing, game };
+    public enum MacroPhase { menu, draft, placing, game };
     private MacroPhase _currentMacroPhase;
     public MacroPhase CurrentMacroPhase
     {
@@ -71,27 +71,13 @@ public class TurnManager : MonoBehaviour
     public Camera mainCam;
     public Camera draftCam;
 
-
-
-    private void Awake()
-    {
-
-    }
-
     // Use this for initialization
     void Start()
     {
         mainCam.enabled = false;
         CurrentPlayerTurn = PlayerTurn.P1_turn;
-        CurrentMacroPhase = MacroPhase.draft;
+        CurrentMacroPhase = MacroPhase.menu;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     bool StateChange(PlayTurnState newState)
     {
@@ -126,8 +112,10 @@ public class TurnManager : MonoBehaviour
     {
         switch (newPhase)
         {
+            case MacroPhase.menu:
+                return true;
             case MacroPhase.draft:
-                if (CurrentMacroPhase != MacroPhase.draft)
+                if (CurrentMacroPhase != MacroPhase.menu)
                     return false;
                 return true;
             case MacroPhase.placing:
@@ -164,7 +152,7 @@ public class TurnManager : MonoBehaviour
                     BoardManager.Instance.pawnSelected.DisableAttackPattern();
                 }
                 BoardManager.Instance.DeselectPawn();
-                BoardManager.Instance.CheckBox();
+                BoardManager.Instance.CheckPhaseControll();
                 break;
             case PlayTurnState.movement:
                 break;
@@ -191,6 +179,9 @@ public class TurnManager : MonoBehaviour
     {
         switch (newPhase)
         {
+            case MacroPhase.menu:
+                CustomLogger.Log("Sei nella fase di menu");
+                break;
             case MacroPhase.draft:
                 break;
             case MacroPhase.placing:
@@ -209,6 +200,9 @@ public class TurnManager : MonoBehaviour
     {
         switch (CurrentMacroPhase)
         {
+            case MacroPhase.menu:
+                CustomLogger.Log("Sei nella fase di menu");
+                break;
             case MacroPhase.draft:
                 if (BoardManager.Instance.draftManager.pawns.Count == 0)
                 {

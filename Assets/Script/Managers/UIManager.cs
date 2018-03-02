@@ -84,13 +84,15 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && bm.turnManager.CurrentMacroPhase != TurnManager.MacroPhase.menu)
         {
             pausePanel.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
+            if (EventManager.OnPause != null)
+                EventManager.OnPause();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused && bm.turnManager.CurrentMacroPhase != TurnManager.MacroPhase.menu)
         {
             ResumeGame();
         }
@@ -102,6 +104,8 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        if (EventManager.OnUnPause != null)
+            EventManager.OnUnPause();
     }
 
     void UpdateElementsText()
@@ -165,6 +169,7 @@ public class UIManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         draftUI.SetActive(true);
+        bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
     }
 
     /// <summary>
@@ -200,6 +205,16 @@ public class UIManager : MonoBehaviour
             case TurnManager.PlayerTurn.P2_turn:
                 switch (tm.CurrentMacroPhase)
                 {
+                    case TurnManager.MacroPhase.menu:
+                        tooltipPattern.SetActive(false);
+                        winScreen.SetActive(false);
+                        gameUI.SetActive(false);
+                        placingUI.SetActive(false);
+                        pausePanel.SetActive(false);
+                        draftUI.SetActive(false);
+                        choosingUi.SetActive(false);
+                        mainMenuPanel.SetActive(true);
+                        break;
                     case TurnManager.MacroPhase.draft:
                         p1PickingText.SetActive(false);
                         p2PickingText.SetActive(true);
@@ -275,6 +290,16 @@ public class UIManager : MonoBehaviour
             case TurnManager.PlayerTurn.P1_turn:
                 switch (tm.CurrentMacroPhase)
                 {
+                    case TurnManager.MacroPhase.menu:
+                        tooltipPattern.SetActive(false);
+                        winScreen.SetActive(false);
+                        gameUI.SetActive(false);
+                        placingUI.SetActive(false);
+                        pausePanel.SetActive(false);
+                        draftUI.SetActive(false);
+                        choosingUi.SetActive(false);
+                        mainMenuPanel.SetActive(true);
+                        break;
                     case TurnManager.MacroPhase.draft:
                         p1PickingText.SetActive(true);
                         p2PickingText.SetActive(false);
