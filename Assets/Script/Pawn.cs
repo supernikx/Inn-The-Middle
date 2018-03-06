@@ -10,12 +10,14 @@ using UnityEngine.EventSystems;
 public class Pawn : MonoBehaviour
 {
     //variabili pubbliche
-    public bool selected,randomized;
+    public bool selected, randomized;
     public Vector3 offset;
     public Player player;
     public Box currentBox;
     public float speed;
     public Color pawnColor;
+    [HideInInspector]
+    public GameObject projection;
     [Space]
     [Header("Attack Settings")]
     public int activePattern;
@@ -28,6 +30,7 @@ public class Pawn : MonoBehaviour
     //variabili private
     private BoardManager bm;
     private MeshRenderer mr;
+    private Box projectionTempBox;
     private Transform[][] myboard, enemyboard;
     private PlayerElements myelements;
     private bool pattern1;
@@ -36,6 +39,8 @@ public class Pawn : MonoBehaviour
     private void Awake()
     {
         mr = GetComponent<MeshRenderer>();
+        projection = transform.GetChild(0).gameObject;
+        projection.GetComponent<PawnOutline>().eraseRenderer = true;
     }
     // Use this for initialization
     void Start()
@@ -45,39 +50,8 @@ public class Pawn : MonoBehaviour
         randomized = false;
         pawnColor = mr.material.color;
         bm = BoardManager.Instance;
+        projectionTempBox = currentBox;
         SetBoards();
-        gameObject.GetComponent<PawnOutline>().eraseRenderer = true;
-    }
-
-    /// <summary>
-    /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
-    /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
-    /// </summary>
-    /// <param name="boxindex1"></param>
-    /// <param name="boxindex2"></param>
-    /// <param name="boxToMove"></param>
-    /// <returns></returns>
-    private bool PawnMovement(int boxindex1, int boxindex2, Transform boxToMove)
-    {
-        if (boxToMove.GetComponent<Box>() == currentBox)
-        {
-            return false;
-        }
-        if ((boxindex1 == currentBox.index1 + 1 || boxindex1 == currentBox.index1 - 1 || boxindex1 == currentBox.index1) && (boxindex2 == currentBox.index2 || boxindex2 == currentBox.index2 + 1 || boxindex2 == currentBox.index2 - 1))
-        {
-            transform.LookAt(new Vector3(boxToMove.position.x, transform.position.y, boxToMove.position.z));
-            transform.Rotate(new Vector3(0, 90, 0));
-            transform.DOMove(boxToMove.position + offset, speed);
-            DisableMovementBoxes();
-            DisableAttackPattern();
-            currentBox.free = true;
-            if (currentBox.element == Element.NeutralBlack)
-                currentBox.walkable = true;
-            currentBox = boxToMove.GetComponent<Box>();
-            currentBox.free = false;
-            return true;
-        }
-        return false;
     }
 
     /// <summary>
@@ -167,7 +141,17 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void ShowAttackPattern()
     {
-        int currentColumn = currentBox.index2;
+        int currentColumn, currentRow;
+        if (projectionTempBox != null)
+        {
+            currentColumn = projectionTempBox.index2;
+            currentRow = projectionTempBox.index1;
+        }
+        else
+        {
+            currentColumn = currentBox.index2;
+            currentRow = currentBox.index1;
+        }
 
         if (patterns[activePattern].pattern2.Count > 0)
         {
@@ -175,27 +159,27 @@ public class Pawn : MonoBehaviour
             {
                 foreach (Pattern a in patterns[activePattern].pattern2)
                 {
-                    if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                    if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow <= enemyboard.Length && a.index1 - currentRow >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
+                        enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
 
-                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
+                        myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
                 }
 
                 foreach (Pattern a in patterns[activePattern].pattern)
                 {
-                    if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                    if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                        enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
 
-                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                        myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
                 }
             }
@@ -204,27 +188,27 @@ public class Pawn : MonoBehaviour
                 foreach (Pattern a in patterns[activePattern].pattern)
                 {
 
-                    if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                    if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
+                        enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
 
-                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
+                        myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxOtherPattern();
                     }
                 }
 
                 foreach (Pattern a in patterns[activePattern].pattern2)
                 {
-                    if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                    if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow <= enemyboard.Length && a.index1 - currentRow >= 0))
                     {
-                        enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                        enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
 
-                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                    if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                     {
-                        myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                        myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                     }
                 }
             }
@@ -233,14 +217,14 @@ public class Pawn : MonoBehaviour
         {
             foreach (Pattern a in patterns[activePattern].pattern)
             {
-                if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
                 {
-                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                    enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
 
-                if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                 {
-                    myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                    myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
             }
         }
@@ -251,17 +235,28 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void DisableAttackPattern()
     {
-        int currentColumn = currentBox.index2;
+        int currentColumn, currentRow;
+        if (projectionTempBox != null)
+        {
+            currentColumn = projectionTempBox.index2;
+            currentRow = projectionTempBox.index1;
+        }
+        else
+        {
+            currentColumn = currentBox.index2;
+            currentRow = currentBox.index1;
+        }
+
         foreach (Pattern a in patterns[activePattern].pattern)
         {
-            if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+            if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
             {
-                enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
             }
 
-            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
             {
-                myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
             }
         }
 
@@ -269,14 +264,14 @@ public class Pawn : MonoBehaviour
         {
             foreach (Pattern a in patterns[activePattern].pattern2)
             {
-                if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 <= enemyboard.Length && a.index1 - currentBox.index1 >= 0))
+                if ((currentColumn + a.index2 <= enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow <= enemyboard.Length && a.index1 - currentRow >= 0))
                 {
-                    enemyboard[a.index1 - currentBox.index1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                    enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
                 }
 
-                if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentBox.index1 - a.index1 < myboard.Length && currentBox.index1 - a.index1 - 1 >= 0))
+                if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
                 {
-                    myboard[currentBox.index1 - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                    myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
                 }
             }
         }
@@ -431,8 +426,8 @@ public class Pawn : MonoBehaviour
                 foreach (Pawn p in pawnsToKill)
                 {
                     p.killMarker = true;
-                    p.GetComponent<PawnOutline>().color = 1;
-                    p.GetComponent<PawnOutline>().eraseRenderer = false;
+                    p.projection.GetComponent<PawnOutline>().color = 1;
+                    p.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                 }
                 CustomLogger.Log("Scegli la pedina da uccidere");
                 return false;
@@ -440,17 +435,62 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che prende in input 2 interi relativi alla coordinata di una casella nell'array e identifica la board, passa la box e gli indici a PawnMovement 
-    /// ritorna true in caso il movimento sia avvenuto, mentre ritorna false se non è avvenuto
+    /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
+    /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
     /// </summary>
     /// <param name="boxindex1"></param>
     /// <param name="boxindex2"></param>
+    /// <param name="boxToMove"></param>
     /// <returns></returns>
-    public bool Move(int boxindex1, int boxindex2)
+    public bool Move(Box boxToMove)
     {
-        Transform boxToMove = myboard[boxindex1][boxindex2];
-        selected = false;
-        return PawnMovement(boxindex1, boxindex2, boxToMove);
+        if (boxToMove == currentBox)
+        {
+            return false;
+        }
+        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1))
+        {
+            transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
+            transform.Rotate(new Vector3(0, 90, 0));
+            transform.DOMove(boxToMove.transform.position + offset, speed);
+            DisableMovementBoxes();
+            DisableAttackPattern();
+            currentBox.free = true;
+            if (currentBox.element == Element.NeutralBlack)
+                currentBox.walkable = true;
+            currentBox = boxToMove.GetComponent<Box>();
+            currentBox.free = false;
+            projection.transform.position = transform.position;
+            projectionTempBox = currentBox;
+            return true;
+        }
+        return false;
+    }
+
+    public bool MoveProjection(Box boxToMove)
+    {
+        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1) && (boxToMove.free || boxToMove == currentBox))
+        {
+            DisableAttackPattern();
+            if (boxToMove == currentBox)
+            {
+                if (player == Player.player1)
+                    transform.eulerAngles = new Vector3(0, 180, 0);
+                else if (player == Player.player2)
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
+                transform.Rotate(new Vector3(0, 90, 0));
+            }
+            projection.transform.position = boxToMove.transform.position + offset;
+            projectionTempBox = boxToMove;
+            ShowAttackPattern();
+            ShowMovementBoxes();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

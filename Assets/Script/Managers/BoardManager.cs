@@ -134,7 +134,7 @@ public class BoardManager : MonoBehaviour
         {
             if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
             {
-                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+                if (pawnSelected.Move(boxclicked))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
                     pawnSelected.randomized = false;
@@ -148,7 +148,7 @@ public class BoardManager : MonoBehaviour
             }
             else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
             {
-                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+                if (pawnSelected.Move(boxclicked))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
                     pawnSelected.randomized = false;
@@ -180,22 +180,9 @@ public class BoardManager : MonoBehaviour
     {
         if (CheckFreeBox(boxclicked))
         {
-            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+            if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
             {
-                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
-                {
-                    CustomLogger.Log(pawnSelected.player + " si è mosso");
-                    pawnSelected.ShowAttackPattern();
-                    turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
-                }
-                else
-                {
-                    DeselectPawn();
-                }
-            }
-            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-            {
-                if (pawnSelected.Move(boxclicked.index1, boxclicked.index2))
+                if (pawnSelected.Move(boxclicked))
                 {
                     CustomLogger.Log(pawnSelected.player + " si è mosso");
                     pawnSelected.ShowAttackPattern();
@@ -319,8 +306,8 @@ public class BoardManager : MonoBehaviour
         {
             if (p.killMarker)
             {
-                p.GetComponent<PawnOutline>().eraseRenderer = true;
-                p.GetComponent<PawnOutline>().color = 2;
+                p.projection.GetComponent<PawnOutline>().eraseRenderer = true;
+                p.projection.GetComponent<PawnOutline>().color = 2;
                 p.killMarker = false;
             }
         }
@@ -372,7 +359,7 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
             }
-            pawnSelected.GetComponent<PawnOutline>().eraseRenderer = true;
+            pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = true;
             pawnSelected.selected = false;
             pawnSelected = null;
 
@@ -437,7 +424,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                            pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                         }
                     }
                     break;
@@ -446,7 +433,7 @@ public class BoardManager : MonoBehaviour
                     {
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowMovementBoxes();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
@@ -457,7 +444,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowAttackPattern();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -468,7 +455,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowAttackPattern();
                         pawnSelected.ShowMovementBoxes();
                     }
@@ -486,14 +473,7 @@ public class BoardManager : MonoBehaviour
         pawnSelected.KillPawn(pawnToKill);
         UnmarkKillPawns();
         CustomLogger.Log(pawnSelected.player + " ha attaccato");
-        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
-        {
-            turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
-        }
-        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-        {
-            turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
-        }
+        turnManager.ChangeTurn();
     }
 
     /// <summary>
@@ -507,6 +487,8 @@ public class BoardManager : MonoBehaviour
             {
                 case TurnManager.PlayTurnState.movement:
                     movementSkipped = true;
+                    if (pawnSelected != null)
+                        pawnSelected.MoveProjection(pawnSelected.currentBox);
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                     CustomLogger.Log("Hai saltato il movimento");
                     break;
@@ -516,6 +498,20 @@ public class BoardManager : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+        }
+    }
+
+    public void BoxOver(Box boxover)
+    {
+        if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement) && pawnSelected != null)
+        {
+            if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
+            {
+                if (!pawnSelected.MoveProjection(boxover))
+                {
+                    pawnSelected.MoveProjection(pawnSelected.currentBox);
+                }
             }
         }
     }
@@ -660,7 +656,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
                 {
                     pawnSelected = p;
-                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p1");
                     break;
@@ -674,7 +670,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
                 {
                     pawnSelected = p;
-                    pawnSelected.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p2");
                     break;

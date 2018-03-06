@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 23235435012226420}
   - component: {fileID: 95915374398018262}
   - component: {fileID: 114820047233248068}
-  - component: {fileID: 114601331724460034}
   m_Layer: 0
   m_Name: Pedina
   m_TagString: Untagged
@@ -117,21 +116,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114601331724460034
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1128518370189898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 0
-  eraseRenderer: 0
-  originalLayer: 0
-  originalMaterials: []
 --- !u!114 &114820047233248068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,6 +134,7 @@ MonoBehaviour:
   currentBox: {fileID: 0}
   speed: 0.5
   pawnColor: {r: 0, g: 0, b: 0, a: 0}
+  projection: {fileID: 0}
   activePattern: 0
   patterns:
   - {fileID: 11400000, guid: fb03d3f9a11e447408dfa5c62341f0d3, type: 2}

@@ -159,14 +159,7 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.attack:
                 if (BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
                 {
-                    if (CurrentPlayerTurn == PlayerTurn.P1_turn)
-                    {
-                        CurrentPlayerTurn = PlayerTurn.P2_turn;
-                    }
-                    else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
-                    {
-                        CurrentPlayerTurn = PlayerTurn.P1_turn;
-                    }
+                    ChangeTurn();
                 }
                 break;
             default:

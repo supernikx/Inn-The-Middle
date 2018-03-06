@@ -10,7 +10,7 @@ public class Box : MonoBehaviour
     //variabili pubbliche
     public int index1, index2, board;
     public bool walkable, free, neutralKill;
-    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black, boxToDestroy;
+    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black;
     public Element element;
 
     //variabili private
@@ -33,6 +33,14 @@ public class Box : MonoBehaviour
         walkable = true;
         outline.eraseRenderer = true;
         bm = FindObjectOfType<BoardManager>();
+    }
+
+    /// <summary>
+    /// Funzione che viene chiamata ogni volta che il mouse è sopra una casella e richiama la funzione BoxOver del boardmanager
+    /// </summary>
+    private void OnMouseEnter()
+    {
+        bm.BoxOver(this);
     }
 
     /// <summary>
