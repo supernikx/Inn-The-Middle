@@ -82,23 +82,6 @@ public class BoardManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
     }
 
-    private void Update()
-    {
-        if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack) && pawnSelected != null && !pause)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                pawnSelected.ChangePatternSide();
-                pawnSelected.DisableAttackPattern();
-                pawnSelected.ShowAttackPattern();
-                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
-                {
-                    pawnSelected.ShowMovementBoxes();
-                }
-            }
-        }
-    }
-
     void Start()
     {
         placingsLeft = 1;
@@ -488,7 +471,10 @@ public class BoardManager : MonoBehaviour
                 case TurnManager.PlayTurnState.movement:
                     movementSkipped = true;
                     if (pawnSelected != null)
-                        pawnSelected.MoveProjection(pawnSelected.currentBox);
+                    {
+                        pawnSelected.DisableMovementBoxes();
+                        pawnSelected.ForceMoveProjection();
+                    }
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                     CustomLogger.Log("Hai saltato il movimento");
                     break;

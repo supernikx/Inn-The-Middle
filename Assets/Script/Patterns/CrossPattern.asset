@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Name: CrossPattern
   m_EditorClassIdentifier: 
   pattern:
-  - index1: 0
-    index2: 0
-  - index1: 1
-    index2: 0
   - index1: 2
     index2: 0
-  - index1: 2
-    index2: 1
-  - index1: 2
-    index2: -1
   - index1: 3
+    index2: 1
+  - index1: 3
+    index2: -1
+  - index1: 4
     index2: 0
-  pattern2: []
   patternMaterial: {fileID: 2100000, guid: a9ffa1eff4b86b14baa4041c51e2acca, type: 2}

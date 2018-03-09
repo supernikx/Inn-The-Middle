@@ -9,24 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae5d5b6301542f34599ec5bf4a1e13fc, type: 3}
-  m_Name: DiagonalPattern
+  m_Name: ShortPattern
   m_EditorClassIdentifier: 
   pattern:
   - index1: 0
+    index2: 0
+  - index1: 0
     index2: 1
-  - index1: 1
-    index2: 2
-  - index1: 2
-    index2: 3
-  - index1: 3
-    index2: 4
-  pattern2:
   - index1: 0
     index2: -1
   - index1: 1
-    index2: -2
-  - index1: 2
-    index2: -3
-  - index1: 3
-    index2: -4
-  patternMaterial: {fileID: 2100000, guid: b1b7e94dce2ef454780ee5c6cc8d8bdd, type: 2}
+    index2: 0
+  - index1: 1
+    index2: 1
+  - index1: 1
+    index2: -1
+  patternMaterial: {fileID: 2100000, guid: 820153f4d65e5b6489f6e80f129bfe3e, type: 2}
