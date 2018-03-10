@@ -14,4 +14,32 @@ MonoBehaviour:
   pattern:
   - index1: 3
     index2: 0
+  - index1: 3
+    index2: 1
+  - index1: 3
+    index2: 2
+  - index1: 3
+    index2: 3
+  - index1: 3
+    index2: 4
+  - index1: 3
+    index2: 5
+  - index1: 3
+    index2: 6
+  - index1: 3
+    index2: 7
+  - index1: 3
+    index2: -1
+  - index1: 3
+    index2: -2
+  - index1: 3
+    index2: -3
+  - index1: 3
+    index2: -4
+  - index1: 3
+    index2: -5
+  - index1: 3
+    index2: -6
+  - index1: 3
+    index2: -7
   patternMaterial: {fileID: 2100000, guid: b1b7e94dce2ef454780ee5c6cc8d8bdd, type: 2}

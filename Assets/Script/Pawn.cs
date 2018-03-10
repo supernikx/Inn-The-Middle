@@ -41,6 +41,7 @@ public class Pawn : MonoBehaviour
         projection = transform.GetChild(0).gameObject;
         projection.GetComponent<PawnOutline>().eraseRenderer = true;
     }
+
     // Use this for initialization
     void Start()
     {
@@ -99,6 +100,8 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    #region GraphicsFunctions
+
     /// <summary>
     /// Funzione che mostra le caselle in cui questa pedina può muoversi
     /// </summary>
@@ -152,16 +155,33 @@ public class Pawn : MonoBehaviour
             currentRow = currentBox.index1;
         }
 
-        foreach (Pattern a in patterns[activePattern].pattern)
+        if (activePattern == 2)
         {
-            if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
+            int patternindex1 = patterns[activePattern].pattern[0].index1;
+            int patternindex2 = patterns[activePattern].pattern[0].index2;
+            if ((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0))
             {
-                enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
             }
 
-            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
+            if ((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0))
             {
-                myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().ShowBoxActivePattern();
+                myboard[currentRow - patternindex1 - 1][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
+            }
+        }
+        else
+        {
+            foreach (Pattern p in patterns[activePattern].pattern)
+            {
+                if ((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentRow < enemyboard.Length && p.index1 - currentRow >= 0))
+                {
+                    enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>().ShowBoxActivePattern();
+                }
+
+                if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentRow - p.index1 < myboard.Length && currentRow - p.index1 - 1 >= 0))
+                {
+                    myboard[currentRow - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>().ShowBoxActivePattern();
+                }
             }
         }
     }
@@ -196,6 +216,10 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Attack
+
     /// <summary>
     /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
     /// </summary>
@@ -203,16 +227,35 @@ public class Pawn : MonoBehaviour
     public bool CheckAttackPattern()
     {
         int currentColumn = currentBox.index2;
-        foreach (Pattern a in patterns[activePattern].pattern)
+        if (activePattern == 2)
         {
+            int patternindex1 = patterns[activePattern].pattern[0].index1;
+            int patternindex2 = patterns[activePattern].pattern[0].index2;
             foreach (Pawn p in bm.pawns)
             {
                 if (p.player != player)
                 {
-                    if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                    if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
                     {
                         CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (Pattern a in patterns[activePattern].pattern)
+            {
+                foreach (Pawn p in bm.pawns)
+                {
+                    if (p.player != player)
+                    {
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        {
+                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                            return true;
+                        }
                     }
                 }
             }
@@ -316,6 +359,8 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    #endregion
+
     /// <summary>
     /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
     /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
@@ -348,6 +393,11 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che sposta la proiezione nella box che gli viene passata come parametro
+    /// </summary>
+    /// <param name="boxToMove"></param>
+    /// <returns></returns>
     public bool MoveProjection(Box boxToMove)
     {
         if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1) && (boxToMove.free || boxToMove == currentBox))
@@ -374,6 +424,9 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che forza lo spostamento della proiezione nella casella della pedina corrispondente
+    /// </summary>
     public void ForceMoveProjection()
     {
         projection.transform.position = transform.position;
