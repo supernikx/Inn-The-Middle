@@ -269,6 +269,8 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool Attack()
     {
+        if (!CheckAttackPattern())
+            return false;
         BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
         int currentColumn = currentBox.index2, pHit = 0;
         foreach (Pattern p in patterns[activePattern].pattern)
@@ -319,6 +321,8 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public bool SuperAttack()
     {
+        if (!CheckAttackPattern())
+            return false;
         BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
         int currentColumn = currentBox.index2;
         List<Pawn> pawnsToKill = new List<Pawn>();
