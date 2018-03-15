@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject placingUI;
     public GameObject gameUI;
     public GameObject choosingUi;
+    public GameObject gameUIPerspective;
 
     [Header("Main Menu ")]
     public GameObject mainMenuPanel;
@@ -74,6 +75,7 @@ public class UIManager : MonoBehaviour
         tooltipPattern.SetActive(false);
         winScreen.SetActive(false);
         gameUI.SetActive(false);
+        gameUIPerspective.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
         draftUI.SetActive(false);
@@ -209,6 +211,7 @@ public class UIManager : MonoBehaviour
                         tooltipPattern.SetActive(false);
                         winScreen.SetActive(false);
                         gameUI.SetActive(false);
+                        gameUIPerspective.SetActive(false);
                         placingUI.SetActive(false);
                         pausePanel.SetActive(false);
                         draftUI.SetActive(false);
@@ -294,6 +297,7 @@ public class UIManager : MonoBehaviour
                         tooltipPattern.SetActive(false);
                         winScreen.SetActive(false);
                         gameUI.SetActive(false);
+                        gameUIPerspective.SetActive(false);
                         placingUI.SetActive(false);
                         pausePanel.SetActive(false);
                         draftUI.SetActive(false);

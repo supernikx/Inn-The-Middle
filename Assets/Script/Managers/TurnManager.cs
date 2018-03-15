@@ -223,6 +223,7 @@ public class TurnManager : MonoBehaviour
                         {
                             BoardManager.Instance.uiManager.placingUI.SetActive(false);
                             BoardManager.Instance.uiManager.gameUI.SetActive(true);
+                            BoardManager.Instance.uiManager.gameUIPerspective.SetActive(true);
                             CurrentMacroPhase = MacroPhase.game;
                         }
                         break;
