@@ -8,7 +8,7 @@ public class TurnManager : MonoBehaviour
 {
 
     /// <summary> Stato per indicare di chi è il turno </summary>
-    public enum PlayerTurn { P2_turn, P1_turn };
+    public enum PlayerTurn { P1_turn = 1, P2_turn = 2 };
     /// <summary> PlayerTurn corrente </summary>
     private PlayerTurn _currentPlayerTurn;
     public PlayerTurn CurrentPlayerTurn
@@ -25,7 +25,7 @@ public class TurnManager : MonoBehaviour
     }
 
 
-    public enum MacroPhase { menu, draft, placing, game };
+    public enum MacroPhase { menu, faction, draft, placing, game };
     private MacroPhase _currentMacroPhase;
     public MacroPhase CurrentMacroPhase
     {
@@ -75,7 +75,7 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         mainCam.enabled = false;
-        CurrentPlayerTurn = PlayerTurn.P1_turn;
+        //CurrentPlayerTurn = PlayerTurn.P1_turn;
         CurrentMacroPhase = MacroPhase.menu;
     }
 
@@ -114,8 +114,12 @@ public class TurnManager : MonoBehaviour
         {
             case MacroPhase.menu:
                 return true;
-            case MacroPhase.draft:
+            case MacroPhase.faction:
                 if (CurrentMacroPhase != MacroPhase.menu)
+                    return false;
+                return true;
+            case MacroPhase.draft:
+                if (CurrentMacroPhase != MacroPhase.faction)
                     return false;
                 return true;
             case MacroPhase.placing:
@@ -140,7 +144,8 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.placing:
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
-                CurrentPlayerTurn = PlayerTurn.P1_turn;
+                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case PlayTurnState.check:
                 turnsWithoutAttack++;
@@ -175,13 +180,19 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.menu:
                 CustomLogger.Log("Sei nella fase di menu");
                 break;
+            case MacroPhase.faction:
+                CustomLogger.Log("Sei nella fase di scelta fazione");
+                break;
             case MacroPhase.draft:
+                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
                 break;
             case MacroPhase.placing:
-                CurrentPlayerTurn = PlayerTurn.P1_turn;
+                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
-                CurrentPlayerTurn = PlayerTurn.P1_turn;
+                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             default:
                 break;
@@ -196,16 +207,24 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.menu:
                 CustomLogger.Log("Sei nella fase di menu");
                 break;
+            case MacroPhase.faction:
+                break;
             case MacroPhase.draft:
-                if (BoardManager.Instance.draftManager.pawns.Count == 0)
-                {
-                    draftCam.enabled = false;
-                    mainCam.enabled = true;
-                    BoardManager.Instance.SetPawnsPattern();
-                    BoardManager.Instance.uiManager.draftUI.SetActive(false);
-                    BoardManager.Instance.uiManager.choosingUi.SetActive(true);
-                    CurrentMacroPhase = MacroPhase.placing;
-                }
+        //       if (BoardManager.Instance.factionChosen == true)
+        //       {
+        //           BoardManager.Instance.uiManager.factionUI.SetActive(false);
+        //           BoardManager.Instance.uiManager.draftUI.SetActive(true);
+        //       }
+                    if (BoardManager.Instance.draftManager.pawns.Count == 0)
+                    {
+                        draftCam.enabled = false;
+                        mainCam.enabled = true;
+                        BoardManager.Instance.SetPawnsPattern();
+                        BoardManager.Instance.uiManager.draftUI.SetActive(false);
+                        BoardManager.Instance.uiManager.choosingUi.SetActive(true);
+                        CurrentMacroPhase = MacroPhase.placing;
+                    }
+
                 break;
             case MacroPhase.placing:
                 switch (CurrentTurnState)

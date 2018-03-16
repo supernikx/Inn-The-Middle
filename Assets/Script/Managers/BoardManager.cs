@@ -31,6 +31,9 @@ public class BoardManager : MonoBehaviour
     public DraftManager draftManager;
     public UIManager uiManager;
 
+    public bool factionChosen;
+    public int factionID = 0;
+
     /// <summary>
     /// Funzioni che iscrivono/disiscrivono il boardmanager agli eventi appena viene abilitato/disabilitato
     /// </summary>
@@ -219,7 +222,7 @@ public class BoardManager : MonoBehaviour
                 DeselectPawn();
                 pawnsToPlace--;
                 placingsLeft--;
-                if (placingsLeft == 0)
+                if (placingsLeft == 0 || pawnsToPlace == 0)
                 {
                     turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
                     placingsLeft = 2;
@@ -279,6 +282,26 @@ public class BoardManager : MonoBehaviour
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
+
+    public void MagicChosen()
+    {
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
+        {
+            factionID = 1;
+            factionChosen = true;
+            turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
+        }
+    }
+
+    public void ScienceChosen()
+    {
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
+        {
+            factionID = 2;
+            factionChosen = true;
+            turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
+        }
+    }
 
     /// <summary>
     /// Funzione che toglie il marchio di Kill a tutte le pedine

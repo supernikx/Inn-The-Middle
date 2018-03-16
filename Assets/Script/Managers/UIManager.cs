@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject choosingUi;
     public GameObject gameUIPerspective;
+    public GameObject factionUI;
 
     [Header("Main Menu ")]
     public GameObject mainMenuPanel;
@@ -80,6 +81,7 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(false);
         draftUI.SetActive(false);
         choosingUi.SetActive(false);
+        factionUI.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
 
@@ -170,8 +172,8 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         mainMenuPanel.SetActive(false);
-        draftUI.SetActive(true);
-        bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
+        factionUI.SetActive(true);
+        bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
     }
 
     /// <summary>
