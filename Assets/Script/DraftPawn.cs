@@ -74,7 +74,7 @@ public class DraftPawn : MonoBehaviour
     }
 
 
-    private void OnMouseEnter()
+    /*private void OnMouseEnter()
     {
         if (dm.hasDrafted)
         {
@@ -116,5 +116,5 @@ public class DraftPawn : MonoBehaviour
     private void OnMouseExit()
     {
         BoardManager.Instance.uiManager.tooltipPattern.SetActive(false);
-    }
+    }*/
 }

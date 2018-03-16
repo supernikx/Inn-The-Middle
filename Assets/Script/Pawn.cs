@@ -454,7 +454,7 @@ public class Pawn : MonoBehaviour
             if (BoardManager.Instance.p1pawns <= 0)
             {
                 BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Player 2 wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+                BoardManager.Instance.uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
 
             }
         }
@@ -464,7 +464,7 @@ public class Pawn : MonoBehaviour
             if (BoardManager.Instance.p2pawns <= 0)
             {
                 BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Player 1 wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+                BoardManager.Instance.uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
             }
         }
     }

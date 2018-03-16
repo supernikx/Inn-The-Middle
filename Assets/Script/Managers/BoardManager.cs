@@ -595,12 +595,12 @@ public class BoardManager : MonoBehaviour
         if (p1pawns > p2pawns)
         {
             uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Player 1 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            uiManager.gameResult.text = "Magic wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
         }
         else if (p2pawns > p1pawns)
         {
             uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Player 2 wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            uiManager.gameResult.text = "Science wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
         }
         else if (p1pawns == p2pawns)
         {
@@ -620,12 +620,12 @@ public class BoardManager : MonoBehaviour
             if (p1tiles > p2tiles)
             {
                 uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Player 1 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                uiManager.gameResult.text = "Magic wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
             }
             else if (p2tiles > p1tiles)
             {
                 uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Player 2 wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                uiManager.gameResult.text = "Science wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
             }
             else if (p1tiles == p2tiles)
             {
