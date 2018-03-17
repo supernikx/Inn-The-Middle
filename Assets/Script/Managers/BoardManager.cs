@@ -313,7 +313,7 @@ public class BoardManager : MonoBehaviour
             if (p.killMarker)
             {
                 p.projection.GetComponent<PawnOutline>().eraseRenderer = true;
-                p.projection.GetComponent<PawnOutline>().color = 2;
+                p.projection.GetComponent<PawnOutline>().color = 0;
                 p.killMarker = false;
             }
         }
