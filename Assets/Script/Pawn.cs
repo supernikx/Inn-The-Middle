@@ -11,13 +11,11 @@ public class Pawn : MonoBehaviour
 {
     //variabili pubbliche
     public bool selected, randomized;
-    public Vector3 offset;
     public Player player;
     public Box currentBox;
     public float speed;
-    public Color pawnColor;
-    [HideInInspector]
-    public GameObject projection;
+    //[HideInInspector]
+    //public GameObject projection;
     [Space]
     [Header("Attack Settings")]
     public int activePattern;
@@ -33,13 +31,13 @@ public class Pawn : MonoBehaviour
     private Box projectionTempBox;
     private Transform[][] myboard, enemyboard;
     private PlayerElements myelements;
+    private List<GameObject> graphics;
+    public List<GameObject> projections;
 
     //parte di codice con funzioni private
     private void Awake()
     {
-        mr = GetComponent<MeshRenderer>();
-        projection = transform.GetChild(0).gameObject;
-        projection.GetComponent<PawnOutline>().eraseRenderer = true;
+
     }
 
     // Use this for initialization
@@ -48,9 +46,11 @@ public class Pawn : MonoBehaviour
         selected = false;
         killMarker = false;
         randomized = false;
-        pawnColor = mr.material.color;
         bm = BoardManager.Instance;
         projectionTempBox = currentBox;
+        graphics = new List<GameObject>();
+        projections = new List<GameObject>();
+        SetGraphics();
         SetBoards();
     }
 
@@ -70,6 +70,19 @@ public class Pawn : MonoBehaviour
             myboard = bm.board2;
             enemyboard = bm.board1;
             myelements = bm.player2Elements;
+        }
+    }
+
+    private void SetGraphics()
+    {
+        foreach (Transform child in transform)
+        {
+            GameObject childToAdd = child.gameObject;
+            childToAdd.SetActive(false);
+            graphics.Add(childToAdd);
+            GameObject projectionToAdd = childToAdd.transform.GetChild(1).gameObject;
+            projectionToAdd.GetComponent<PawnOutline>().eraseRenderer = true;
+            projections.Add(projectionToAdd);
         }
     }
 
@@ -202,16 +215,33 @@ public class Pawn : MonoBehaviour
             currentColumn = currentBox.index2;
             currentRow = currentBox.index1;
         }
-        foreach (Pattern a in patterns[activePattern].pattern)
+        if (activePattern == 2)
         {
-            if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
+            int patternindex1 = patterns[activePattern].pattern[0].index1;
+            int patternindex2 = patterns[activePattern].pattern[0].index2;
+            if ((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0))
             {
-                enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().SetAsDefault();
             }
 
-            if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
+            if ((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0))
             {
-                myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                myboard[currentRow - patternindex1 - 1][currentColumn + patternindex2].GetComponent<Box>().SetAsDefault();
+            }
+        }
+        else
+        {
+            foreach (Pattern a in patterns[activePattern].pattern)
+            {
+                if ((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0))
+                {
+                    enemyboard[a.index1 - currentRow][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                }
+
+                if ((currentColumn + a.index2 < myboard[0].Length && currentColumn + a.index2 >= 0) && (currentRow - a.index1 < myboard.Length && currentRow - a.index1 - 1 >= 0))
+                {
+                    myboard[currentRow - a.index1 - 1][currentColumn + a.index2].GetComponent<Box>().SetAsDefault();
+                }
             }
         }
     }
@@ -355,8 +385,8 @@ public class Pawn : MonoBehaviour
                 foreach (Pawn p in pawnsToKill)
                 {
                     p.killMarker = true;
-                    p.projection.GetComponent<PawnOutline>().color = 1;
-                    p.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                    p.projections[p.activePattern].GetComponent<PawnOutline>().color = 1;
+                    p.projections[p.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                 }
                 CustomLogger.Log("Scegli la pedina da uccidere");
                 return false;
@@ -383,7 +413,7 @@ public class Pawn : MonoBehaviour
         {
             transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
             transform.Rotate(new Vector3(0, 90, 0));
-            transform.DOMove(boxToMove.transform.position + offset, speed);
+            transform.DOMove(boxToMove.transform.position, speed);
             DisableMovementBoxes();
             DisableAttackPattern();
             currentBox.free = true;
@@ -419,7 +449,7 @@ public class Pawn : MonoBehaviour
                 transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
                 transform.Rotate(new Vector3(0, 90, 0));
             }
-            projection.transform.position = boxToMove.transform.position + offset;
+            projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
             projectionTempBox = boxToMove;
             ShowAttackPattern();
             ShowMovementBoxes();
@@ -433,7 +463,7 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void ForceMoveProjection()
     {
-        projection.transform.position = transform.position;
+        projections[activePattern].transform.position = new Vector3(transform.position.x, transform.position.y + graphics[activePattern].transform.position.y, transform.position.z);
         projectionTempBox = currentBox;
     }
 
@@ -474,13 +504,13 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void RandomizePattern()
     {
+        graphics[activePattern].SetActive(false);
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
         if (activePattern == 4 || activePattern == 5)
         {
             bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.choosing;
         }
-        mr.material = patterns[activePattern].patternMaterial;
-        pawnColor = mr.material.color;
+        graphics[activePattern].SetActive(true);
         randomized = true;
     }
 
@@ -490,9 +520,9 @@ public class Pawn : MonoBehaviour
     /// <param name="index"></param>
     public void ChangePattern(int index)
     {
+        graphics[activePattern].SetActive(false);
         activePattern = index;
-        mr.material = patterns[activePattern].patternMaterial;
-        pawnColor = mr.material.color;
+        graphics[activePattern].SetActive(true);
     }
     #endregion
 }

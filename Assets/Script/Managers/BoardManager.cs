@@ -201,7 +201,7 @@ public class BoardManager : MonoBehaviour
             if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
-                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
+                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
                 pawnSelected.currentBox = boxclicked;
                 pawnSelected.currentBox.free = false;
                 DeselectPawn();
@@ -216,7 +216,7 @@ public class BoardManager : MonoBehaviour
             else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
-                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position + pawnSelected.offset;
+                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
                 pawnSelected.currentBox = boxclicked;
                 pawnSelected.currentBox.free = false;
                 DeselectPawn();
@@ -312,8 +312,8 @@ public class BoardManager : MonoBehaviour
         {
             if (p.killMarker)
             {
-                p.projection.GetComponent<PawnOutline>().eraseRenderer = true;
-                p.projection.GetComponent<PawnOutline>().color = 0;
+                p.projections[p.activePattern].GetComponent<PawnOutline>().eraseRenderer = true;
+                p.projections[p.activePattern].GetComponent<PawnOutline>().color = 0;
                 p.killMarker = false;
             }
         }
@@ -329,7 +329,6 @@ public class BoardManager : MonoBehaviour
         {
             if (pawnSelected.Attack())
             {
-                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
                 turnManager.ChangeTurn();
             }
@@ -346,7 +345,6 @@ public class BoardManager : MonoBehaviour
         {
             if (pawnSelected.SuperAttack())
             {
-                pawnSelected.GetComponent<Renderer>().material.color = pawnSelected.pawnColor;
                 CustomLogger.Log(pawnSelected.player + " ha attaccato");
                 turnManager.ChangeTurn();
             }
@@ -365,7 +363,7 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
             }
-            pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = true;
+            pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = true;
             pawnSelected.selected = false;
             pawnSelected = null;
 
@@ -430,7 +428,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                            pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                         }
                     }
                     break;
@@ -439,7 +437,7 @@ public class BoardManager : MonoBehaviour
                     {
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowMovementBoxes();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
@@ -450,7 +448,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowAttackPattern();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -461,7 +459,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                         pawnSelected.ShowAttackPattern();
                         pawnSelected.ShowMovementBoxes();
                     }
@@ -496,6 +494,7 @@ public class BoardManager : MonoBehaviour
                     if (pawnSelected != null)
                     {
                         pawnSelected.DisableMovementBoxes();
+                        pawnSelected.DisableAttackPattern();
                         pawnSelected.ForceMoveProjection();
                     }
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
@@ -665,7 +664,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
                 {
                     pawnSelected = p;
-                    pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p1");
                     break;
@@ -679,7 +678,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
                 {
                     pawnSelected = p;
-                    pawnSelected.projection.GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p2");
                     break;
