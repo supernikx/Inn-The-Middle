@@ -421,7 +421,7 @@ public class Pawn : MonoBehaviour
                 currentBox.walkable = true;
             currentBox = boxToMove.GetComponent<Box>();
             currentBox.free = false;
-            ForceMoveProjection();
+            ForceMoveProjection(true);
             return true;
         }
         return false;
@@ -458,10 +458,14 @@ public class Pawn : MonoBehaviour
     /// <summary>
     /// Funzione che forza lo spostamento della proiezione nella casella della pedina corrispondente
     /// </summary>
-    public void ForceMoveProjection()
+    public void ForceMoveProjection(bool keepRotation)
     {
         projections[activePattern].transform.position = new Vector3(transform.position.x, transform.position.y + graphics[activePattern].transform.position.y, transform.position.z);
         projectionTempBox = currentBox;
+        if (!keepRotation)
+        {
+            transform.eulerAngles = startRotation;
+        }
     }
 
     /// <summary>

@@ -362,6 +362,7 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
+                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
             }
             pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = true;
             pawnSelected.selected = false;
@@ -493,11 +494,8 @@ public class BoardManager : MonoBehaviour
                     movementSkipped = true;
                     if (pawnSelected != null)
                     {
-                        pawnSelected.DisableMovementBoxes();
-                        pawnSelected.DisableAttackPattern();
-                        //pawnSelected.ForceMoveProjection();
                         pawnSelected.MoveProjection(pawnSelected.currentBox);
-                        pawnSelected.ShowAttackPattern();
+                        pawnSelected.DisableMovementBoxes();
                     }
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                     CustomLogger.Log("Hai saltato il movimento");

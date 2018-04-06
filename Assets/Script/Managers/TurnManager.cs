@@ -155,14 +155,14 @@ public class TurnManager : MonoBehaviour
                 if (BoardManager.Instance.pawnSelected != null)
                 {
                     BoardManager.Instance.pawnSelected.DisableAttackPattern();
-                }
-                BoardManager.Instance.DeselectPawn();
+                    BoardManager.Instance.DeselectPawn();
+                }               
                 BoardManager.Instance.CheckPhaseControll();
                 break;
             case PlayTurnState.movement:
                 break;
             case PlayTurnState.attack:
-                if (BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
+                if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
                 {
                     ChangeTurn();
                 }
