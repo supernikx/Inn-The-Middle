@@ -495,7 +495,9 @@ public class BoardManager : MonoBehaviour
                     {
                         pawnSelected.DisableMovementBoxes();
                         pawnSelected.DisableAttackPattern();
-                        pawnSelected.ForceMoveProjection();
+                        //pawnSelected.ForceMoveProjection();
+                        pawnSelected.MoveProjection(pawnSelected.currentBox);
+                        pawnSelected.ShowAttackPattern();
                     }
                     turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
                     CustomLogger.Log("Hai saltato il movimento");

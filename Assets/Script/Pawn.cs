@@ -14,8 +14,8 @@ public class Pawn : MonoBehaviour
     public Player player;
     public Box currentBox;
     public float speed;
-    //[HideInInspector]
-    //public GameObject projection;
+    [HideInInspector]
+    public List<GameObject> projections;
     [Space]
     [Header("Attack Settings")]
     public int activePattern;
@@ -27,12 +27,11 @@ public class Pawn : MonoBehaviour
 
     //variabili private
     private BoardManager bm;
-    private MeshRenderer mr;
     private Box projectionTempBox;
     private Transform[][] myboard, enemyboard;
     private PlayerElements myelements;
     private List<GameObject> graphics;
-    public List<GameObject> projections;
+    private Vector3 startRotation;
 
     //parte di codice con funzioni private
     private void Awake()
@@ -48,6 +47,7 @@ public class Pawn : MonoBehaviour
         randomized = false;
         bm = BoardManager.Instance;
         projectionTempBox = currentBox;
+        startRotation = transform.eulerAngles;
         graphics = new List<GameObject>();
         projections = new List<GameObject>();
         SetGraphics();
@@ -177,7 +177,7 @@ public class Pawn : MonoBehaviour
                 enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
             }
 
-            if ((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0))
+            if (((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0)))
             {
                 myboard[currentRow - patternindex1 - 1][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
             }
@@ -186,12 +186,12 @@ public class Pawn : MonoBehaviour
         {
             foreach (Pattern p in patterns[activePattern].pattern)
             {
-                if ((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentRow < enemyboard.Length && p.index1 - currentRow >= 0))
+                if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentRow < enemyboard.Length && p.index1 - currentRow >= 0)) && enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>() != currentBox)
                 {
                     enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
 
-                if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentRow - p.index1 < myboard.Length && currentRow - p.index1 - 1 >= 0))
+                if (((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentRow - p.index1 < myboard.Length && currentRow - p.index1 - 1 >= 0)) && myboard[currentRow - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>() != currentBox)
                 {
                     myboard[currentRow - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>().ShowBoxActivePattern();
                 }
@@ -412,7 +412,7 @@ public class Pawn : MonoBehaviour
         if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1))
         {
             transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
-            transform.Rotate(new Vector3(0, 90, 0));
+            transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
             transform.DOMove(boxToMove.transform.position, speed);
             DisableMovementBoxes();
             DisableAttackPattern();
@@ -439,15 +439,12 @@ public class Pawn : MonoBehaviour
             DisableAttackPattern();
             if (boxToMove == currentBox)
             {
-                if (player == Player.player1)
-                    transform.eulerAngles = new Vector3(0, 180, 0);
-                else if (player == Player.player2)
-                    transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = startRotation;
             }
             else
             {
                 transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
-                transform.Rotate(new Vector3(0, 90, 0));
+                transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
             }
             projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
             projectionTempBox = boxToMove;
