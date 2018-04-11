@@ -33,12 +33,6 @@ public class Pawn : MonoBehaviour
     private List<GameObject> graphics;
     private Vector3 startRotation;
 
-    //parte di codice con funzioni private
-    private void Awake()
-    {
-
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -81,7 +75,7 @@ public class Pawn : MonoBehaviour
             childToAdd.SetActive(false);
             graphics.Add(childToAdd);
             GameObject projectionToAdd = childToAdd.transform.GetChild(1).gameObject;
-            projectionToAdd.GetComponent<PawnOutline>().eraseRenderer = true;
+            projectionToAdd.SetActive(false);
             projections.Add(projectionToAdd);
         }
     }
@@ -385,8 +379,9 @@ public class Pawn : MonoBehaviour
                 foreach (Pawn p in pawnsToKill)
                 {
                     p.killMarker = true;
-                    p.projections[p.activePattern].GetComponent<PawnOutline>().color = 1;
-                    p.projections[p.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                    //Color finalColor = Color.red * Mathf.LinearToGammaSpace(0.25f);
+                    //p.projections[p.activePattern].GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", finalColor);           
+                    p.projections[p.activePattern].SetActive(true);
                 }
                 CustomLogger.Log("Scegli la pedina da uccidere");
                 return false;
@@ -506,12 +501,14 @@ public class Pawn : MonoBehaviour
     public void RandomizePattern()
     {
         graphics[activePattern].SetActive(false);
+        projections[activePattern].SetActive(false);
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
         if (activePattern == 4 || activePattern == 5)
         {
             bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.choosing;
         }
         graphics[activePattern].SetActive(true);
+        projections[activePattern].SetActive(true);
         randomized = true;
     }
 

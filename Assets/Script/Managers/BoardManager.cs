@@ -312,8 +312,9 @@ public class BoardManager : MonoBehaviour
         {
             if (p.killMarker)
             {
-                p.projections[p.activePattern].GetComponent<PawnOutline>().eraseRenderer = true;
-                p.projections[p.activePattern].GetComponent<PawnOutline>().color = 0;
+                p.projections[p.activePattern].SetActive(false);
+                //Color finalColor = Color.white * Mathf.LinearToGammaSpace(0.25f);
+                //p.projections[p.activePattern].GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", finalColor);
                 p.killMarker = false;
             }
         }
@@ -364,7 +365,7 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
             }
-            pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = true;
+            pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
             pawnSelected.selected = false;
             pawnSelected = null;
 
@@ -384,7 +385,7 @@ public class BoardManager : MonoBehaviour
                 {
                     if (CheckFreeBoxes(pawns[i]))
                     {
-                        CustomLogger.Log(pawns[i] + " è in casella !walkable");
+                        CustomLogger.Log(pawns[i] + " è in casella !walkable");          
                         PawnSelected(pawns[i]);
                         if (pawns[i].randomized)
                         {
@@ -429,7 +430,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                            pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         }
                     }
                     break;
@@ -438,7 +439,7 @@ public class BoardManager : MonoBehaviour
                     {
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowMovementBoxes();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
@@ -449,7 +450,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowAttackPattern();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -460,7 +461,7 @@ public class BoardManager : MonoBehaviour
                         }
                         selected.selected = true;
                         pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowAttackPattern();
                         pawnSelected.ShowMovementBoxes();
                     }
@@ -664,7 +665,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
                 {
                     pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p1");
                     break;
@@ -678,7 +679,7 @@ public class BoardManager : MonoBehaviour
                 if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
                 {
                     pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].GetComponent<PawnOutline>().eraseRenderer = false;
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                     foundPawn = true;
                     CustomLogger.Log("trovata una nel p2");
                     break;
