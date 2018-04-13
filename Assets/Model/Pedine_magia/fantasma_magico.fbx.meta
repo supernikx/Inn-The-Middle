@@ -8,16 +8,28 @@ ModelImporter:
     100000: corpo
     100002: //RootNode
     100004: Maschera
+    100006: fantasma:corpo
+    100008: fantasma:Maschera
     400000: corpo
     400002: //RootNode
     400004: Maschera
+    400006: fantasma:corpo
+    400008: fantasma:Maschera
     2100000: M_Fantasma
+    2100002: M_fantasma
+    2100004: M_mask
     2300000: corpo
     2300002: Maschera
+    2300004: fantasma:corpo
+    2300006: fantasma:Maschera
     3300000: corpo
     3300002: Maschera
+    3300004: fantasma:corpo
+    3300006: fantasma:Maschera
     4300000: corpo
     4300002: Maschera
+    4300004: fantasma:corpo
+    4300006: fantasma:Maschera
     9500000: //RootNode
   externalObjects: {}
   materials:
