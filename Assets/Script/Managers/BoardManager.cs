@@ -398,6 +398,7 @@ public class BoardManager : MonoBehaviour
                     {
                         CustomLogger.Log(pawns[i] + " non ha caselle libere adiacenti");
                         pawns[i].KillPawn(pawns[i]);
+                        DeselectPawn();
                         CheckPhaseControll();
                     }
                 }
