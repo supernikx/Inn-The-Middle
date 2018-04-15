@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4133525387818052}
   - component: {fileID: 95441906251433906}
+  - component: {fileID: 114020031946206770}
   m_Layer: 0
   m_Name: Golem_magico
   m_TagString: Untagged
@@ -173,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4138030949888458}
   - component: {fileID: 95638478271018450}
+  - component: {fileID: 114599720226665632}
   m_Layer: 0
   m_Name: Fantasma_magico
   m_TagString: Untagged
@@ -438,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1458578885254838
 GameObject:
   m_ObjectHideFlags: 1
@@ -451,6 +453,7 @@ GameObject:
   - component: {fileID: 23400632017331566}
   - component: {fileID: 95408540858177502}
   - component: {fileID: 64973337087084572}
+  - component: {fileID: 114814496346571504}
   m_Layer: 0
   m_Name: Calderone_magico
   m_TagString: Untagged
@@ -1010,7 +1013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1844073866970042
 GameObject:
   m_ObjectHideFlags: 1
@@ -1061,7 +1064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1883305207835148
 GameObject:
   m_ObjectHideFlags: 1
@@ -1183,7 +1186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1993770994947900
 GameObject:
   m_ObjectHideFlags: 1
@@ -1193,6 +1196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4454894065237676}
   - component: {fileID: 95608026148383334}
+  - component: {fileID: 114830769183312340}
   m_Layer: 0
   m_Name: Ragno_magico
   m_TagString: Untagged
@@ -1541,7 +1545,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1555740142215194}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.8, y: 0, z: 0}
+  m_LocalPosition: {x: -10.8, y: 0, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4092247681422144}
@@ -5072,6 +5076,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114020031946206770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124415502362682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b3905dca6afbc40a55773d585d9b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114501527523635136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5083,7 +5098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc47ee3d7bcd81143aa5f95b8b664419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 1
+  selected: 0
   randomized: 0
   player: 0
   currentBox: {fileID: 0}
@@ -5104,3 +5119,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c29e26ad8ddf4d428573c97d0c5e0fa, type: 2}
   - {fileID: 11400000, guid: 97e4e577d2bce1e4988f5c8e3d5af0be, type: 2}
   killMarker: 0
+--- !u!114 &114599720226665632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1155999472527954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf1c3f183188b74f8c32975ba38e663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114814496346571504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458578885254838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0031a8951155e4bb9107623ef011c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114830769183312340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993770994947900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c7ccbf093603024db17174c4bdbed59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

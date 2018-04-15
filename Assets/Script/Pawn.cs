@@ -9,6 +9,13 @@ using UnityEngine.EventSystems;
 
 public class Pawn : MonoBehaviour
 {
+    #region Events
+
+    public delegate void PawnEvent();
+    public PawnEvent OnAttackEnd;
+
+    #endregion
+
     //variabili pubbliche
     public bool selected, randomized;
     public Player player;
@@ -32,6 +39,7 @@ public class Pawn : MonoBehaviour
     private PlayerElements myelements;
     private List<GameObject> graphics;
     private Vector3 startRotation;
+    private List<IPawnAnimations> animators;
 
     // Use this for initialization
     void Start()
@@ -44,6 +52,7 @@ public class Pawn : MonoBehaviour
         startRotation = transform.eulerAngles;
         graphics = new List<GameObject>();
         projections = new List<GameObject>();
+        animators = new List<IPawnAnimations>();
         SetGraphics();
         SetBoards();
     }
@@ -74,6 +83,7 @@ public class Pawn : MonoBehaviour
             GameObject childToAdd = child.gameObject;
             childToAdd.SetActive(false);
             graphics.Add(childToAdd);
+            animators.Add(childToAdd.transform.GetChild(0).GetComponent<IPawnAnimations>());
             GameObject projectionToAdd = childToAdd.transform.GetChild(1).gameObject;
             projectionToAdd.SetActive(false);
             projections.Add(projectionToAdd);
@@ -244,6 +254,8 @@ public class Pawn : MonoBehaviour
 
     #region Attack
 
+    List<Box> patternBox = new List<Box>();
+
     /// <summary>
     /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
     /// </summary>
@@ -287,7 +299,29 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
-    /// <summary>
+    public void AttackBehaviour()
+    {
+        DisableAttackPattern();
+        BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
+        int currentColumn = currentBox.index2;
+        foreach (Pattern p in patterns[activePattern].pattern)
+        {
+            for (int i = 0; i < bm.pawns.Count; i++)
+            {
+                if (bm.pawns[i].player != player)
+                {
+                    if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0)) && ((bm.pawns[i].currentBox.index1 == p.index1 - currentBox.index1) && (bm.pawns[i].currentBox.index2 == currentColumn + p.index2)) && enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>().walkable)
+                    {
+                        patternBox.Add(bm.pawns[i].currentBox);
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                    }
+                }
+            }
+        }
+        animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
+    }
+
+    /*/// <summary>
     /// Funzione che effettua l'attaco per tutto il pattern se è presente una pedina avversaria al suo interno, ritorna true se l'attacco è andato a buon fine o false se non è avvenuto
     /// </summary>
     /// <returns></returns>
@@ -337,7 +371,7 @@ public class Pawn : MonoBehaviour
         }
         CustomLogger.Log("nope");
         return false;
-    }
+    }*/
 
     /// <summary>
     /// Funzione che effettua l'attaco per tutto il pattern se è presente una pedina avversaria al suo interno distruggendo la prima, ritorna true se l'attacco è andato a buon fine o false se non è avvenuto
@@ -388,7 +422,75 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    public void OnAnimationEnd()
+    {
+        foreach (Box b in patternBox)
+        {
+            for (int i = 0; i < bm.pawns.Count; i++)
+            {
+                if (bm.pawns[i].player != player && bm.pawns[i].currentBox == b)
+                {
+                    switch (b.element)
+                    {
+                        case Element.Purple:
+                        case Element.Orange:
+                        case Element.Azure:
+                            myelements.AddElement(b.element);
+                            b.AttackBox();
+                            break;
+                        case Element.NeutralWhite:
+                            b.ChangeNeutralType();
+                            break;
+                        case Element.NeutralBlack:
+                            KillPawn(bm.pawns[i]);
+                            b.ChangeNeutralType();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        patternBox.Clear();
+        if (OnAttackEnd != null)
+            OnAttackEnd();
+    }
+
+    /// <summary>
+    /// Funzione che prende in input una pedina e la distrugge disattivando tutte le funzioni necessarie
+    /// </summary>
+    /// <param name="pawnToKill"></param>
+    public void KillPawn(Pawn pawnToKill)
+    {
+        pawnToKill.DisableAttackPattern();
+        pawnToKill.currentBox.free = true;
+        pawnToKill.currentBox = null;
+        DestroyImmediate(pawnToKill.gameObject);
+
+        if (pawnToKill.player == Player.player1)
+        {
+            BoardManager.Instance.p1pawns--;
+            if (BoardManager.Instance.p1pawns <= 0)
+            {
+                BoardManager.Instance.uiManager.winScreen.SetActive(true);
+                BoardManager.Instance.uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+
+            }
+        }
+        else if (pawnToKill.player == Player.player2)
+        {
+            BoardManager.Instance.p2pawns--;
+            if (BoardManager.Instance.p2pawns <= 0)
+            {
+                BoardManager.Instance.uiManager.winScreen.SetActive(true);
+                BoardManager.Instance.uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
+            }
+        }
+    }
+
     #endregion
+
+    #region Movement
 
     /// <summary>
     /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
@@ -463,37 +565,7 @@ public class Pawn : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Funzione che prende in input una pedina e la distrugge disattivando tutte le funzioni necessarie
-    /// </summary>
-    /// <param name="pawnToKill"></param>
-    public void KillPawn(Pawn pawnToKill)
-    {
-        pawnToKill.DisableAttackPattern();
-        pawnToKill.currentBox.free = true;
-        pawnToKill.currentBox = null;
-        DestroyImmediate(pawnToKill.gameObject);
-
-        if (pawnToKill.player == Player.player1)
-        {
-            BoardManager.Instance.p1pawns--;
-            if (BoardManager.Instance.p1pawns <= 0)
-            {
-                BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
-
-            }
-        }
-        else if (pawnToKill.player == Player.player2)
-        {
-            BoardManager.Instance.p2pawns--;
-            if (BoardManager.Instance.p2pawns <= 0)
-            {
-                BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
-            }
-        }
-    }
+    #endregion
 
     /// <summary>
     /// Funzione che randomizza il pattern della pedina e gli assegna il colore corrispondente
@@ -502,6 +574,7 @@ public class Pawn : MonoBehaviour
     {
         graphics[activePattern].SetActive(false);
         projections[activePattern].SetActive(false);
+        UnsubscribeAnimationEvent();
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
         if (activePattern == 4 || activePattern == 5)
         {
@@ -509,6 +582,7 @@ public class Pawn : MonoBehaviour
         }
         graphics[activePattern].SetActive(true);
         projections[activePattern].SetActive(true);
+        SubscribeAnimationEvent();
         randomized = true;
     }
 
@@ -519,8 +593,23 @@ public class Pawn : MonoBehaviour
     public void ChangePattern(int index)
     {
         graphics[activePattern].SetActive(false);
+        UnsubscribeAnimationEvent();
         activePattern = index;
         graphics[activePattern].SetActive(true);
+        SubscribeAnimationEvent();
     }
+
+    private void SubscribeAnimationEvent()
+    {
+        if (animators[activePattern] != null)
+            animators[activePattern].OnAttackAnimationEnd += OnAnimationEnd;
+    }
+
+    private void UnsubscribeAnimationEvent()
+    {
+        if (animators[activePattern] != null)
+            animators[activePattern].OnAttackAnimationEnd -= OnAnimationEnd;
+    }
+
     #endregion
 }

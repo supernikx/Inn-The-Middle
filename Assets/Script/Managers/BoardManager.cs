@@ -328,12 +328,23 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null && !superAttackPressed && !pause)
         {
-            if (pawnSelected.Attack())
+            if (pawnSelected.CheckAttackPattern())
             {
-                CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                turnManager.ChangeTurn();
+                pawnSelected.OnAttackEnd += OnAttackEnd;
+                pawnSelected.AttackBehaviour();
+            }
+            else
+            {
+                Debug.Log("nope");
             }
         }
+    }
+
+    public void OnAttackEnd()
+    {
+        pawnSelected.OnAttackEnd -= OnAttackEnd;
+        CustomLogger.Log(pawnSelected.player + " ha attaccato");
+        turnManager.ChangeTurn();
     }
 
     /// <summary>

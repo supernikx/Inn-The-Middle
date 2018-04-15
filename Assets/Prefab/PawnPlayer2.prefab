@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 23857504326075466}
   - component: {fileID: 95764739009999380}
   - component: {fileID: 64676199449015632}
+  - component: {fileID: 114001602995593418}
   m_Layer: 0
   m_Name: Ragno_robot
   m_TagString: Untagged
@@ -498,7 +499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1420947417746154
 GameObject:
   m_ObjectHideFlags: 1
@@ -596,6 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4427693731411370}
   - component: {fileID: 95903985422942846}
+  - component: {fileID: 114125806575204862}
   m_Layer: 0
   m_Name: Robot_lame
   m_TagString: Untagged
@@ -630,6 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4447265835641490}
   - component: {fileID: 95542298020582512}
+  - component: {fileID: 114229440920032982}
   m_Layer: 0
   m_Name: Robot_Humanoid
   m_TagString: Untagged
@@ -646,6 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360034588394342}
   - component: {fileID: 95142664512199680}
+  - component: {fileID: 114083336247573172}
   m_Layer: 0
   m_Name: Robot_Elicottero
   m_TagString: Untagged
@@ -753,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1533735656495646
 GameObject:
   m_ObjectHideFlags: 1
@@ -1115,7 +1119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1753092808875090
 GameObject:
   m_ObjectHideFlags: 1
@@ -2358,7 +2362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1397320028165138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28, y: 0, z: 6.115482}
+  m_LocalPosition: {x: 28, y: 0, z: 18.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931592044931508}
@@ -6026,6 +6030,50 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114001602995593418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386162642004368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31436138c9f9c445b7bec260744ba37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114083336247573172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510571560596392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ebfdf0fb1baea44bea119ef5e4d8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114125806575204862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457947957569064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1c0a7d5e9518d469e137fd684cac62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114229440920032982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1479083653611534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287428dae359be44abf11270cd6ac483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114997601761707764
 MonoBehaviour:
   m_ObjectHideFlags: 1
