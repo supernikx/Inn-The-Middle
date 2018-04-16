@@ -6,12 +6,87 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Calderone
+    100004: Center
+    100006: Coperchio
+    100008: Copercho
+    100010: Cucchiaio
+    100012: ikHandle1
+    100014: ikHandle2
+    100016: ikHandle3
+    100018: ikHandle4
+    100020: L_Front_Leg1
+    100022: L_Front_Leg2
+    100024: L_Front_Leg3
+    100026: L_Front_Leg4
+    100028: L_Rear_Leg1
+    100030: L_Rear_Leg2
+    100032: L_Rear_Leg3
+    100034: L_Rear_Leg4
+    100036: locator1
+    100038: nurbsCircle1
+    100040: nurbsCircle2
+    100042: nurbsCircle3
+    100044: nurbsCircle4
+    100046: nurbsCircle6
+    100048: R_Front_Leg1
+    100050: R_Front_Leg2
+    100052: R_Front_Leg3
+    100054: R_Rear_Leg1
+    100056: R_Rear_Leg2
+    100058: R_Rear_Leg3
+    100060: R_Rear_Leg4
+    100062: transform1
     400000: //RootNode
+    400002: Calderone
+    400004: Center
+    400006: Coperchio
+    400008: Copercho
+    400010: Cucchiaio
+    400012: ikHandle1
+    400014: ikHandle2
+    400016: ikHandle3
+    400018: ikHandle4
+    400020: L_Front_Leg1
+    400022: L_Front_Leg2
+    400024: L_Front_Leg3
+    400026: L_Front_Leg4
+    400028: L_Rear_Leg1
+    400030: L_Rear_Leg2
+    400032: L_Rear_Leg3
+    400034: L_Rear_Leg4
+    400036: locator1
+    400038: nurbsCircle1
+    400040: nurbsCircle2
+    400042: nurbsCircle3
+    400044: nurbsCircle4
+    400046: nurbsCircle6
+    400048: R_Front_Leg1
+    400050: R_Front_Leg2
+    400052: R_Front_Leg3
+    400054: R_Rear_Leg1
+    400056: R_Rear_Leg2
+    400058: R_Rear_Leg3
+    400060: R_Rear_Leg4
+    400062: transform1
     2100000: M_Calderone
+    2100002: M_Cucchiaio
+    2100004: M_Pozione
     2300000: //RootNode
     3300000: //RootNode
     4300000: calderone
+    4300002: Cucchiaio
+    4300004: Copercho
+    4300006: Calderone
+    7400000: Idle
+    7400002: Move
+    7400004: Attack
+    7400006: Hit
+    7400008: Death
     9500000: //RootNode
+    13700000: Calderone
+    13700002: Copercho
+    13700004: Cucchiaio
   externalObjects: {}
   materials:
     importMaterials: 1

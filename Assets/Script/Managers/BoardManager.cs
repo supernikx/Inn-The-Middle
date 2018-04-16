@@ -324,14 +324,14 @@ public class BoardManager : MonoBehaviour
     /// Funzione che richiama la funzione Attack della pawnselected e se avviene l'attacco passa il turno
     /// </summary>
     /// <param name="boxclicked"></param>
-    public void Attack()
+    public void Attack(bool superAttack)
     {
         if (pawnSelected != null && !superAttackPressed && !pause)
         {
             if (pawnSelected.CheckAttackPattern())
             {
                 pawnSelected.OnAttackEnd += OnAttackEnd;
-                pawnSelected.AttackBehaviour();
+                pawnSelected.AttackBehaviour(superAttack);
             }
             else
             {
@@ -348,19 +348,14 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che richiama la funzione SuperAttack della pawnselected e se avviene l'attacco passa il turno
+    /// Funzione che prende in input una pedina con il bool killMarker=true e la uccide
     /// </summary>
-    /// <param name="boxclicked"></param>
-    public void SuperAttack()
+    /// <param name="pawnToKill"></param>
+    public void KillPawnMarked(Pawn pawnToKill)
     {
-        if (pawnSelected != null && !superAttackPressed && !pause)
-        {
-            if (pawnSelected.SuperAttack())
-            {
-                CustomLogger.Log(pawnSelected.player + " ha attaccato");
-                turnManager.ChangeTurn();
-            }
-        }
+        pawnSelected.KillPawn(pawnToKill);
+        UnmarkKillPawns();
+        pawnSelected.OnAttackEnd();
     }
 
     /// <summary>
@@ -480,18 +475,6 @@ public class BoardManager : MonoBehaviour
                     break;
             }
         }
-    }
-
-    /// <summary>
-    /// Funzione che prende in input una pedina con il bool killMarker=true e la uccide
-    /// </summary>
-    /// <param name="pawnToKill"></param>
-    public void KillPawnMarked(Pawn pawnToKill)
-    {
-        pawnSelected.KillPawn(pawnToKill);
-        UnmarkKillPawns();
-        CustomLogger.Log(pawnSelected.player + " ha attaccato");
-        turnManager.ChangeTurn();
     }
 
     /// <summary>

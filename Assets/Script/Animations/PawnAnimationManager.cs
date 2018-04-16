@@ -29,17 +29,17 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
     public event PawnAnimationEvents.Events OnDeathAnimationEnd;
     public event PawnAnimationEvents.Events OnDamagedAnimationEnd;
 
-    public void OnAttackEnd()
+    public virtual void OnAttackEnd()
     {
         if (OnAttackAnimationEnd != null)
             OnAttackAnimationEnd();
     }
-    public void OnDeathEnd()
+    public virtual void OnDeathEnd()
     {
         if (OnDeathAnimationEnd != null)
             OnDeathAnimationEnd();
     }
-    public void OnDamagedEnd()
+    public virtual void OnDamagedEnd()
     {
         if (OnDamagedAnimationEnd != null)
             OnDamagedAnimationEnd();
