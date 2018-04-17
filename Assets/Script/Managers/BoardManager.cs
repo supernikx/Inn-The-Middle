@@ -110,41 +110,27 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    #region Movement
+
     /// <summary>
     /// Funzione che obbliga il giocatore a muoversi durante la fase di check non deselezionando mai la pedina finchè non si è mossa in una delle caselle disponibili
     /// </summary>
     /// <param name="boxclicked"></param>
-    private void MovementCheckPhase(Box boxclicked)
+    private void Movement(Box boxclicked, bool checkphase)
     {
-        if (CheckFreeBox(boxclicked))
+        if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
         {
-            if (pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (CheckFreeBox(boxclicked) && pawnSelected.CheckMovementPattern(boxclicked))
             {
-                if (pawnSelected.Move(boxclicked))
+                if (checkphase)
                 {
-                    CustomLogger.Log(pawnSelected.player + " si è mosso");
-                    pawnSelected.randomized = false;
-                    DeselectPawn();
-                    CheckPhaseControll();
+                    pawnSelected.OnMovementEnd += OnMovementCheckEnd;
                 }
                 else
                 {
-                    CustomLogger.Log("Casella non valida");
+                    pawnSelected.OnMovementEnd += OnMovementEnd;
                 }
-            }
-            else if (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-            {
-                if (pawnSelected.Move(boxclicked))
-                {
-                    CustomLogger.Log(pawnSelected.player + " si è mosso");
-                    pawnSelected.randomized = false;
-                    DeselectPawn();
-                    CheckPhaseControll();
-                }
-                else
-                {
-                    CustomLogger.Log("Casella non valida");
-                }
+                pawnSelected.Move(boxclicked);
             }
             else
             {
@@ -157,37 +143,22 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Funzione che passandogli la casella cliccata fa i primi controlli relativi al turno e alla fase del turno per poi passare i dati della casella alla funzione Movement della classe pawn
-    /// se il movimento va a buon fine cambia la fase del turno da movimento ad attacco
-    /// </summary>
-    /// <param name="boxclicked"></param>
-    private void Movement(Box boxclicked)
+    private void OnMovementCheckEnd()
     {
-        if (CheckFreeBox(boxclicked))
-        {
-            if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
-            {
-                if (pawnSelected.Move(boxclicked))
-                {
-                    CustomLogger.Log(pawnSelected.player + " si è mosso");
-                    pawnSelected.ShowAttackPattern();
-                    turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
-                }
-                else
-                {
-                    DeselectPawn();
-                }
-            }
-            else
-            {
-                DeselectPawn();
-            }
-        }
-        else
-        {
-            DeselectPawn();
-        }
+        pawnSelected.OnMovementEnd -= OnMovementCheckEnd;
+        CustomLogger.Log(pawnSelected.player + " si è mosso");
+        pawnSelected.randomized = false;
+        DeselectPawn();
+        turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+        CheckPhaseControll();
+    }
+
+    private void OnMovementEnd()
+    {
+        CustomLogger.Log(pawnSelected.player + " si è mosso");
+        pawnSelected.OnMovementEnd -= OnMovementEnd;
+        pawnSelected.ShowAttackPattern();
+        turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
     }
 
     /// <summary>
@@ -231,54 +202,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
-    /// se è libera ritorna true, altrimenti se è occupata ritorna false
-    /// </summary>
-    /// <param name="boxclicked"></param>
-    /// <returns></returns>
-    private bool CheckFreeBox(Box boxclicked)
-    {
-        if (boxclicked.walkable && boxclicked.free)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
-    /// se è libera ritorna true, altrimenti se è occupata ritorna false
-    /// </summary>
-    /// <param name="boxclicked"></param>
-    /// <returns></returns>
-    private bool CheckFreeBoxes(Pawn pawnToCheck)
-    {
-        Transform[][] boardToUse;
-        Box currentBox = pawnToCheck.currentBox;
-        if (pawnToCheck.player == Player.player1)
-        {
-            boardToUse = board1;
-        }
-        else
-        {
-            boardToUse = board2;
-        }
-
-        for (int index1 = 0; index1 < boardToUse.Length; index1++)
-        {
-            for (int index2 = 0; index2 < boardToUse[0].Length; index2++)
-            {
-                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1)
-                    && boardToUse[index1][index2].GetComponent<Box>() != currentBox && CheckFreeBox(boardToUse[index1][index2].GetComponent<Box>()))
-                {
-                    return true;
-                }
-            }
-        }
-        CustomLogger.Log("Non c'è una casella libera");
-        return false;
-    }
+    #endregion
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
@@ -302,6 +226,8 @@ public class BoardManager : MonoBehaviour
             turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
         }
     }
+
+    #region Attack
 
     /// <summary>
     /// Funzione che toglie il marchio di Kill a tutte le pedine
@@ -358,25 +284,9 @@ public class BoardManager : MonoBehaviour
         pawnSelected.OnAttackEnd();
     }
 
-    /// <summary>
-    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
-    /// </summary>
-    public void DeselectPawn()
-    {
-        if (pawnSelected != null)
-        {
-            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
-            {
-                pawnSelected.DisableMovementBoxes();
-                pawnSelected.DisableAttackPattern();
-                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
-            }
-            pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
-            pawnSelected.selected = false;
-            pawnSelected = null;
+    #endregion
 
-        }
-    }
+    #region Check
 
     /// <summary>
     /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi
@@ -391,7 +301,7 @@ public class BoardManager : MonoBehaviour
                 {
                     if (CheckFreeBoxes(pawns[i]))
                     {
-                        CustomLogger.Log(pawns[i] + " è in casella !walkable");          
+                        CustomLogger.Log(pawns[i] + " è in casella !walkable");
                         PawnSelected(pawns[i]);
                         if (pawns[i].randomized)
                         {
@@ -411,6 +321,96 @@ public class BoardManager : MonoBehaviour
             }
             DeselectPawn();
             turnManager.CurrentTurnState = TurnManager.PlayTurnState.movement;
+        }
+    }
+
+    /// <summary>
+    /// Controlla se sono presenti delle pedine da scegliere (bianche/nere) e ritorna true se ci sono o false se non ci sono
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckPawnToChoose()
+    {
+        bool foundPawn = false;
+        foreach (Pawn p in pawns)
+        {
+            if (p.activePattern == 4 || p.activePattern == 5)
+            {
+                foundPawn = true;
+            }
+        }
+        return foundPawn;
+    }
+
+    /// <summary>
+    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
+    /// se è libera ritorna true, altrimenti se è occupata ritorna false
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    /// <returns></returns>
+    private bool CheckFreeBox(Box boxclicked)
+    {
+        if (boxclicked.walkable && boxclicked.free)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
+    /// se è libera ritorna true, altrimenti se è occupata ritorna false
+    /// </summary>
+    /// <param name="boxclicked"></param>
+    /// <returns></returns>
+    private bool CheckFreeBoxes(Pawn pawnToCheck)
+    {
+        Transform[][] boardToUse;
+        Box currentBox = pawnToCheck.currentBox;
+        if (pawnToCheck.player == Player.player1)
+        {
+            boardToUse = board1;
+        }
+        else
+        {
+            boardToUse = board2;
+        }
+
+        for (int index1 = 0; index1 < boardToUse.Length; index1++)
+        {
+            for (int index2 = 0; index2 < boardToUse[0].Length; index2++)
+            {
+                if ((index1 == currentBox.index1 + 1 || index1 == currentBox.index1 - 1 || index1 == currentBox.index1) && (index2 == currentBox.index2 || index2 == currentBox.index2 + 1 || index2 == currentBox.index2 - 1)
+                    && boardToUse[index1][index2].GetComponent<Box>() != currentBox && CheckFreeBox(boardToUse[index1][index2].GetComponent<Box>()))
+                {
+                    return true;
+                }
+            }
+        }
+        CustomLogger.Log("Non c'è una casella libera");
+        return false;
+    }
+
+    #endregion
+
+    #region Pawn
+
+    /// <summary>
+    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
+    /// </summary>
+    public void DeselectPawn()
+    {
+        if (pawnSelected != null)
+        {
+            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+            {
+                pawnSelected.DisableMovementBoxes();
+                pawnSelected.DisableAttackPattern();
+                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
+            }
+            pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
+            pawnSelected.selected = false;
+            pawnSelected = null;
+
         }
     }
 
@@ -478,6 +478,89 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
+    /// </summary>
+    public void SetPawnsPattern()
+    {
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < pawns.Count; i++)
+        {
+            if (pawns[i].player == Player.player1)
+            {
+                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
+                j++;
+            }
+            else if (pawns[i].player == Player.player2)
+            {
+                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
+                k++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Imposta la pedina di cui bisogna scegliere il pattern in base al turno del giocatore
+    /// </summary>
+    public void SetPawnToChoose()
+    {
+        bool foundPawn = false;
+        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        {
+            foreach (Pawn p in pawns)
+            {
+                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
+                {
+                    pawnSelected = p;
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                    foundPawn = true;
+                    CustomLogger.Log("trovata una nel p1");
+                    break;
+                }
+            }
+        }
+        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        {
+            foreach (Pawn p in pawns)
+            {
+                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
+                {
+                    pawnSelected = p;
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                    foundPawn = true;
+                    CustomLogger.Log("trovata una nel p2");
+                    break;
+                }
+            }
+        }
+        if (foundPawn)
+            return;
+        turnManager.ChangeTurn();
+        CustomLogger.Log("Cambio turno");
+    }
+
+    /// <summary>
+    /// Funzione che imposta il pattern della selectedPawn con il valore passato in input (usata quando viene premuto il pulsante del rispettivo colore)
+    /// </summary>
+    /// <param name="patternIndex"></param>
+    public void ChoosePawnPattern(int patternIndex)
+    {
+        pawnSelected.ChangePattern(patternIndex);
+        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        {
+            DeselectPawn();
+            turnManager.ChangeTurn();
+        }
+        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+        {
+            uiManager.choosingUi.SetActive(false);
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+        }
+    }
+
+    #endregion
+
+    /// <summary>
     /// Funzione che salta la fase d'attacco del player corrente e passa il turno
     /// </summary>
     public void ButtonFunctions()
@@ -542,11 +625,14 @@ public class BoardManager : MonoBehaviour
                     case TurnManager.PlayTurnState.choosing:
                         CustomLogger.Log("Devi prima scegliere il pattern");
                         break;
+                    case TurnManager.PlayTurnState.animation:
+                        Debug.Log("Animazione in corso");
+                        break;
                     case TurnManager.PlayTurnState.check:
-                        MovementCheckPhase(boxclicked);
+                        Movement(boxclicked,true);
                         break;
                     case TurnManager.PlayTurnState.movement:
-                        Movement(boxclicked);
+                        Movement(boxclicked,false);
                         break;
                     case TurnManager.PlayTurnState.attack:
                         CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
@@ -555,28 +641,6 @@ public class BoardManager : MonoBehaviour
                         DeselectPawn();
                         break;
                 }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Funzione che setta il pattern delle pedine a seconda della scelta fatta nella fase di draft
-    /// </summary>
-    public void SetPawnsPattern()
-    {
-        int j = 0;
-        int k = 0;
-        for (int i = 0; i < pawns.Count; i++)
-        {
-            if (pawns[i].player == Player.player1)
-            {
-                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
-                j++;
-            }
-            else if (pawns[i].player == Player.player2)
-            {
-                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
-                k++;
             }
         }
     }
@@ -630,81 +694,6 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Controlla se sono presenti delle pedine da scegliere (bianche/nere) e ritorna true se ci sono o false se non ci sono
-    /// </summary>
-    /// <returns></returns>
-    public bool CheckPawnToChoose()
-    {
-        bool foundPawn = false;
-        foreach (Pawn p in pawns)
-        {
-            if (p.activePattern == 4 || p.activePattern == 5)
-            {
-                foundPawn = true;
-            }
-        }
-        return foundPawn;
-    }
-
-    /// <summary>
-    /// Imposta la pedina di cui bisogna scegliere il pattern in base al turno del giocatore
-    /// </summary>
-    public void SetPawnToChoose()
-    {
-        bool foundPawn = false;
-        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
-        {
-            foreach (Pawn p in pawns)
-            {
-                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
-                {
-                    pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                    foundPawn = true;
-                    CustomLogger.Log("trovata una nel p1");
-                    break;
-                }
-            }
-        }
-        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-        {
-            foreach (Pawn p in pawns)
-            {
-                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
-                {
-                    pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                    foundPawn = true;
-                    CustomLogger.Log("trovata una nel p2");
-                    break;
-                }
-            }
-        }
-        if (foundPawn)
-            return;
-        turnManager.ChangeTurn();
-        CustomLogger.Log("Cambio turno");
-    }
-
-    /// <summary>
-    /// Funzione che imposta il pattern della selectedPawn con il valore passato in input (usata quando viene premuto il pulsante del rispettivo colore)
-    /// </summary>
-    /// <param name="patternIndex"></param>
-    public void ChoosePawnPattern(int patternIndex)
-    {
-        pawnSelected.ChangePattern(patternIndex);
-        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
-        {
-            DeselectPawn();
-            turnManager.ChangeTurn();
-        }
-        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
-        {
-            uiManager.choosingUi.SetActive(false);
-            turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
-        }
-    }
     #endregion
 }
 

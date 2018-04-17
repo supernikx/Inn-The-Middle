@@ -45,7 +45,7 @@ public class TurnManager : MonoBehaviour
 
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState {choosing, placing, check, movement, attack};
+    public enum PlayTurnState {choosing, placing, animation, check, movement, attack};
     /// <summary> PlayTurnState corrente </summary>
     private PlayTurnState _currentTurnState;
     public PlayTurnState CurrentTurnState
@@ -84,23 +84,25 @@ public class TurnManager : MonoBehaviour
         switch (newState)
         {
             case PlayTurnState.choosing:
-                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState!=PlayTurnState.check)
+                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState!=PlayTurnState.check && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             case PlayTurnState.placing:
-                if (CurrentTurnState != PlayTurnState.choosing)
+                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState != PlayTurnState.animation)
                     return false;
+                return true;
+            case PlayTurnState.animation:
                 return true;
             case PlayTurnState.check:
                 if (CurrentTurnState == PlayTurnState.movement)
                     return false;
                 return true;
             case PlayTurnState.movement:
-                if (CurrentTurnState != PlayTurnState.check)
+                if (CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             case PlayTurnState.attack:
-                if (CurrentTurnState != PlayTurnState.movement)
+                if (CurrentTurnState != PlayTurnState.movement && CurrentTurnState!= PlayTurnState.animation)
                     return false;
                 return true;
             default:
@@ -146,6 +148,8 @@ public class TurnManager : MonoBehaviour
                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
                 CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
+                break;
+            case PlayTurnState.animation:
                 break;
             case PlayTurnState.check:
                 turnsWithoutAttack++;
@@ -269,10 +273,10 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public void ChangeTurn()
     {
-        if (CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
-            CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
-        else if (CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
-            CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+        if (CurrentPlayerTurn == PlayerTurn.P1_turn)
+            CurrentPlayerTurn = PlayerTurn.P2_turn;
+        else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
+            CurrentPlayerTurn = PlayerTurn.P1_turn;
     }
 
 }

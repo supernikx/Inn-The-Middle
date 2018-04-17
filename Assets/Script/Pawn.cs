@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using DG.Tweening;
-using PawnOutlineNameSpace;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class Pawn : MonoBehaviour
@@ -13,6 +11,7 @@ public class Pawn : MonoBehaviour
 
     public delegate void PawnEvent();
     public PawnEvent OnAttackEnd;
+    public PawnEvent OnMovementEnd;
 
     #endregion
 
@@ -312,11 +311,17 @@ public class Pawn : MonoBehaviour
             if ((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0))
             {
                 patternBox.Add(enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>());
-                CustomLogger.Log("c'è una pedina avversaria nel pattern");
+            }
+
+            if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentBox.index1 - p.index1 < myboard.Length && currentBox.index1 - p.index1 - 1 >= 0))
+            {
+                patternBox.Add(myboard[currentBox.index1 - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
             }
         }
+        bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
         projections[activePattern].SetActive(false);
+        
     }
 
     public void OnAttackAnimationEnd()
@@ -434,6 +439,16 @@ public class Pawn : MonoBehaviour
 
     #region Movement
 
+    public bool CheckMovementPattern(Box boxToMove)
+
+    {
+        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1))
+        {
+            return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
     /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
@@ -442,34 +457,27 @@ public class Pawn : MonoBehaviour
     /// <param name="boxindex2"></param>
     /// <param name="boxToMove"></param>
     /// <returns></returns>
-    public bool Move(Box boxToMove)
+    public void Move(Box boxToMove)
     {
-        if (boxToMove == currentBox)
-        {
-            return false;
-        }
-        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1))
-        {
-            transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
-            transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
-            animators[activePattern].MovementAnimation(true);
-            transform.DOMove(boxToMove.transform.position, activeSpeed).OnComplete(CancelMovementAnimation);
-            DisableMovementBoxes();
-            DisableAttackPattern();
-            currentBox.free = true;
-            if (currentBox.element == Element.NeutralBlack)
-                currentBox.walkable = true;
-            currentBox = boxToMove.GetComponent<Box>();
-            currentBox.free = false;
-            ForceMoveProjection(true);
-            return true;
-        }
-        return false;
+        transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
+        transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
+        projections[activePattern].SetActive(false);
+        DisableMovementBoxes();
+        DisableAttackPattern();
+        currentBox.free = true;
+        if (currentBox.element == Element.NeutralBlack)
+            currentBox.walkable = true;
+        currentBox = boxToMove.GetComponent<Box>();
+        currentBox.free = false;
+        ForceMoveProjection(true);
+        bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
+        animators[activePattern].MovementAnimation(transform, boxToMove.transform.position, activeSpeed);
     }
 
-    private void CancelMovementAnimation()
+    private void OnMovementCompleted()
     {
-        animators[activePattern].MovementAnimation(false);
+        projections[activePattern].SetActive(true);
+        OnMovementEnd();
     }
 
     /// <summary>
@@ -552,13 +560,19 @@ public class Pawn : MonoBehaviour
     private void SubscribeAnimationEvent()
     {
         if (animators[activePattern] != null)
+        {
             animators[activePattern].OnAttackAnimationEnd += OnAttackAnimationEnd;
+            animators[activePattern].OnMovementAnimationEnd += OnMovementCompleted;
+        }
     }
 
     private void UnsubscribeAnimationEvent()
     {
         if (animators[activePattern] != null)
+        {
             animators[activePattern].OnAttackAnimationEnd -= OnAttackAnimationEnd;
+            animators[activePattern].OnMovementAnimationEnd -= OnMovementCompleted;
+        }
     }
 
     #endregion

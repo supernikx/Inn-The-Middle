@@ -12,6 +12,29 @@ ModelImporter:
     100008: Propellers
     100010: Robot
     100012: //RootNode
+    100014: bomb
+    100016: elicottero
+    100018: finger1
+    100020: finger1 1
+    100022: finger2
+    100024: finger2 1
+    100026: Finger3
+    100028: finger3
+    100030: gru
+    100032: Gru 1
+    100034: Gru_corda
+    100036: joint5
+    100038: joint7
+    100040: joint9
+    100042: propeller1
+    100044: propeller1 1
+    100046: propeller2
+    100048: propeller2 1
+    100050: Skelet
+    100052: wing1
+    100054: wing1 1
+    100056: wing2
+    100058: wing2 1
     400000: Antenna
     400002: Bomb
     400004: Gru
@@ -19,6 +42,29 @@ ModelImporter:
     400008: Propellers
     400010: Robot
     400012: //RootNode
+    400014: bomb
+    400016: elicottero
+    400018: finger1
+    400020: finger1 1
+    400022: finger2
+    400024: finger2 1
+    400026: Finger3
+    400028: finger3
+    400030: gru
+    400032: Gru 1
+    400034: Gru_corda
+    400036: joint5
+    400038: joint7
+    400040: joint9
+    400042: propeller1
+    400044: propeller1 1
+    400046: propeller2
+    400048: propeller2 1
+    400050: Skelet
+    400052: wing1
+    400054: wing1 1
+    400056: wing2
+    400058: wing2 1
     2100000: M_Elicottero
     2300000: Antenna
     2300002: Bomb
@@ -38,7 +84,34 @@ ModelImporter:
     4300006: Gru
     4300008: Antenna
     4300010: Robot
+    4300012: wing2
+    4300014: propeller2
+    4300016: wing1
+    4300018: propeller1
+    4300020: finger3
+    4300022: finger2
+    4300024: finger1
+    7400000: Expectations
+    7400002: Take_the_bomb
+    7400004: Start_move
+    7400006: Move
+    7400008: Atak_and_back
+    7400010: Back
+    7400012: Stop
+    7400014: Death
     9500000: //RootNode
+    13700000: Antenna
+    13700002: Bomb
+    13700004: finger1
+    13700006: finger2
+    13700008: finger3
+    13700010: Gru 1
+    13700012: Mask
+    13700014: propeller1 1
+    13700016: propeller2 1
+    13700018: Robot
+    13700020: wing1 1
+    13700022: wing2 1
   externalObjects: {}
   materials:
     importMaterials: 1
