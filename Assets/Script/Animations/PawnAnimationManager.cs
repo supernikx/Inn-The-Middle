@@ -58,22 +58,34 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
 
     public void PlayAttackAnimation()
     {
-        animator.SetTrigger("Attack");
+        if (animator.runtimeAnimatorController != null)
+            animator.SetTrigger("Attack");
+        else
+            OnAttackEnd();
     }
 
     public void PlayDeathAnimation()
     {
-        animator.SetTrigger("Death");
+        if (animator.runtimeAnimatorController != null)
+            animator.SetTrigger("Death");
+        else
+            OnDeathEnd();
     }
 
     public void PlayDamagedAnimation()
     {
-        animator.SetTrigger("Damage");
+        if (animator.runtimeAnimatorController != null)
+            animator.SetTrigger("Damage");
+        else
+            OnDamagedEnd();
     }
 
     public void MovementAnimation(bool _movementSet)
     {
-        animator.SetBool("Movement", _movementSet);
+        if (animator.runtimeAnimatorController != null)
+            animator.SetBool("Movement", _movementSet);
+        else
+            OnMovementEnd();
     }
 
     #endregion

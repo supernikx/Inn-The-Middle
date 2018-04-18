@@ -12,6 +12,8 @@ public class Pawn : MonoBehaviour
     public delegate void PawnEvent();
     public PawnEvent OnAttackEnd;
     public PawnEvent OnMovementEnd;
+    public delegate void PawnDamageEvent(Pawn pawnHit);
+    public PawnDamageEvent OnDeathEnd;
 
     #endregion
 
@@ -321,7 +323,7 @@ public class Pawn : MonoBehaviour
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
         projections[activePattern].SetActive(false);
-        
+
     }
 
     public void OnAttackAnimationEnd()
@@ -346,10 +348,11 @@ public class Pawn : MonoBehaviour
                     CustomLogger.Log("Nessuna pedina nel Pattern");
                     break;
                 case 1:
-                    KillPawn(pawnsToKill[0]);
+                    pawnsToKill[0].OnDeathEnd += OnPawnKilled;
+                    pawnsToKill[0].KillPawn();
                     CustomLogger.Log("Pedina Uccisa");
                     myelements.UseSuperAttack();
-                    break;
+                    return;
                 default:
                     bm.superAttackPressed = true;
                     foreach (Pawn p in pawnsToKill)
@@ -374,18 +377,21 @@ public class Pawn : MonoBehaviour
                             case Element.Purple:
                             case Element.Orange:
                             case Element.Azure:
+                                //bm.pawns[i].OnDamageEnd += OnPawnDamaged;
                                 bm.pawns[i].PlayDamagedAnimation();
                                 myelements.AddElement(b.element);
                                 b.AttackBox();
                                 break;
                             case Element.NeutralWhite:
+                                //bm.pawns[i].OnDamageEnd += OnPawnDamaged;
                                 bm.pawns[i].PlayDamagedAnimation();
                                 b.ChangeNeutralType();
                                 break;
                             case Element.NeutralBlack:
-                                KillPawn(bm.pawns[i]);
+                                bm.pawns[i].OnDeathEnd += OnPawnKilled;
+                                bm.pawns[i].KillPawn();
                                 b.ChangeNeutralType();
-                                break;
+                                return;
                             default:
                                 break;
                         }
@@ -398,23 +404,38 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    #region Damaged
+
     public void PlayDamagedAnimation()
     {
         animators[activePattern].PlayDamagedAnimation();
+    }
+
+    #endregion
+
+    #region Kill
+
+    public void OnPawnKilled(Pawn pawnKilled)
+    {
+        pawnKilled.OnDeathEnd -= OnPawnKilled;
+        OnAttackEnd();
     }
 
     /// <summary>
     /// Funzione che prende in input una pedina e la distrugge disattivando tutte le funzioni necessarie
     /// </summary>
     /// <param name="pawnToKill"></param>
-    public void KillPawn(Pawn pawnToKill)
+    public void KillPawn()
     {
-        pawnToKill.DisableAttackPattern();
-        pawnToKill.currentBox.free = true;
-        pawnToKill.currentBox = null;
-        DestroyImmediate(pawnToKill.gameObject);
+        DisableAttackPattern();
+        currentBox.free = true;
+        currentBox = null;
+        animators[activePattern].PlayDeathAnimation();
+    }
 
-        if (pawnToKill.player == Player.player1)
+    private void DeathAnimationEnd()
+    {
+        if (player == Player.player1)
         {
             BoardManager.Instance.p1pawns--;
             if (BoardManager.Instance.p1pawns <= 0)
@@ -424,7 +445,7 @@ public class Pawn : MonoBehaviour
 
             }
         }
-        else if (pawnToKill.player == Player.player2)
+        else if (player == Player.player2)
         {
             BoardManager.Instance.p2pawns--;
             if (BoardManager.Instance.p2pawns <= 0)
@@ -433,7 +454,12 @@ public class Pawn : MonoBehaviour
                 BoardManager.Instance.uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
             }
         }
+        bm.pawns.Remove(this);
+        gameObject.SetActive(false);
+        OnDeathEnd(this);
     }
+
+    #endregion
 
     #endregion
 
@@ -563,6 +589,7 @@ public class Pawn : MonoBehaviour
         {
             animators[activePattern].OnAttackAnimationEnd += OnAttackAnimationEnd;
             animators[activePattern].OnMovementAnimationEnd += OnMovementCompleted;
+            animators[activePattern].OnDeathAnimationEnd += DeathAnimationEnd;
         }
     }
 
@@ -572,6 +599,7 @@ public class Pawn : MonoBehaviour
         {
             animators[activePattern].OnAttackAnimationEnd -= OnAttackAnimationEnd;
             animators[activePattern].OnMovementAnimationEnd -= OnMovementCompleted;
+            animators[activePattern].OnDeathAnimationEnd -= DeathAnimationEnd;
         }
     }
 

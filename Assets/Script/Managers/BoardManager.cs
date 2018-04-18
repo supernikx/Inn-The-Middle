@@ -150,7 +150,6 @@ public class BoardManager : MonoBehaviour
         pawnSelected.randomized = false;
         DeselectPawn();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
-        CheckPhaseControll();
     }
 
     private void OnMovementEnd()
@@ -279,9 +278,16 @@ public class BoardManager : MonoBehaviour
     /// <param name="pawnToKill"></param>
     public void KillPawnMarked(Pawn pawnToKill)
     {
-        pawnSelected.KillPawn(pawnToKill);
         UnmarkKillPawns();
-        pawnSelected.OnAttackEnd();
+        pawnToKill.OnDeathEnd += pawnSelected.OnPawnKilled;
+        pawnToKill.KillPawn();       
+    }
+
+    private void OnPawnKilled(Pawn pawnKilled)
+    {      
+        pawnKilled.OnDeathEnd -= OnPawnKilled;
+        DeselectPawn();
+        turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
     }
 
     #endregion
@@ -313,9 +319,10 @@ public class BoardManager : MonoBehaviour
                     else
                     {
                         CustomLogger.Log(pawns[i] + " non ha caselle libere adiacenti");
-                        pawns[i].KillPawn(pawns[i]);
-                        DeselectPawn();
-                        CheckPhaseControll();
+                        turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
+                        pawns[i].OnDeathEnd += OnPawnKilled;
+                        pawns[i].KillPawn();
+                        return;
                     }
                 }
             }
