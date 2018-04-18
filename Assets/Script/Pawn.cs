@@ -14,6 +14,7 @@ public class Pawn : MonoBehaviour
     public PawnEvent OnMovementEnd;
     public delegate void PawnDamageEvent(Pawn pawnHit);
     public PawnDamageEvent OnDeathEnd;
+    public PawnDamageEvent OnDamageEnd;
 
     #endregion
 
@@ -258,6 +259,27 @@ public class Pawn : MonoBehaviour
 
     List<Box> patternBox = new List<Box>();
     bool superAttack;
+    int pawnHitted;
+    int _pawnAnimationEnded;
+    public int PawnAnimationEnded
+    {
+        get
+        {
+            return _pawnAnimationEnded;
+        }
+        set
+        {
+            _pawnAnimationEnded = value;
+            if (_pawnAnimationEnded == pawnHitted)
+            {
+                pawnHitted = 0;
+                _pawnAnimationEnded = 0;
+                patternBox.Clear();
+                if (OnAttackEnd != null)
+                    OnAttackEnd();
+            }
+        }
+    }
 
     /// <summary>
     /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
@@ -329,33 +351,34 @@ public class Pawn : MonoBehaviour
     public void OnAttackAnimationEnd()
     {
         projections[activePattern].SetActive(true);
-        if (superAttack)
+        List<Pawn> pawnsHitted = new List<Pawn>();
+        foreach (Box b in patternBox)
         {
-            List<Pawn> pawnsToKill = new List<Pawn>();
-            foreach (Box b in patternBox)
+            for (int i = 0; i < bm.pawns.Count; i++)
             {
-                for (int i = 0; i < bm.pawns.Count; i++)
+                if (bm.pawns[i].player != player && bm.pawns[i].currentBox == b)
                 {
-                    if (bm.pawns[i].player != player && bm.pawns[i].currentBox == b)
-                    {
-                        pawnsToKill.Add(bm.pawns[i]);
-                    }
+                    pawnsHitted.Add(bm.pawns[i]);
+                    pawnHitted++;
                 }
             }
-            switch (pawnsToKill.Count)
+        }
+        if (superAttack)
+        {
+            switch (pawnsHitted.Count)
             {
                 case 0:
                     CustomLogger.Log("Nessuna pedina nel Pattern");
                     break;
                 case 1:
-                    pawnsToKill[0].OnDeathEnd += OnPawnKilled;
-                    pawnsToKill[0].KillPawn();
+                    pawnsHitted[0].OnDeathEnd += OnPawnKilled;
+                    pawnsHitted[0].KillPawn();
                     CustomLogger.Log("Pedina Uccisa");
                     myelements.UseSuperAttack();
                     return;
                 default:
                     bm.superAttackPressed = true;
-                    foreach (Pawn p in pawnsToKill)
+                    foreach (Pawn p in pawnsHitted)
                     {
                         p.killMarker = true;
                         p.projections[p.activePattern].SetActive(true);
@@ -366,41 +389,32 @@ public class Pawn : MonoBehaviour
         }
         else
         {
-            foreach (Box b in patternBox)
+            foreach (Pawn p in pawnsHitted)
             {
-                for (int i = 0; i < bm.pawns.Count; i++)
+                switch (p.currentBox.element)
                 {
-                    if (bm.pawns[i].player != player && bm.pawns[i].currentBox == b)
-                    {
-                        switch (b.element)
-                        {
-                            case Element.Purple:
-                            case Element.Orange:
-                            case Element.Azure:
-                                //bm.pawns[i].OnDamageEnd += OnPawnDamaged;
-                                bm.pawns[i].PlayDamagedAnimation();
-                                myelements.AddElement(b.element);
-                                b.AttackBox();
-                                break;
-                            case Element.NeutralWhite:
-                                //bm.pawns[i].OnDamageEnd += OnPawnDamaged;
-                                bm.pawns[i].PlayDamagedAnimation();
-                                b.ChangeNeutralType();
-                                break;
-                            case Element.NeutralBlack:
-                                bm.pawns[i].OnDeathEnd += OnPawnKilled;
-                                bm.pawns[i].KillPawn();
-                                b.ChangeNeutralType();
-                                return;
-                            default:
-                                break;
-                        }
-                    }
+                    case Element.Purple:
+                    case Element.Orange:
+                    case Element.Azure:
+                        p.OnDamageEnd += OnPawnDamaged;
+                        p.PlayDamagedAnimation();
+                        myelements.AddElement(p.currentBox.element);
+                        p.currentBox.AttackBox();
+                        break;
+                    case Element.NeutralWhite:
+                        p.OnDamageEnd += OnPawnDamaged;
+                        p.PlayDamagedAnimation();
+                        p.currentBox.ChangeNeutralType();
+                        break;
+                    case Element.NeutralBlack:
+                        p.OnDeathEnd += OnPawnDamaged;
+                        p.currentBox.ChangeNeutralType();
+                        p.KillPawn();                        
+                        break;
+                    default:
+                        break;
                 }
             }
-            patternBox.Clear();
-            if (OnAttackEnd != null)
-                OnAttackEnd();
         }
     }
 
@@ -409,6 +423,17 @@ public class Pawn : MonoBehaviour
     public void PlayDamagedAnimation()
     {
         animators[activePattern].PlayDamagedAnimation();
+    }
+
+    private void OnPawnDamaged(Pawn pawnDamaged)
+    {
+        pawnDamaged.OnDamageEnd -= OnPawnDamaged;
+        PawnAnimationEnded++;
+    }
+
+    private void OnDamagedAnimationEnd()
+    {
+        OnDamageEnd(this);
     }
 
     #endregion
@@ -589,6 +614,7 @@ public class Pawn : MonoBehaviour
         {
             animators[activePattern].OnAttackAnimationEnd += OnAttackAnimationEnd;
             animators[activePattern].OnMovementAnimationEnd += OnMovementCompleted;
+            animators[activePattern].OnDamagedAnimationEnd += OnDamagedAnimationEnd;
             animators[activePattern].OnDeathAnimationEnd += DeathAnimationEnd;
         }
     }
@@ -599,6 +625,7 @@ public class Pawn : MonoBehaviour
         {
             animators[activePattern].OnAttackAnimationEnd -= OnAttackAnimationEnd;
             animators[activePattern].OnMovementAnimationEnd -= OnMovementCompleted;
+            animators[activePattern].OnDamagedAnimationEnd -= OnDamagedAnimationEnd;
             animators[activePattern].OnDeathAnimationEnd -= DeathAnimationEnd;
         }
     }
