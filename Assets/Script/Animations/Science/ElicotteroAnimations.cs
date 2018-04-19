@@ -84,4 +84,9 @@ public class ElicotteroAnimations : PawnAnimationManager
             PlayAttackAnimation();
         }
     }
+
+    public override void PlayDamagedAnimation()
+    {
+        OnDamagedEnd();
+    }
 }

@@ -396,19 +396,19 @@ public class Pawn : MonoBehaviour
                     case Element.Purple:
                     case Element.Orange:
                     case Element.Azure:
-                        p.OnDamageEnd += OnPawnDamaged;
-                        p.PlayDamagedAnimation();
                         myelements.AddElement(p.currentBox.element);
                         p.currentBox.AttackBox();
-                        break;
-                    case Element.NeutralWhite:
                         p.OnDamageEnd += OnPawnDamaged;
                         p.PlayDamagedAnimation();
+                        break;
+                    case Element.NeutralWhite:
                         p.currentBox.ChangeNeutralType();
+                        p.OnDamageEnd += OnPawnDamaged;
+                        p.PlayDamagedAnimation();
                         break;
                     case Element.NeutralBlack:
-                        p.OnDeathEnd += OnPawnDamaged;
                         p.currentBox.ChangeNeutralType();
+                        p.OnDeathEnd += OnPawnDamaged;
                         p.KillPawn();                        
                         break;
                     default:

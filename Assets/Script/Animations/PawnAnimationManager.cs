@@ -72,7 +72,7 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnDeathEnd();
     }
 
-    public void PlayDamagedAnimation()
+    public virtual void PlayDamagedAnimation()
     {
         if (animator.runtimeAnimatorController != null)
             animator.SetTrigger("Damage");
