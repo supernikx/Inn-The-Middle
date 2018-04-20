@@ -166,7 +166,11 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.movement:
                 break;
             case PlayTurnState.attack:
-                if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
+                if (BoardManager.Instance.movementSkipped && !BoardManager.Instance.CheckAllAttackPattern())
+                {
+                    ChangeTurn();
+                }
+                else if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
                 {
                     ChangeTurn();
                 }

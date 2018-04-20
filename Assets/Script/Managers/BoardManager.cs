@@ -397,6 +397,19 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
+    public bool CheckAllAttackPattern()
+    {
+        foreach (Pawn p in pawns)
+        {
+            if (p.CheckAttackPattern() && ((p.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)))
+            {
+                Debug.Log("è possibil eseguire un attacco");
+                return true;
+            }
+        }
+        return false;
+    }
+
     #endregion
 
     #region Pawn
