@@ -18,26 +18,33 @@ public class ElicotteroAnimations : PawnAnimationManager
         startPosition = _myPosition.position;
         float targetx = -1;
         float targetz = -1;
-        if (Mathf.Approximately(patternBox[0].transform.position.x, patternBox[1].transform.position.x))
+        if (patternBox.Count == 2)
         {
-            targetx = patternBox[0].transform.position.x;
-            targetz = patternBox[2].transform.position.z;
-        }
-        else if (Mathf.Approximately(patternBox[0].transform.position.x, patternBox[2].transform.position.x) || Mathf.Approximately(patternBox[1].transform.position.z, patternBox[2].transform.position.z))
-        {
-            targetx = patternBox[0].transform.position.x;
-            targetz = patternBox[1].transform.position.z;
-        }
-        else if (Mathf.Approximately(patternBox[1].transform.position.x, patternBox[2].transform.position.x) || Mathf.Approximately(patternBox[0].transform.position.z, patternBox[2].transform.position.z))
-        {
-            targetx = patternBox[1].transform.position.x;
             targetz = patternBox[0].transform.position.z;
+            targetx = patternBox[1].transform.position.x;
         }
-
-        else if (Mathf.Approximately(patternBox[0].transform.position.z, patternBox[1].transform.position.z))
+        else
         {
-            targetx = patternBox[2].transform.position.x;
-            targetz = patternBox[0].transform.position.z;       
+            if (Mathf.Approximately(patternBox[0].transform.position.x, patternBox[1].transform.position.x))
+            {
+                targetx = patternBox[0].transform.position.x;
+                targetz = patternBox[2].transform.position.z;
+            }
+            else if (Mathf.Approximately(patternBox[0].transform.position.x, patternBox[2].transform.position.x) || Mathf.Approximately(patternBox[1].transform.position.z, patternBox[2].transform.position.z))
+            {
+                targetx = patternBox[0].transform.position.x;
+                targetz = patternBox[1].transform.position.z;
+            }
+            else if (Mathf.Approximately(patternBox[1].transform.position.x, patternBox[2].transform.position.x) || Mathf.Approximately(patternBox[0].transform.position.z, patternBox[2].transform.position.z))
+            {
+                targetx = patternBox[1].transform.position.x;
+                targetz = patternBox[0].transform.position.z;
+            }
+            else if (Mathf.Approximately(patternBox[0].transform.position.z, patternBox[1].transform.position.z))
+            {
+                targetx = patternBox[2].transform.position.x;
+                targetz = patternBox[0].transform.position.z;
+            }
         }
         _targetPosition = new Vector3(targetx, patternBox[0].transform.position.y, targetz);
         isAttacking = true;

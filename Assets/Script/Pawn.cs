@@ -337,7 +337,7 @@ public class Pawn : MonoBehaviour
                 patternBox.Add(enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>());
             }
 
-            if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentBox.index1 - p.index1 < myboard.Length && currentBox.index1 - p.index1 - 1 >= 0))
+            else if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentBox.index1 - p.index1 < myboard.Length && currentBox.index1 - p.index1 - 1 >= 0))
             {
                 patternBox.Add(myboard[currentBox.index1 - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
             }
