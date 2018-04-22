@@ -272,9 +272,6 @@ public class Pawn : MonoBehaviour
             _pawnAnimationEnded = value;
             if (_pawnAnimationEnded == pawnHitted)
             {
-                pawnHitted = 0;
-                _pawnAnimationEnded = 0;
-                patternBox.Clear();
                 if (OnAttackEnd != null)
                     OnAttackEnd();
             }
@@ -328,6 +325,9 @@ public class Pawn : MonoBehaviour
     {
         DisableAttackPattern();
         superAttack = _superAttack;
+        pawnHitted = 0;
+        _pawnAnimationEnded = 0;
+        patternBox.Clear();
         BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
         int currentColumn = currentBox.index2;
         foreach (Pattern p in patterns[activePattern].pattern)
@@ -371,10 +371,10 @@ public class Pawn : MonoBehaviour
                     CustomLogger.Log("Nessuna pedina nel Pattern");
                     break;
                 case 1:
+                    myelements.UseSuperAttack();
                     pawnsHitted[0].OnDeathEnd += OnPawnKilled;
                     pawnsHitted[0].KillPawn();
                     CustomLogger.Log("Pedina Uccisa");
-                    myelements.UseSuperAttack();
                     return;
                 default:
                     bm.superAttackPressed = true;

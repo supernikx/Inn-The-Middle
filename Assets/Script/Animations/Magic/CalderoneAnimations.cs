@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CalderoneAnimations : PawnAnimationManager {
+public class CalderoneAnimations : PawnAnimationManager
+{
     Transform myPosition;
     Vector3 targetPosition;
     float speed;

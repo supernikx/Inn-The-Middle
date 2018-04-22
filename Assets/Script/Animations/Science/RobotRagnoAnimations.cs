@@ -7,12 +7,19 @@ public class RobotRagnoAnimations : PawnAnimationManager
 {
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
-        OnAttackEnd();
+        myPosition.eulerAngles = startRotation;
+        PlayAttackAnimation();
     }
 
     public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed)
     {
-        myPosition.DOMove(targetPosition, speed);
+        MovementAnimation(true);
+        myPosition.DOMove(targetPosition, speed).OnComplete(MovementAnimationEnd);
+    }
+
+    private void MovementAnimationEnd()
+    {
+        MovementAnimation(false);
         OnMovementEnd();
     }
 }

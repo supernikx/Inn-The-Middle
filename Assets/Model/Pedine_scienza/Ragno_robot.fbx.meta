@@ -6,12 +6,177 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Head
+    100004: Head 1
+    100006: ikHandle1
+    100008: ikHandle2
+    100010: ikHandle3
+    100012: ikHandle4
+    100014: ikHandle5
+    100016: ikHandle6
+    100018: L_Arm
+    100020: L_Arm 1
+    100022: L_Hand
+    100024: L_UpperArm
+    100026: L_UpperArm2
+    100028: LegL_Front1
+    100030: LegL_Front1 1
+    100032: LegL_Front2
+    100034: LegL_Front2 1
+    100036: LegL_Front3
+    100038: LegL_Front3 1
+    100040: LegL_Front4
+    100042: LegL_Rear1
+    100044: LegL_Rear1 1
+    100046: LegL_Rear2
+    100048: LegL_Rear2 1
+    100050: LegL_Rear3
+    100052: LegL_Rear3 1
+    100054: LegL_Rear4
+    100056: LegR_Front1
+    100058: LegR_Front1 1
+    100060: LegR_Front2
+    100062: LegR_Front2 1
+    100064: LegR_Front3
+    100066: LegR_Front3 1
+    100068: LegR_Front4
+    100070: LegR_Rear1
+    100072: LegR_Rear1 1
+    100074: LegR_Rear2
+    100076: LegR_Rear2 1
+    100078: LegR_Rear3
+    100080: LegR_rear3
+    100082: LegR_Rear4
+    100084: locator1
+    100086: nurbsCircle1
+    100088: nurbsCircle2
+    100090: nurbsCircle3
+    100092: nurbsCircle4
+    100094: nurbsCircle5
+    100096: nurbsCircle7
+    100098: nurbsCircle8
+    100100: nurbsCircle9
+    100102: Pelvis
+    100104: Pelvis 1
+    100106: R_Arm
+    100108: R_Arm 1
+    100110: R_Hand
+    100112: R_UpperArm
+    100114: R_UpperArm 1
+    100116: Spine1
+    100118: Spine2
+    100120: Torso2
+    100122: transform1
     400000: //RootNode
+    400002: Head
+    400004: Head 1
+    400006: ikHandle1
+    400008: ikHandle2
+    400010: ikHandle3
+    400012: ikHandle4
+    400014: ikHandle5
+    400016: ikHandle6
+    400018: L_Arm
+    400020: L_Arm 1
+    400022: L_Hand
+    400024: L_UpperArm
+    400026: L_UpperArm2
+    400028: LegL_Front1
+    400030: LegL_Front1 1
+    400032: LegL_Front2
+    400034: LegL_Front2 1
+    400036: LegL_Front3
+    400038: LegL_Front3 1
+    400040: LegL_Front4
+    400042: LegL_Rear1
+    400044: LegL_Rear1 1
+    400046: LegL_Rear2
+    400048: LegL_Rear2 1
+    400050: LegL_Rear3
+    400052: LegL_Rear3 1
+    400054: LegL_Rear4
+    400056: LegR_Front1
+    400058: LegR_Front1 1
+    400060: LegR_Front2
+    400062: LegR_Front2 1
+    400064: LegR_Front3
+    400066: LegR_Front3 1
+    400068: LegR_Front4
+    400070: LegR_Rear1
+    400072: LegR_Rear1 1
+    400074: LegR_Rear2
+    400076: LegR_Rear2 1
+    400078: LegR_Rear3
+    400080: LegR_rear3
+    400082: LegR_Rear4
+    400084: locator1
+    400086: nurbsCircle1
+    400088: nurbsCircle2
+    400090: nurbsCircle3
+    400092: nurbsCircle4
+    400094: nurbsCircle5
+    400096: nurbsCircle7
+    400098: nurbsCircle8
+    400100: nurbsCircle9
+    400102: Pelvis
+    400104: Pelvis 1
+    400106: R_Arm
+    400108: R_Arm 1
+    400110: R_Hand
+    400112: R_UpperArm
+    400114: R_UpperArm 1
+    400116: Spine1
+    400118: Spine2
+    400120: Torso2
+    400122: transform1
     2100000: M_Ragno_Robot
     2300000: //RootNode
     3300000: //RootNode
     4300000: ragno_robot
+    4300002: Head
+    4300004: LegL_Front1
+    4300006: LegL_Front2
+    4300008: LegL_Front3
+    4300010: LegR_Front1
+    4300012: LegR_Front2
+    4300014: LegR_Front3
+    4300016: LegL_Rear1
+    4300018: LegL_Rear2
+    4300020: LegL_Rear3
+    4300022: LegR_Rear1
+    4300024: LegR_Rear2
+    4300026: LegR_rear3
+    4300028: R_UpperArm
+    4300030: L_UpperArm2
+    4300032: Torso2
+    4300034: Pelvis
+    4300036: R_Arm
+    4300038: L_Arm
+    7400000: Idle
+    7400002: Walk
+    7400004: Attack
+    7400006: Hit
+    7400008: Death
     9500000: //RootNode
+    13700000: Head
+    13700002: L_Arm
+    13700004: L_UpperArm2
+    13700006: LegL_Front1
+    13700008: LegL_Front2
+    13700010: LegL_Front3
+    13700012: LegL_Rear1
+    13700014: LegL_Rear2
+    13700016: LegL_Rear3
+    13700018: LegR_Front1
+    13700020: LegR_Front2
+    13700022: LegR_Front3
+    13700024: LegR_Rear1
+    13700026: LegR_Rear2
+    13700028: LegR_rear3
+    13700030: Pelvis
+    13700032: R_Arm
+    13700034: R_UpperArm
+    13700036: Torso2
   externalObjects: {}
   materials:
     importMaterials: 1
