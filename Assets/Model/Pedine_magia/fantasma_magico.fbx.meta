@@ -10,14 +10,82 @@ ModelImporter:
     100004: Maschera
     100006: fantasma:corpo
     100008: fantasma:Maschera
+    100010: animation:Ctrl_all
+    100012: animation:ctrl_head
+    100014: animation:Ctrl_Joint_4
+    100016: animation:Ctrl_L_hand
+    100018: animation:Ctrl_R_hand
+    100020: animation:fantasma:average1
+    100022: animation:fantasma:average2
+    100024: animation:fantasma:corpo
+    100026: animation:fantasma:fantasma
+    100028: animation:fantasma:joint1
+    100030: animation:fantasma:joint2
+    100032: animation:fantasma:joint3
+    100034: animation:fantasma:joint4
+    100036: animation:fantasma:joint5
+    100038: animation:fantasma:Maschera
+    100040: animation:head
+    100042: animation:head_tip
+    100044: animation:ik_head
+    100046: animation:ik_L_hand
+    100048: animation:ik_R_Hand
+    100050: animation:ik_tail
+    100052: animation:L_arm
+    100054: animation:L_hand
+    100056: animation:L_hand_tip
+    100058: animation:L_lower_arm
+    100060: animation:locator1
+    100062: animation:mask
+    100064: animation:mask_tip
+    100066: animation:R_arm
+    100068: animation:R_hand
+    100070: animation:R_hand_tip
+    100072: animation:R_lower_arm
+    100074: animation:spine
     400000: corpo
     400002: //RootNode
     400004: Maschera
     400006: fantasma:corpo
     400008: fantasma:Maschera
+    400010: animation:Ctrl_all
+    400012: animation:ctrl_head
+    400014: animation:Ctrl_Joint_4
+    400016: animation:Ctrl_L_hand
+    400018: animation:Ctrl_R_hand
+    400020: animation:fantasma:average1
+    400022: animation:fantasma:average2
+    400024: animation:fantasma:corpo
+    400026: animation:fantasma:fantasma
+    400028: animation:fantasma:joint1
+    400030: animation:fantasma:joint2
+    400032: animation:fantasma:joint3
+    400034: animation:fantasma:joint4
+    400036: animation:fantasma:joint5
+    400038: animation:fantasma:Maschera
+    400040: animation:head
+    400042: animation:head_tip
+    400044: animation:ik_head
+    400046: animation:ik_L_hand
+    400048: animation:ik_R_Hand
+    400050: animation:ik_tail
+    400052: animation:L_arm
+    400054: animation:L_hand
+    400056: animation:L_hand_tip
+    400058: animation:L_lower_arm
+    400060: animation:locator1
+    400062: animation:mask
+    400064: animation:mask_tip
+    400066: animation:R_arm
+    400068: animation:R_hand
+    400070: animation:R_hand_tip
+    400072: animation:R_lower_arm
+    400074: animation:spine
     2100000: M_Fantasma
     2100002: M_fantasma
     2100004: M_mask
+    2100006: animation_M_fantasma
+    2100008: animation_M_mask
     2300000: corpo
     2300002: Maschera
     2300004: fantasma:corpo
@@ -30,7 +98,16 @@ ModelImporter:
     4300002: Maschera
     4300004: fantasma:corpo
     4300006: fantasma:Maschera
+    4300008: animation:fantasma:corpo
+    4300010: animation:fantasma:Maschera
+    7400000: idle
+    7400002: move
+    7400004: attack
+    7400006: damage
+    7400008: death
     9500000: //RootNode
+    13700000: animation:fantasma:corpo
+    13700002: animation:fantasma:Maschera
   externalObjects: {}
   materials:
     importMaterials: 1

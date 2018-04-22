@@ -409,7 +409,7 @@ public class Pawn : MonoBehaviour
                     case Element.NeutralBlack:
                         p.currentBox.ChangeNeutralType();
                         p.OnDeathEnd += OnPawnDamaged;
-                        p.KillPawn();                        
+                        p.KillPawn();
                         break;
                     default:
                         break;
@@ -528,7 +528,8 @@ public class Pawn : MonoBehaviour
     private void OnMovementCompleted()
     {
         projections[activePattern].SetActive(true);
-        OnMovementEnd();
+        if (OnMovementEnd != null)
+            OnMovementEnd();
     }
 
     /// <summary>
