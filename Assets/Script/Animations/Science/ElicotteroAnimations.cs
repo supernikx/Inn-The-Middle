@@ -51,15 +51,12 @@ public class ElicotteroAnimations : PawnAnimationManager
         MovementAnimation(_myPosition, _targetPosition, speed);
     }
 
-    private void ReturnToPosition()
+    private IEnumerator ReturnToPosition()
     {
         MovementAnimation(false);
         animator.SetBool("Back", true);
-        myPosition.DOMove(startPosition, speed).OnComplete(BackAnimationComplete);
-    }
-
-    private void BackAnimationComplete()
-    {
+        Tween backmovement = myPosition.DOMove(startPosition, speed);
+        yield return backmovement.WaitForCompletion();
         isAttacking = false;
         animator.SetBool("Back", false);
     }
@@ -73,14 +70,11 @@ public class ElicotteroAnimations : PawnAnimationManager
         animator.SetTrigger("SMovement");
     }
 
-    public void OnStartMovementAnimationEnd()
+    public IEnumerator OnStartMovementAnimationEnd()
     {
         MovementAnimation(true);
-        myPosition.DOMove(targetPosition, speed).OnComplete(TargetPositionReached);
-    }
-
-    private void TargetPositionReached()
-    {
+        Tween movement = myPosition.DOMove(targetPosition, speed);
+        yield return movement.WaitForCompletion();
         if (!isAttacking)
         {
             MovementAnimation(false);

@@ -23,13 +23,10 @@ public class CalderoneAnimations : PawnAnimationManager
         MovementAnimation(true);
     }
 
-    private void MovementJumpEnd()
+    private IEnumerator MovementJumpEnd()
     {
-        myPosition.DOMove(targetPosition, speed).OnComplete(TargetPositionReached);
-    }
-
-    private void TargetPositionReached()
-    {
+        Tween movement = myPosition.DOMove(targetPosition, speed);
+        yield return movement.WaitForCompletion();
         MovementAnimation(false);
         OnMovementEnd();
     }

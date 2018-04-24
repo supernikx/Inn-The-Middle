@@ -23,13 +23,10 @@ public class FantasmaAnimations : PawnAnimationManager
         MovementAnimation(true);
     }
 
-    public void MovementAnimationStart()
+    public IEnumerator MovementAnimationStart()
     {
-        myPosition.DOMove(targetPosition, speed).OnComplete(MovementAnimationEnd);
-    }
-
-    private void MovementAnimationEnd()
-    {
+        Tween movement=myPosition.DOMove(targetPosition, speed);
+        yield return movement.WaitForCompletion();
         MovementAnimation(false);
         OnMovementEnd();
     }
