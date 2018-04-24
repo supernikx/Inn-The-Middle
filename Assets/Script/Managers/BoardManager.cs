@@ -430,7 +430,6 @@ public class BoardManager : MonoBehaviour
             pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
             pawnSelected.selected = false;
             pawnSelected = null;
-
         }
     }
 
