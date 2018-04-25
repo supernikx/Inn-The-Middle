@@ -5380,9 +5380,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -5624,7 +5624,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4884816821195950, guid: cb3ea2c2f886ed24e9f704dd8d158fd1, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb3ea2c2f886ed24e9f704dd8d158fd1, type: 2}
@@ -8822,7 +8822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4553640904699122, guid: 60da75f05310f4d4e807f811481595b7, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1767032592383912, guid: 60da75f05310f4d4e807f811481595b7, type: 2}
       propertyPath: m_IsActive
@@ -9527,9 +9527,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -10665,7 +10665,7 @@ Transform:
   - {fileID: 9946062}
   - {fileID: 806098142}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319086652
 GameObject:
@@ -15136,9 +15136,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -16757,6 +16757,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484222402}
   m_Mesh: {fileID: 4300016, guid: 59d8ff0fa86a5184a86eb424fd7b3659, type: 3}
+--- !u!84 &486391129
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 796
+  m_Height: 602
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &487162224
 GameObject:
   m_ObjectHideFlags: 0
@@ -16978,9 +17009,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -17073,37 +17104,6 @@ Transform:
   m_Father: {fileID: 1248719227}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0.0000009536743, y: 0, z: 0.0000005662441}
---- !u!84 &495388594
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 814
-  m_Height: 580
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &496459419
 GameObject:
   m_ObjectHideFlags: 0
@@ -17275,9 +17275,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -17590,9 +17590,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -20762,9 +20762,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -22015,9 +22015,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -24032,9 +24032,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -26060,7 +26060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4489564389041994, guid: be16a2afb7fe2c54b99dc79e38850bac, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114498330007513814, guid: be16a2afb7fe2c54b99dc79e38850bac,
         type: 2}
@@ -27111,9 +27111,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -28883,37 +28883,6 @@ Transform:
   m_Father: {fileID: 922978126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &826122285
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 814
-  m_Height: 580
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &826222255
 GameObject:
   m_ObjectHideFlags: 0
@@ -30022,9 +29991,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -30410,9 +30379,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -31122,9 +31091,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -31867,37 +31836,6 @@ Transform:
   m_Father: {fileID: 125778092}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &906153403
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 814
-  m_Height: 580
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &909504648
 GameObject:
   m_ObjectHideFlags: 0
@@ -31947,9 +31885,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -32704,7 +32642,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4216445752201368, guid: 45189388e7d181243b0afdd09363bff3, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114498422046169346, guid: 45189388e7d181243b0afdd09363bff3,
         type: 2}
@@ -33020,7 +32958,7 @@ Transform:
   - {fileID: 380125317}
   - {fileID: 387760390}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &932550416
 GameObject:
@@ -34104,9 +34042,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -36707,7 +36645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4319059142053418, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
@@ -38684,9 +38622,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -39639,9 +39577,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -39900,71 +39838,6 @@ Transform:
   m_Father: {fileID: 237494582}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.000004887581, y: -0.000000834465, z: -0.000004887581}
---- !u!1 &1086317387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1086317389}
-  - component: {fileID: 1086317388}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1086317388
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1086317387}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1086317389
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1086317387}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1086707978
 GameObject:
   m_ObjectHideFlags: 0
@@ -46078,9 +45951,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -49912,9 +49785,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -52907,9 +52780,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83474a770919b0419d547109c19266b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  purpleElement: 0
-  azureElement: 0
-  orangeElement: 0
+  redElement: 0
+  blueElement: 0
+  greenElement: 0
 --- !u!1 &1447706673
 GameObject:
   m_ObjectHideFlags: 0
@@ -53400,7 +53273,7 @@ RectTransform:
   - {fileID: 1474988487}
   - {fileID: 657037452}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -53488,9 +53361,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -54126,6 +53999,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1484228773}
   m_Mesh: {fileID: 4300008, guid: 59d8ff0fa86a5184a86eb424fd7b3659, type: 3}
+--- !u!84 &1493556219
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 796
+  m_Height: 602
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!114 &1494030600 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114498330007513814, guid: be16a2afb7fe2c54b99dc79e38850bac,
@@ -55644,9 +55548,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -57075,9 +56979,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -57923,9 +57827,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -58074,7 +57978,7 @@ RectTransform:
   m_Children:
   - {fileID: 565374000}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -58530,9 +58434,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -58594,6 +58498,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1615551648}
   m_Mesh: {fileID: 4300000, guid: 1b8d6ca3bfde93d449a2a98a9193fb24, type: 3}
+--- !u!84 &1617100830
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 796
+  m_Height: 602
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1618698108
 GameObject:
   m_ObjectHideFlags: 0
@@ -59730,6 +59665,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1658629725}
+--- !u!84 &1659080912
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 796
+  m_Height: 602
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1660437966
 GameObject:
   m_ObjectHideFlags: 0
@@ -59986,9 +59952,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -60302,9 +60268,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -61633,37 +61599,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000010371208, y: 1.6990037, z: 0.013435364}
     m_Extent: {x: 1.2936584, y: 1.2630978, z: 1.2866077}
   m_DirtyAABB: 0
---- !u!84 &1717681231
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 814
-  m_Height: 580
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1717754999
 GameObject:
   m_ObjectHideFlags: 0
@@ -63673,7 +63608,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805017883
 GameObject:
@@ -65607,9 +65542,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -67671,9 +67606,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -67784,9 +67719,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -68425,9 +68360,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -68593,12 +68528,12 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 906153403}
+      objectReference: {fileID: 1659080912}
     - target: {fileID: 20177321601919324, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 826122285}
+      objectReference: {fileID: 1617100830}
     - target: {fileID: 114263451960138334, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: outlineShaderMaterial
@@ -71570,9 +71505,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
@@ -73440,9 +73375,9 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementPurple: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementOrange: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementAzure: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
+  elementRed: {fileID: 0}
+  elementGreen: {fileID: 0}
+  elementBlue: {fileID: 0}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 24a2c353610e69a45b8716ac3eb294c3, type: 2}
   element: 0
