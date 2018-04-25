@@ -10,7 +10,7 @@ public class Box : MonoBehaviour
     //variabili pubbliche
     public int index1, index2, board;
     public bool walkable, free, neutralKill;
-    public Material elementPurple, elementOrange, elementAzure, neutral_white, neutral_black;
+    public Material elementRed, elementGreen, elementBlue, neutral_white, neutral_black;
     public Element element;
 
     //variabili private
@@ -133,14 +133,14 @@ public class Box : MonoBehaviour
         element = _element;
         switch (element)
         {
-            case Element.Purple:
-                mr.material = elementPurple;
+            case Element.Red:
+                mr.material = elementRed;
                 break;
-            case Element.Orange:
-                mr.material = elementOrange;
+            case Element.Green:
+                mr.material = elementGreen;
                 break;
-            case Element.Azure:
-                mr.material = elementAzure;
+            case Element.Blue:
+                mr.material = elementBlue;
                 break;
             default:
                 mr.material = neutral_white;

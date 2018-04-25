@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerElements : MonoBehaviour
 {
-    public int purpleElement, azureElement, orangeElement;
+    public int redElement, blueElement, greenElement;
 
     public void AddElement(Element _element)
     {
         switch (_element)
         {
-            case Element.Purple:
-                purpleElement++;
+            case Element.Red:
+                redElement++;
                 break;
-            case Element.Orange:
-                orangeElement++;
+            case Element.Green:
+                greenElement++;
                 break;
-            case Element.Azure:
-                azureElement++;
+            case Element.Blue:
+                blueElement++;
                 break;
             default:
                 CustomLogger.Log("Impossibile aggiungere questo elemento");
@@ -27,7 +27,7 @@ public class PlayerElements : MonoBehaviour
 
     public bool CheckSuperAttack()
     {
-        if ((purpleElement >= 3 || azureElement >= 3 || orangeElement >= 3) || (purpleElement > 0 && azureElement > 0 && orangeElement > 0))
+        if ((redElement >= 3 || blueElement >= 3 || greenElement >= 3) || (redElement > 0 && blueElement > 0 && greenElement > 0))
         {
             return true;
         }
@@ -36,23 +36,23 @@ public class PlayerElements : MonoBehaviour
 
     public void UseSuperAttack()
     {
-        if (purpleElement >= 3)
+        if (redElement >= 3)
         {
-            purpleElement -= 3;
+            redElement -= 3;
         }
-        else if (azureElement >= 3)
+        else if (blueElement >= 3)
         {
-            azureElement -= 3;
+            blueElement -= 3;
         }
-        else if (orangeElement >= 3)
+        else if (greenElement >= 3)
         {
-            orangeElement -= 3;
+            greenElement -= 3;
         }
-        else if (purpleElement > 0 && azureElement > 0 && orangeElement > 0)
+        else if (redElement > 0 && blueElement > 0 && greenElement > 0)
         {
-            purpleElement--;
-            azureElement--;
-            orangeElement--;
+            redElement--;
+            blueElement--;
+            greenElement--;
         }
     }
 }

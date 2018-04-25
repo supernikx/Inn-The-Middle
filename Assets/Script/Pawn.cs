@@ -393,9 +393,9 @@ public class Pawn : MonoBehaviour
             {
                 switch (p.currentBox.element)
                 {
-                    case Element.Purple:
-                    case Element.Orange:
-                    case Element.Azure:
+                    case Element.Red:
+                    case Element.Green:
+                    case Element.Blue:
                         myelements.AddElement(p.currentBox.element);
                         p.currentBox.AttackBox();
                         p.OnDamageEnd += OnPawnDamaged;

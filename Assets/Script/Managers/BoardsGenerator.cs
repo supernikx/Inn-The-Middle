@@ -41,4 +41,4 @@ public class BoardPattern
     public Element boxElement;
 }
 
-public enum Element { Purple, Orange, Azure, NeutralWhite, NeutralBlack };
+public enum Element { Red, Green, Blue, NeutralWhite, NeutralBlack };

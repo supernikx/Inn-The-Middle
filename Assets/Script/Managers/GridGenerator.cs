@@ -69,7 +69,7 @@ public class GridGenerator : MonoBehaviour
         }
         Transform board = new GameObject("Board").transform;
         board.parent = transform;
-        float size = TilePrefab.transform.localScale.x + 4f;
+        float size = TilePrefab.transform.localScale.x + 5.2f;
         tilePositions = new Transform[row][];
         for (int x = 0; x < row; x++)
         {

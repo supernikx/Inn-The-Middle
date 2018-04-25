@@ -114,8 +114,8 @@ public class UIManager : MonoBehaviour
 
     void UpdateElementsText()
     {
-        p1elements.SetText("<color=purple>" + bm.player1Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player1Elements.azureElement + "</color>-<color=orange>" + bm.player1Elements.orangeElement);
-        p2elements.SetText("<color=purple>" + bm.player2Elements.purpleElement + "</color>-<color=#00ffffff>" + bm.player2Elements.azureElement + "</color>-<color=orange>" + bm.player2Elements.orangeElement);
+        p1elements.SetText("<color=red>" + bm.player1Elements.redElement + "</color>-<color=blue>" + bm.player1Elements.blueElement + "</color>-<color=green>" + bm.player1Elements.greenElement);
+        p2elements.SetText("<color=red>" + bm.player2Elements.redElement + "</color>-<color=blue>" + bm.player2Elements.blueElement + "</color>-<color=green>" + bm.player2Elements.greenElement);
     }
 
     void SetChoosingUI()
