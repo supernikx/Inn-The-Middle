@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && bm.turnManager.CurrentMacroPhase != TurnManager.MacroPhase.menu)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing))
         {
             pausePanel.SetActive(true);
             Time.timeScale = 0f;
@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
             if (EventManager.OnPause != null)
                 EventManager.OnPause();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused && bm.turnManager.CurrentMacroPhase != TurnManager.MacroPhase.menu)
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused && (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing))
         {
             ResumeGame();
         }
