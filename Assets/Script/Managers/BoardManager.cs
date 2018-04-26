@@ -78,7 +78,7 @@ public class BoardManager : MonoBehaviour
         }
         else
         {
-            GameObject.Destroy(gameObject);
+            Destroy(gameObject);
         }
         draftManager = FindObjectOfType<DraftManager>();
         turnManager = FindObjectOfType<TurnManager>();
@@ -564,16 +564,19 @@ public class BoardManager : MonoBehaviour
     /// <param name="patternIndex"></param>
     public void ChoosePawnPattern(int patternIndex)
     {
-        pawnSelected.ChangePattern(patternIndex);
-        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+        if (!pause)
         {
-            DeselectPawn();
-            turnManager.ChangeTurn();
-        }
-        else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
-        {
-            uiManager.choosingUi.SetActive(false);
-            turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+            pawnSelected.ChangePattern(patternIndex);
+            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+            {
+                DeselectPawn();
+                turnManager.ChangeTurn();
+            }
+            else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+            {
+                uiManager.choosingUi.SetActive(false);
+                turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+            }
         }
     }
 
@@ -611,13 +614,16 @@ public class BoardManager : MonoBehaviour
 
     public void BoxOver(Box boxover)
     {
-        if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement) && pawnSelected != null)
+        if (!pause)
         {
-            if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
+            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement) && pawnSelected != null)
             {
-                if (!pawnSelected.MoveProjection(boxover))
+                if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
                 {
-                    pawnSelected.MoveProjection(pawnSelected.currentBox);
+                    if (!pawnSelected.MoveProjection(boxover))
+                    {
+                        pawnSelected.MoveProjection(pawnSelected.currentBox);
+                    }
                 }
             }
         }
