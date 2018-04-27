@@ -111,7 +111,6 @@ public class Pawn : MonoBehaviour
     {
         if (killMarker)
         {
-            bm.pawnSelected.myelements.UseSuperAttack();
             bm.KillPawnMarked(this);
         }
         else
@@ -365,13 +364,13 @@ public class Pawn : MonoBehaviour
         }
         if (superAttack)
         {
+            myelements.UseSuperAttack();
             switch (pawnsHitted.Count)
             {
                 case 0:
                     CustomLogger.Log("Nessuna pedina nel Pattern");
                     break;
                 case 1:
-                    myelements.UseSuperAttack();
                     pawnsHitted[0].OnDeathEnd += OnPawnKilled;
                     pawnsHitted[0].KillPawn();
                     CustomLogger.Log("Pedina Uccisa");

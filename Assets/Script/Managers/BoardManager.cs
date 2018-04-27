@@ -251,16 +251,19 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     public void Attack(bool superAttack)
     {
-        if (pawnSelected != null && !superAttackPressed && !pause)
+        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
-            if (pawnSelected.CheckAttackPattern())
+            if (pawnSelected != null && !superAttackPressed && !pause)
             {
-                pawnSelected.OnAttackEnd += OnAttackEnd;
-                pawnSelected.AttackBehaviour(superAttack);
-            }
-            else
-            {
-                Debug.Log("nope");
+                if (pawnSelected.CheckAttackPattern())
+                {
+                    pawnSelected.OnAttackEnd += OnAttackEnd;
+                    pawnSelected.AttackBehaviour(superAttack);
+                }
+                else
+                {
+                    Debug.Log("nope");
+                }
             }
         }
     }
