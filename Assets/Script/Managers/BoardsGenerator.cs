@@ -4,18 +4,18 @@ using UnityEngine;
 public class BoardsGenerator : MonoBehaviour
 {
     //variabili pubbliche
-    public int x;
-    public int y;
-    public GridGenerator board1, board2;
-    public List<BoardPattern> boardPattern;
+    //public int x;
+    //public int y;
+    //public GridGenerator board1, board2;
+    //public List<BoardPattern> boardPattern;
 
     //identifica la zona di codice con le funzioni pubbliche
     #region API
 
     /// <summary>
-    /// Funzione che viene gestita dal GridEditor e che chiama la funzione GridGenerator per creare 2 board di grandezza uguale (x,y)
+    /// Funzione (non più usata) che viene gestita dal GridEditor e che chiama la funzione GridGenerator per creare 2 board di grandezza uguale (x,y)
     /// </summary>
-    public void CreateBoards()
+    /*public void CreateBoards()
     {
         if (board1 != null && board2 != null)
         {
@@ -30,7 +30,7 @@ public class BoardsGenerator : MonoBehaviour
             board1.CreateGrid(x, y);
             board2.CreateGrid(x, y);
         }
-    }
+    }*/
 
     #endregion
 }
@@ -41,4 +41,4 @@ public class BoardPattern
     public Element boxElement;
 }
 
-public enum Element { Red, Green, Blue, NeutralWhite, NeutralBlack };
+

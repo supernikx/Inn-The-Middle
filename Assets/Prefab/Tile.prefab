@@ -30,7 +30,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4776265548785186
 Transform:
@@ -153,3 +153,4 @@ MonoBehaviour:
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
+  mr: {fileID: 23708552244602846}

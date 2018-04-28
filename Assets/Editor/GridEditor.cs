@@ -14,6 +14,6 @@ public class GridEditor : Editor {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        grid.CreateBoards();
+        //grid.CreateBoards();
     }
 }

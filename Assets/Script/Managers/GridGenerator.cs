@@ -5,19 +5,23 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     //variabili pubbliche
-    public GameObject TilePrefab;
+    public int row,column;
+    //public GameObject TilePrefab;
+    //public BoardsGenerator bg;
     public BoardManager bm;
     public Transform[][] tilePositions;
 
-    //variabili private
-    private BoardsGenerator bg;
+    Transform board;
+    List<Transform> allTiles = new List<Transform>();
 
     //funzioni private
     private void Awake()
     {
-        bg = FindObjectOfType<BoardsGenerator>();
-        CreateGrid(bg.x, bg.y);
-        SetElements();
+        //bg = FindObjectOfType<BoardsGenerator>();
+        //CreateGrid(bg.x, bg.y);
+        //SetElements();
+        board = transform.Find("Board");
+        GetBoardTilePosition();
         SetBoards();
     }
 
@@ -36,32 +40,39 @@ public class GridGenerator : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Funzione che imposta gli elementi sulla board come nel pattern presente in BoardsGenerator
-    /// </summary>
-    private void SetElements()
+    private void GetBoardTilePosition()
     {
-        int k = 0;
-        for (int i = 0; i < tilePositions.Length; i++)
+        int tileindex = 0;
+        foreach (Transform child in board.transform)
         {
-            for (int j = 0; j < tilePositions[i].Length; j++)
+            allTiles.Add(child);
+        }
+        tilePositions = new Transform[row][];
+        for (int x = 0; x < row; x++)
+        {
+            int xToUSe = x;
+            if (tag == "board1")
             {
-                tilePositions[i][j].GetComponent<Box>().SetElement(bg.boardPattern[k].boxElement);
-                k++;
+                xToUSe = row - x - 1;
+            }
+            tilePositions[xToUSe] = new Transform[column];
+            for (int y = 0; y < column; y++)
+            {
+                tilePositions[xToUSe][y] = allTiles[tileindex];
+                tileindex++;
             }
         }
     }
 
-
     //identifica la zona di codice con le funzioni pubbliche
-    #region API
+    #region Funzioni non più utilizzate (generazione board)
 
     /// <summary>
     /// Funzione che crea la griglia, viene chiamata all'inizio del gioco e nell'editor dal BoardsGenerator, genera una griglia ricevendo in input righe e colonne, come caselle usa il TilePrefab
     /// </summary>
     /// <param name="row"></param>
     /// <param name="column"></param>
-    public void CreateGrid(int row, int column)
+    /*public void CreateGrid(int row, int column)
     {
         if (transform.Find("Board"))
         {
@@ -96,7 +107,24 @@ public class GridGenerator : MonoBehaviour
                 }     
             }
         }
-    }
+        SetElements();
+    }*/
+
+    /// <summary>
+    /// Funzione che imposta gli elementi sulla board come nel pattern presente in BoardsGenerator
+    /// </summary>
+    /*private void SetElements()
+    {
+        int k = 0;
+        for (int i = 0; i < tilePositions.Length; i++)
+        {
+            for (int j = 0; j < tilePositions[i].Length; j++)
+            {
+                tilePositions[i][j].GetComponent<Box>().SetElement(bg.boardPattern[k].boxElement);
+                k++;
+            }
+        }
+    }*/
 
     #endregion
 }

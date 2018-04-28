@@ -4,6 +4,8 @@ using UnityEngine;
 using BoxOutlineNameSpace;
 using UnityEngine.EventSystems;
 
+public enum Element { Red, Green, Blue, NeutralWhite, NeutralBlack };
+
 public class Box : MonoBehaviour
 {
 
@@ -15,7 +17,7 @@ public class Box : MonoBehaviour
 
     //variabili private
     private BoardManager bm;
-    private MeshRenderer mr;
+    public MeshRenderer mr;
     private BoxOutline outline;
 
     //parte di codice con funzioni private
