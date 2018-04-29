@@ -17,7 +17,7 @@ public class Box : MonoBehaviour
 
     //variabili private
     private BoardManager bm;
-    public MeshRenderer mr;
+    private MeshRenderer mr;
     private BoxOutline outline;
 
     //parte di codice con funzioni private

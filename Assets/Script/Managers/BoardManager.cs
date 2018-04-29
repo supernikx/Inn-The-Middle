@@ -18,7 +18,7 @@ public class BoardManager : MonoBehaviour
     [HideInInspector]
     public Pawn pawnSelected;
     [HideInInspector]
-    public bool movementSkipped, superAttackPressed;
+    public bool movementSkipped, superAttack;
     public int pawnsToPlace;
     public int p1pawns, p2pawns;
     public int p1tiles, p2tiles;
@@ -90,7 +90,7 @@ public class BoardManager : MonoBehaviour
         placingsLeft = 1;
         pawnsToPlace = 8;
         movementSkipped = false;
-        superAttackPressed = false;
+        superAttack = false;
         pause = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
         boxesArray = FindObjectsOfType<Box>();
@@ -231,16 +231,14 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Funzione che toglie il marchio di Kill a tutte le pedine
     /// </summary>
-    public void UnmarkKillPawns()
+    public void UnmarkAttackMarker()
     {
         foreach (Pawn p in pawns)
         {
-            if (p.killMarker)
+            if (p.attackMarker)
             {
                 p.projections[p.activePattern].SetActive(false);
-                //Color finalColor = Color.white * Mathf.LinearToGammaSpace(0.25f);
-                //p.projections[p.activePattern].GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", finalColor);
-                p.killMarker = false;
+                p.attackMarker = false;
             }
         }
     }
@@ -249,21 +247,14 @@ public class BoardManager : MonoBehaviour
     /// Funzione che richiama la funzione Attack della pawnselected e se avviene l'attacco passa il turno
     /// </summary>
     /// <param name="boxclicked"></param>
-    public void Attack(bool superAttack)
+    public void Attack(Pawn pawnClicked)
     {
         if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
-            if (pawnSelected != null && !superAttackPressed && !pause)
+            if (pawnSelected != null && !pause)
             {
-                if (pawnSelected.CheckAttackPattern())
-                {
-                    pawnSelected.OnAttackEnd += OnAttackEnd;
-                    pawnSelected.AttackBehaviour(superAttack);
-                }
-                else
-                {
-                    Debug.Log("nope");
-                }
+                pawnSelected.OnAttackEnd += OnAttackEnd;
+                pawnSelected.AttackBehaviour(superAttack, pawnClicked);
             }
         }
     }
@@ -272,25 +263,21 @@ public class BoardManager : MonoBehaviour
     {
         pawnSelected.OnAttackEnd -= OnAttackEnd;
         CustomLogger.Log(pawnSelected.player + " ha attaccato");
+        UnmarkAttackMarker();
         turnManager.ChangeTurn();
     }
 
-    /// <summary>
-    /// Funzione che prende in input una pedina con il bool killMarker=true e la uccide
-    /// </summary>
-    /// <param name="pawnToKill"></param>
-    public void KillPawnMarked(Pawn pawnToKill)
-    {
-        UnmarkKillPawns();
-        pawnToKill.OnDeathEnd += pawnSelected.OnPawnKilled;
-        pawnToKill.KillPawn();       
-    }
-
     private void OnPawnKilled(Pawn pawnKilled)
-    {      
+    {
         pawnKilled.OnDeathEnd -= OnPawnKilled;
         DeselectPawn();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+    }
+
+    //provvisoria
+    public void ActiveSuperAttack()
+    {
+        superAttack = !superAttack;
     }
 
     #endregion
@@ -404,9 +391,9 @@ public class BoardManager : MonoBehaviour
     {
         foreach (Pawn p in pawns)
         {
-            if (p.CheckAttackPattern() && ((p.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)))
+            if (((p.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)) && p.CheckAttackPattern())
             {
-                Debug.Log("è possibil eseguire un attacco");
+                Debug.Log("è possibile eseguire un attacco");
                 return true;
             }
         }
@@ -429,6 +416,10 @@ public class BoardManager : MonoBehaviour
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
                 pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+                {
+                    UnmarkAttackMarker();
+                }
             }
             pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
             pawnSelected.selected = false;
@@ -471,7 +462,7 @@ public class BoardManager : MonoBehaviour
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowMovementBoxes();
                     }
-                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && !superAttackPressed && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
                     {
                         if (pawnSelected != null)
                         {
@@ -480,6 +471,7 @@ public class BoardManager : MonoBehaviour
                         selected.selected = true;
                         pawnSelected = selected;
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                        pawnSelected.CheckAttackPattern();
                         pawnSelected.ShowAttackPattern();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -658,10 +650,10 @@ public class BoardManager : MonoBehaviour
                         Debug.Log("Animazione in corso");
                         break;
                     case TurnManager.PlayTurnState.check:
-                        Movement(boxclicked,true);
+                        Movement(boxclicked, true);
                         break;
                     case TurnManager.PlayTurnState.movement:
-                        Movement(boxclicked,false);
+                        Movement(boxclicked, false);
                         break;
                     case TurnManager.PlayTurnState.attack:
                         CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");

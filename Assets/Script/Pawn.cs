@@ -28,12 +28,9 @@ public class Pawn : MonoBehaviour
     public List<GameObject> projections;
     [Space]
     [Header("Attack Settings")]
+    public bool attackMarker;
     public int activePattern;
-    /// <summary>
-    /// Lista che contiene i pattern d'attacco e il colore del pattern, i valori inseriti sono 2 interi che identificano quanto la casella interessata si discosta dalla nostra posizione (index 1 riga, index 2 colonna)
-    /// </summary>
     public List<Attack> patterns;
-    public bool killMarker;
 
     //variabili private
     private BoardManager bm;
@@ -48,7 +45,7 @@ public class Pawn : MonoBehaviour
     void Start()
     {
         selected = false;
-        killMarker = false;
+        attackMarker = false;
         randomized = false;
         bm = BoardManager.Instance;
         projectionTempBox = currentBox;
@@ -109,9 +106,9 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if (killMarker)
+        if (attackMarker)
         {
-            bm.KillPawnMarked(this);
+            bm.Attack(this);
         }
         else
         {
@@ -257,6 +254,7 @@ public class Pawn : MonoBehaviour
     #region Attack
 
     List<Box> patternBox = new List<Box>();
+    Pawn pawnAttackClicked;
     bool superAttack;
     int pawnHitted;
     int _pawnAnimationEnded;
@@ -294,6 +292,7 @@ public class Pawn : MonoBehaviour
                 {
                     if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
                     {
+                        p.attackMarker = true;
                         CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         return true;
                     }
@@ -310,6 +309,7 @@ public class Pawn : MonoBehaviour
                     {
                         if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
                         {
+                            p.attackMarker = true;
                             CustomLogger.Log("c'è una pedina avversaria nel pattern");
                             return true;
                         }
@@ -320,10 +320,11 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
-    public void AttackBehaviour(bool _superAttack)
+    public void AttackBehaviour(bool _superAttack, Pawn _pawnClicked)
     {
         DisableAttackPattern();
         superAttack = _superAttack;
+        pawnAttackClicked = _pawnClicked;
         pawnHitted = 0;
         _pawnAnimationEnded = 0;
         patternBox.Clear();
@@ -365,26 +366,10 @@ public class Pawn : MonoBehaviour
         if (superAttack)
         {
             myelements.UseSuperAttack();
-            switch (pawnsHitted.Count)
-            {
-                case 0:
-                    CustomLogger.Log("Nessuna pedina nel Pattern");
-                    break;
-                case 1:
-                    pawnsHitted[0].OnDeathEnd += OnPawnKilled;
-                    pawnsHitted[0].KillPawn();
-                    CustomLogger.Log("Pedina Uccisa");
-                    return;
-                default:
-                    bm.superAttackPressed = true;
-                    foreach (Pawn p in pawnsHitted)
-                    {
-                        p.killMarker = true;
-                        p.projections[p.activePattern].SetActive(true);
-                    }
-                    CustomLogger.Log("Scegli la pedina da uccidere");
-                    break;
-            }
+            pawnAttackClicked.OnDeathEnd += OnPawnKilled;
+            pawnAttackClicked.KillPawn();
+            CustomLogger.Log("Pedina Uccisa");
+            return;
         }
         else
         {

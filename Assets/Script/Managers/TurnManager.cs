@@ -154,8 +154,8 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.check:
                 turnsWithoutAttack++;
                 BoardManager.Instance.movementSkipped = false;
-                BoardManager.Instance.superAttackPressed = false;
-                BoardManager.Instance.UnmarkKillPawns();
+                BoardManager.Instance.superAttack = false;
+                BoardManager.Instance.UnmarkAttackMarker();
                 if (BoardManager.Instance.pawnSelected != null)
                 {
                     BoardManager.Instance.pawnSelected.DisableAttackPattern();

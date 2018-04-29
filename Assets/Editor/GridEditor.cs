@@ -6,7 +6,7 @@ using UnityEngine;
 [CustomEditor(typeof(BoardsGenerator))]
 [CanEditMultipleObjects]
 public class GridEditor : Editor {
-    private BoardsGenerator grid;
+    /*private BoardsGenerator grid;
     private void OnEnable()
     {
         grid = (BoardsGenerator)target;
@@ -14,6 +14,6 @@ public class GridEditor : Editor {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        //grid.CreateBoards();
-    }
+        grid.CreateBoards();
+    }*/
 }

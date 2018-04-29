@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
     [Header("Button references")]
     public GameObject skipAttackButton;
     public GameObject skipMovementButton;
-    public GameObject attackButton;
     public GameObject superAttackButton;
 
     [Header("Choosing References")]
@@ -260,20 +259,17 @@ public class UIManager : MonoBehaviour
                                 p2phase.text = "Check phase";
                                 skipAttackButton.SetActive(false);
                                 skipMovementButton.SetActive(false);
-                                attackButton.SetActive(false);
                                 superAttackButton.SetActive(false);
                                 break;
                             case TurnManager.PlayTurnState.movement:
                                 p2phase.text = "Movement phase";
                                 skipMovementButton.SetActive(true);
                                 skipAttackButton.SetActive(false);
-                                attackButton.SetActive(false);
                                 superAttackButton.SetActive(false);
                                 break;
                             case TurnManager.PlayTurnState.attack:
                                 p2phase.text = "Attack phase";
                                 skipAttackButton.SetActive(true);
-                                attackButton.SetActive(true);
                                 if (bm.player2Elements.CheckSuperAttack())
                                 {
                                     superAttackButton.SetActive(true);
@@ -346,20 +342,17 @@ public class UIManager : MonoBehaviour
                                 p1phase.text = "Check phase";
                                 skipAttackButton.SetActive(false);
                                 skipMovementButton.SetActive(false);
-                                attackButton.SetActive(false);
                                 superAttackButton.SetActive(false);
                                 break;
                             case TurnManager.PlayTurnState.movement:
                                 p1phase.text = "Movement phase";
                                 skipMovementButton.SetActive(true);
                                 skipAttackButton.SetActive(false);
-                                attackButton.SetActive(false);
                                 superAttackButton.SetActive(false);
                                 break;
                             case TurnManager.PlayTurnState.attack:
                                 p1phase.text = "Attack phase";
                                 skipAttackButton.SetActive(true);
-                                attackButton.SetActive(true);
                                 if (bm.player1Elements.CheckSuperAttack())
                                 {
                                     superAttackButton.SetActive(true);
