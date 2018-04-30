@@ -3,7 +3,6 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using PawnOutlineNameSpace;
 
 
 public class BoardManager : MonoBehaviour

@@ -90,7 +90,7 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
 
     #endregion
 
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
     }

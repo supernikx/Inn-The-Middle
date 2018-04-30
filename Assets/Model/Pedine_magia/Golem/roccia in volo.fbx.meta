@@ -1,18 +1,23 @@
 fileFormatVersion: 2
-guid: c9e1783b22078934b9e8fc6e1510638c
-timeCreated: 1516526673
+guid: ff7a1f1b5cd583c4aadf1235d2c9fb71
+timeCreated: 1525076846
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: M_tile_singolo
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Tile_singolo
-    6400000: //RootNode
+    100000: joint1
+    100002: nurbsCircle1
+    100004: //RootNode
+    100006: rock_move
+    400000: joint1
+    400002: nurbsCircle1
+    400004: //RootNode
+    400006: rock_move
+    2100000: M_Golem
+    4300000: rock_move
+    7400000: Roccia in volo
     9500000: //RootNode
+    13700000: rock_move
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,7 +50,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

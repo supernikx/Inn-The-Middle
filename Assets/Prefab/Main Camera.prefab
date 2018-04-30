@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 20538806460945544}
   - component: {fileID: 124131530228880140}
   - component: {fileID: 81914402415987324}
-  - component: {fileID: 114263451960138334}
   - component: {fileID: 114795903284651558}
   m_Layer: 0
   m_Name: Main Camera
@@ -219,34 +218,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526236226041986}
   m_Enabled: 1
---- !u!114 &114263451960138334
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1526236226041986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78da3f00f3328541b4526c0b0b5ec5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineThickness: 1.25
-  lineIntensity: 0.5
-  fillAmount: 0.35
-  PawnSelected: {r: 0, g: 0, b: 0, a: 1}
-  PawnMarkedToKill: {r: 1, g: 0, b: 0, a: 1}
-  additiveRendering: 0
-  backfaceCulling: 1
-  cornerOutlines: 1
-  addLinesBetweenColors: 0
-  scaleWithScreenSize: 1
-  alphaCutoff: 0.5
-  flipY: 0
-  sourceCamera: {fileID: 20538806460945544}
-  outlineCamera: {fileID: 20707841683335802}
-  outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 0}
-  extraRenderTexture: {fileID: 0}
 --- !u!114 &114795903284651558
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.EventSystems;
 
 public class Pawn : MonoBehaviour
@@ -301,6 +300,7 @@ public class Pawn : MonoBehaviour
         }
         else
         {
+            int pawnCount = 0;
             foreach (Pattern a in patterns[activePattern].pattern)
             {
                 foreach (Pawn p in bm.pawns)
@@ -311,11 +311,14 @@ public class Pawn : MonoBehaviour
                         {
                             p.attackMarker = true;
                             CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                            return true;
+                            pawnCount++;
                         }
                     }
                 }
             }
+            if (pawnCount > 0)
+                return true;
+
         }
         return false;
     }

@@ -23,6 +23,43 @@ ModelImporter:
     100030: rock_1
     100032: rock_2
     100034: rock_3
+    100036: Base_Rock
+    100038: L_Arm
+    100040: L_Hand
+    100042: L_Index
+    100044: L_Mid
+    100046: L_Pinky
+    100048: L_Ring
+    100050: L_Thumb
+    100052: nurbsCircle1
+    100054: nurbsCircle10
+    100056: nurbsCircle11
+    100058: nurbsCircle12
+    100060: nurbsCircle13
+    100062: nurbsCircle14
+    100064: nurbsCircle15
+    100066: nurbsCircle16
+    100068: nurbsCircle17
+    100070: nurbsCircle2
+    100072: nurbsCircle3
+    100074: nurbsCircle4
+    100076: nurbsCircle5
+    100078: nurbsCircle6
+    100080: nurbsCircle7
+    100082: nurbsCircle8
+    100084: nurbsCircle9
+    100086: Pelvis
+    100088: R_Arm
+    100090: R_Hand
+    100092: R_Index
+    100094: R_Mid
+    100096: R_Pinky
+    100098: R_Ring
+    100100: R_Thumb
+    100102: Rock1
+    100104: Rock2
+    100106: Rock3
+    100108: Torso
     400000: //RootNode
     400002: head_golem
     400004: l_finger_1
@@ -41,6 +78,43 @@ ModelImporter:
     400030: rock_1
     400032: rock_2
     400034: rock_3
+    400036: Base_Rock
+    400038: L_Arm
+    400040: L_Hand
+    400042: L_Index
+    400044: L_Mid
+    400046: L_Pinky
+    400048: L_Ring
+    400050: L_Thumb
+    400052: nurbsCircle1
+    400054: nurbsCircle10
+    400056: nurbsCircle11
+    400058: nurbsCircle12
+    400060: nurbsCircle13
+    400062: nurbsCircle14
+    400064: nurbsCircle15
+    400066: nurbsCircle16
+    400068: nurbsCircle17
+    400070: nurbsCircle2
+    400072: nurbsCircle3
+    400074: nurbsCircle4
+    400076: nurbsCircle5
+    400078: nurbsCircle6
+    400080: nurbsCircle7
+    400082: nurbsCircle8
+    400084: nurbsCircle9
+    400086: Pelvis
+    400088: R_Arm
+    400090: R_Hand
+    400092: R_Index
+    400094: R_Mid
+    400096: R_Pinky
+    400098: R_Ring
+    400100: R_Thumb
+    400102: Rock1
+    400104: Rock2
+    400106: Rock3
+    400108: Torso
     2100000: M_Golem
     2300000: head_golem
     2300002: l_finger_1
@@ -93,7 +167,29 @@ ModelImporter:
     4300028: rock_3
     4300030: rock_1
     4300032: rock_2
+    7400000: Idle
+    7400002: Walk
+    7400004: Attack
+    7400006: Hit
+    7400008: Death
     9500000: //RootNode
+    13700000: head_golem
+    13700002: l_finger_1
+    13700004: l_finger_2
+    13700006: l_finger_3
+    13700008: l_finger_4
+    13700010: l_finger_5
+    13700012: l_hand
+    13700014: main_rock
+    13700016: r_finger_1
+    13700018: r_finger_2
+    13700020: r_finger_3
+    13700022: r_finger_4
+    13700024: r_finger_5
+    13700026: r_hand
+    13700028: rock_1
+    13700030: rock_2
+    13700032: rock_3
   externalObjects: {}
   materials:
     importMaterials: 1
