@@ -14,7 +14,12 @@ ModelImporter:
     3300000: polySurface1366
     4300000: polySurface1366
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_plancia
+    second: {fileID: 2100000, guid: ab24188f75a7a394093e59f90d797f01, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
