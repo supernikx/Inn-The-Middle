@@ -201,6 +201,9 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Funzione che aggiorna l'ui in base alla fase e stato del turno
+    /// </summary>
     public void UIChange()
     {
         switch (tm.CurrentPlayerTurn)

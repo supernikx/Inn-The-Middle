@@ -56,6 +56,9 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
 
     #region PlayAnimations
 
+    /// <summary>
+    /// Funzione che esegue l'animazione d'attacco
+    /// </summary>
     public void PlayAttackAnimation()
     {
         if (animator.runtimeAnimatorController != null)
@@ -64,6 +67,9 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnAttackEnd();
     }
 
+    /// <summary>
+    /// Funzione che esegue l'animazione di morte
+    /// </summary>
     public void PlayDeathAnimation()
     {
         if (animator.runtimeAnimatorController != null)
@@ -72,6 +78,9 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnDeathEnd();
     }
 
+    /// <summary>
+    /// Funzione che esegue l'animazione di danneggiamento
+    /// </summary>
     public virtual void PlayDamagedAnimation()
     {
         if (animator.runtimeAnimatorController != null)
@@ -80,6 +89,10 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnDamagedEnd();
     }
 
+    /// <summary>
+    /// Funzione che attiva/disattiva l'animazione di movimento
+    /// </summary>
+    /// <param name="_movementSet"></param>
     public void MovementAnimation(bool _movementSet)
     {
         if (animator.runtimeAnimatorController != null)

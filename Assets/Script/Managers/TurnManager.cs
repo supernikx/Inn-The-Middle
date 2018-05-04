@@ -45,7 +45,7 @@ public class TurnManager : MonoBehaviour
 
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState {choosing, placing, animation, check, movement, attack};
+    public enum PlayTurnState { choosing, placing, animation, check, movement, attack };
     /// <summary> PlayTurnState corrente </summary>
     private PlayTurnState _currentTurnState;
     public PlayTurnState CurrentTurnState
@@ -79,12 +79,17 @@ public class TurnManager : MonoBehaviour
         CurrentMacroPhase = MacroPhase.menu;
     }
 
+    /// <summary>
+    /// Funzione che controlla se è possibile passare dallo stato del turno attuale a newState, ritorna true se è possibile altrimenti false
+    /// </summary>
+    /// <param name="newState"></param>
+    /// <returns></returns>
     bool StateChange(PlayTurnState newState)
     {
         switch (newState)
         {
             case PlayTurnState.choosing:
-                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState!=PlayTurnState.check && CurrentTurnState != PlayTurnState.animation)
+                if (CurrentTurnState != PlayTurnState.choosing && CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             case PlayTurnState.placing:
@@ -102,7 +107,7 @@ public class TurnManager : MonoBehaviour
                     return false;
                 return true;
             case PlayTurnState.attack:
-                if (CurrentTurnState != PlayTurnState.movement && CurrentTurnState!= PlayTurnState.animation)
+                if (CurrentTurnState != PlayTurnState.movement && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             default:
@@ -110,6 +115,11 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che controlla se è possibile passare dalla macro fase attuale a newPhase, ritorna true se è possibile altrimenti false
+    /// </summary>
+    /// <param name="newPhase"></param>
+    /// <returns></returns>
     bool MacroPhaseChange(MacroPhase newPhase)
     {
         switch (newPhase)
@@ -137,6 +147,10 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si entra in un nuovo stato del turno ed esegue le funzioni necessarie a quello stato
+    /// </summary>
+    /// <param name="newState"></param>
     void OnStateStart(PlayTurnState newState)
     {
         switch (newState)
@@ -160,17 +174,22 @@ public class TurnManager : MonoBehaviour
                 {
                     BoardManager.Instance.pawnSelected.DisableAttackPattern();
                     BoardManager.Instance.DeselectPawn();
-                }               
+                }
                 BoardManager.Instance.CheckPhaseControll();
                 break;
             case PlayTurnState.movement:
                 break;
             case PlayTurnState.attack:
-                if (BoardManager.Instance.movementSkipped && !BoardManager.Instance.CheckAllAttackPattern())
+                if (BoardManager.Instance.pawnSelected != null)
+                {
+                    BoardManager.Instance.pawnSelected.MarkAttackPawn();
+                }
+
+                if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
                 {
                     ChangeTurn();
                 }
-                else if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
+                else if (BoardManager.Instance.movementSkipped && !BoardManager.Instance.CheckAllAttackPattern())
                 {
                     ChangeTurn();
                 }
@@ -181,6 +200,10 @@ public class TurnManager : MonoBehaviour
         BoardManager.Instance.uiManager.UIChange();
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si entra in un nuova fase della partita ed esegue le funzioni necessarie a quella fase
+    /// </summary>
+    /// <param name="newPhase"></param>
     void OnMacroPhaseStart(MacroPhase newPhase)
     {
         switch (newPhase)
@@ -208,6 +231,10 @@ public class TurnManager : MonoBehaviour
         BoardManager.Instance.uiManager.UIChange();
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando inizia un nuobo turno
+    /// </summary>
+    /// <param name="newTurn"></param>
     void OnTurnStart(PlayerTurn newTurn)
     {
         switch (CurrentMacroPhase)
@@ -218,20 +245,20 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.faction:
                 break;
             case MacroPhase.draft:
-        //       if (BoardManager.Instance.factionChosen == true)
-        //       {
-        //           BoardManager.Instance.uiManager.factionUI.SetActive(false);
-        //           BoardManager.Instance.uiManager.draftUI.SetActive(true);
-        //       }
-                    if (BoardManager.Instance.draftManager.pawns.Count == 0)
-                    {
-                        draftCam.enabled = false;
-                        mainCam.enabled = true;
-                        BoardManager.Instance.SetPawnsPattern();
-                        BoardManager.Instance.uiManager.draftUI.SetActive(false);
-                        BoardManager.Instance.uiManager.choosingUi.SetActive(true);
-                        CurrentMacroPhase = MacroPhase.placing;
-                    }
+                //       if (BoardManager.Instance.factionChosen == true)
+                //       {
+                //           BoardManager.Instance.uiManager.factionUI.SetActive(false);
+                //           BoardManager.Instance.uiManager.draftUI.SetActive(true);
+                //       }
+                if (BoardManager.Instance.draftManager.pawns.Count == 0)
+                {
+                    draftCam.enabled = false;
+                    mainCam.enabled = true;
+                    BoardManager.Instance.SetPawnsPattern();
+                    BoardManager.Instance.uiManager.draftUI.SetActive(false);
+                    BoardManager.Instance.uiManager.choosingUi.SetActive(true);
+                    CurrentMacroPhase = MacroPhase.placing;
+                }
 
                 break;
             case MacroPhase.placing:

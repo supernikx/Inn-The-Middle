@@ -75,6 +75,9 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta la proiezione e la grafica delle pedine nelle rispettive liste
+    /// </summary>
     private void SetGraphics()
     {
         foreach (Transform child in transform)
@@ -89,19 +92,10 @@ public class Pawn : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Funzione chiamata quando quest'oggetto viene distrutto e che lo rimuove dalla lista delle pedina
-    /// </summary>
-    private void OnDestroy()
-    {
-        bm.pawns.Remove(this);
-    }
-
-    //identifica la zona di codice con le funzioni pubbliche
     #region API
 
     /// <summary>
-    /// Funzione che viene chiamata ogni volta che la pedina viene premuta, e che richiama la funzione del BoardManager PawnSelected
+    /// Funzione che viene chiamata ogni volta che la pedina viene premuta, e che richiama la funzione del BoardManager PawnSelected o Attack in caso abbia l'attackMarker
     /// </summary>
     public void OnMouseDown()
     {
@@ -257,6 +251,10 @@ public class Pawn : MonoBehaviour
     bool superAttack;
     int pawnHitted;
     int _pawnAnimationEnded;
+
+    /// <summary>
+    /// Property che controlla se le animazioni di danneggiamento concluse coincidono con le pedine colpite, nel caso fosse vero avvisa il board manager della fine dell'attacco
+    /// </summary>
     public int PawnAnimationEnded
     {
         get
@@ -275,7 +273,7 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
+    /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true e marchia queste pedine con l'attackMarker, altrimenti ritorna false
     /// </summary>
     /// <returns></returns>
     public bool CheckAttackPattern()
@@ -291,7 +289,6 @@ public class Pawn : MonoBehaviour
                 {
                     if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
                     {
-                        p.attackMarker = true;
                         CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         return true;
                     }
@@ -300,7 +297,45 @@ public class Pawn : MonoBehaviour
         }
         else
         {
-            int pawnCount = 0;
+            foreach (Pattern a in patterns[activePattern].pattern)
+            {
+                foreach (Pawn p in bm.pawns)
+                {
+                    if (p.player != player)
+                    {
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        {
+                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void MarkAttackPawn()
+    {
+        int currentColumn = currentBox.index2;
+        if (activePattern == 2)
+        {
+            int patternindex1 = patterns[activePattern].pattern[0].index1;
+            int patternindex2 = patterns[activePattern].pattern[0].index2;
+            foreach (Pawn p in bm.pawns)
+            {
+                if (p.player != player)
+                {
+                    if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
+                    {
+                        p.attackMarker = true;
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                    }
+                }
+            }
+        }
+        else
+        {
             foreach (Pattern a in patterns[activePattern].pattern)
             {
                 foreach (Pawn p in bm.pawns)
@@ -311,18 +346,19 @@ public class Pawn : MonoBehaviour
                         {
                             p.attackMarker = true;
                             CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                            pawnCount++;
                         }
                     }
                 }
             }
-            if (pawnCount > 0)
-                return true;
-
         }
-        return false;
     }
 
+    /// <summary>
+    /// Funzione che prendendo come valori un boolean che identifica un super attacco e la pedina cliccata per eseguire l'attacco, identifica tutte le caselle del pattern e le passa all'animator 
+    /// della pedina attiva per far avvenire l'animazione d'attacco e imposta lo stato del turno su animation
+    /// </summary>
+    /// <param name="_superAttack"></param>
+    /// <param name="_pawnClicked"></param>
     public void AttackBehaviour(bool _superAttack, Pawn _pawnClicked)
     {
         DisableAttackPattern();
@@ -351,6 +387,10 @@ public class Pawn : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Funzione chiamata dall'animator quando finisce l'animazione d'attacco della pedina, raccoglie gli elementi o esegue un super attacco (in base al bool della funzione AttackBehaviour)
+    /// chiama le animazioni di danneggiamento/morte delle pedine coinvolte nell'attacco
+    /// </summary>
     public void OnAttackAnimationEnd()
     {
         projections[activePattern].SetActive(true);
@@ -407,17 +447,27 @@ public class Pawn : MonoBehaviour
 
     #region Damaged
 
+    /// <summary>
+    /// Esegue l'animazione di danneggiamento chiamando l'animator attivo
+    /// </summary>
     public void PlayDamagedAnimation()
     {
         animators[activePattern].PlayDamagedAnimation();
     }
 
+    /// <summary>
+    /// Funzione che avvisa la pedina attaccante della fine dell'animazione di dannaggeiamento di una delle pedine attaccate
+    /// </summary>
+    /// <param name="pawnDamaged"></param>
     private void OnPawnDamaged(Pawn pawnDamaged)
     {
         pawnDamaged.OnDamageEnd -= OnPawnDamaged;
         PawnAnimationEnded++;
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata dall'animator quando è finita l'animazione di danneggiamento, poi avviserà la pedina attaccante della sua conclusione
+    /// </summary>
     private void OnDamagedAnimationEnd()
     {
         OnDamageEnd(this);
@@ -427,6 +477,10 @@ public class Pawn : MonoBehaviour
 
     #region Kill
 
+    /// <summary>
+    /// Funzione che viene chiamata quando una pedina attaccata ha finito l'animazione di morte, avvisa il boardmanager che l'attacco e finito
+    /// </summary>
+    /// <param name="pawnKilled"></param>
     public void OnPawnKilled(Pawn pawnKilled)
     {
         pawnKilled.OnDeathEnd -= OnPawnKilled;
@@ -434,7 +488,7 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che prende in input una pedina e la distrugge disattivando tutte le funzioni necessarie
+    /// Funzione che avvia l'animazione di morte su questa pedina
     /// </summary>
     /// <param name="pawnToKill"></param>
     public void KillPawn()
@@ -445,6 +499,11 @@ public class Pawn : MonoBehaviour
         animators[activePattern].PlayDeathAnimation();
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata dall'animator quando è finita l'animazione di morte di questa pedina
+    /// controlla se una delle 2 fazioni è rimasta senza pedine e di conseguenza c'è un vincitore
+    /// avvisa la pedina attaccante che è finita la sua animazione
+    /// </summary>
     private void DeathAnimationEnd()
     {
         if (player == Player.player1)
@@ -477,6 +536,11 @@ public class Pawn : MonoBehaviour
 
     #region Movement
 
+    /// <summary>
+    /// Funzione che controlla se boxToMove (passato come parametro) fa parte delle caselle possibili su cui muoversi e se è disponibile
+    /// </summary>
+    /// <param name="boxToMove"></param>
+    /// <returns></returns>
     public bool CheckMovementPattern(Box boxToMove)
 
     {
@@ -488,13 +552,9 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che esegue tutti i controlli sulla casella e se rispetta i requisiti muove la pedina
-    /// ritorna true se la pedina si muove, ritorna false se non è avvenuto
+    /// Funzione che avvia l'animazione di movimento sulla boxToMove impostando la fase del turno su animation
     /// </summary>
-    /// <param name="boxindex1"></param>
-    /// <param name="boxindex2"></param>
     /// <param name="boxToMove"></param>
-    /// <returns></returns>
     public void Move(Box boxToMove)
     {
         transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
@@ -512,6 +572,9 @@ public class Pawn : MonoBehaviour
         animators[activePattern].MovementAnimation(transform, boxToMove.transform.position, activeSpeed);
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata dall'animator quando è finita l'animazione di movimento
+    /// </summary>
     private void OnMovementCompleted()
     {
         projections[activePattern].SetActive(true);
@@ -563,7 +626,7 @@ public class Pawn : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Funzione che randomizza il pattern della pedina e gli assegna il colore corrispondente
+    /// Funzione che randomizza il pattern della pedina e attiva il modello corrispondente
     /// </summary>
     public void RandomizePattern()
     {
@@ -596,6 +659,9 @@ public class Pawn : MonoBehaviour
         SubscribeAnimationEvent();
     }
 
+    /// <summary>
+    /// Funzione che iscrive la pedina a tutti gli eventi dell'animator (chiamata quando viene randomizzato un nuovo pattern)
+    /// </summary>
     private void SubscribeAnimationEvent()
     {
         if (animators[activePattern] != null)
@@ -607,6 +673,9 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che disiscrive la pedina a tutti gli eventi dell'animator (chiamata quando viene randomizzato un nuovo pattern)
+    /// </summary>
     private void UnsubscribeAnimationEvent()
     {
         if (animators[activePattern] != null)

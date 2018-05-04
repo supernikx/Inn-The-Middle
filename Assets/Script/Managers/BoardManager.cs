@@ -112,7 +112,8 @@ public class BoardManager : MonoBehaviour
     #region Movement
 
     /// <summary>
-    /// Funzione che obbliga il giocatore a muoversi durante la fase di check non deselezionando mai la pedina finchè non si è mossa in una delle caselle disponibili
+    /// Funzione che controlla se la casella selezionata fa parte della board del player di turno e chiama la funzione di movimento della pawnselected
+    /// si siscrive a 2 eventi diversi nel caso il bool checkphase sia true o false
     /// </summary>
     /// <param name="boxclicked"></param>
     private void Movement(Box boxclicked, bool checkphase)
@@ -142,6 +143,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si conclude il moviemento se il bool della funzione movement era true
+    /// </summary>
     private void OnMovementCheckEnd()
     {
         pawnSelected.OnMovementEnd -= OnMovementCheckEnd;
@@ -151,6 +155,9 @@ public class BoardManager : MonoBehaviour
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si conclude il moviemento se il bool della funzione movement era true
+    /// </summary>
     private void OnMovementEnd()
     {
         CustomLogger.Log(pawnSelected.player + " si è mosso");
@@ -202,9 +209,11 @@ public class BoardManager : MonoBehaviour
 
     #endregion
 
-    //identifica la zona di codice con le funzioni pubbliche
     #region API
 
+    /// <summary>
+    /// Funzione che permette di scegliere la magia come fazione
+    /// </summary>
     public void MagicChosen()
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
@@ -215,6 +224,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che permette di scegliere la scienza come fazione
+    /// </summary>
     public void ScienceChosen()
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
@@ -228,7 +240,7 @@ public class BoardManager : MonoBehaviour
     #region Attack
 
     /// <summary>
-    /// Funzione che toglie il marchio di Kill a tutte le pedine
+    /// Funzione che toglie il marchio di attacco a tutte le pedine
     /// </summary>
     public void UnmarkAttackMarker()
     {
@@ -243,9 +255,10 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che richiama la funzione Attack della pawnselected e se avviene l'attacco passa il turno
+    /// Funzione che chiama la funzione attack della pawnselected e gli passa come parametro un bool che identifica se è attavio o no il super attacco
+    /// e la pedina che è stata cliccata per eseguire l'attacco
     /// </summary>
-    /// <param name="boxclicked"></param>
+    /// <param name="pawnClicked"></param>
     public void Attack(Pawn pawnClicked)
     {
         if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
@@ -258,14 +271,20 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando sono finite tutte le animazioni d'attacco, danneggiamento e morte necessarie
+    /// </summary>
     public void OnAttackEnd()
     {
         pawnSelected.OnAttackEnd -= OnAttackEnd;
         CustomLogger.Log(pawnSelected.player + " ha attaccato");
-        UnmarkAttackMarker();
         turnManager.ChangeTurn();
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando viene uccisa una pedina nella fase di check perchè non aveva più caselle adiacenti disponbibili
+    /// </summary>
+    /// <param name="pawnKilled"></param>
     private void OnPawnKilled(Pawn pawnKilled)
     {
         pawnKilled.OnDeathEnd -= OnPawnKilled;
@@ -284,7 +303,7 @@ public class BoardManager : MonoBehaviour
     #region Check
 
     /// <summary>
-    /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi
+    /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi e nel caso non ci siano caselle libere adiacenti la uccide
     /// </summary>
     public void CheckPhaseControll()
     {
@@ -353,10 +372,9 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che controlla se la casella che gli è stata passata in input è già occupata da un altro player o se non è walkable
-    /// se è libera ritorna true, altrimenti se è occupata ritorna false
+    /// Funzione che controlla tutte le caselle adiacenti di pawnToCheck e ritorna true se c'è almeno una casella disponibile altrimenti ritorna false
     /// </summary>
-    /// <param name="boxclicked"></param>
+    /// <param name="pawnToCheck"></param>
     /// <returns></returns>
     private bool CheckFreeBoxes(Pawn pawnToCheck)
     {
@@ -386,6 +404,10 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che controlla se in almeno un pattern delle pedine di turno ci sia una pedina avversaria, nel caso ritorna true altrimenti ritorna false
+    /// </summary>
+    /// <returns></returns>
     public bool CheckAllAttackPattern()
     {
         foreach (Pawn p in pawns)
@@ -404,7 +426,7 @@ public class BoardManager : MonoBehaviour
     #region Pawn
 
     /// <summary>
-    /// Funzione che imposta la variabile pawnSelected a null, prima reimposta il colore della pedina a quello di default e imposta a false il bool selected
+    /// Funzione che imposta la variabile pawnSelected a null, imposta a false il bool selected
     /// </summary>
     public void DeselectPawn()
     {
@@ -470,7 +492,7 @@ public class BoardManager : MonoBehaviour
                         selected.selected = true;
                         pawnSelected = selected;
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                        pawnSelected.CheckAttackPattern();
+                        pawnSelected.MarkAttackPawn();
                         pawnSelected.ShowAttackPattern();
                     }
                     else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
@@ -577,7 +599,7 @@ public class BoardManager : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Funzione che salta la fase d'attacco del player corrente e passa il turno
+    /// Funzione che salta la fase di moviemnto o attacco del player corrente ed esegue tutte le funzioni necessarie
     /// </summary>
     public void ButtonFunctions()
     {
@@ -606,6 +628,10 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che sposta la proiezione della pedina selezionata se si è nella fase di moviemento e boxover rispetta il pattern di moviemento di quella pedina
+    /// </summary>
+    /// <param name="boxover"></param>
     public void BoxOver(Box boxover)
     {
         if (!pause)

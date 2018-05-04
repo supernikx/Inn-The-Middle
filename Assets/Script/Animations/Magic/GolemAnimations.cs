@@ -34,10 +34,16 @@ public class GolemAnimations : PawnAnimationManager
         rock.SetActive(true);
         Tween launch1 = rock.transform.DOJump(bouncePositions[0], 1.5f, 1, 0.25f);
         yield return launch1.WaitForCompletion();
-        Tween launch2 = rock.transform.DOJump(bouncePositions[1], 1.3f, 1, 0.25f);
-        yield return launch2.WaitForCompletion();
-        Tween launch3 = rock.transform.DOJump(bouncePositions[2], 1.2f, 1, 0.25f);
-        yield return launch3.WaitForCompletion();
+        if (bouncePositions[1] != null)
+        {
+            Tween launch2 = rock.transform.DOJump(bouncePositions[1], 1.3f, 1, 0.25f);
+            yield return launch2.WaitForCompletion();
+            if (bouncePositions[2] != null)
+            {
+                Tween launch3 = rock.transform.DOJump(bouncePositions[2], 1.2f, 1, 0.25f);
+                yield return launch3.WaitForCompletion();
+            }
+        }
         rock.SetActive(false);
         rock.transform.position = rockStartPosition;
         OnAttackEnd();

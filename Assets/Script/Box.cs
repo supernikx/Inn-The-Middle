@@ -67,6 +67,9 @@ public class Box : MonoBehaviour
         //mr.material = boxToDestroy;
     }
 
+    /// <summary>
+    /// Funzione che cambia il tipo se si è una casella neutrale: da bianco a nero e da nero a bianco ed esegue le funzioni necessarie
+    /// </summary>
     public void ChangeNeutralType()
     {
         if (element == Element.NeutralWhite)
