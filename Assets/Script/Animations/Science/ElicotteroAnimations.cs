@@ -8,6 +8,7 @@ public class ElicotteroAnimations : PawnAnimationManager
     Transform myPosition;
     Vector3 targetPosition;
     Vector3 startPosition;
+    //Vector3 startRotation;
     float speed = 0.7f;
     bool isAttacking;
 
@@ -53,7 +54,7 @@ public class ElicotteroAnimations : PawnAnimationManager
 
     private IEnumerator ReturnToPosition()
     {
-        MovementAnimation(false);
+        PlayMovementAnimation(false);
         animator.SetBool("Back", true);
         Tween backmovement = myPosition.DOMove(startPosition, speed);
         yield return backmovement.WaitForCompletion();
@@ -65,6 +66,7 @@ public class ElicotteroAnimations : PawnAnimationManager
     {
         myPosition = _myPosition;
         targetPosition = _targetPosition;
+        //startRotation = _startRotation;
         speed = _speed;
         animator.SetTrigger("TakeBomb");
         animator.SetTrigger("SMovement");
@@ -72,12 +74,14 @@ public class ElicotteroAnimations : PawnAnimationManager
 
     public IEnumerator OnStartMovementAnimationEnd()
     {
-        MovementAnimation(true);
+        PlayMovementAnimation(true);
         Tween movement = myPosition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
+        //Tween rotate = myPosition.DORotate(startRotation, 1f);
+        //yield return rotate.WaitForCompletion();
         if (!isAttacking)
         {
-            MovementAnimation(false);
+            PlayMovementAnimation(false);
             OnMovementEnd();
         }
         else

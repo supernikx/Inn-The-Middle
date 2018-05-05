@@ -13,13 +13,17 @@ public class RobotRagnoAnimations : PawnAnimationManager
 
     public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed)
     {
-        MovementAnimation(true);
-        myPosition.DOMove(targetPosition, speed).OnComplete(MovementAnimationEnd);
+        PlayMovementAnimation(true);
+        StartCoroutine(Movement(myPosition, targetPosition, speed));
     }
 
-    private void MovementAnimationEnd()
+    private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed)
     {
-        MovementAnimation(false);
+        Tween movement = _myPosition.DOMove(_targetPosition, _speed);
+        yield return movement.WaitForCompletion();
+        //Tween rotate = _myPosition.DORotate(_startRotation, 1f);
+        //yield return rotate.WaitForCompletion();
+        PlayMovementAnimation(false);
         OnMovementEnd();
     }
 }

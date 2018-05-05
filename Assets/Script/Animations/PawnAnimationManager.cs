@@ -14,7 +14,7 @@ public interface IPawnAnimations
     event PawnAnimationEvents.Events OnDamagedAnimationEnd;
     event PawnAnimationEvents.Events OnMovementAnimationEnd;
     void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation);
-    void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed);
+    void MovementAnimation(Transform myPosition, Vector3 targetPosition, float movementSpeed);
     void PlayDeathAnimation();
     void PlayDamagedAnimation();
 }
@@ -93,7 +93,7 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
     /// Funzione che attiva/disattiva l'animazione di movimento
     /// </summary>
     /// <param name="_movementSet"></param>
-    public void MovementAnimation(bool _movementSet)
+    public void PlayMovementAnimation(bool _movementSet)
     {
         if (animator.runtimeAnimatorController != null)
             animator.SetBool("Movement", _movementSet);

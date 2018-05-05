@@ -1,44 +1,148 @@
 fileFormatVersion: 2
-guid: 991928fbfe30e654bb731426a7058fd1
-timeCreated: 1522841855
+guid: ca3b721c1f0afea4da43cdf685270328
+timeCreated: 1525511554
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Body_ragno
-    100002: Crown_ragno
-    100004: Feet_ragno
-    100006: Hands_ragno
-    100008: Head_ragno
-    100010: //RootNode
-    100012: Thorns_ragno
-    400000: Body_ragno
-    400002: Crown_ragno
-    400004: Feet_ragno
-    400006: Hands_ragno
-    400008: Head_ragno
-    400010: //RootNode
-    400012: Thorns_ragno
+    100000: Body
+    100002: Body_ragno
+    100004: Crown
+    100006: Crown_ragno
+    100008: Feet_ragno1
+    100010: Feet_ragno1 1
+    100012: Feet_ragno2
+    100014: Feet_ragno2 1
+    100016: Feet_ragno3
+    100018: Feet_ragno3 1
+    100020: Feet_ragno4
+    100022: Feet_ragno4 1
+    100024: Feet_ragno_joint1
+    100026: Feet_ragno_joint2
+    100028: Feet_ragno_joint3
+    100030: Feet_ragno_joint4
+    100032: Hand_rango1
+    100034: Hand_rango1 1
+    100036: Hand_rango2
+    100038: Hand_rango2 1
+    100040: Hand_rango_joint1
+    100042: Hand_rango_joint2
+    100044: Head1
+    100046: Head2
+    100048: Head_ragno
+    100050: Hip_ragno1
+    100052: Hip_ragno1 1
+    100054: Hip_ragno2
+    100056: Hip_ragno2 1
+    100058: Hip_ragno3
+    100060: Hip_ragno3 1
+    100062: Hip_ragno4
+    100064: Hip_ragno4 1
+    100066: nurbsCircle1
+    100068: nurbsCircle10
+    100070: nurbsCircle2
+    100072: nurbsCircle3
+    100074: nurbsCircle4
+    100076: nurbsCircle5
+    100078: nurbsCircle6
+    100080: nurbsCircle7
+    100082: nurbsCircle8
+    100084: nurbsCircle9
+    100086: ragno
+    100088: //RootNode
+    100090: Sholder_ragno1
+    100092: Sholder_ragno1 1
+    100094: Sholder_ragno2
+    100096: Sholder_ragno2 1
+    100098: Skeleton
+    400000: Body
+    400002: Body_ragno
+    400004: Crown
+    400006: Crown_ragno
+    400008: Feet_ragno1
+    400010: Feet_ragno1 1
+    400012: Feet_ragno2
+    400014: Feet_ragno2 1
+    400016: Feet_ragno3
+    400018: Feet_ragno3 1
+    400020: Feet_ragno4
+    400022: Feet_ragno4 1
+    400024: Feet_ragno_joint1
+    400026: Feet_ragno_joint2
+    400028: Feet_ragno_joint3
+    400030: Feet_ragno_joint4
+    400032: Hand_rango1
+    400034: Hand_rango1 1
+    400036: Hand_rango2
+    400038: Hand_rango2 1
+    400040: Hand_rango_joint1
+    400042: Hand_rango_joint2
+    400044: Head1
+    400046: Head2
+    400048: Head_ragno
+    400050: Hip_ragno1
+    400052: Hip_ragno1 1
+    400054: Hip_ragno2
+    400056: Hip_ragno2 1
+    400058: Hip_ragno3
+    400060: Hip_ragno3 1
+    400062: Hip_ragno4
+    400064: Hip_ragno4 1
+    400066: nurbsCircle1
+    400068: nurbsCircle10
+    400070: nurbsCircle2
+    400072: nurbsCircle3
+    400074: nurbsCircle4
+    400076: nurbsCircle5
+    400078: nurbsCircle6
+    400080: nurbsCircle7
+    400082: nurbsCircle8
+    400084: nurbsCircle9
+    400086: ragno
+    400088: //RootNode
+    400090: Sholder_ragno1
+    400092: Sholder_ragno1 1
+    400094: Sholder_ragno2
+    400096: Sholder_ragno2 1
+    400098: Skeleton
     2100000: M_RagnoMagico
-    2300000: Body_ragno
-    2300002: Crown_ragno
-    2300004: Feet_ragno
-    2300006: Hands_ragno
-    2300008: Head_ragno
-    2300010: Thorns_ragno
-    3300000: Body_ragno
-    3300002: Crown_ragno
-    3300004: Feet_ragno
-    3300006: Hands_ragno
-    3300008: Head_ragno
-    3300010: Thorns_ragno
-    4300000: Head_ragno
-    4300002: Body_ragno
-    4300004: Feet_ragno
-    4300006: Thorns_ragno
-    4300008: Hands_ragno
-    4300010: Crown_ragno
+    4300000: Crown_ragno
+    4300002: Head_ragno
+    4300004: Body_ragno
+    4300006: Sholder_ragno1
+    4300008: Hand_rango1
+    4300010: Sholder_ragno2
+    4300012: Hand_rango2
+    4300014: Hip_ragno1
+    4300016: Feet_ragno1
+    4300018: Hip_ragno2
+    4300020: Feet_ragno2
+    4300022: Hip_ragno3
+    4300024: Feet_ragno3
+    4300026: Hip_ragno4
+    4300028: Feet_ragno4
+    7400000: Expectations
+    7400002: Move
+    7400004: Atak
+    7400006: Back
+    7400008: Damage
+    7400010: Death
     9500000: //RootNode
+    13700000: Body_ragno
+    13700002: Crown_ragno
+    13700004: Feet_ragno1
+    13700006: Feet_ragno2
+    13700008: Feet_ragno3
+    13700010: Feet_ragno4
+    13700012: Hand_rango1
+    13700014: Hand_rango2
+    13700016: Head_ragno
+    13700018: Hip_ragno1 1
+    13700020: Hip_ragno2 1
+    13700022: Hip_ragno3 1
+    13700024: Hip_ragno4 1
+    13700026: Sholder_ragno1 1
+    13700028: Sholder_ragno2 1
   externalObjects: {}
   materials:
     importMaterials: 1
