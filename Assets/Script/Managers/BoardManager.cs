@@ -17,7 +17,7 @@ public class BoardManager : MonoBehaviour
     [HideInInspector]
     public Pawn pawnSelected;
     [HideInInspector]
-    public bool movementSkipped, superAttack;
+    public bool superAttack;
     public int pawnsToPlace;
     public int p1pawns, p2pawns;
     public int p1tiles, p2tiles;
@@ -49,7 +49,7 @@ public class BoardManager : MonoBehaviour
 
     #region Pause
 
-    bool pause;
+    public bool pause;
 
     /// <summary>
     /// Funzione che imposta la variabile pause a true stoppando il gioco
@@ -88,7 +88,6 @@ public class BoardManager : MonoBehaviour
     {
         placingsLeft = 1;
         pawnsToPlace = 8;
-        movementSkipped = false;
         superAttack = false;
         pause = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
@@ -130,16 +129,18 @@ public class BoardManager : MonoBehaviour
                 {
                     pawnSelected.OnMovementEnd += OnMovementEnd;
                 }
-                pawnSelected.Move(boxclicked);
+                pawnSelected.MoveBehaviour(boxclicked);
             }
             else
             {
                 CustomLogger.Log("Casella non valida");
+                DeselectPawn();
             }
         }
         else
         {
             CustomLogger.Log("Casella non valida");
+            DeselectPawn();
         }
     }
 
@@ -261,10 +262,14 @@ public class BoardManager : MonoBehaviour
     /// <param name="pawnClicked"></param>
     public void Attack(Pawn pawnClicked)
     {
-        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        if (pawnSelected != null && !pause)
         {
-            if (pawnSelected != null && !pause)
+            if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
             {
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
+                {
+                    pawnSelected.DisableMovementBoxes();
+                }
                 pawnSelected.OnAttackEnd += OnAttackEnd;
                 pawnSelected.AttackBehaviour(superAttack, pawnClicked);
             }
@@ -335,7 +340,7 @@ public class BoardManager : MonoBehaviour
                 }
             }
             DeselectPawn();
-            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movement;
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
         }
     }
 
@@ -436,8 +441,8 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
-                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement));
-                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack));
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                 {
                     UnmarkAttackMarker();
                 }
@@ -483,7 +488,7 @@ public class BoardManager : MonoBehaviour
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowMovementBoxes();
                     }
-                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && movementSkipped && turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                     {
                         if (pawnSelected != null)
                         {
@@ -493,17 +498,6 @@ public class BoardManager : MonoBehaviour
                         pawnSelected = selected;
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.MarkAttackPawn();
-                        pawnSelected.ShowAttackPattern();
-                    }
-                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement)
-                    {
-                        if (pawnSelected != null)
-                        {
-                            DeselectPawn();
-                        }
-                        selected.selected = true;
-                        pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowAttackPattern();
                         pawnSelected.ShowMovementBoxes();
                     }
@@ -599,36 +593,6 @@ public class BoardManager : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Funzione che salta la fase di moviemnto o attacco del player corrente ed esegue tutte le funzioni necessarie
-    /// </summary>
-    public void ButtonFunctions()
-    {
-        if (!pause)
-        {
-            switch (turnManager.CurrentTurnState)
-            {
-                case TurnManager.PlayTurnState.movement:
-                    movementSkipped = true;
-                    if (pawnSelected != null)
-                    {
-                        pawnSelected.MoveProjection(pawnSelected.currentBox);
-                        pawnSelected.DisableMovementBoxes();
-                        pawnSelected.ShowAttackPattern();
-                    }
-                    turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
-                    CustomLogger.Log("Hai saltato il movimento");
-                    break;
-                case TurnManager.PlayTurnState.attack:
-                    turnManager.ChangeTurn();
-                    CustomLogger.Log("Hai saltato l'attacco");
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    /// <summary>
     /// Funzione che sposta la proiezione della pedina selezionata se si è nella fase di moviemento e boxover rispetta il pattern di moviemento di quella pedina
     /// </summary>
     /// <param name="boxover"></param>
@@ -636,7 +600,7 @@ public class BoardManager : MonoBehaviour
     {
         if (!pause)
         {
-            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movement) && pawnSelected != null)
+            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && pawnSelected != null)
             {
                 if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
                 {
@@ -644,6 +608,20 @@ public class BoardManager : MonoBehaviour
                     {
                         pawnSelected.MoveProjection(pawnSelected.currentBox);
                     }
+                }
+            }
+        }
+    }
+
+    public void BoxOverExit(Box boxexit)
+    {
+        if (!pause)
+        {
+            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && pawnSelected != null)
+            {
+                if ((pawnSelected.player == Player.player1 && boxexit.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxexit.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
+                {
+                    pawnSelected.MoveProjection(pawnSelected.currentBox);
                 }
             }
         }
@@ -677,7 +655,7 @@ public class BoardManager : MonoBehaviour
                     case TurnManager.PlayTurnState.check:
                         Movement(boxclicked, true);
                         break;
-                    case TurnManager.PlayTurnState.movement:
+                    case TurnManager.PlayTurnState.movementattack:
                         Movement(boxclicked, false);
                         break;
                     case TurnManager.PlayTurnState.attack:

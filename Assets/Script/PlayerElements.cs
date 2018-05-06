@@ -36,23 +36,23 @@ public class PlayerElements : MonoBehaviour
 
     public void UseSuperAttack()
     {
-        if (redElement >= 3)
+        if (redElement > 0 && blueElement > 0 && greenElement > 0)
+        {
+            redElement--;
+            blueElement--;
+            greenElement--;
+        }
+        else if (redElement >= 3)
         {
             redElement -= 3;
-        }
-        else if (blueElement >= 3)
-        {
-            blueElement -= 3;
         }
         else if (greenElement >= 3)
         {
             greenElement -= 3;
         }
-        else if (redElement > 0 && blueElement > 0 && greenElement > 0)
+        else if (blueElement >= 3)
         {
-            redElement--;
-            blueElement--;
-            greenElement--;
+            blueElement -= 3;
         }
     }
 }

@@ -45,7 +45,7 @@ public class TurnManager : MonoBehaviour
 
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { choosing, placing, animation, check, movement, attack };
+    public enum PlayTurnState { choosing, placing, animation, check, movementattack, attack };
     /// <summary> PlayTurnState corrente </summary>
     private PlayTurnState _currentTurnState;
     public PlayTurnState CurrentTurnState
@@ -99,15 +99,13 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.animation:
                 return true;
             case PlayTurnState.check:
-                if (CurrentTurnState == PlayTurnState.movement)
-                    return false;
                 return true;
-            case PlayTurnState.movement:
+            case PlayTurnState.movementattack:
                 if (CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             case PlayTurnState.attack:
-                if (CurrentTurnState != PlayTurnState.movement && CurrentTurnState != PlayTurnState.animation)
+                if (CurrentTurnState != PlayTurnState.movementattack && CurrentTurnState != PlayTurnState.animation)
                     return false;
                 return true;
             default:
@@ -167,31 +165,24 @@ public class TurnManager : MonoBehaviour
                 break;
             case PlayTurnState.check:
                 turnsWithoutAttack++;
-                BoardManager.Instance.movementSkipped = false;
                 BoardManager.Instance.superAttack = false;
                 BoardManager.Instance.UnmarkAttackMarker();
                 if (BoardManager.Instance.pawnSelected != null)
                 {
-                    BoardManager.Instance.pawnSelected.DisableAttackPattern();
                     BoardManager.Instance.DeselectPawn();
                 }
                 BoardManager.Instance.CheckPhaseControll();
                 break;
-            case PlayTurnState.movement:
+            case PlayTurnState.movementattack:
                 break;
             case PlayTurnState.attack:
-                if (BoardManager.Instance.pawnSelected != null)
+                if (!BoardManager.Instance.pawnSelected.CheckAttackPattern())
+                {
+                    ChangeTurn();
+                }
+                else
                 {
                     BoardManager.Instance.pawnSelected.MarkAttackPawn();
-                }
-
-                if (!BoardManager.Instance.movementSkipped && BoardManager.Instance.pawnSelected != null && !BoardManager.Instance.pawnSelected.CheckAttackPattern())
-                {
-                    ChangeTurn();
-                }
-                else if (BoardManager.Instance.movementSkipped && !BoardManager.Instance.CheckAllAttackPattern())
-                {
-                    ChangeTurn();
                 }
                 break;
             default:

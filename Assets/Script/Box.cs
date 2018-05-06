@@ -45,6 +45,11 @@ public class Box : MonoBehaviour
         bm.BoxOver(this);
     }
 
+    private void OnMouseExit()
+    {
+        bm.BoxOverExit(this);
+    }
+
     /// <summary>
     /// Funzione che viene chiamata ogni volta che viene premuta la casella, richiama la funzione BoxClicked all'interno del BoardManager
     /// </summary>

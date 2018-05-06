@@ -555,7 +555,7 @@ public class Pawn : MonoBehaviour
     /// Funzione che avvia l'animazione di movimento sulla boxToMove impostando la fase del turno su animation
     /// </summary>
     /// <param name="boxToMove"></param>
-    public void Move(Box boxToMove)
+    public void MoveBehaviour(Box boxToMove)
     {
         transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
         transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
