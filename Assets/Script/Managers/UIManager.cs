@@ -262,17 +262,16 @@ public class UIManager : MonoBehaviour
                                 break;
                             case TurnManager.PlayTurnState.movementattack:
                                 p2phase.text = "GAME phase";
-                                superAttackButton.SetActive(false);
+                                if (bm.player2Elements.CheckSuperAttack())
+                                {
+                                    superAttackButton.SetActive(true);
+                                }
                                 break;
                             case TurnManager.PlayTurnState.attack:
                                 p2phase.text = "Attack phase";
                                 if (bm.player2Elements.CheckSuperAttack())
                                 {
                                     superAttackButton.SetActive(true);
-                                }
-                                else
-                                {
-                                    superAttackButton.SetActive(false);
                                 }
                                 break;
                             default:
@@ -339,17 +338,16 @@ public class UIManager : MonoBehaviour
                                 break;
                             case TurnManager.PlayTurnState.movementattack:
                                 p1phase.text = "GAME phase";
-                                superAttackButton.SetActive(false);
+                                if (bm.player1Elements.CheckSuperAttack())
+                                {
+                                    superAttackButton.SetActive(true);
+                                }
                                 break;
                             case TurnManager.PlayTurnState.attack:
                                 p1phase.text = "Attack phase";
                                 if (bm.player1Elements.CheckSuperAttack())
                                 {
                                     superAttackButton.SetActive(true);
-                                }
-                                else
-                                {
-                                    superAttackButton.SetActive(false);
                                 }
                                 break;
                             default:

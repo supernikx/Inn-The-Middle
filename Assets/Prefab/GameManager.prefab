@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114616384863812216}
   - component: {fileID: 114643060664840586}
   - component: {fileID: 114893752617296308}
+  - component: {fileID: 114205688059852456}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,6 +45,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114205688059852456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89ba9ef053b06449a8f92f007c37aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  markedPawnParticle: {fileID: 198071200915396462, guid: a61c61ceb928e4b448301ec2ecfd3d7d,
+    type: 2}
 --- !u!114 &114616384863812216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,9 +91,6 @@ MonoBehaviour:
   p2phase: {fileID: 0}
   p1elements: {fileID: 0}
   p2elements: {fileID: 0}
-  skipAttackButton: {fileID: 0}
-  skipMovementButton: {fileID: 0}
-  attackButton: {fileID: 0}
   superAttackButton: {fileID: 0}
   choosingPhaseText: {fileID: 0}
   p1ChoosingPanel: {fileID: 0}
@@ -92,6 +103,9 @@ MonoBehaviour:
   placingUI: {fileID: 0}
   gameUI: {fileID: 0}
   choosingUi: {fileID: 0}
+  gameUIPerspective: {fileID: 0}
+  factionUI: {fileID: 0}
+  mainMenuPanel: {fileID: 0}
   winScreen: {fileID: 0}
   gameResult: {fileID: 0}
   tooltipPattern: {fileID: 0}
@@ -155,8 +169,7 @@ MonoBehaviour:
   player2Elements: {fileID: 0}
   pawns: []
   pawnSelected: {fileID: 0}
-  movementSkipped: 0
-  superAttackPressed: 0
+  superAttack: 0
   pawnsToPlace: 0
   p1pawns: 0
   p2pawns: 0
@@ -167,3 +180,6 @@ MonoBehaviour:
   turnManager: {fileID: 0}
   draftManager: {fileID: 0}
   uiManager: {fileID: 0}
+  factionChosen: 0
+  factionID: 0
+  pause: 0

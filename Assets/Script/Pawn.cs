@@ -168,14 +168,31 @@ public class Pawn : MonoBehaviour
         {
             int patternindex1 = patterns[activePattern].pattern[0].index1;
             int patternindex2 = patterns[activePattern].pattern[0].index2;
-            if ((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0))
+            if (!CheckAttackPattern())
             {
-                enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
-            }
+                if ((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0))
+                {
+                    enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
+                }
 
-            if (((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0)))
+                if (((currentColumn + patternindex2 < myboard[0].Length && currentColumn + patternindex2 >= 0) && (currentRow - patternindex1 < myboard.Length && currentRow - patternindex1 - 1 >= 0)))
+                {
+                    myboard[currentRow - patternindex1 - 1][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
+                }
+            }
+            else
             {
-                myboard[currentRow - patternindex1 - 1][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
+                foreach (Pattern p in patterns[activePattern].pattern)
+                {
+                    if (((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentRow < enemyboard.Length && p.index1 - currentRow >= 0)) && enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>() != currentBox)
+                    {
+                        enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>().ShowBoxActivePattern();
+                    }
+                }
+                if ((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0))
+                {
+                    enemyboard[patternindex1 - currentRow][currentColumn + patternindex2].GetComponent<Box>().ShowBoxActivePattern();
+                }
             }
         }
         else
@@ -315,10 +332,13 @@ public class Pawn : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che marchia con markattack le pedine presenti nel pattern
+    /// </summary>
     public void MarkAttackPawn()
     {
         int currentColumn = currentBox.index2;
-        if (activePattern == 2)
+        /*if (activePattern == 2)
         {
             int patternindex1 = patterns[activePattern].pattern[0].index1;
             int patternindex2 = patterns[activePattern].pattern[0].index2;
@@ -333,20 +353,17 @@ public class Pawn : MonoBehaviour
                     }
                 }
             }
-        }
-        else
+        }*/
+        foreach (Pattern a in patterns[activePattern].pattern)
         {
-            foreach (Pattern a in patterns[activePattern].pattern)
+            foreach (Pawn p in bm.pawns)
             {
-                foreach (Pawn p in bm.pawns)
+                if (p.player != player)
                 {
-                    if (p.player != player)
+                    if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
                     {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
-                        {
-                            p.attackMarker = true;
-                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                        }
+                        p.attackMarker = true;
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
                     }
                 }
             }
