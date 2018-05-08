@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114616384863812216}
   - component: {fileID: 114643060664840586}
   - component: {fileID: 114893752617296308}
-  - component: {fileID: 114205688059852456}
+  - component: {fileID: 114880029920021300}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,19 +45,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114205688059852456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1654196648849384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89ba9ef053b06449a8f92f007c37aac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  markedPawnParticle: {fileID: 198071200915396462, guid: a61c61ceb928e4b448301ec2ecfd3d7d,
-    type: 2}
 --- !u!114 &114616384863812216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +115,21 @@ MonoBehaviour:
   turnsWithoutAttack: 0
   mainCam: {fileID: 0}
   draftCam: {fileID: 0}
+--- !u!114 &114880029920021300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa11a849d73ef794d99a5ab079a07dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolPosition: {x: 1000, y: 1000, z: 1000}
+  attackMarkerParticlePrefab: {fileID: 1276741540718374, guid: f8bbe310473e50e4e842c827b1582945,
+    type: 2}
+  maxMarker: 4
 --- !u!114 &114893752617296308
 MonoBehaviour:
   m_ObjectHideFlags: 1

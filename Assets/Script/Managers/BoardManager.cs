@@ -29,6 +29,7 @@ public class BoardManager : MonoBehaviour
     public TurnManager turnManager;
     public DraftManager draftManager;
     public UIManager uiManager;
+    public PawnHighlightManager highlight;
 
     public bool factionChosen;
     public int factionID = 0;
@@ -79,9 +80,10 @@ public class BoardManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        draftManager = FindObjectOfType<DraftManager>();
-        turnManager = FindObjectOfType<TurnManager>();
-        uiManager = FindObjectOfType<UIManager>();
+        draftManager = GetComponent<DraftManager>();
+        turnManager = GetComponent<TurnManager>();
+        uiManager = GetComponent<UIManager>();
+        highlight = GetComponent<PawnHighlightManager>();
     }
 
     void Start()
@@ -270,6 +272,7 @@ public class BoardManager : MonoBehaviour
                 {
                     pawnSelected.DisableMovementBoxes();
                 }
+                highlight.ResetMark();
                 pawnSelected.OnAttackEnd += OnAttackEnd;
                 pawnSelected.AttackBehaviour(superAttack, pawnClicked);
             }
@@ -590,13 +593,38 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che evidenzia le pedine che sono marchiate quando il mouse gli passa sopra, _enter serve per determinare se evidenziarle o togliere l'evidenziamento
+    /// </summary>
+    /// <param name="_enter"></param>
+    public void PawnHighlighted(bool _enter)
+    {
+        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        {
+            if (_enter)
+            {
+                foreach (Pawn p in pawns)
+                {
+                    if (p.attackMarker)
+                    {
+                        highlight.MarkPawn(p.transform.position);
+                    }
+                }
+            }
+            else
+            {
+                highlight.ResetMark();
+            }
+        }
+    }
+
     #endregion
 
     /// <summary>
     /// Funzione che sposta la proiezione della pedina selezionata se si è nella fase di moviemento e boxover rispetta il pattern di moviemento di quella pedina
     /// </summary>
     /// <param name="boxover"></param>
-    public void BoxOver(Box boxover)
+    public void BoxOver(Box boxover, bool _enter)
     {
         if (!pause)
         {
@@ -604,24 +632,17 @@ public class BoardManager : MonoBehaviour
             {
                 if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
                 {
-                    if (!pawnSelected.MoveProjection(boxover))
+                    if (_enter)
+                    {
+                        if (!pawnSelected.MoveProjection(boxover))
+                        {
+                            pawnSelected.MoveProjection(pawnSelected.currentBox);
+                        }
+                    }
+                    else
                     {
                         pawnSelected.MoveProjection(pawnSelected.currentBox);
                     }
-                }
-            }
-        }
-    }
-
-    public void BoxOverExit(Box boxexit)
-    {
-        if (!pause)
-        {
-            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && pawnSelected != null)
-            {
-                if ((pawnSelected.player == Player.player1 && boxexit.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxexit.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
-                {
-                    pawnSelected.MoveProjection(pawnSelected.currentBox);
                 }
             }
         }

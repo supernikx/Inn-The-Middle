@@ -42,12 +42,15 @@ public class Box : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
-        bm.BoxOver(this);
+        bm.BoxOver(this,true);
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata ogni volta che il mouse esce dalla casella e richiama la funzione BoxOver del boardmanager
+    /// </summary>
     private void OnMouseExit()
     {
-        bm.BoxOverExit(this);
+        bm.BoxOver(this,false);
     }
 
     /// <summary>

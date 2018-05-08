@@ -109,6 +109,30 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata ogni volta che il mouse passa sopra la pedina, se è marchiata da attackmarker chiama la funzione
+    /// pawnhighlighted del boardmanager che la evidenzia
+    /// </summary>
+    private void OnMouseEnter()
+    {
+        if (attackMarker)
+        {
+            bm.PawnHighlighted(true);
+        }
+    }
+
+    /// <summary>
+    /// Funzione che viene chiamata ogni volta che il mouse esce dal collider della pedina, se è marchiata da attackmarker chiama la funzione
+    /// pawnhighlighted del boardmanager che toglie l'evidenziamento
+    /// </summary>
+    private void OnMouseExit()
+    {
+        if (attackMarker)
+        {
+            bm.PawnHighlighted(false);
+        }
+    }
+
     #region GraphicsFunctions
 
     /// <summary>
