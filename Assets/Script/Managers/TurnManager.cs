@@ -164,6 +164,7 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.animation:
                 break;
             case PlayTurnState.check:
+                BoardManager.Instance.uiManager.UIChange();
                 turnsWithoutAttack++;
                 BoardManager.Instance.superAttack = false;
                 BoardManager.Instance.UnmarkAttackMarker();

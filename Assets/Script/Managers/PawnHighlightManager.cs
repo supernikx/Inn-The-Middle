@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PoolState{
+public enum PoolState
+{
     inPool,
     inUse,
 }
@@ -19,11 +20,12 @@ public class PawnAttackMarkEffect
     }
 }
 
-public class PawnHighlightManager : MonoBehaviour {
+public class PawnHighlightManager : MonoBehaviour
+{
     public Vector3 poolPosition;
     public GameObject attackMarkerParticlePrefab;
     public int maxMarker;
-    
+
     List<PawnAttackMarkEffect> mark = new List<PawnAttackMarkEffect>();
 
     private void Start()
@@ -32,9 +34,9 @@ public class PawnHighlightManager : MonoBehaviour {
         parentMarker.parent = transform;
         for (int i = 0; i < maxMarker; i++)
         {
-            ParticleSystem instantiedMarker = Instantiate(attackMarkerParticlePrefab, poolPosition, Quaternion.identity, parentMarker).GetComponent<ParticleSystem>();
+            ParticleSystem instantiedMarker = Instantiate(attackMarkerParticlePrefab, poolPosition, attackMarkerParticlePrefab.transform.rotation, parentMarker).GetComponent<ParticleSystem>();
             instantiedMarker.Stop();
-            mark.Add(new PawnAttackMarkEffect(PoolState.inPool,instantiedMarker));
+            mark.Add(new PawnAttackMarkEffect(PoolState.inPool, instantiedMarker));
         }
     }
 

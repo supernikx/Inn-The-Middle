@@ -10,6 +10,12 @@ public class ChangeButtonImage : MonoBehaviour {
     Image comp;
     bool pressed;
 
+    private void OnDisable()
+    {
+        defaultimage = comp.sprite;
+        pressed = false;
+    }
+
     private void Start()
     {
         comp = GetComponent<Image>();

@@ -131,6 +131,7 @@ public class BoardManager : MonoBehaviour
                 {
                     pawnSelected.OnMovementEnd += OnMovementEnd;
                 }
+                UnmarkAttackMarker();
                 pawnSelected.MoveBehaviour(boxclicked);
             }
             else
@@ -251,7 +252,6 @@ public class BoardManager : MonoBehaviour
         {
             if (p.attackMarker)
             {
-                p.projections[p.activePattern].SetActive(false);
                 p.attackMarker = false;
             }
         }
@@ -597,18 +597,25 @@ public class BoardManager : MonoBehaviour
     /// Funzione che evidenzia le pedine che sono marchiate quando il mouse gli passa sopra, _enter serve per determinare se evidenziarle o togliere l'evidenziamento
     /// </summary>
     /// <param name="_enter"></param>
-    public void PawnHighlighted(bool _enter)
+    public void PawnHighlighted(Pawn _pawnHighlighted,bool _enter)
     {
         if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
         {
             if (_enter)
             {
-                foreach (Pawn p in pawns)
+                if (!superAttack)
                 {
-                    if (p.attackMarker)
+                    foreach (Pawn p in pawns)
                     {
-                        highlight.MarkPawn(p.transform.position);
+                        if (p.attackMarker)
+                        {
+                            highlight.MarkPawn(p.transform.position);
+                        }
                     }
+                }
+                else
+                {
+                    highlight.MarkPawn(_pawnHighlighted.transform.position);
                 }
             }
             else

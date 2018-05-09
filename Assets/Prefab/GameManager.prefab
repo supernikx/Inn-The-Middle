@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPosition: {x: 1000, y: 1000, z: 1000}
-  attackMarkerParticlePrefab: {fileID: 1276741540718374, guid: f8bbe310473e50e4e842c827b1582945,
+  attackMarkerParticlePrefab: {fileID: 1408250317327876, guid: 2369d84d84ebdd847a6839cecea54687,
     type: 2}
   maxMarker: 4
 --- !u!114 &114893752617296308
@@ -182,6 +182,7 @@ MonoBehaviour:
   turnManager: {fileID: 0}
   draftManager: {fileID: 0}
   uiManager: {fileID: 0}
+  highlight: {fileID: 0}
   factionChosen: 0
   factionID: 0
   pause: 0

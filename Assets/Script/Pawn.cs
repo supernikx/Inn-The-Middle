@@ -117,7 +117,7 @@ public class Pawn : MonoBehaviour
     {
         if (attackMarker)
         {
-            bm.PawnHighlighted(true);
+            bm.PawnHighlighted(this,true);
         }
     }
 
@@ -129,7 +129,7 @@ public class Pawn : MonoBehaviour
     {
         if (attackMarker)
         {
-            bm.PawnHighlighted(false);
+            bm.PawnHighlighted(this,false);
         }
     }
 
