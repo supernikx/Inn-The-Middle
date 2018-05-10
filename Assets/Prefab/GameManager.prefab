@@ -68,17 +68,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 0}
-  p1text: {fileID: 0}
-  p2text: {fileID: 0}
+  gameTurnText: {fileID: 0}
+  superattackText: {fileID: 0}
   p1PickingText: {fileID: 0}
   p2PickingText: {fileID: 0}
   p1placingText: {fileID: 0}
   p2placingText: {fileID: 0}
-  p1phase: {fileID: 0}
-  p2phase: {fileID: 0}
-  p1elements: {fileID: 0}
-  p2elements: {fileID: 0}
-  superAttackButton: {fileID: 0}
+  MBlueBarReady: {fileID: 0}
+  MBlueBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MGreenBarReady: {fileID: 0}
+  MGreenBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MRedBarReady: {fileID: 0}
+  MRedBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SBlueBarReady: {fileID: 0}
+  SBlueBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SGreenBarReady: {fileID: 0}
+  SGreenBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SRedBarReady: {fileID: 0}
+  SRedBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MsuperAttackButton: {fileID: 0}
+  SsuperAttackButton: {fileID: 0}
   choosingPhaseText: {fileID: 0}
   p1ChoosingPanel: {fileID: 0}
   p2ChoosingPanel: {fileID: 0}

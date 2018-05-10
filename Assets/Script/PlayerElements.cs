@@ -23,6 +23,7 @@ public class PlayerElements : MonoBehaviour
                 CustomLogger.Log("Impossibile aggiungere questo elemento");
                 break;
         }
+        BoardManager.Instance.uiManager.UpdateElementsUI();
     }
 
     public bool CheckSuperAttack()
@@ -54,5 +55,6 @@ public class PlayerElements : MonoBehaviour
         {
             blueElement -= 3;
         }
+        BoardManager.Instance.uiManager.UpdateElementsUI();
     }
 }

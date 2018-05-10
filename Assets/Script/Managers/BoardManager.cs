@@ -304,6 +304,7 @@ public class BoardManager : MonoBehaviour
     public void ActiveSuperAttack()
     {
         superAttack = !superAttack;
+        Debug.Log("superattacco premuto");
     }
 
     #endregion

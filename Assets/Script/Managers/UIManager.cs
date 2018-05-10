@@ -16,23 +16,38 @@ public class UIManager : MonoBehaviour
 
     /// <summary> Testo per indicare di chi è il turno </summary>
     [Header("Turn Text")]
-    public TextMeshProUGUI p1text;
-    public TextMeshProUGUI p2text;
+    public TextMeshProUGUI gameTurnText;
+    public GameObject superattackText;
     public GameObject p1PickingText;
     public GameObject p2PickingText;
     public GameObject p1placingText, p2placingText;
 
-    [Header("Phase Text")]
-    public TextMeshProUGUI p1phase;
-    public TextMeshProUGUI p2phase;
+    [Header("Magic Elements")]
+    public GameObject MBlueBarReady;
+    public List<GameObject> MBlueBars = new List<GameObject>(8);
+    private int MBlueBarindex;
+    public GameObject MGreenBarReady;
+    public List<GameObject> MGreenBars = new List<GameObject>(8);
+    private int MGreenBarindex;
+    public GameObject MRedBarReady;
+    public List<GameObject> MRedBars = new List<GameObject>(8);
+    private int MRedBarindex;
 
-    [Header("Elements Text")]
-    public TextMeshProUGUI p1elements;
-    public TextMeshProUGUI p2elements;
+    [Header("Science Elements")]
+    public GameObject SBlueBarReady;
+    public List<GameObject> SBlueBars = new List<GameObject>(8);
+    private int SBlueBarindex;
+    public GameObject SGreenBarReady;
+    public List<GameObject> SGreenBars = new List<GameObject>(8);
+    private int SGreenBarindex;
+    public GameObject SRedBarReady;
+    public List<GameObject> SRedBars = new List<GameObject>(8);
+    private int SRedBarindex;
 
 
     [Header("Button references")]
-    public GameObject superAttackButton;
+    public GameObject MsuperAttackButton;
+    public GameObject SsuperAttackButton;
 
     [Header("Choosing References")]
     public GameObject choosingPhaseText;
@@ -109,10 +124,86 @@ public class UIManager : MonoBehaviour
             EventManager.OnUnPause();
     }
 
-    void UpdateElementsText()
+    public void UpdateElementsUI()
     {
-        p1elements.SetText("<color=red>" + bm.player1Elements.redElement + "</color>-<color=blue>" + bm.player1Elements.blueElement + "</color>-<color=green>" + bm.player1Elements.greenElement);
-        p2elements.SetText("<color=red>" + bm.player2Elements.redElement + "</color>-<color=blue>" + bm.player2Elements.blueElement + "</color>-<color=green>" + bm.player2Elements.greenElement);
+        int mredelements = bm.player1Elements.redElement;
+        int mblueelements = bm.player1Elements.blueElement;
+        int mgreenelements = bm.player1Elements.greenElement;
+        int sredelements = bm.player2Elements.redElement;
+        int sblueelements = bm.player2Elements.blueElement;
+        int sgreenelements = bm.player2Elements.greenElement;
+
+        //Elemento rosso magia
+        if (mredelements > 0)
+        {
+            MRedBars[MRedBarindex].SetActive(false);
+            MRedBarindex = mredelements - 1;
+            MRedBars[MRedBarindex].SetActive(true);
+        }
+        else
+        {
+            MRedBars[MRedBarindex].SetActive(false);
+        }
+
+        //Elemento blu magia
+        if (mblueelements > 0)
+        {
+            MBlueBars[MBlueBarindex].SetActive(false);
+            MBlueBarindex = mblueelements - 1;
+            MBlueBars[MBlueBarindex].SetActive(true);
+        }
+        else
+        {
+            MBlueBars[MBlueBarindex].SetActive(false);
+        }
+
+        //Elemento verde magia
+        if (mgreenelements > 0)
+        {
+            MGreenBars[MGreenBarindex].SetActive(false);
+            MGreenBarindex = mgreenelements - 1;
+            MGreenBars[MGreenBarindex].SetActive(true);
+        }
+        else
+        {
+            MGreenBars[MGreenBarindex].SetActive(false);
+        }
+
+        //Elemento rosso scienza
+        if (sredelements > 0)
+        {
+            SRedBars[SRedBarindex].SetActive(false);
+            SRedBarindex = sredelements - 1;
+            SRedBars[SRedBarindex].SetActive(true);
+        }
+        else
+        {
+            SRedBars[SRedBarindex].SetActive(false);
+        }
+
+        //Elemento blu scienza
+        if (sblueelements > 0)
+        {
+            SBlueBars[SBlueBarindex].SetActive(false);
+            SBlueBarindex = sblueelements - 1;
+            SBlueBars[SBlueBarindex].SetActive(true);
+        }
+        else
+        {
+            SBlueBars[SBlueBarindex].SetActive(false);
+        }
+
+        //Elemento verde scienza
+        if (sgreenelements > 0)
+        {
+            SGreenBars[SGreenBarindex].SetActive(false);
+            SGreenBarindex = sgreenelements - 1;
+            SGreenBars[SGreenBarindex].SetActive(true);
+        }
+        else
+        {
+            SGreenBars[SGreenBarindex].SetActive(false);
+        }
     }
 
     void SetChoosingUI()
@@ -204,77 +295,50 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void UIChange()
     {
-        switch (tm.CurrentPlayerTurn)
+
+        switch (tm.CurrentMacroPhase)
         {
-            case TurnManager.PlayerTurn.P2_turn:
-                switch (tm.CurrentMacroPhase)
+            case TurnManager.MacroPhase.menu:
+                tooltipPattern.SetActive(false);
+                winScreen.SetActive(false);
+                gameUI.SetActive(false);
+                gameUIPerspective.SetActive(false);
+                placingUI.SetActive(false);
+                pausePanel.SetActive(false);
+                draftUI.SetActive(false);
+                choosingUi.SetActive(false);
+                mainMenuPanel.SetActive(true);
+                break;
+            case TurnManager.MacroPhase.draft:
+                switch (tm.CurrentPlayerTurn)
                 {
-                    case TurnManager.MacroPhase.menu:
-                        tooltipPattern.SetActive(false);
-                        winScreen.SetActive(false);
-                        gameUI.SetActive(false);
-                        gameUIPerspective.SetActive(false);
-                        placingUI.SetActive(false);
-                        pausePanel.SetActive(false);
-                        draftUI.SetActive(false);
-                        choosingUi.SetActive(false);
-                        mainMenuPanel.SetActive(true);
+                    case TurnManager.PlayerTurn.P1_turn:
+                        p1PickingText.SetActive(true);
+                        p2PickingText.SetActive(false);
                         break;
-                    case TurnManager.MacroPhase.draft:
+                    case TurnManager.PlayerTurn.P2_turn:
                         p1PickingText.SetActive(false);
                         p2PickingText.SetActive(true);
                         break;
-                    case TurnManager.MacroPhase.placing:
-                        switch (tm.CurrentTurnState)
+                }
+                break;
+            case TurnManager.MacroPhase.placing:
+                switch (tm.CurrentTurnState)
+                {
+                    case TurnManager.PlayTurnState.choosing:
+                        SetChoosingUI();
+                        break;
+                    case TurnManager.PlayTurnState.placing:
+                        tooltipPattern.SetActive(false);
+                        switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayTurnState.choosing:
-                                SetChoosingUI();
+                            case TurnManager.PlayerTurn.P1_turn:
+                                p1placingText.SetActive(true);
+                                p2placingText.SetActive(false);
                                 break;
-                            case TurnManager.PlayTurnState.placing:
-                                tooltipPattern.SetActive(false);
+                            case TurnManager.PlayerTurn.P2_turn:
                                 p1placingText.SetActive(false);
                                 p2placingText.SetActive(true);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case TurnManager.MacroPhase.game:
-                        p2text.enabled = true;
-                        p1text.enabled = false;
-                        p2phase.enabled = true;
-                        p1phase.enabled = false;
-                        switch (tm.CurrentTurnState)
-                        {
-                            case TurnManager.PlayTurnState.choosing:
-                                p2phase.text = "Choosing Phase";
-                                choosingUi.SetActive(true);
-                                choosingPhaseText.SetActive(false);
-                                p1text.enabled = false;
-                                p2text.enabled = false;
-                                p1phase.enabled = false;
-                                p2phase.enabled = false;
-                                SetChoosingUI();
-                                break;
-                            case TurnManager.PlayTurnState.check:
-                                p2phase.text = "Check phase";
-                                superAttackButton.SetActive(false);
-                                break;
-                            case TurnManager.PlayTurnState.movementattack:
-                                p2phase.text = "GAME phase";
-                                if (bm.player2Elements.CheckSuperAttack())
-                                {
-                                    superAttackButton.SetActive(true);
-                                }
-                                break;
-                            case TurnManager.PlayTurnState.attack:
-                                p2phase.text = "Attack phase";
-                                if (bm.player2Elements.CheckSuperAttack())
-                                {
-                                    superAttackButton.SetActive(true);
-                                }
-                                break;
-                            default:
                                 break;
                         }
                         break;
@@ -282,75 +346,60 @@ public class UIManager : MonoBehaviour
                         break;
                 }
                 break;
-            case TurnManager.PlayerTurn.P1_turn:
-                switch (tm.CurrentMacroPhase)
+            case TurnManager.MacroPhase.game:
+                switch (tm.CurrentPlayerTurn)
                 {
-                    case TurnManager.MacroPhase.menu:
-                        tooltipPattern.SetActive(false);
-                        winScreen.SetActive(false);
-                        gameUI.SetActive(false);
-                        gameUIPerspective.SetActive(false);
-                        placingUI.SetActive(false);
-                        pausePanel.SetActive(false);
-                        draftUI.SetActive(false);
-                        choosingUi.SetActive(false);
-                        mainMenuPanel.SetActive(true);
+                    case TurnManager.PlayerTurn.P1_turn:
+                        gameTurnText.text = "MAGIC TURN";
                         break;
-                    case TurnManager.MacroPhase.draft:
-                        p1PickingText.SetActive(true);
-                        p2PickingText.SetActive(false);
+                    case TurnManager.PlayerTurn.P2_turn:
+                        gameTurnText.text = "SCIENCE TURN";
                         break;
-                    case TurnManager.MacroPhase.placing:
-                        switch (tm.CurrentTurnState)
+                }
+
+                switch (tm.CurrentTurnState)
+                {
+                    case TurnManager.PlayTurnState.choosing:
+                        choosingUi.SetActive(true);
+                        choosingPhaseText.SetActive(false);
+                        SetChoosingUI();
+                        break;
+                    case TurnManager.PlayTurnState.check:
+                        ActiveSuperAttackText();
+                        SsuperAttackButton.SetActive(false);
+                        MsuperAttackButton.SetActive(false);
+                        break;
+                    case TurnManager.PlayTurnState.movementattack:
+                        switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayTurnState.choosing:
-                                SetChoosingUI();
+                            case TurnManager.PlayerTurn.P1_turn:
+                                if (bm.player1Elements.CheckSuperAttack())
+                                {
+                                    MsuperAttackButton.SetActive(true);
+                                }
                                 break;
-                            case TurnManager.PlayTurnState.placing:
-                                tooltipPattern.SetActive(false);
-                                p1placingText.SetActive(true);
-                                p2placingText.SetActive(false);
-                                break;
-                            default:
+                            case TurnManager.PlayerTurn.P2_turn:
+                                if (bm.player2Elements.CheckSuperAttack())
+                                {
+                                    SsuperAttackButton.SetActive(true);
+                                }
                                 break;
                         }
                         break;
-                    case TurnManager.MacroPhase.game:
-                        p1text.enabled = true;
-                        p2text.enabled = false;
-                        p1phase.enabled = true;
-                        p2phase.enabled = false;
-                        switch (tm.CurrentTurnState)
+                    case TurnManager.PlayTurnState.attack:
+                        switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayTurnState.choosing:
-                                p1phase.text = "Choosing Phase";
-                                choosingUi.SetActive(true);
-                                choosingPhaseText.SetActive(false);
-                                p1text.enabled = false;
-                                p2text.enabled = false;
-                                p1phase.enabled = false;
-                                p2phase.enabled = false;
-                                SetChoosingUI();
-                                break;
-                            case TurnManager.PlayTurnState.check:
-                                p1phase.text = "Check phase";
-                                superAttackButton.SetActive(false);
-                                break;
-                            case TurnManager.PlayTurnState.movementattack:
-                                p1phase.text = "GAME phase";
+                            case TurnManager.PlayerTurn.P1_turn:
                                 if (bm.player1Elements.CheckSuperAttack())
                                 {
-                                    superAttackButton.SetActive(true);
+                                    MsuperAttackButton.SetActive(true);
                                 }
                                 break;
-                            case TurnManager.PlayTurnState.attack:
-                                p1phase.text = "Attack phase";
-                                if (bm.player1Elements.CheckSuperAttack())
+                            case TurnManager.PlayerTurn.P2_turn:
+                                if (bm.player2Elements.CheckSuperAttack())
                                 {
-                                    superAttackButton.SetActive(true);
+                                    SsuperAttackButton.SetActive(true);
                                 }
-                                break;
-                            default:
                                 break;
                         }
                         break;
@@ -361,14 +410,26 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
-        UpdateElementsText();
     }
 
     public void PassTurn()
     {
-        if (!bm.pause && (tm.CurrentTurnState==TurnManager.PlayTurnState.attack || tm.CurrentTurnState == TurnManager.PlayTurnState.movementattack))
+        if (!bm.pause && (tm.CurrentTurnState == TurnManager.PlayTurnState.attack || tm.CurrentTurnState == TurnManager.PlayTurnState.movementattack))
         {
             tm.ChangeTurn();
+        }
+    }
+
+    //Funzione provvisoria
+    public void ActiveSuperAttackText()
+    {
+        if (BoardManager.Instance.superAttack)
+        {
+            superattackText.SetActive(true);
+        }
+        else
+        {
+            superattackText.SetActive(false);
         }
     }
 }
