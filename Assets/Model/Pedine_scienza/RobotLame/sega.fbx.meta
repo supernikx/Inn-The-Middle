@@ -1,94 +1,25 @@
 fileFormatVersion: 2
-guid: 59d8ff0fa86a5184a86eb424fd7b3659
-timeCreated: 1522841854
+guid: b0de6fd92f402b04c921312ab0d4d056
+timeCreated: 1526052652
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: antenna
-    100002: body
-    100004: head
-    100006: l_down_arm
-    100008: L_hand
-    100010: l_upper_arm
-    100012: L_upper_hand
-    100014: mask
-    100016: neck
-    100018: r_down_arm
-    100020: r_hand
-    100022: r_upper_arm
-    100024: R_upper_hand
-    100026: //RootNode
-    100028: sphere
-    100030: spine
-    100032: upper_sphere
-    400000: antenna
-    400002: body
-    400004: head
-    400006: l_down_arm
-    400008: L_hand
-    400010: l_upper_arm
-    400012: L_upper_hand
-    400014: mask
-    400016: neck
-    400018: r_down_arm
-    400020: r_hand
-    400022: r_upper_arm
-    400024: R_upper_hand
-    400026: //RootNode
-    400028: sphere
-    400030: spine
-    400032: upper_sphere
-    2100000: M_RobotLame
-    2300000: antenna
-    2300002: body
-    2300004: head
-    2300006: l_down_arm
-    2300008: L_hand
-    2300010: l_upper_arm
-    2300012: L_upper_hand
-    2300014: mask
-    2300016: neck
-    2300018: r_down_arm
-    2300020: r_hand
-    2300022: r_upper_arm
-    2300024: R_upper_hand
-    2300026: sphere
-    2300028: spine
-    2300030: upper_sphere
-    3300000: antenna
-    3300002: body
-    3300004: head
-    3300006: l_down_arm
-    3300008: L_hand
-    3300010: l_upper_arm
-    3300012: L_upper_hand
-    3300014: mask
-    3300016: neck
-    3300018: r_down_arm
-    3300020: r_hand
-    3300022: r_upper_arm
-    3300024: R_upper_hand
-    3300026: sphere
-    3300028: spine
-    3300030: upper_sphere
-    4300000: sphere
-    4300002: spine
-    4300004: mask
-    4300006: antenna
-    4300008: r_hand
-    4300010: R_upper_hand
-    4300012: l_upper_arm
-    4300014: neck
-    4300016: head
-    4300018: r_upper_arm
-    4300020: r_down_arm
-    4300022: L_hand
-    4300024: L_upper_hand
-    4300026: l_down_arm
-    4300028: upper_sphere
-    4300030: body
+    100000: joint1
+    100002: joint2
+    100004: nurbsCircle1
+    100006: saw1:r_hand
+    100008: //RootNode
+    400000: joint1
+    400002: joint2
+    400004: nurbsCircle1
+    400006: saw1:r_hand
+    400008: //RootNode
+    2100000: saw1_r_handSG1
+    4300000: saw1:r_hand
+    7400000: sega in volo
     9500000: //RootNode
+    13700000: saw1:r_hand
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -21,7 +21,7 @@ public class GolemAnimations : PawnAnimationManager
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
         myPosition.eulerAngles = startRotation;
-        rockStartPosition = new Vector3(myPosition.position.x + 5.5f, myPosition.position.y + 5.5f, myPosition.position.z);
+        rockStartPosition = rock.transform.position;
         PlayAttackAnimation();
         bouncePositions.Clear();
         bounceCount = 0;
