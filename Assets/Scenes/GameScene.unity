@@ -197,9 +197,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -471,7 +468,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -696,7 +692,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -853,7 +848,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1129,7 +1123,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1545,9 +1538,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -1938,6 +1928,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &173625509
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 654
+  m_Height: 367
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &181785533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,9 +2219,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -2348,9 +2366,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -2566,9 +2581,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -2963,37 +2975,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4339516113757382, guid: bb4b03735851b094cb52b03542ae7675,
     type: 2}
   m_PrefabInternal: {fileID: 1382855254}
---- !u!84 &365309101
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 951
-  m_Height: 535
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &380125316
 Prefab:
   m_ObjectHideFlags: 0
@@ -3162,7 +3143,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -3523,7 +3503,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 5
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -3658,9 +3637,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -4086,7 +4062,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -4221,9 +4196,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -4371,9 +4343,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -4835,7 +4804,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -4995,7 +4963,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -5130,9 +5097,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -5361,9 +5325,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -5546,9 +5507,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -5696,9 +5654,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -5967,7 +5922,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -6170,9 +6124,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -6342,7 +6293,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -6477,9 +6427,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -6765,7 +6712,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -7193,9 +7139,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -7343,9 +7286,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -7730,7 +7670,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -7865,9 +7804,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -8040,7 +7976,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -8175,9 +8110,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -8461,9 +8393,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -8801,9 +8730,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -8973,7 +8899,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -9108,9 +9033,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -9277,7 +9199,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -9412,9 +9333,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -9650,7 +9568,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -9853,9 +9770,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -10063,7 +9977,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -10198,9 +10111,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -10348,9 +10258,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -10840,9 +10747,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -11058,9 +10962,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -11488,9 +11389,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -11657,7 +11555,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -12010,9 +11907,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -12262,9 +12156,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -12432,7 +12323,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -13011,6 +12901,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1012168688 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1654196648849384, guid: 68f5057250c54534eb0d8e502fc56f25,
+    type: 2}
+  m_PrefabInternal: {fileID: 1012168687}
+--- !u!114 &1012168689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012168688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0da4eb6c1ae9564c80191a8f0bed73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019611814
 GameObject:
   m_ObjectHideFlags: 0
@@ -13486,9 +13392,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -13636,9 +13539,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -13939,7 +13839,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -14076,7 +13975,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -14146,6 +14044,37 @@ RectTransform:
   m_AnchoredPosition: {x: 271, y: 160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &1146114227
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 654
+  m_Height: 367
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1165495201
 GameObject:
   m_ObjectHideFlags: 0
@@ -14229,9 +14158,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -14604,7 +14530,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -14929,9 +14854,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -15079,9 +15001,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -15838,7 +15757,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -16114,7 +16032,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -16439,9 +16356,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -16635,9 +16549,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -16804,7 +16715,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17008,7 +16918,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17143,9 +17052,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -17313,7 +17219,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17448,9 +17353,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -17788,9 +17690,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -18197,9 +18096,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -18552,9 +18448,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -18975,7 +18868,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -19141,7 +19033,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -19276,9 +19167,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -19426,9 +19314,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -19509,7 +19394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1561944696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19672,9 +19557,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -19807,37 +19689,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1578525835}
---- !u!84 &1593053091
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 951
-  m_Height: 535
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1605280316
 GameObject:
   m_ObjectHideFlags: 0
@@ -20015,9 +19866,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -20183,9 +20031,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -20764,9 +20609,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -20914,9 +20756,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -21057,12 +20896,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 880729957}
-        m_MethodName: ScienceChosen
-        m_Mode: 1
+        m_MethodName: FactionChosen
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -21158,7 +20997,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21293,9 +21131,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -21462,7 +21297,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21733,9 +21567,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -22152,9 +21983,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -22443,7 +22271,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -22578,9 +22405,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -22728,9 +22552,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -23014,7 +22835,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -23149,9 +22969,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -23488,9 +23305,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -24361,9 +24175,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -24511,9 +24322,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
@@ -24709,7 +24517,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1593053091}
+      objectReference: {fileID: 1146114227}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1425180ab84f98e46988b12fe66303f9, type: 2}
   m_IsPrefabParent: 0
@@ -24864,9 +24672,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -25036,7 +24841,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25164,12 +24968,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 880729957}
-        m_MethodName: MagicChosen
-        m_Mode: 1
+        m_MethodName: FactionChosen
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -25265,7 +25069,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25400,9 +25203,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
@@ -25550,9 +25350,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -25768,9 +25565,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
@@ -25940,7 +25734,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 9
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -26348,9 +26141,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -26550,9 +26340,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  elementRed: {fileID: 2100000, guid: b6d1f8870657249478d6c8f688ae881d, type: 2}
-  elementGreen: {fileID: 2100000, guid: 0d726cf7980d17e459ea143002346e6c, type: 2}
-  elementBlue: {fileID: 2100000, guid: 6453ca762eb036c42b56b050d8a4d69d, type: 2}
   neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
   neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
@@ -26801,7 +26588,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -26958,7 +26744,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0

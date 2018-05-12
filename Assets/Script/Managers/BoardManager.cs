@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour
     public int p1tiles, p2tiles;
     public Box[] boxesArray;
     public int placingsLeft;
+    public Factions p1Faction, p2Faction;
 
     //managers
     [Header("Managers")]
@@ -119,7 +120,7 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     private void Movement(Box boxclicked, bool checkphase)
     {
-        if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
+        if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == Factions.Science))
         {
             if (CheckFreeBox(boxclicked) && pawnSelected.CheckMovementPattern(boxclicked))
             {
@@ -178,7 +179,7 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
-            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
+            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == Factions.Magic && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
                 pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
@@ -189,11 +190,11 @@ public class BoardManager : MonoBehaviour
                 placingsLeft--;
                 if (placingsLeft == 0 || pawnsToPlace == 0)
                 {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                    turnManager.CurrentPlayerTurn = Factions.Science;
                     placingsLeft = 2;
                 }
             }
-            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
+            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == Factions.Science && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
                 pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
@@ -204,7 +205,7 @@ public class BoardManager : MonoBehaviour
                 placingsLeft--;
                 if (placingsLeft == 0 || pawnsToPlace == 0)
                 {
-                    turnManager.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                    turnManager.CurrentPlayerTurn = Factions.Magic;
                     placingsLeft = 2;
                 }
             }
@@ -216,26 +217,24 @@ public class BoardManager : MonoBehaviour
     #region API
 
     /// <summary>
-    /// Funzione che permette di scegliere la magia come fazione
+    /// Funzione che permette di scegliere la fazione
     /// </summary>
-    public void MagicChosen()
+    public void FactionChosen(int _factionID)
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
         {
-            factionID = 1;
-            factionChosen = true;
-            turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
-        }
-    }
+            factionID = _factionID;
+            if (factionID == 1)
+            {
+                p1Faction = Factions.Magic;
+                p2Faction = Factions.Science;
+            }
+            else if (factionID == 2)
+            {
+                p1Faction = Factions.Science;
+                p2Faction = Factions.Magic;
+            }
 
-    /// <summary>
-    /// Funzione che permette di scegliere la scienza come fazione
-    /// </summary>
-    public void ScienceChosen()
-    {
-        if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
-        {
-            factionID = 2;
             factionChosen = true;
             turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
         }
@@ -421,7 +420,7 @@ public class BoardManager : MonoBehaviour
     {
         foreach (Pawn p in pawns)
         {
-            if (((p.player == Player.player1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)) && p.CheckAttackPattern())
+            if (((p.player == Player.player1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == Factions.Science)) && p.CheckAttackPattern())
             {
                 Debug.Log("è possibile eseguire un attacco");
                 return true;
@@ -472,7 +471,7 @@ public class BoardManager : MonoBehaviour
                     if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
                     {
                         Debug.Log("In Macro Fase Placing");
-                        if (((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2)) && !selected.currentBox)
+                        if (((turnManager.CurrentPlayerTurn == Factions.Magic && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == Factions.Science && selected.player == Player.player2)) && !selected.currentBox)
                         {
                             if (pawnSelected != null)
                             {
@@ -492,7 +491,7 @@ public class BoardManager : MonoBehaviour
                         pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
                         pawnSelected.ShowMovementBoxes();
                     }
-                    else if ((turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
+                    else if ((turnManager.CurrentPlayerTurn == Factions.Magic && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == Factions.Science && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                     {
                         if (pawnSelected != null)
                         {
@@ -538,7 +537,7 @@ public class BoardManager : MonoBehaviour
     public void SetPawnToChoose()
     {
         bool foundPawn = false;
-        if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        if (turnManager.CurrentPlayerTurn == Factions.Magic)
         {
             foreach (Pawn p in pawns)
             {
@@ -552,7 +551,7 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-        else if (turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        else if (turnManager.CurrentPlayerTurn == Factions.Science)
         {
             foreach (Pawn p in pawns)
             {
@@ -638,7 +637,7 @@ public class BoardManager : MonoBehaviour
         {
             if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && pawnSelected != null)
             {
-                if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn))
+                if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == Factions.Science))
                 {
                     if (_enter)
                     {

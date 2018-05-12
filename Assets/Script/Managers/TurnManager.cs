@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Factions { Magic = 1, Science = 2 };
 
 public class TurnManager : MonoBehaviour
-{
-
-    /// <summary> Stato per indicare di chi è il turno </summary>
-    public enum PlayerTurn { P1_turn = 1, P2_turn = 2 };
+{    
     /// <summary> PlayerTurn corrente </summary>
-    private PlayerTurn _currentPlayerTurn;
-    public PlayerTurn CurrentPlayerTurn
+    private Factions _currentPlayerTurn;
+    public Factions CurrentPlayerTurn
     {
         get
         {
@@ -158,7 +156,7 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.placing:
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
-                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case PlayTurnState.animation:
@@ -207,14 +205,14 @@ public class TurnManager : MonoBehaviour
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
             case MacroPhase.draft:
-                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
                 break;
             case MacroPhase.placing:
-                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
-                CurrentPlayerTurn = (PlayerTurn)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             default:
@@ -227,7 +225,7 @@ public class TurnManager : MonoBehaviour
     /// Funzione che viene chiamata quando inizia un nuobo turno
     /// </summary>
     /// <param name="newTurn"></param>
-    void OnTurnStart(PlayerTurn newTurn)
+    void OnTurnStart(Factions newTurn)
     {
         switch (CurrentMacroPhase)
         {
@@ -296,10 +294,10 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public void ChangeTurn()
     {
-        if (CurrentPlayerTurn == PlayerTurn.P1_turn)
-            CurrentPlayerTurn = PlayerTurn.P2_turn;
-        else if (CurrentPlayerTurn == PlayerTurn.P2_turn)
-            CurrentPlayerTurn = PlayerTurn.P1_turn;
+        if (CurrentPlayerTurn == Factions.Magic)
+            CurrentPlayerTurn = Factions.Science;
+        else if (CurrentPlayerTurn == Factions.Science)
+            CurrentPlayerTurn = Factions.Magic;
     }
 
 }

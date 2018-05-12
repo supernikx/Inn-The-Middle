@@ -208,7 +208,7 @@ public class UIManager : MonoBehaviour
 
     void SetChoosingUI()
     {
-        if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+        if (tm.CurrentPlayerTurn == Factions.Magic)
         {
             if (bm.pawnSelected.activePattern == 4)
             {
@@ -229,7 +229,7 @@ public class UIManager : MonoBehaviour
                 p2ChoosingPanel.SetActive(true);
             }
         }
-        else if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+        else if (tm.CurrentPlayerTurn == Factions.Science)
         {
             if (bm.pawnSelected.activePattern == 4)
             {
@@ -312,11 +312,11 @@ public class UIManager : MonoBehaviour
             case TurnManager.MacroPhase.draft:
                 switch (tm.CurrentPlayerTurn)
                 {
-                    case TurnManager.PlayerTurn.P1_turn:
+                    case Factions.Magic:
                         p1PickingText.SetActive(true);
                         p2PickingText.SetActive(false);
                         break;
-                    case TurnManager.PlayerTurn.P2_turn:
+                    case Factions.Science:
                         p1PickingText.SetActive(false);
                         p2PickingText.SetActive(true);
                         break;
@@ -332,11 +332,11 @@ public class UIManager : MonoBehaviour
                         tooltipPattern.SetActive(false);
                         switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayerTurn.P1_turn:
+                            case Factions.Magic:
                                 p1placingText.SetActive(true);
                                 p2placingText.SetActive(false);
                                 break;
-                            case TurnManager.PlayerTurn.P2_turn:
+                            case Factions.Science:
                                 p1placingText.SetActive(false);
                                 p2placingText.SetActive(true);
                                 break;
@@ -349,10 +349,10 @@ public class UIManager : MonoBehaviour
             case TurnManager.MacroPhase.game:
                 switch (tm.CurrentPlayerTurn)
                 {
-                    case TurnManager.PlayerTurn.P1_turn:
+                    case Factions.Magic:
                         gameTurnText.text = "MAGIC TURN";
                         break;
-                    case TurnManager.PlayerTurn.P2_turn:
+                    case Factions.Science:
                         gameTurnText.text = "SCIENCE TURN";
                         break;
                 }
@@ -372,13 +372,13 @@ public class UIManager : MonoBehaviour
                     case TurnManager.PlayTurnState.movementattack:
                         switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayerTurn.P1_turn:
+                            case Factions.Magic:
                                 if (bm.player1Elements.CheckSuperAttack())
                                 {
                                     MsuperAttackButton.SetActive(true);
                                 }
                                 break;
-                            case TurnManager.PlayerTurn.P2_turn:
+                            case Factions.Science:
                                 if (bm.player2Elements.CheckSuperAttack())
                                 {
                                     SsuperAttackButton.SetActive(true);
@@ -389,13 +389,13 @@ public class UIManager : MonoBehaviour
                     case TurnManager.PlayTurnState.attack:
                         switch (tm.CurrentPlayerTurn)
                         {
-                            case TurnManager.PlayerTurn.P1_turn:
+                            case Factions.Magic:
                                 if (bm.player1Elements.CheckSuperAttack())
                                 {
                                     MsuperAttackButton.SetActive(true);
                                 }
                                 break;
-                            case TurnManager.PlayerTurn.P2_turn:
+                            case Factions.Science:
                                 if (bm.player2Elements.CheckSuperAttack())
                                 {
                                     SsuperAttackButton.SetActive(true);

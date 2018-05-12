@@ -40,7 +40,7 @@ public class DraftPawn : MonoBehaviour
     {
         if (dm.hasDrafted)
         {
-            if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_turn)
+            if (tm.CurrentPlayerTurn == Factions.Magic)
             {
                 dm.p1_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
@@ -51,11 +51,11 @@ public class DraftPawn : MonoBehaviour
                 picksLeft--;
                 if (picksLeft == 0 || dm.pawns.Count == 0)
                 {
-                    tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P2_turn;
+                    tm.CurrentPlayerTurn = Factions.Science;
                     picksLeft = 2;
                 }
             }
-            else if (tm.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_turn)
+            else if (tm.CurrentPlayerTurn == Factions.Science)
             {
                 dm.p2_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
@@ -66,7 +66,7 @@ public class DraftPawn : MonoBehaviour
                 picksLeft--;
                 if (picksLeft == 0 || dm.pawns.Count == 0)
                 {
-                    tm.CurrentPlayerTurn = TurnManager.PlayerTurn.P1_turn;
+                    tm.CurrentPlayerTurn = Factions.Magic;
                     picksLeft = 2;
                 }
             }

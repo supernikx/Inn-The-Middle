@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
     //variabili pubbliche
     public int index1, index2, board;
     public bool walkable, free, neutralKill;
-    public Material elementRed, elementGreen, elementBlue, neutral_white, neutral_black;
+    public Material neutral_white, neutral_black;
     public Element element;
 
     //variabili private
@@ -26,6 +26,7 @@ public class Box : MonoBehaviour
     {
         mr = GetComponent<MeshRenderer>();
         outline = GetComponent<BoxOutline>();
+        outline.enabled = false;
         free = true;
     }
 
@@ -33,7 +34,6 @@ public class Box : MonoBehaviour
     void Start()
     {
         walkable = true;
-        outline.eraseRenderer = true;
         bm = FindObjectOfType<BoardManager>();
     }
 
@@ -100,8 +100,8 @@ public class Box : MonoBehaviour
     {
         if (walkable && free)
         {
+            outline.enabled = true;
             outline.color = 0;
-            outline.eraseRenderer = false;
         }
     }
 
@@ -112,8 +112,8 @@ public class Box : MonoBehaviour
     {
         if (walkable)
         {
+            outline.enabled = true;
             outline.color = 1;
-            outline.eraseRenderer = false;
         }
     }
 
@@ -124,8 +124,8 @@ public class Box : MonoBehaviour
     {
         if (walkable)
         {
+            outline.enabled = true;
             outline.color = 2;
-            outline.eraseRenderer = false;
         }
     }
 
@@ -134,31 +134,7 @@ public class Box : MonoBehaviour
     /// </summary>
     public void SetAsDefault()
     {
-        outline.eraseRenderer = true;
-    }
-
-    /// <summary>
-    /// Funzione che imposta l'elemento della casella
-    /// </summary>
-    /// <param name="_element"></param>
-    public void SetElement(Element _element)
-    {
-        element = _element;
-        switch (element)
-        {
-            case Element.Red:
-                mr.material = elementRed;
-                break;
-            case Element.Green:
-                mr.material = elementGreen;
-                break;
-            case Element.Blue:
-                mr.material = elementBlue;
-                break;
-            default:
-                mr.material = neutral_white;
-                break;
-        }
+        outline.enabled = false;
     }
 
     #endregion
