@@ -81,7 +81,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746763024373696}
-  m_LocalRotation: {x: -0, y: -0, z: 1.1641531e-10, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 7.275958e-12, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -94,15 +94,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526236226041986}
-  m_LocalRotation: {x: 0.45514724, y: -0.0027739538, z: 0.0011596648, w: 0.8904111}
-  m_LocalPosition: {x: 24.2, y: 54.32, z: -24.94}
+  m_LocalRotation: {x: 0.4551486, y: 0.0001787235, z: -0.00034964, w: 0.89041543}
+  m_LocalPosition: {x: 24.2, y: 56.6, z: -26.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4535591920881004}
   - {fileID: 4560381308743452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 54.149, y: -0.38, z: -0.045}
+  m_LocalEulerAnglesHint: {x: 54.149, y: 0, z: -0.045}
 --- !u!20 &20177321601919324
 Camera:
   m_ObjectHideFlags: 1
@@ -134,7 +134,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -170,7 +169,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -206,7 +204,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
