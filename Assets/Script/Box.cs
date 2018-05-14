@@ -10,7 +10,8 @@ public class Box : MonoBehaviour
 {
 
     //variabili pubbliche
-    public int index1, index2, board;
+    public int index1, index2;
+    public Factions board;
     public bool walkable, free, neutralKill;
     public Material neutral_white, neutral_black;
     public Element element;
@@ -20,13 +21,10 @@ public class Box : MonoBehaviour
     private MeshRenderer mr;
     private BoxOutline outline;
 
-    //parte di codice con funzioni private
-
     private void Awake()
     {
         mr = GetComponent<MeshRenderer>();
         outline = GetComponent<BoxOutline>();
-        outline.enabled = false;
         free = true;
     }
 
@@ -35,22 +33,6 @@ public class Box : MonoBehaviour
     {
         walkable = true;
         bm = FindObjectOfType<BoardManager>();
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che il mouse è sopra una casella e richiama la funzione BoxOver del boardmanager
-    /// </summary>
-    private void OnMouseEnter()
-    {
-        bm.BoxOver(this,true);
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che il mouse esce dalla casella e richiama la funzione BoxOver del boardmanager
-    /// </summary>
-    private void OnMouseExit()
-    {
-        bm.BoxOver(this,false);
     }
 
     /// <summary>
@@ -110,7 +92,7 @@ public class Box : MonoBehaviour
     /// </summary>
     public void ShowBoxActivePattern()
     {
-        if (walkable)
+        if (walkable && (board == bm.turnManager.CurrentPlayerTurn) ? free : walkable)
         {
             outline.enabled = true;
             outline.color = 1;

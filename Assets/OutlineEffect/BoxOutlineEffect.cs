@@ -247,7 +247,6 @@ namespace BoxOutlineNameSpace
             foreach(BoxOutline oL in o)
             {
                 oL.enabled = false;
-                oL.enabled = true;
             }
         }
 

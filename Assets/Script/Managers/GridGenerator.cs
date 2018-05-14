@@ -32,11 +32,11 @@ public class GridGenerator : MonoBehaviour
     {
         if (tag == "board1")
         {
-            bm.board1 = tilePositions;
+            bm.magicBoard = tilePositions;
         }
         else if (tag == "board2")
         {
-            bm.board2 = tilePositions;
+            bm.scienceBoard = tilePositions;
         }
     }
 

@@ -8,8 +8,8 @@ public class DraftManager : MonoBehaviour
 {
 
     public List<DraftPawn> pawns;
-    public List<int> p1_pawns_picks;
-    public List<int> p2_pawns_picks;
+    public List<int> magic_pawns_picks;
+    public List<int> science_pawns_picks;
     BoardManager bm;
 
     public bool hasDrafted;
@@ -29,8 +29,8 @@ public class DraftManager : MonoBehaviour
     void Start()
     {
 
-        p1_pawns_picks = new List<int>();
-        p2_pawns_picks = new List<int>();
+        magic_pawns_picks = new List<int>();
+        science_pawns_picks = new List<int>();
     }
 
     // Update is called once per frame

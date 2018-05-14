@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public enum Factions { Magic = 1, Science = 2 };
 
 public class TurnManager : MonoBehaviour
-{    
+{
     /// <summary> PlayerTurn corrente </summary>
     private Factions _currentPlayerTurn;
     public Factions CurrentPlayerTurn
@@ -156,15 +156,16 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.placing:
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
-                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case PlayTurnState.animation:
                 break;
             case PlayTurnState.check:
                 BoardManager.Instance.superAttack = false;
-                BoardManager.Instance.uiManager.UIChange();                            
+                BoardManager.Instance.uiManager.UIChange();
                 BoardManager.Instance.UnmarkAttackMarker();
+                BoardManager.Instance.CheckSuperAttack();
                 turnsWithoutAttack++;
                 if (BoardManager.Instance.pawnSelected != null)
                 {
@@ -205,14 +206,14 @@ public class TurnManager : MonoBehaviour
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
             case MacroPhase.draft:
-                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.placing:
-                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
-                CurrentPlayerTurn = (Factions)BoardManager.Instance.factionID;
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             default:
@@ -279,7 +280,7 @@ public class TurnManager : MonoBehaviour
                 if (turnsWithoutAttack >= 8)
                 {
                     Debug.Log("PASSATI 8 TURNI");
-                    BoardManager.Instance.WinCondition();
+                    BoardManager.Instance.WinCondition(true);
                 }
                 break;
             default:

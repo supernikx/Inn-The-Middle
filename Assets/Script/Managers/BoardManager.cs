@@ -11,16 +11,41 @@ public class BoardManager : MonoBehaviour
     public static BoardManager Instance;
 
     //variabili pubbliche
-    public Transform[][] board1, board2;
-    public PlayerElements player1Elements, player2Elements;
+    public Transform[][] magicBoard, scienceBoard;
+    public PlayerElements MagicElements, ScienceElements;
     public List<Pawn> pawns;
     [HideInInspector]
     public Pawn pawnSelected;
     [HideInInspector]
-    public bool superAttack;
+    public bool _superAttack, CanSuperAttack;
+    public bool superAttack
+    {
+        get
+        {
+            return _superAttack;
+        }
+        set
+        {
+            _superAttack = value;
+            uiManager.ActiveSuperAttackText();
+            if (_superAttack)
+            {
+                CreateMarkList();
+                SelectNextPawnToAttack();
+            }
+            else
+            {
+                PawnHighlighted(true);
+            }
+        }
+    }
+    [HideInInspector]
     public int pawnsToPlace;
-    public int p1pawns, p2pawns;
-    public int p1tiles, p2tiles;
+    [HideInInspector]
+    public List<Pawn> magicPawns, sciencePawns;
+    [HideInInspector]
+    public int MagicPawnIndex, SciencePawnIndex;
+    public int magictiles, sciencetiles;
     public Box[] boxesArray;
     public int placingsLeft;
     public Factions p1Faction, p2Faction;
@@ -31,9 +56,6 @@ public class BoardManager : MonoBehaviour
     public DraftManager draftManager;
     public UIManager uiManager;
     public PawnHighlightManager highlight;
-
-    public bool factionChosen;
-    public int factionID = 0;
 
     /// <summary>
     /// Funzioni che iscrivono/disiscrivono il boardmanager agli eventi appena viene abilitato/disabilitato
@@ -58,6 +80,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     private void OnGamePause()
     {
+        Time.timeScale = 0f;
         pause = true;
     }
 
@@ -66,6 +89,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     private void OnGameUnPause()
     {
+        Time.timeScale = 1f;
         pause = false;
     }
 
@@ -90,23 +114,24 @@ public class BoardManager : MonoBehaviour
     void Start()
     {
         placingsLeft = 1;
-        pawnsToPlace = 8;
         superAttack = false;
         pause = false;
         pawns = FindObjectsOfType<Pawn>().ToList();
+        pawnsToPlace = pawns.Count;
         boxesArray = FindObjectsOfType<Box>();
-        int i = 0;
-        foreach (Pawn pawn in pawns)
+        magicPawns = new List<Pawn>();
+        sciencePawns = new List<Pawn>();
+        MagicPawnIndex = 0;
+        SciencePawnIndex = 0;
+        foreach (Pawn p in pawns)
         {
-            if (pawns[i].player == Player.player1)
+            if (p.faction == Factions.Magic)
             {
-                p1pawns++;
-                i++;
+                magicPawns.Add(p);
             }
-            else if (pawns[i].player == Player.player2)
+            else if (p.faction == Factions.Science)
             {
-                p2pawns++;
-                i++;
+                sciencePawns.Add(p);
             }
         }
     }
@@ -118,33 +143,24 @@ public class BoardManager : MonoBehaviour
     /// si siscrive a 2 eventi diversi nel caso il bool checkphase sia true o false
     /// </summary>
     /// <param name="boxclicked"></param>
-    private void Movement(Box boxclicked, bool checkphase)
+    public void Movement(bool checkphase)
     {
-        if ((pawnSelected.player == Player.player1 && boxclicked.board == 1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (pawnSelected.player == Player.player2 && boxclicked.board == 2 && turnManager.CurrentPlayerTurn == Factions.Science))
+        if (pawnSelected.faction == turnManager.CurrentPlayerTurn && pawnSelected.currentBox != pawnSelected.projectionTempBox)
         {
-            if (CheckFreeBox(boxclicked) && pawnSelected.CheckMovementPattern(boxclicked))
+            if (checkphase)
             {
-                if (checkphase)
-                {
-                    pawnSelected.OnMovementEnd += OnMovementCheckEnd;
-                }
-                else
-                {
-                    pawnSelected.OnMovementEnd += OnMovementEnd;
-                }
-                UnmarkAttackMarker();
-                pawnSelected.MoveBehaviour(boxclicked);
+                pawnSelected.OnMovementEnd += OnMovementCheckEnd;
             }
             else
             {
-                CustomLogger.Log("Casella non valida");
-                DeselectPawn();
+                pawnSelected.OnMovementEnd += OnMovementEnd;
             }
+            UnmarkAttackMarker();
+            pawnSelected.MoveBehaviour();
         }
         else
         {
             CustomLogger.Log("Casella non valida");
-            DeselectPawn();
         }
     }
 
@@ -154,7 +170,7 @@ public class BoardManager : MonoBehaviour
     private void OnMovementCheckEnd()
     {
         pawnSelected.OnMovementEnd -= OnMovementCheckEnd;
-        CustomLogger.Log(pawnSelected.player + " si è mosso");
+        CustomLogger.Log(pawnSelected.faction + " si è mosso");
         pawnSelected.randomized = false;
         DeselectPawn();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
@@ -165,7 +181,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     private void OnMovementEnd()
     {
-        CustomLogger.Log(pawnSelected.player + " si è mosso");
+        CustomLogger.Log(pawnSelected.faction + " si è mosso");
         pawnSelected.OnMovementEnd -= OnMovementEnd;
         pawnSelected.ShowAttackPattern();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.attack;
@@ -179,7 +195,7 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
-            if (pawnSelected.player == Player.player1 && turnManager.CurrentPlayerTurn == Factions.Magic && boxclicked.board == 1 && boxclicked.index1 == 3 && boxclicked.free)
+            if (pawnSelected.faction == turnManager.CurrentPlayerTurn && boxclicked.board == turnManager.CurrentPlayerTurn && boxclicked.index1 == 3 && boxclicked.free)
             {
                 Debug.Log(boxclicked);
                 pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
@@ -190,22 +206,7 @@ public class BoardManager : MonoBehaviour
                 placingsLeft--;
                 if (placingsLeft == 0 || pawnsToPlace == 0)
                 {
-                    turnManager.CurrentPlayerTurn = Factions.Science;
-                    placingsLeft = 2;
-                }
-            }
-            else if (pawnSelected.player == Player.player2 && turnManager.CurrentPlayerTurn == Factions.Science && boxclicked.board == 2 && boxclicked.index1 == 3 && boxclicked.free)
-            {
-                Debug.Log(boxclicked);
-                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
-                pawnSelected.currentBox = boxclicked;
-                pawnSelected.currentBox.free = false;
-                DeselectPawn();
-                pawnsToPlace--;
-                placingsLeft--;
-                if (placingsLeft == 0 || pawnsToPlace == 0)
-                {
-                    turnManager.CurrentPlayerTurn = Factions.Magic;
+                    turnManager.ChangeTurn();
                     placingsLeft = 2;
                 }
             }
@@ -223,30 +224,41 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction)
         {
-            factionID = _factionID;
-            if (factionID == 1)
+            if (_factionID == 1)
             {
                 p1Faction = Factions.Magic;
                 p2Faction = Factions.Science;
             }
-            else if (factionID == 2)
+            else if (_factionID == 2)
             {
                 p1Faction = Factions.Science;
                 p2Faction = Factions.Magic;
             }
-
-            factionChosen = true;
             turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
         }
     }
 
     #region Attack
+    List<Pawn> MarkedPawnList = new List<Pawn>();
+    int MarkedPawnIndex;
+
+    public void CreateMarkList()
+    {
+        foreach (Pawn p in pawns)
+        {
+            if (p.attackMarker)
+            {
+                MarkedPawnList.Add(p);
+            }
+        }
+    }
 
     /// <summary>
     /// Funzione che toglie il marchio di attacco a tutte le pedine
     /// </summary>
     public void UnmarkAttackMarker()
     {
+        MarkedPawnList.Clear();
         foreach (Pawn p in pawns)
         {
             if (p.attackMarker)
@@ -261,7 +273,7 @@ public class BoardManager : MonoBehaviour
     /// e la pedina che è stata cliccata per eseguire l'attacco
     /// </summary>
     /// <param name="pawnClicked"></param>
-    public void Attack(Pawn pawnClicked)
+    public void Attack()
     {
         if (pawnSelected != null && !pause)
         {
@@ -273,7 +285,7 @@ public class BoardManager : MonoBehaviour
                 }
                 highlight.ResetMark();
                 pawnSelected.OnAttackEnd += OnAttackEnd;
-                pawnSelected.AttackBehaviour(superAttack, pawnClicked);
+                pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
             }
         }
     }
@@ -284,7 +296,7 @@ public class BoardManager : MonoBehaviour
     public void OnAttackEnd()
     {
         pawnSelected.OnAttackEnd -= OnAttackEnd;
-        CustomLogger.Log(pawnSelected.player + " ha attaccato");
+        CustomLogger.Log(pawnSelected.faction + " ha attaccato");
         turnManager.ChangeTurn();
     }
 
@@ -299,7 +311,9 @@ public class BoardManager : MonoBehaviour
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
     }
 
-    //provvisoria
+    /// <summary>
+    /// Funzione che attiva/disattiv ail bool superattack
+    /// </summary>
     public void ActiveSuperAttack()
     {
         superAttack = !superAttack;
@@ -309,6 +323,22 @@ public class BoardManager : MonoBehaviour
     #endregion
 
     #region Check
+
+    /// <summary>
+    /// Funzione che controlla se è possibile eseguire un superattacco
+    /// </summary>
+    public void CheckSuperAttack()
+    {
+        switch (turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                CanSuperAttack = MagicElements.CheckSuperAttack();
+                break;
+            case Factions.Science:
+                CanSuperAttack = ScienceElements.CheckSuperAttack();
+                break;
+        }
+    }
 
     /// <summary>
     /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi e nel caso non ci siano caselle libere adiacenti la uccide
@@ -370,7 +400,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     /// <param name="boxclicked"></param>
     /// <returns></returns>
-    private bool CheckFreeBox(Box boxclicked)
+    public bool CheckFreeBox(Box boxclicked)
     {
         if (boxclicked.walkable && boxclicked.free)
         {
@@ -388,13 +418,13 @@ public class BoardManager : MonoBehaviour
     {
         Transform[][] boardToUse;
         Box currentBox = pawnToCheck.currentBox;
-        if (pawnToCheck.player == Player.player1)
+        if (pawnToCheck.faction == Factions.Magic)
         {
-            boardToUse = board1;
+            boardToUse = magicBoard;
         }
         else
         {
-            boardToUse = board2;
+            boardToUse = scienceBoard;
         }
 
         for (int index1 = 0; index1 < boardToUse.Length; index1++)
@@ -411,27 +441,42 @@ public class BoardManager : MonoBehaviour
         CustomLogger.Log("Non c'è una casella libera");
         return false;
     }
-
-    /// <summary>
-    /// Funzione che controlla se in almeno un pattern delle pedine di turno ci sia una pedina avversaria, nel caso ritorna true altrimenti ritorna false
-    /// </summary>
-    /// <returns></returns>
-    public bool CheckAllAttackPattern()
-    {
-        foreach (Pawn p in pawns)
-        {
-            if (((p.player == Player.player1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (p.player == Player.player2 && turnManager.CurrentPlayerTurn == Factions.Science)) && p.CheckAttackPattern())
-            {
-                Debug.Log("è possibile eseguire un attacco");
-                return true;
-            }
-        }
-        return false;
-    }
-
     #endregion
 
     #region Pawn
+
+    /// <summary>
+    /// Funzione che seleziona la prossima pedina della lista di quella fazione
+    /// </summary>
+    public void SelectNextPawn()
+    {
+        switch (turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                MagicPawnIndex++;
+                if (MagicPawnIndex > magicPawns.Count - 1)
+                    MagicPawnIndex = 0;
+                PawnSelected(magicPawns[MagicPawnIndex]);
+                break;
+            case Factions.Science:
+                SciencePawnIndex++;
+                if (SciencePawnIndex > sciencePawns.Count - 1)
+                    SciencePawnIndex = 0;
+                PawnSelected(sciencePawns[SciencePawnIndex]);
+                break;
+        }
+    }
+
+    public void SelectNextPawnToAttack()
+    {
+        PawnHighlighted(false);
+        MarkedPawnIndex++;
+        if (MarkedPawnIndex > MarkedPawnList.Count - 1)
+        {
+            MarkedPawnIndex = 0;
+        }
+        PawnHighlighted(true, MarkedPawnList[MarkedPawnIndex]);
+    }
 
     /// <summary>
     /// Funzione che imposta la variabile pawnSelected a null, imposta a false il bool selected
@@ -448,6 +493,7 @@ public class BoardManager : MonoBehaviour
                 if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                 {
                     UnmarkAttackMarker();
+                    superAttack = false;
                 }
             }
             pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
@@ -471,7 +517,7 @@ public class BoardManager : MonoBehaviour
                     if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
                     {
                         Debug.Log("In Macro Fase Placing");
-                        if (((turnManager.CurrentPlayerTurn == Factions.Magic && selected.player == Player.player1) || (turnManager.CurrentPlayerTurn == Factions.Science && selected.player == Player.player2)) && !selected.currentBox)
+                        if ((turnManager.CurrentPlayerTurn == selected.faction) && !selected.currentBox)
                         {
                             if (pawnSelected != null)
                             {
@@ -484,25 +530,29 @@ public class BoardManager : MonoBehaviour
                     }
                     break;
                 case TurnManager.MacroPhase.game:
-                    if (pawnSelected == null && turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
+                    switch (turnManager.CurrentTurnState)
                     {
-                        selected.selected = true;
-                        pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                        pawnSelected.ShowMovementBoxes();
-                    }
-                    else if ((turnManager.CurrentPlayerTurn == Factions.Magic && selected.player == Player.player1 || turnManager.CurrentPlayerTurn == Factions.Science && selected.player == Player.player2) && turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
-                    {
-                        if (pawnSelected != null)
-                        {
-                            DeselectPawn();
-                        }
-                        selected.selected = true;
-                        pawnSelected = selected;
-                        pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                        pawnSelected.MarkAttackPawn();
-                        pawnSelected.ShowAttackPattern();
-                        pawnSelected.ShowMovementBoxes();
+                        case TurnManager.PlayTurnState.check:
+                            if (pawnSelected == null)
+                            {
+                                selected.selected = true;
+                                pawnSelected = selected;
+                                pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                                pawnSelected.ShowMovementBoxes();
+                            }
+                            break;
+                        case TurnManager.PlayTurnState.movementattack:
+                            if (pawnSelected != null)
+                            {
+                                DeselectPawn();
+                            }
+                            selected.selected = true;
+                            pawnSelected = selected;
+                            pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                            pawnSelected.MarkAttackPawn();
+                            pawnSelected.ShowAttackPattern();
+                            pawnSelected.ShowMovementBoxes();
+                            break;
                     }
                     break;
             }
@@ -518,14 +568,14 @@ public class BoardManager : MonoBehaviour
         int k = 0;
         for (int i = 0; i < pawns.Count; i++)
         {
-            if (pawns[i].player == Player.player1)
+            if (pawns[i].faction == Factions.Magic)
             {
-                pawns[i].ChangePattern(draftManager.p1_pawns_picks[j]);
+                pawns[i].ChangePattern(draftManager.magic_pawns_picks[j]);
                 j++;
             }
-            else if (pawns[i].player == Player.player2)
+            else if (pawns[i].faction == Factions.Science)
             {
-                pawns[i].ChangePattern(draftManager.p2_pawns_picks[k]);
+                pawns[i].ChangePattern(draftManager.science_pawns_picks[k]);
                 k++;
             }
         }
@@ -537,32 +587,15 @@ public class BoardManager : MonoBehaviour
     public void SetPawnToChoose()
     {
         bool foundPawn = false;
-        if (turnManager.CurrentPlayerTurn == Factions.Magic)
+        foreach (Pawn p in pawns)
         {
-            foreach (Pawn p in pawns)
+            if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
-                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player1)
-                {
-                    pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                    foundPawn = true;
-                    CustomLogger.Log("trovata una nel p1");
-                    break;
-                }
-            }
-        }
-        else if (turnManager.CurrentPlayerTurn == Factions.Science)
-        {
-            foreach (Pawn p in pawns)
-            {
-                if ((p.activePattern == 4 || p.activePattern == 5) && p.player == Player.player2)
-                {
-                    pawnSelected = p;
-                    pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
-                    foundPawn = true;
-                    CustomLogger.Log("trovata una nel p2");
-                    break;
-                }
+                pawnSelected = p;
+                pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                foundPawn = true;
+                CustomLogger.Log("trovata una pedina");
+                break;
             }
         }
         if (foundPawn)
@@ -596,64 +629,33 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Funzione che evidenzia le pedine che sono marchiate quando il mouse gli passa sopra, _enter serve per determinare se evidenziarle o togliere l'evidenziamento
     /// </summary>
-    /// <param name="_enter"></param>
-    public void PawnHighlighted(Pawn _pawnHighlighted,bool _enter)
+    /// <param name="_active"></param>
+    public void PawnHighlighted(bool _active, Pawn _pawnHighlighted = null)
     {
-        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
+        if (_active)
         {
-            if (_enter)
+            if (!superAttack)
             {
-                if (!superAttack)
+                foreach (Pawn p in pawns)
                 {
-                    foreach (Pawn p in pawns)
+                    if (p.attackMarker)
                     {
-                        if (p.attackMarker)
-                        {
-                            highlight.MarkPawn(p.transform.position);
-                        }
+                        highlight.MarkPawn(p.transform.position);
                     }
-                }
-                else
-                {
-                    highlight.MarkPawn(_pawnHighlighted.transform.position);
                 }
             }
             else
             {
-                highlight.ResetMark();
+                highlight.MarkPawn(_pawnHighlighted.transform.position);
             }
+        }
+        else
+        {
+            highlight.ResetMark();
         }
     }
 
     #endregion
-
-    /// <summary>
-    /// Funzione che sposta la proiezione della pedina selezionata se si è nella fase di moviemento e boxover rispetta il pattern di moviemento di quella pedina
-    /// </summary>
-    /// <param name="boxover"></param>
-    public void BoxOver(Box boxover, bool _enter)
-    {
-        if (!pause)
-        {
-            if ((turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && pawnSelected != null)
-            {
-                if ((pawnSelected.player == Player.player1 && boxover.board == 1 && turnManager.CurrentPlayerTurn == Factions.Magic) || (pawnSelected.player == Player.player2 && boxover.board == 2 && turnManager.CurrentPlayerTurn == Factions.Science))
-                {
-                    if (_enter)
-                    {
-                        if (!pawnSelected.MoveProjection(boxover))
-                        {
-                            pawnSelected.MoveProjection(pawnSelected.currentBox);
-                        }
-                    }
-                    else
-                    {
-                        pawnSelected.MoveProjection(pawnSelected.currentBox);
-                    }
-                }
-            }
-        }
-    }
 
     /// <summary>
     /// Funzione che viene chiamata quando si clicca una casella e la si riceve in input, si controlla che fase del turno è e si passano le informazioni della casella alle funzioni interessate
@@ -670,87 +672,72 @@ public class BoardManager : MonoBehaviour
                     PlacingTeleport(boxclicked);
                 }
             }
-            else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
-            {
-                switch (turnManager.CurrentTurnState)
-                {
-                    case TurnManager.PlayTurnState.choosing:
-                        CustomLogger.Log("Devi prima scegliere il pattern");
-                        break;
-                    case TurnManager.PlayTurnState.animation:
-                        Debug.Log("Animazione in corso");
-                        break;
-                    case TurnManager.PlayTurnState.check:
-                        Movement(boxclicked, true);
-                        break;
-                    case TurnManager.PlayTurnState.movementattack:
-                        Movement(boxclicked, false);
-                        break;
-                    case TurnManager.PlayTurnState.attack:
-                        CustomLogger.Log("Clicca il pulsante Attack se c'è una pedina in range");
-                        break;
-                    default:
-                        DeselectPawn();
-                        break;
-                }
-            }
         }
     }
 
     /// <summary>
     /// Funzione che gestisce le condizioni di vittoria
     /// </summary>
-    public void WinCondition()
+    public void WinCondition(bool noAttack)
     {
-
-        if (p1pawns > p2pawns)
+        if (noAttack)
         {
-            uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Magic wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-        }
-        else if (p2pawns > p1pawns)
-        {
-            uiManager.winScreen.SetActive(true);
-            uiManager.gameResult.text = "Science wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-        }
-        else if (p1pawns == p2pawns)
-        {
-            foreach (Box box in boxesArray)
+            if (magicPawns.Count > sciencePawns.Count)
             {
-                if (box.board == 1)
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Magic wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (sciencePawns.Count > magicPawns.Count)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Science wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+            }
+            else if (magicPawns == sciencePawns)
+            {
+                foreach (Box box in boxesArray)
                 {
-                    p1tiles++;
+                    if (box.board == Factions.Magic)
+                    {
+                        magictiles++;
+                    }
+                    else if (box.board == Factions.Science)
+                    {
+                        sciencetiles++;
+                    }
                 }
-                else if (box.board == 2)
+
+                if (magictiles > sciencetiles)
                 {
-                    p2tiles++;
+                    uiManager.winScreen.SetActive(true);
+                    uiManager.gameResult.text = "Magic wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                }
+                else if (sciencetiles > magictiles)
+                {
+                    uiManager.winScreen.SetActive(true);
+                    uiManager.gameResult.text = "Science wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                }
+                else if (magictiles == sciencetiles)
+                {
+                    uiManager.winScreen.SetActive(true);
+                    uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
                 }
             }
+        }
+        else
+        {
+            if (magicPawns.Count == 0)
+            {
+                uiManager.winScreen.SetActive(true);
+                uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + turnManager.numberOfTurns + " turns.";
 
-
-            if (p1tiles > p2tiles)
-            {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Magic wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
             }
-            else if (p2tiles > p1tiles)
+            else if (sciencePawns.Count == 0)
             {
                 uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Science wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-            }
-            else if (p1tiles == p2tiles)
-            {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
             }
         }
     }
 
     #endregion
-}
-
-//enumeratore che contiene i player possibili
-public enum Player
-{
-    player1, player2
 }

@@ -42,7 +42,7 @@ public class DraftPawn : MonoBehaviour
         {
             if (tm.CurrentPlayerTurn == Factions.Magic)
             {
-                dm.p1_pawns_picks.Add(indexNumber);
+                dm.magic_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
                 dm.p1_picks[i].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -57,7 +57,7 @@ public class DraftPawn : MonoBehaviour
             }
             else if (tm.CurrentPlayerTurn == Factions.Science)
             {
-                dm.p2_pawns_picks.Add(indexNumber);
+                dm.science_pawns_picks.Add(indexNumber);
                 dm.pawns.Remove(this);
                 dm.p2_picks[o].color = this.gameObject.GetComponent<MeshRenderer>().material.color;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;

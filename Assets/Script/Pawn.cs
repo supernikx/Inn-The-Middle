@@ -19,7 +19,7 @@ public class Pawn : MonoBehaviour
 
     //variabili pubbliche
     public bool selected, randomized;
-    public Player player;
+    public Factions faction;
     public Box currentBox;
     public float activeSpeed;
     public List<float> speeds = new List<float>();
@@ -27,13 +27,33 @@ public class Pawn : MonoBehaviour
     public List<GameObject> projections;
     [Space]
     [Header("Attack Settings")]
-    public bool attackMarker;
+    public bool _attackMarker;
+    public bool attackMarker
+    {
+        get
+        {
+            return _attackMarker;
+        }
+        set
+        {
+            _attackMarker = value;
+            if (_attackMarker)
+            {
+                bm.PawnHighlighted(true, this);
+            }
+            else
+            {
+                bm.PawnHighlighted(false);
+            }
+        }
+    }
     public int activePattern;
     public List<Attack> patterns;
 
     //variabili private
     private BoardManager bm;
-    private Box projectionTempBox;
+    [HideInInspector]
+    public Box projectionTempBox;
     private Transform[][] myboard, enemyboard;
     private PlayerElements myelements;
     private List<GameObject> graphics;
@@ -44,7 +64,6 @@ public class Pawn : MonoBehaviour
     void Start()
     {
         selected = false;
-        attackMarker = false;
         randomized = false;
         bm = BoardManager.Instance;
         projectionTempBox = currentBox;
@@ -54,6 +73,7 @@ public class Pawn : MonoBehaviour
         animators = new List<IPawnAnimations>();
         SetGraphics();
         SetBoards();
+        attackMarker = false;
     }
 
     /// <summary>
@@ -61,17 +81,17 @@ public class Pawn : MonoBehaviour
     /// </summary>
     private void SetBoards()
     {
-        if (player == Player.player1)
+        if (faction == Factions.Magic)
         {
-            myboard = bm.board1;
-            enemyboard = bm.board2;
-            myelements = bm.player1Elements;
+            myboard = bm.magicBoard;
+            enemyboard = bm.scienceBoard;
+            myelements = bm.MagicElements;
         }
-        else if (player == Player.player2)
+        else if (faction == Factions.Science)
         {
-            myboard = bm.board2;
-            enemyboard = bm.board1;
-            myelements = bm.player2Elements;
+            myboard = bm.scienceBoard;
+            enemyboard = bm.magicBoard;
+            myelements = bm.ScienceElements;
         }
     }
 
@@ -99,38 +119,7 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if (attackMarker)
-        {
-            bm.Attack(this);
-        }
-        else
-        {
-            bm.PawnSelected(this);
-        }
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che il mouse passa sopra la pedina, se è marchiata da attackmarker chiama la funzione
-    /// pawnhighlighted del boardmanager che la evidenzia
-    /// </summary>
-    private void OnMouseEnter()
-    {
-        if (attackMarker)
-        {
-            bm.PawnHighlighted(this,true);
-        }
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che il mouse esce dal collider della pedina, se è marchiata da attackmarker chiama la funzione
-    /// pawnhighlighted del boardmanager che toglie l'evidenziamento
-    /// </summary>
-    private void OnMouseExit()
-    {
-        if (attackMarker)
-        {
-            bm.PawnHighlighted(this,false);
-        }
+        bm.PawnSelected(this);
     }
 
     #region GraphicsFunctions
@@ -310,7 +299,7 @@ public class Pawn : MonoBehaviour
             int patternindex2 = patterns[activePattern].pattern[0].index2;
             foreach (Pawn p in bm.pawns)
             {
-                if (p.player != player)
+                if (p.faction != faction)
                 {
                     if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
                     {
@@ -326,7 +315,7 @@ public class Pawn : MonoBehaviour
             {
                 foreach (Pawn p in bm.pawns)
                 {
-                    if (p.player != player)
+                    if (p.faction != faction)
                     {
                         if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
                         {
@@ -345,33 +334,24 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void MarkAttackPawn()
     {
-        int currentColumn = currentBox.index2;
-        /*if (activePattern == 2)
+        if (activePattern == 2 && !CheckAttackPattern())
         {
-            int patternindex1 = patterns[activePattern].pattern[0].index1;
-            int patternindex2 = patterns[activePattern].pattern[0].index2;
-            foreach (Pawn p in bm.pawns)
-            {
-                if (p.player != player)
-                {
-                    if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentBox.index1 < enemyboard.Length && patternindex1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == patternindex1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + patternindex2)))
-                    {
-                        p.attackMarker = true;
-                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
-                    }
-                }
-            }
-        }*/
-        foreach (Pattern a in patterns[activePattern].pattern)
+            return;
+        }
+        else
         {
-            foreach (Pawn p in bm.pawns)
+            int currentColumn = currentBox.index2;
+            foreach (Pattern a in patterns[activePattern].pattern)
             {
-                if (p.player != player)
+                foreach (Pawn p in bm.pawns)
                 {
-                    if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                    if (p.faction != faction)
                     {
-                        p.attackMarker = true;
-                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        {
+                            p.attackMarker = true;
+                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                        }
                     }
                 }
             }
@@ -384,7 +364,7 @@ public class Pawn : MonoBehaviour
     /// </summary>
     /// <param name="_superAttack"></param>
     /// <param name="_pawnClicked"></param>
-    public void AttackBehaviour(bool _superAttack, Pawn _pawnClicked)
+    public void AttackBehaviour(bool _superAttack, Pawn _pawnClicked = null)
     {
         DisableAttackPattern();
         superAttack = _superAttack;
@@ -409,7 +389,6 @@ public class Pawn : MonoBehaviour
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
         projections[activePattern].SetActive(false);
-
     }
 
     /// <summary>
@@ -424,7 +403,7 @@ public class Pawn : MonoBehaviour
         {
             for (int i = 0; i < bm.pawns.Count; i++)
             {
-                if (bm.pawns[i].player != player && bm.pawns[i].currentBox == b)
+                if (bm.pawns[i].faction != faction && bm.pawns[i].currentBox == b)
                 {
                     pawnsHitted.Add(bm.pawns[i]);
                     pawnHitted++;
@@ -531,25 +510,15 @@ public class Pawn : MonoBehaviour
     /// </summary>
     private void DeathAnimationEnd()
     {
-        if (player == Player.player1)
+        if (faction == Factions.Magic)
         {
-            BoardManager.Instance.p1pawns--;
-            if (BoardManager.Instance.p1pawns <= 0)
-            {
-                BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
-
-            }
+            BoardManager.Instance.magicPawns.Remove(this);
         }
-        else if (player == Player.player2)
+        else if (faction == Factions.Science)
         {
-            BoardManager.Instance.p2pawns--;
-            if (BoardManager.Instance.p2pawns <= 0)
-            {
-                BoardManager.Instance.uiManager.winScreen.SetActive(true);
-                BoardManager.Instance.uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + BoardManager.Instance.turnManager.numberOfTurns + " turns.";
-            }
+            BoardManager.Instance.sciencePawns.Remove(this);
         }
+        bm.WinCondition(false);
         bm.pawns.Remove(this);
         gameObject.SetActive(false);
         OnDeathEnd(this);
@@ -562,26 +531,12 @@ public class Pawn : MonoBehaviour
     #region Movement
 
     /// <summary>
-    /// Funzione che controlla se boxToMove (passato come parametro) fa parte delle caselle possibili su cui muoversi e se è disponibile
-    /// </summary>
-    /// <param name="boxToMove"></param>
-    /// <returns></returns>
-    public bool CheckMovementPattern(Box boxToMove)
-
-    {
-        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /// <summary>
     /// Funzione che avvia l'animazione di movimento sulla boxToMove impostando la fase del turno su animation
     /// </summary>
     /// <param name="boxToMove"></param>
-    public void MoveBehaviour(Box boxToMove)
+    public void MoveBehaviour()
     {
+        Box boxToMove = projectionTempBox;
         transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
         transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
         projections[activePattern].SetActive(false);
@@ -608,31 +563,145 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che sposta la proiezione nella box che gli viene passata come parametro
+    /// Funzione che sposta la proiezione nella direzione che gli viene passata come parametro
     /// </summary>
-    /// <param name="boxToMove"></param>
+    /// <param name="projectionDirection"></param>
     /// <returns></returns>
-    public bool MoveProjection(Box boxToMove)
+    public void MoveProjection(Directions projectionDirection)
     {
-        if ((boxToMove.index1 == currentBox.index1 + 1 || boxToMove.index1 == currentBox.index1 - 1 || boxToMove.index1 == currentBox.index1) && (boxToMove.index2 == currentBox.index2 || boxToMove.index2 == currentBox.index2 + 1 || boxToMove.index2 == currentBox.index2 - 1) && (boxToMove.free || boxToMove == currentBox))
+        Box boxToMove = currentBox;
+        bool moved = false;
+        switch (faction)
         {
-            DisableAttackPattern();
-            if (boxToMove == currentBox)
-            {
-                transform.eulerAngles = startRotation;
-            }
-            else
-            {
-                transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
-                transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
-            }
+            case Factions.Magic:
+                switch (projectionDirection)
+                {
+                    case Directions.up:
+                        if (currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.down:
+                        if (currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.right:
+                        if (currentBox.index1 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.left:
+                        if (currentBox.index1 + 1 < myboard.Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.upright:
+                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.upleft:
+                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.downright:
+                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.downleft:
+                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.idle:
+                        break;
+                }
+                break;
+            case Factions.Science:
+                switch (projectionDirection)
+                {
+                    case Directions.up:
+                        if (currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.down:
+                        if (currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.right:
+                        if (currentBox.index1 + 1 < myboard.Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.left:
+                        if (currentBox.index1 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.upright:
+                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.upleft:
+                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.downright:
+                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.downleft:
+                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
+                        {
+                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
+                        }
+                        break;
+                    case Directions.idle:
+                        break;
+                }
+                break;
+        }
+        if (bm.CheckFreeBox(boxToMove))
+        {
+            moved = true;
+        }
+        DisableAttackPattern();
+        if (moved)
+        {
+            transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
+            transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
             projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
             projectionTempBox = boxToMove;
-            ShowAttackPattern();
-            ShowMovementBoxes();
-            return true;
         }
-        return false;
+        else
+        {
+            ForceMoveProjection(false);
+        }
+        ShowAttackPattern();
+        ShowMovementBoxes();
     }
 
     /// <summary>

@@ -11039,7 +11039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   randomized: 0
-  player: 0
+  faction: 1
   currentBox: {fileID: 0}
   activeSpeed: 0.5
   speeds:

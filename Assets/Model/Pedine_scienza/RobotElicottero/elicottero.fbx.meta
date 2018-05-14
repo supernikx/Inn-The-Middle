@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 04062474687e3b14582ba2d2e9f391f8
+timeCreated: 1526232752
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bomb
+    100002: Bomb1
+    100004: Center
+    100006: //RootNode
+    100008: Fan
+    100010: Finger1
+    100012: finger1
+    100014: Finger2
+    100016: finger2
+    100018: Finger3
+    100020: finger3
+    100022: Gru1
+    100024: Hand
+    100026: Head
+    100028: nurbsCircle1
+    100030: nurbsCircle2
+    100032: nurbsCircle3
+    100034: nurbsCircle4
+    100036: nurbsCircle5
+    100038: nurbsCircle6
+    100040: nurbsCircle7
+    100042: propeller1
+    400000: Bomb
+    400002: Bomb1
+    400004: Center
+    400006: //RootNode
+    400008: Fan
+    400010: Finger1
+    400012: finger1
+    400014: Finger2
+    400016: finger2
+    400018: Finger3
+    400020: finger3
+    400022: Gru1
+    400024: Hand
+    400026: Head
+    400028: nurbsCircle1
+    400030: nurbsCircle2
+    400032: nurbsCircle3
+    400034: nurbsCircle4
+    400036: nurbsCircle5
+    400038: nurbsCircle6
+    400040: nurbsCircle7
+    400042: propeller1
+    2100000: M_Elicottero2
+    4300000: Bomb1
+    4300002: finger2
+    4300004: finger1
+    4300006: finger3
+    4300008: Gru1
+    4300010: propeller1
+    4300012: Head
+    7400000: Idle
+    7400002: Take_Bomb
+    7400004: move_forward
+    7400006: Attack
+    7400008: move_backward
+    7400010: stop
+    7400012: hit
+    7400014: death
+    7400016: move_loop
+    9500000: //RootNode
+    13700000: Bomb1
+    13700002: finger1
+    13700004: finger2
+    13700006: finger3
+    13700008: Gru1
+    13700010: Head
+    13700012: propeller1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

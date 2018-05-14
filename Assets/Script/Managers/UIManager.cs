@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -43,11 +44,6 @@ public class UIManager : MonoBehaviour
     public GameObject SRedBarReady;
     public List<GameObject> SRedBars = new List<GameObject>(8);
     private int SRedBarindex;
-
-
-    [Header("Button references")]
-    public GameObject MsuperAttackButton;
-    public GameObject SsuperAttackButton;
 
     [Header("Choosing References")]
     public GameObject choosingPhaseText;
@@ -97,41 +93,48 @@ public class UIManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Funzioni che iscrivono/disiscrivono l'uiManager agli eventi appena viene abilitato/disabilitato
+    /// </summary>
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing))
-        {
-            pausePanel.SetActive(true);
-            Time.timeScale = 0f;
-            isPaused = true;
-            if (EventManager.OnPause != null)
-                EventManager.OnPause();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused && (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing))
-        {
-            ResumeGame();
-        }
+        EventManager.OnPause += OnGamePause;
+        EventManager.OnUnPause += OnGameUnPause;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnPause -= OnGamePause;
+        EventManager.OnUnPause -= OnGameUnPause;
+    }
+
+    private void OnGameUnPause()
+    {
+        pausePanel.SetActive(false);
+        isPaused = false;
+    }
+
+    private void OnGamePause()
+    {
+        pausePanel.SetActive(true);
+        isPaused = true;
     }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
     public void ResumeGame()
     {
-        pausePanel.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
         if (EventManager.OnUnPause != null)
             EventManager.OnUnPause();
     }
 
     public void UpdateElementsUI()
     {
-        int mredelements = bm.player1Elements.redElement;
-        int mblueelements = bm.player1Elements.blueElement;
-        int mgreenelements = bm.player1Elements.greenElement;
-        int sredelements = bm.player2Elements.redElement;
-        int sblueelements = bm.player2Elements.blueElement;
-        int sgreenelements = bm.player2Elements.greenElement;
+        int mredelements = bm.MagicElements.redElement;
+        int mblueelements = bm.MagicElements.blueElement;
+        int mgreenelements = bm.MagicElements.greenElement;
+        int sredelements = bm.ScienceElements.redElement;
+        int sblueelements = bm.ScienceElements.blueElement;
+        int sgreenelements = bm.ScienceElements.greenElement;
 
         //Elemento rosso magia
         if (mredelements > 0)
@@ -366,23 +369,13 @@ public class UIManager : MonoBehaviour
                         break;
                     case TurnManager.PlayTurnState.check:
                         ActiveSuperAttackText();
-                        SsuperAttackButton.SetActive(false);
-                        MsuperAttackButton.SetActive(false);
                         break;
                     case TurnManager.PlayTurnState.movementattack:
                         switch (tm.CurrentPlayerTurn)
                         {
                             case Factions.Magic:
-                                if (bm.player1Elements.CheckSuperAttack())
-                                {
-                                    MsuperAttackButton.SetActive(true);
-                                }
                                 break;
                             case Factions.Science:
-                                if (bm.player2Elements.CheckSuperAttack())
-                                {
-                                    SsuperAttackButton.SetActive(true);
-                                }
                                 break;
                         }
                         break;
@@ -390,16 +383,8 @@ public class UIManager : MonoBehaviour
                         switch (tm.CurrentPlayerTurn)
                         {
                             case Factions.Magic:
-                                if (bm.player1Elements.CheckSuperAttack())
-                                {
-                                    MsuperAttackButton.SetActive(true);
-                                }
                                 break;
                             case Factions.Science:
-                                if (bm.player2Elements.CheckSuperAttack())
-                                {
-                                    SsuperAttackButton.SetActive(true);
-                                }
                                 break;
                         }
                         break;

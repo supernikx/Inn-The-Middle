@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114643060664840586}
   - component: {fileID: 114893752617296308}
   - component: {fileID: 114880029920021300}
+  - component: {fileID: 114770459697291012}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -134,8 +135,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  MsuperAttackButton: {fileID: 0}
-  SsuperAttackButton: {fileID: 0}
   choosingPhaseText: {fileID: 0}
   p1ChoosingPanel: {fileID: 0}
   p2ChoosingPanel: {fileID: 0}
@@ -172,6 +171,38 @@ MonoBehaviour:
   turnsWithoutAttack: 0
   mainCam: {fileID: 0}
   draftCam: {fileID: 0}
+--- !u!114 &114770459697291012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0da4eb6c1ae9564c80191a8f0bed73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joy1MovementConfirm: 350
+  joy2MovementConfirm: 370
+  joy1SelectNextPawn: 352
+  joy2SelectNextPawn: 372
+  joy1Attack: 351
+  joy2Attack: 371
+  joy1ActiveSuperAttack: 353
+  joy2ActiveSuperAttack: 373
+  joy1SelectNextPawnSuperAttack: 355
+  joy2SelectNextPawnSuperAttack: 375
+  joy1BouncePattern: 0
+  joy1SniperPattern: 0
+  joy1MeleePattern: 0
+  joy1CrossPattern: 0
+  joy2BouncePattern: 0
+  joy2SniperPattern: 0
+  joy2MeleePattern: 0
+  joy2CrossPattern: 0
+  joy1PassTurn: 356
+  joy2PassTurn: 376
+  joyPause: 337
 --- !u!114 &114880029920021300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,8 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawns: []
-  p1_pawns_picks: 
-  p2_pawns_picks: 
+  magic_pawns_picks: 
+  science_pawns_picks: 
   hasDrafted: 0
   p1_picks:
   - {fileID: 0}
@@ -224,22 +255,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1426caf1a0f6ca469a430b83fc8df49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Elements: {fileID: 0}
-  player2Elements: {fileID: 0}
+  MagicElements: {fileID: 0}
+  ScienceElements: {fileID: 0}
   pawns: []
   pawnSelected: {fileID: 0}
-  superAttack: 0
+  _superAttack: 0
+  CanSuperAttack: 0
   pawnsToPlace: 0
-  p1pawns: 0
-  p2pawns: 0
-  p1tiles: 0
-  p2tiles: 0
+  magicPawns: []
+  sciencePawns: []
+  MagicPawnIndex: 0
+  SciencePawnIndex: 0
+  magictiles: 0
+  sciencetiles: 0
   boxesArray: []
   placingsLeft: 0
+  p1Faction: 0
+  p2Faction: 0
   turnManager: {fileID: 0}
   draftManager: {fileID: 0}
   uiManager: {fileID: 0}
   highlight: {fileID: 0}
-  factionChosen: 0
-  factionID: 0
   pause: 0

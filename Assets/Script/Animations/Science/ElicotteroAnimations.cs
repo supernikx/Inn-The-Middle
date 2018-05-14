@@ -5,12 +5,23 @@ using DG.Tweening;
 
 public class ElicotteroAnimations : PawnAnimationManager
 {
+    public GameObject bombToMove;
+    public Transform bombReturnPosition;
+    public GameObject bombAttachedToModel;
+    public float YHighOffset;
     Transform myPosition;
+    Vector3 bombTargetPosition;
     Vector3 targetPosition;
     Vector3 startPosition;
     //Vector3 startRotation;
     float speed = 0.7f;
     bool isAttacking;
+
+    protected override void Start()
+    {
+        base.Start();
+        bombToMove.SetActive(false);
+    }
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 startRotation)
     {
@@ -47,7 +58,8 @@ public class ElicotteroAnimations : PawnAnimationManager
                 targetz = patternBox[0].transform.position.z;
             }
         }
-        _targetPosition = new Vector3(targetx, patternBox[0].transform.position.y, targetz);
+        bombTargetPosition = new Vector3(targetx, patternBox[0].transform.position.y, targetz);
+        _targetPosition = new Vector3 (bombTargetPosition.x, bombTargetPosition.y + YHighOffset, bombTargetPosition.z);
         isAttacking = true;
         MovementAnimation(_myPosition, _targetPosition, speed);
     }
@@ -55,11 +67,25 @@ public class ElicotteroAnimations : PawnAnimationManager
     private IEnumerator ReturnToPosition()
     {
         PlayMovementAnimation(false);
-        animator.SetBool("Back", true);
         Tween backmovement = myPosition.DOMove(startPosition, speed);
         yield return backmovement.WaitForCompletion();
         isAttacking = false;
         animator.SetBool("Back", false);
+    }
+
+    public IEnumerator LaunchBomb()
+    {
+        bombAttachedToModel.SetActive(false);
+        bombToMove.SetActive(true);
+        Tween fallBomb = bombToMove.transform.DOMove(bombTargetPosition, 1f);
+        yield return fallBomb.WaitForCompletion();
+        bombToMove.SetActive(false);
+        bombToMove.transform.position = bombReturnPosition.position;
+    }
+
+    public void BombRespawn()
+    {
+        bombAttachedToModel.SetActive(true);
     }
 
     public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed)
@@ -69,12 +95,11 @@ public class ElicotteroAnimations : PawnAnimationManager
         //startRotation = _startRotation;
         speed = _speed;
         animator.SetTrigger("TakeBomb");
-        animator.SetTrigger("SMovement");
+        PlayMovementAnimation(true);
     }
 
     public IEnumerator OnStartMovementAnimationEnd()
     {
-        PlayMovementAnimation(true);
         Tween movement = myPosition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
         //Tween rotate = myPosition.DORotate(startRotation, 1f);
@@ -87,6 +112,7 @@ public class ElicotteroAnimations : PawnAnimationManager
         else
         {
             PlayAttackAnimation();
+            animator.SetBool("Back", true);
         }
     }
 
