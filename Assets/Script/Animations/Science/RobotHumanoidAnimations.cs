@@ -7,11 +7,13 @@ public class RobotHumanoidAnimations : PawnAnimationManager
 {
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
-        OnAttackEnd();
+        myPosition.eulerAngles = startRotation;
+        PlayAttackAnimation();
     }
 
     public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed)
     {
+        PlayMovementAnimation(true);
         StartCoroutine(Movement(myPosition, targetPosition, speed));
     }
 
@@ -21,6 +23,7 @@ public class RobotHumanoidAnimations : PawnAnimationManager
         yield return movement.WaitForCompletion();
         //Tween rotate = _myPosition.DORotate(_startRotation, 1f);
         //yield return rotate.WaitForCompletion();
+        PlayMovementAnimation(false);
         OnMovementEnd();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ public class TurnManager : MonoBehaviour
     }
 
 
-    public enum MacroPhase { menu, faction, draft, placing, game };
+    public enum MacroPhase { menu, faction, draft, placing, game, end };
     private MacroPhase _currentMacroPhase;
     public MacroPhase CurrentMacroPhase
     {
@@ -68,6 +69,21 @@ public class TurnManager : MonoBehaviour
     [Header("Camera references")]
     public Camera mainCam;
     public Camera draftCam;
+
+    private void OnEnable()
+    {
+        EventManager.OnGameEnd += OnGameEnd;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnGameEnd -= OnGameEnd;
+    }
+
+    private void OnGameEnd()
+    {
+        CurrentMacroPhase = MacroPhase.end;
+    }
 
     // Use this for initialization
     void Start()
@@ -137,6 +153,8 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.game:
                 if (CurrentMacroPhase != MacroPhase.placing)
                     return false;
+                return true;
+            case MacroPhase.end:
                 return true;
             default:
                 return false;
@@ -215,6 +233,9 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.game:
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 //CurrentPlayerTurn = PlayerTurn.P1_turn;
+                break;
+            case MacroPhase.end:
+                Debug.Log("Partita Finita");
                 break;
             default:
                 break;

@@ -491,7 +491,7 @@ public class ControllerInputManager : MonoBehaviour
             }
         }
 
-        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing) && Input.GetKeyDown(joyPause))
+        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))
         {
             if (bm.pause)
                 EventManager.OnUnPause();

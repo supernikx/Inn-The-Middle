@@ -686,13 +686,15 @@ public class BoardManager : MonoBehaviour
             {
                 uiManager.winScreen.SetActive(true);
                 uiManager.gameResult.text = "Magic wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                EventManager.OnGameEnd();
             }
             else if (sciencePawns.Count > magicPawns.Count)
             {
                 uiManager.winScreen.SetActive(true);
                 uiManager.gameResult.text = "Science wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                EventManager.OnGameEnd();
             }
-            else if (magicPawns == sciencePawns)
+            else if (magicPawns.Count == sciencePawns.Count)
             {
                 foreach (Box box in boxesArray)
                 {
@@ -710,16 +712,19 @@ public class BoardManager : MonoBehaviour
                 {
                     uiManager.winScreen.SetActive(true);
                     uiManager.gameResult.text = "Magic wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                    EventManager.OnGameEnd();
                 }
                 else if (sciencetiles > magictiles)
                 {
                     uiManager.winScreen.SetActive(true);
                     uiManager.gameResult.text = "Science wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                    EventManager.OnGameEnd();
                 }
                 else if (magictiles == sciencetiles)
                 {
                     uiManager.winScreen.SetActive(true);
                     uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                    EventManager.OnGameEnd();
                 }
             }
         }
@@ -729,12 +734,14 @@ public class BoardManager : MonoBehaviour
             {
                 uiManager.winScreen.SetActive(true);
                 uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                EventManager.OnGameEnd();
 
             }
             else if (sciencePawns.Count == 0)
             {
                 uiManager.winScreen.SetActive(true);
                 uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
+                EventManager.OnGameEnd();
             }
         }
     }

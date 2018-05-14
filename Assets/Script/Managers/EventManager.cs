@@ -10,4 +10,9 @@ public class EventManager : MonoBehaviour {
     public static PauseEvent OnUnPause;
     #endregion
 
+    #region GameEvent
+    public delegate void GameEvent();
+    public static GameEvent OnGameEnd;
+    #endregion
+
 }
