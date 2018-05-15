@@ -388,7 +388,7 @@ public class Pawn : MonoBehaviour
         }
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
-        projections[activePattern].SetActive(false);
+        bm.highlight.DeselectPawn();
     }
 
     /// <summary>
@@ -397,7 +397,7 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void OnAttackAnimationEnd()
     {
-        projections[activePattern].SetActive(true);
+        bm.highlight.SelectPawn(this);
         List<Pawn> pawnsHitted = new List<Pawn>();
         foreach (Box b in patternBox)
         {
@@ -539,7 +539,6 @@ public class Pawn : MonoBehaviour
         Box boxToMove = projectionTempBox;
         transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
         transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
-        projections[activePattern].SetActive(false);
         DisableMovementBoxes();
         DisableAttackPattern();
         currentBox.free = true;
@@ -557,7 +556,6 @@ public class Pawn : MonoBehaviour
     /// </summary>
     private void OnMovementCompleted()
     {
-        projections[activePattern].SetActive(true);
         if (OnMovementEnd != null)
             OnMovementEnd();
     }
@@ -625,6 +623,7 @@ public class Pawn : MonoBehaviour
                         }
                         break;
                     case Directions.idle:
+                        projections[activePattern].SetActive(false);
                         break;
                 }
                 break;
@@ -680,6 +679,7 @@ public class Pawn : MonoBehaviour
                         }
                         break;
                     case Directions.idle:
+                        projections[activePattern].SetActive(false);
                         break;
                 }
                 break;
@@ -691,6 +691,7 @@ public class Pawn : MonoBehaviour
         DisableAttackPattern();
         if (moved)
         {
+            projections[activePattern].SetActive(true);
             transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
             transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
             projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
@@ -709,6 +710,7 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void ForceMoveProjection(bool keepRotation)
     {
+        projections[activePattern].SetActive(false);
         projections[activePattern].transform.position = new Vector3(transform.position.x, transform.position.y + graphics[activePattern].transform.position.y, transform.position.z);
         projectionTempBox = currentBox;
         if (!keepRotation)
@@ -725,7 +727,7 @@ public class Pawn : MonoBehaviour
     public void RandomizePattern()
     {
         graphics[activePattern].SetActive(false);
-        projections[activePattern].SetActive(false);
+        bm.highlight.DeselectPawn();
         UnsubscribeAnimationEvent();
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
         if (activePattern == 4 || activePattern == 5)
@@ -734,7 +736,7 @@ public class Pawn : MonoBehaviour
         }
         activeSpeed = speeds[activePattern];
         graphics[activePattern].SetActive(true);
-        projections[activePattern].SetActive(true);
+        bm.highlight.SelectPawn(this);
         SubscribeAnimationEvent();
         randomized = true;
     }

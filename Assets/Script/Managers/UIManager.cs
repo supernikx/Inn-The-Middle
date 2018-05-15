@@ -369,6 +369,7 @@ public class UIManager : MonoBehaviour
                         break;
                     case TurnManager.PlayTurnState.check:
                         ActiveSuperAttackText();
+                        UpdateReadyElement();
                         break;
                     case TurnManager.PlayTurnState.movementattack:
                         switch (tm.CurrentPlayerTurn)
@@ -394,6 +395,83 @@ public class UIManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void UpdateReadyElement()
+    {
+        //Magic
+        if (bm.MagicElements.redElement >= 1 && bm.MagicElements.blueElement >= 1 && bm.MagicElements.greenElement >= 1)
+        {
+            MRedBarReady.SetActive(true);
+            MBlueBarReady.SetActive(true);
+            MGreenBarReady.SetActive(true);
+        }
+        else
+        {
+            if (bm.MagicElements.redElement >= 3 && !MRedBarReady.activeSelf)
+            {
+                MRedBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.redElement < 3 && MRedBarReady.activeSelf)
+            {
+                MRedBarReady.SetActive(false);
+            }
+
+            if (bm.MagicElements.blueElement >= 3 && !MBlueBarReady.activeSelf)
+            {
+                MBlueBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.blueElement < 3 && MBlueBarReady.activeSelf)
+            {
+                MBlueBarReady.SetActive(false);
+            }
+
+            if (bm.MagicElements.greenElement >= 3 && !MGreenBarReady.activeSelf)
+            {
+                MGreenBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.greenElement < 3 && MGreenBarReady.activeSelf)
+            {
+                MGreenBarReady.SetActive(false);
+            }
+        }
+
+        //Science
+        if (bm.ScienceElements.redElement >= 1 && bm.ScienceElements.blueElement >= 1 && bm.ScienceElements.greenElement >= 1)
+        {
+            SRedBarReady.SetActive(true);
+            SBlueBarReady.SetActive(true);
+            SGreenBarReady.SetActive(true);
+        }
+        else
+        {
+            if (bm.ScienceElements.redElement >= 3 && !SRedBarReady.activeSelf)
+            {
+                SRedBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.redElement < 3 && SRedBarReady.activeSelf)
+            {
+                SRedBarReady.SetActive(false);
+            }
+
+            if (bm.ScienceElements.blueElement >= 3 && !SBlueBarReady.activeSelf)
+            {
+                SBlueBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.blueElement < 3 && SBlueBarReady.activeSelf)
+            {
+                SBlueBarReady.SetActive(false);
+            }
+
+            if (bm.ScienceElements.greenElement >= 3 && !SGreenBarReady.activeSelf)
+            {
+                SGreenBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.greenElement < 3 && SGreenBarReady.activeSelf)
+            {
+                SGreenBarReady.SetActive(false);
+            }
         }
     }
 

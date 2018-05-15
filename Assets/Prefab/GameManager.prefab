@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPosition: {x: 1000, y: 1000, z: 1000}
+  selectPawnParticlePrefab: {fileID: 1438370527451020, guid: 9dc9b014c5b92ef438f94058768c7b3f,
+    type: 2}
   attackMarkerParticlePrefab: {fileID: 1408250317327876, guid: 2369d84d84ebdd847a6839cecea54687,
     type: 2}
   maxMarker: 4

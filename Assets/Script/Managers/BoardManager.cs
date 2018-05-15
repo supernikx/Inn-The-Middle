@@ -496,7 +496,7 @@ public class BoardManager : MonoBehaviour
                     superAttack = false;
                 }
             }
-            pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
+            highlight.DeselectPawn();
             pawnSelected.selected = false;
             pawnSelected = null;
         }
@@ -525,7 +525,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                            highlight.SelectPawn(pawnSelected);
                         }
                     }
                     break;
@@ -537,7 +537,7 @@ public class BoardManager : MonoBehaviour
                             {
                                 selected.selected = true;
                                 pawnSelected = selected;
-                                pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                                highlight.SelectPawn(pawnSelected);
                                 pawnSelected.ShowMovementBoxes();
                             }
                             break;
@@ -548,7 +548,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                            highlight.SelectPawn(pawnSelected);
                             pawnSelected.MarkAttackPawn();
                             pawnSelected.ShowAttackPattern();
                             pawnSelected.ShowMovementBoxes();
@@ -592,7 +592,7 @@ public class BoardManager : MonoBehaviour
             if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
                 pawnSelected = p;
-                pawnSelected.projections[pawnSelected.activePattern].SetActive(true);
+                highlight.SelectPawn(pawnSelected);
                 foundPawn = true;
                 CustomLogger.Log("trovata una pedina");
                 break;
