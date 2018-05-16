@@ -35,14 +35,6 @@ public class Box : MonoBehaviour
         bm = FindObjectOfType<BoardManager>();
     }
 
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che viene premuta la casella, richiama la funzione BoxClicked all'interno del BoardManager
-    /// </summary>
-    private void OnMouseDown()
-    {
-        bm.BoxClicked(this);
-    }
-
     //identifica la zona di codice con le funzioni pubbliche
     #region API
 

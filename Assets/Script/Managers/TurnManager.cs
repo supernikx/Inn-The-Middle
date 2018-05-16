@@ -23,7 +23,6 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-
     public enum MacroPhase { menu, faction, draft, placing, game, end };
     private MacroPhase _currentMacroPhase;
     public MacroPhase CurrentMacroPhase
@@ -41,7 +40,6 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
-
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
     public enum PlayTurnState { choosing, placing, animation, check, movementattack, attack };
@@ -228,11 +226,9 @@ public class TurnManager : MonoBehaviour
                 break;
             case MacroPhase.placing:
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
-                //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.game:
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
-                //CurrentPlayerTurn = PlayerTurn.P1_turn;
                 break;
             case MacroPhase.end:
                 Debug.Log("Partita Finita");
@@ -257,11 +253,6 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.faction:
                 break;
             case MacroPhase.draft:
-                //       if (BoardManager.Instance.factionChosen == true)
-                //       {
-                //           BoardManager.Instance.uiManager.factionUI.SetActive(false);
-                //           BoardManager.Instance.uiManager.draftUI.SetActive(true);
-                //       }
                 if (BoardManager.Instance.draftManager.pawns.Count == 0)
                 {
                     draftCam.enabled = false;

@@ -20,7 +20,7 @@ public class ControllerInputManager : MonoBehaviour
     BoardManager bm;
 
     float XAxisJoy1, XAxisJoy2, YAxisJoy1, YAxisJoy2;
-    bool XDpadJoy1, YDpadJoy1, XDpadJoy2, YDpadJoy2;
+    bool XDpadJoy1, YDpadJoy1, XDpadJoy2, YDpadJoy2, XStickJoy1, XStickJoy2, YStickJoy1, YStickJoy2;
 
 
     [Header("MovementSettings")]
@@ -68,22 +68,22 @@ public class ControllerInputManager : MonoBehaviour
                     XAxisJoy1 = Input.GetAxisRaw("JoyStick_HorizontalAxis_1");
                     YAxisJoy1 = Input.GetAxisRaw("JoyStick_VerticalAxis_1");
 
-                    if (XAxisJoy1 == 1f && YAxisJoy1 == -1)
+                    if (XAxisJoy1 == 1f && YAxisJoy1 == 1)
                     {
                         Debug.Log("alto+destra 1");
                         bm.pawnSelected.MoveProjection(Directions.upright);
                     }
-                    else if (XAxisJoy1 == -1f && YAxisJoy1 == -1)
+                    else if (XAxisJoy1 == -1f && YAxisJoy1 == 1)
                     {
                         Debug.Log("alto+sinistra 1");
                         bm.pawnSelected.MoveProjection(Directions.upleft);
                     }
-                    else if (XAxisJoy1 == 1f && YAxisJoy1 == 1)
+                    else if (XAxisJoy1 == 1f && YAxisJoy1 == -1)
                     {
                         Debug.Log("basso+destra 1");
                         bm.pawnSelected.MoveProjection(Directions.downright);
                     }
-                    else if (XAxisJoy1 == -1f && YAxisJoy1 == 1)
+                    else if (XAxisJoy1 == -1f && YAxisJoy1 == -1)
                     {
                         Debug.Log("basso+sinistra 1");
                         bm.pawnSelected.MoveProjection(Directions.downleft);
@@ -98,12 +98,12 @@ public class ControllerInputManager : MonoBehaviour
                         Debug.Log("sinistra 1");
                         bm.pawnSelected.MoveProjection(Directions.left);
                     }
-                    else if (YAxisJoy1 == 1f)
+                    else if (YAxisJoy1 == -1f)
                     {
                         Debug.Log("basso 1");
                         bm.pawnSelected.MoveProjection(Directions.down);
                     }
-                    else if (YAxisJoy1 == -1f)
+                    else if (YAxisJoy1 == 1f)
                     {
                         Debug.Log("alto 1");
                         bm.pawnSelected.MoveProjection(Directions.up);
@@ -118,22 +118,22 @@ public class ControllerInputManager : MonoBehaviour
                     XAxisJoy2 = Input.GetAxisRaw("JoyStick_HorizontalAxis_2");
                     YAxisJoy2 = Input.GetAxisRaw("JoyStick_VerticalAxis_2");
 
-                    if (XAxisJoy2 == 1f && YAxisJoy2 == -1)
+                    if (XAxisJoy2 == 1f && YAxisJoy2 == 1)
                     {
                         Debug.Log("alto+destra 2");
                         bm.pawnSelected.MoveProjection(Directions.upright);
                     }
-                    else if (XAxisJoy2 == -1f && YAxisJoy2 == -1)
+                    else if (XAxisJoy2 == -1f && YAxisJoy2 == 1)
                     {
                         Debug.Log("alto+sinistra 2");
                         bm.pawnSelected.MoveProjection(Directions.upleft);
                     }
-                    else if (XAxisJoy2 == 1f && YAxisJoy2 == 1)
+                    else if (XAxisJoy2 == 1f && YAxisJoy2 == -1)
                     {
                         Debug.Log("basso+destra 2");
                         bm.pawnSelected.MoveProjection(Directions.downright);
                     }
-                    else if (XAxisJoy2 == -1f && YAxisJoy2 == 1)
+                    else if (XAxisJoy2 == -1f && YAxisJoy2 == -1)
                     {
                         Debug.Log("basso+sinistra 2");
                         bm.pawnSelected.MoveProjection(Directions.downleft);
@@ -148,12 +148,12 @@ public class ControllerInputManager : MonoBehaviour
                         Debug.Log("sinistra 2");
                         bm.pawnSelected.MoveProjection(Directions.left);
                     }
-                    else if (YAxisJoy2 == 1f)
+                    else if (YAxisJoy2 == -1f)
                     {
                         Debug.Log("basso 2");
                         bm.pawnSelected.MoveProjection(Directions.down);
                     }
-                    else if (YAxisJoy2 == -1f)
+                    else if (YAxisJoy2 == 1f)
                     {
                         Debug.Log("alto 2");
                         bm.pawnSelected.MoveProjection(Directions.up);
@@ -258,6 +258,38 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.placing:
+                            if (Input.GetKeyDown(joy1SelectNextPawn))
+                            {
+                                bm.SelectNextPawnToPlace();
+                            }
+
+                            if (bm.pawnSelected != null)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") != 0)
+                                {
+                                    if (YStickJoy1 == false)
+                                    {
+                                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == +1)
+                                        {
+                                            bm.pawnSelected.MoveProjectionPlacing(Directions.up);
+                                        }
+                                        else if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == -1)
+                                        {
+                                            bm.pawnSelected.MoveProjectionPlacing(Directions.down);
+                                        }
+                                        YStickJoy1 = true;
+                                    }
+                                }
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == 0)
+                                {
+                                    YStickJoy1 = false;
+                                }
+
+                                if (Input.GetKeyDown(joy1MovementConfirm))
+                                {
+                                    bm.PlacingTeleport();
+                                }
+                            }
                             break;
                         case TurnManager.PlayTurnState.check:
                             if (Input.GetKeyDown(joy1PassTurn))
@@ -420,6 +452,38 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.placing:
+                            if (Input.GetKeyDown(joy2SelectNextPawn))
+                            {
+                                bm.SelectNextPawnToPlace();
+                            }
+
+                            if (bm.pawnSelected != null)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") != 0)
+                                {
+                                    if (YStickJoy2 == false)
+                                    {
+                                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == +1)
+                                        {
+                                            bm.pawnSelected.MoveProjectionPlacing(Directions.up);
+                                        }
+                                        else if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == -1)
+                                        {
+                                            bm.pawnSelected.MoveProjectionPlacing(Directions.down);
+                                        }
+                                        YStickJoy2 = true;
+                                    }
+                                }
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == 0)
+                                {
+                                    YStickJoy2 = false;
+                                }
+
+                                if (Input.GetKeyDown(joy2MovementConfirm))
+                                {
+                                    bm.PlacingTeleport();
+                                }
+                            }
                             break;
                         case TurnManager.PlayTurnState.check:
                             if (Input.GetKeyDown(joy1PassTurn))

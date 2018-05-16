@@ -43,6 +43,7 @@ public class BoardManager : MonoBehaviour
     public int pawnsToPlace;
     [HideInInspector]
     public List<Pawn> magicPawns, sciencePawns;
+    List<Pawn> magicPlacing, sciencePlacing;
     [HideInInspector]
     public int MagicPawnIndex, SciencePawnIndex;
     public int magictiles, sciencetiles;
@@ -120,7 +121,7 @@ public class BoardManager : MonoBehaviour
         pawnsToPlace = pawns.Count;
         boxesArray = FindObjectsOfType<Box>();
         magicPawns = new List<Pawn>();
-        sciencePawns = new List<Pawn>();
+        sciencePlacing = new List<Pawn>();
         MagicPawnIndex = 0;
         SciencePawnIndex = 0;
         foreach (Pawn p in pawns)
@@ -134,6 +135,8 @@ public class BoardManager : MonoBehaviour
                 sciencePawns.Add(p);
             }
         }
+        sciencePlacing = new List<Pawn>(sciencePawns);
+        magicPlacing = new List<Pawn>(magicPawns);
     }
 
     #region Movement
@@ -191,24 +194,32 @@ public class BoardManager : MonoBehaviour
     /// Funzione che teletrasporta la pawnselected alla box passata come paramentro se rispetta i requisiti richiesti
     /// </summary>
     /// <param name="boxclicked"></param>
-    private void PlacingTeleport(Box boxclicked)
+    public void PlacingTeleport()
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
-            if (pawnSelected.faction == turnManager.CurrentPlayerTurn && boxclicked.board == turnManager.CurrentPlayerTurn && boxclicked.index1 == 3 && boxclicked.free)
+            Box boxSelected = new Box();
+            switch (pawnSelected.faction)
             {
-                Debug.Log(boxclicked);
-                pawnSelected.gameObject.transform.position = boxclicked.gameObject.transform.position;
-                pawnSelected.currentBox = boxclicked;
-                pawnSelected.currentBox.free = false;
-                DeselectPawn();
-                pawnsToPlace--;
-                placingsLeft--;
-                if (placingsLeft == 0 || pawnsToPlace == 0)
-                {
-                    turnManager.ChangeTurn();
-                    placingsLeft = 2;
-                }
+                case Factions.Magic:
+                    boxSelected = magicBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
+                    magicPlacing.Remove(pawnSelected);
+                    break;
+                case Factions.Science:
+                    boxSelected = scienceBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
+                    sciencePlacing.Remove(pawnSelected);
+                    break;
+            }
+            pawnSelected.transform.position = boxSelected.transform.position;
+            pawnSelected.currentBox = boxSelected;
+            pawnSelected.currentBox.free = false;
+            DeselectPawn();
+            pawnsToPlace--;
+            placingsLeft--;
+            if (placingsLeft == 0 || pawnsToPlace == 0)
+            {
+                turnManager.ChangeTurn();
+                placingsLeft = 2;
             }
         }
     }
@@ -467,6 +478,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che seleziona la prossima pedina che deve subire un superattacco (se è attivo)
+    /// </summary>
     public void SelectNextPawnToAttack()
     {
         PawnHighlighted(false);
@@ -479,13 +493,45 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che seleziona la prossima pedina della lista di quella fazione che deve essere piazzata
+    /// </summary>
+    public void SelectNextPawnToPlace()
+    {
+        switch (turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                if (pawnSelected != null)
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
+                MagicPawnIndex++;
+                if (MagicPawnIndex > magicPlacing.Count - 1)
+                    MagicPawnIndex = 0;
+                PawnSelected(magicPlacing[MagicPawnIndex]);
+                pawnSelected.SetProjection();
+                break;
+            case Factions.Science:
+                if (pawnSelected != null)
+                    pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
+                SciencePawnIndex++;
+                if (SciencePawnIndex > sciencePlacing.Count - 1)
+                    SciencePawnIndex = 0;
+                PawnSelected(sciencePlacing[SciencePawnIndex]);
+                pawnSelected.SetProjection();
+                break;
+        }
+    }
+
+    /// <summary>
     /// Funzione che imposta la variabile pawnSelected a null, imposta a false il bool selected
     /// </summary>
     public void DeselectPawn()
     {
         if (pawnSelected != null)
         {
-            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
+            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+            {
+                pawnSelected.ForceMoveProjection(false);
+            }
+            else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
             {
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
@@ -656,24 +702,6 @@ public class BoardManager : MonoBehaviour
     }
 
     #endregion
-
-    /// <summary>
-    /// Funzione che viene chiamata quando si clicca una casella e la si riceve in input, si controlla che fase del turno è e si passano le informazioni della casella alle funzioni interessate
-    /// </summary>
-    /// <param name="boxclicked"></param>
-    public void BoxClicked(Box boxclicked)
-    {
-        if (pawnSelected != null && !pause)
-        {
-            if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
-            {
-                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
-                {
-                    PlacingTeleport(boxclicked);
-                }
-            }
-        }
-    }
 
     /// <summary>
     /// Funzione che gestisce le condizioni di vittoria

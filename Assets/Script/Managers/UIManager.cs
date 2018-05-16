@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using System;
@@ -13,7 +14,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
-    bool isPaused;
 
     /// <summary> Testo per indicare di chi è il turno </summary>
     [Header("Turn Text")]
@@ -65,13 +65,13 @@ public class UIManager : MonoBehaviour
     [Header("Main Menu ")]
     public GameObject mainMenuPanel;
 
+    [Header("Faction Chooice")]
+    public GameObject MagicButton;
+    public GameObject ScienceButton;
+
     [Header("Win Screen and texts")]
     public GameObject winScreen;
     public TextMeshProUGUI gameResult;
-
-    [Header("Pattern images")]
-    public GameObject tooltipPattern;
-    public Image cross, T, L, diagonal;
 
     private void Awake()
     {
@@ -81,7 +81,6 @@ public class UIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        tooltipPattern.SetActive(false);
         winScreen.SetActive(false);
         gameUI.SetActive(false);
         gameUIPerspective.SetActive(false);
@@ -111,13 +110,11 @@ public class UIManager : MonoBehaviour
     private void OnGameUnPause()
     {
         pausePanel.SetActive(false);
-        isPaused = false;
     }
 
     private void OnGamePause()
     {
         pausePanel.SetActive(true);
-        isPaused = true;
     }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
@@ -264,29 +261,14 @@ public class UIManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         factionUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(MagicButton);
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
-    }
-
-    /// <summary>
-    /// Funzione del pulsante Options che mostra le opzioni
-    /// </summary>
-    public void Options()
-    {
-
     }
 
     /// <summary>
     /// Funzione del pulsante tutorial che mostra il tutorial del gioco
     /// </summary>
     public void Tutorial()
-    {
-
-    }
-
-    /// <summary>
-    /// Funzione del pulsante Credits che mostra i crediti del gioco
-    /// </summary>
-    public void Credits()
     {
 
     }
@@ -302,7 +284,6 @@ public class UIManager : MonoBehaviour
         switch (tm.CurrentMacroPhase)
         {
             case TurnManager.MacroPhase.menu:
-                tooltipPattern.SetActive(false);
                 winScreen.SetActive(false);
                 gameUI.SetActive(false);
                 gameUIPerspective.SetActive(false);
@@ -332,7 +313,6 @@ public class UIManager : MonoBehaviour
                         SetChoosingUI();
                         break;
                     case TurnManager.PlayTurnState.placing:
-                        tooltipPattern.SetActive(false);
                         switch (tm.CurrentPlayerTurn)
                         {
                             case Factions.Magic:

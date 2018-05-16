@@ -50,6 +50,15 @@ public class Pawn : MonoBehaviour
     public int activePattern;
     public List<Attack> patterns;
 
+    [Header("Placing Settings")]
+    public int projectionPlacingStartPositionIndex1;
+    public int projectionPlacingStartPositionIndex2;
+    public bool placed;
+    [HideInInspector]
+    public int projectionPlacingPositionIndex1;
+    [HideInInspector]
+    public int projectionPlacingPositionIndex2;
+
     //variabili private
     private BoardManager bm;
     [HideInInspector]
@@ -113,14 +122,6 @@ public class Pawn : MonoBehaviour
     }
 
     #region API
-
-    /// <summary>
-    /// Funzione che viene chiamata ogni volta che la pedina viene premuta, e che richiama la funzione del BoardManager PawnSelected o Attack in caso abbia l'attackMarker
-    /// </summary>
-    public void OnMouseDown()
-    {
-        bm.PawnSelected(this);
-    }
 
     #region GraphicsFunctions
 
@@ -386,9 +387,9 @@ public class Pawn : MonoBehaviour
                 patternBox.Add(myboard[currentBox.index1 - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
             }
         }
+        bm.highlight.DeselectPawn();
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
-        bm.highlight.DeselectPawn();
     }
 
     /// <summary>
@@ -397,7 +398,6 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void OnAttackAnimationEnd()
     {
-        bm.highlight.SelectPawn(this);
         List<Pawn> pawnsHitted = new List<Pawn>();
         foreach (Box b in patternBox)
         {
@@ -560,6 +560,8 @@ public class Pawn : MonoBehaviour
             OnMovementEnd();
     }
 
+    #region Projection
+
     /// <summary>
     /// Funzione che sposta la proiezione nella direzione che gli viene passata come parametro
     /// </summary>
@@ -705,6 +707,88 @@ public class Pawn : MonoBehaviour
         ShowMovementBoxes();
     }
 
+    public void MoveProjectionPlacing(Directions projectionDirection)
+    {
+        switch (projectionDirection)
+        {
+            case Directions.up:
+                int i = projectionPlacingPositionIndex2 + 1;
+                if (i < myboard[0].Length)
+                {
+                    while (!myboard[projectionPlacingPositionIndex1][i].GetComponent<Box>().free)
+                    {
+                        i++;
+                        if (i >= myboard[0].Length)
+                            break;
+                    }
+                }
+                if (i < myboard[0].Length)
+                {
+                    projectionPlacingPositionIndex2 = i;
+                }
+                break;
+            case Directions.down:
+                int j = projectionPlacingPositionIndex2 - 1;
+                if (j >= 0)
+                {
+                    while (!myboard[projectionPlacingPositionIndex1][j].GetComponent<Box>().free)
+                    {
+                        j--;
+                        if (j < 0)
+                            break;
+                    }
+                }
+                if (j >= 0)
+                {
+                    projectionPlacingPositionIndex2 = j;
+                }
+                break;
+            default:
+                Debug.Log("Direzione errata");
+                break;
+        }
+        projections[activePattern].transform.position = new Vector3(myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.x, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.y + graphics[activePattern].transform.position.y, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.z);
+    }
+
+    public void SetProjection()
+    {
+        projections[activePattern].SetActive(true);
+        projectionPlacingPositionIndex1 = projectionPlacingStartPositionIndex1;
+        projectionPlacingPositionIndex2 = projectionPlacingStartPositionIndex2;
+        if (!myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].GetComponent<Box>().free)
+        {
+            int i = projectionPlacingPositionIndex2 + 1;
+            if (i < myboard[0].Length)
+            {
+                while (!myboard[projectionPlacingPositionIndex1][i].GetComponent<Box>().free)
+                {
+                    i++;
+                    if (i >= myboard[0].Length)
+                        break;
+                }
+                if (i < myboard[0].Length)
+                {
+                    projectionPlacingPositionIndex2 = i;
+                }
+            }
+            int j = projectionPlacingPositionIndex2 - 1;
+            if (j >= 0)
+            {
+                while (!myboard[projectionPlacingPositionIndex1][j].GetComponent<Box>().free)
+                {
+                    j--;
+                    if (j < 0)
+                        break;
+                }
+            }
+            if (j >= 0)
+            {
+                projectionPlacingPositionIndex2 = j;
+            }
+        }
+        projections[activePattern].transform.position = new Vector3(myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.x, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.y + graphics[activePattern].transform.position.y, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.z);
+    }
+
     /// <summary>
     /// Funzione che forza lo spostamento della proiezione nella casella della pedina corrispondente
     /// </summary>
@@ -719,6 +803,7 @@ public class Pawn : MonoBehaviour
         }
     }
 
+    #endregion
     #endregion
 
     /// <summary>
