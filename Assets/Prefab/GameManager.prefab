@@ -149,13 +149,10 @@ MonoBehaviour:
   gameUIPerspective: {fileID: 0}
   factionUI: {fileID: 0}
   mainMenuPanel: {fileID: 0}
+  MagicButton: {fileID: 0}
+  ScienceButton: {fileID: 0}
   winScreen: {fileID: 0}
   gameResult: {fileID: 0}
-  tooltipPattern: {fileID: 0}
-  cross: {fileID: 0}
-  T: {fileID: 0}
-  L: {fileID: 0}
-  diagonal: {fileID: 0}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +168,9 @@ MonoBehaviour:
   turnsWithoutAttack: 0
   mainCam: {fileID: 0}
   draftCam: {fileID: 0}
+  magicPlacementLight: {fileID: 0}
+  sciencePlacementLight: {fileID: 0}
+  centralLight: {fileID: 0}
 --- !u!114 &114770459697291012
 MonoBehaviour:
   m_ObjectHideFlags: 1

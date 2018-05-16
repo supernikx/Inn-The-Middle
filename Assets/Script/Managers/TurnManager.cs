@@ -68,6 +68,11 @@ public class TurnManager : MonoBehaviour
     public Camera mainCam;
     public Camera draftCam;
 
+    [Header("Light references")]
+    public Light magicPlacementLight;
+    public Light sciencePlacementLight;
+    public Light centralLight;
+
     private void OnEnable()
     {
         EventManager.OnGameEnd += OnGameEnd;
@@ -225,9 +230,15 @@ public class TurnManager : MonoBehaviour
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.placing:
+                centralLight.enabled = false;
+                magicPlacementLight.enabled = true;
+                sciencePlacementLight.enabled = true;
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.game:
+                magicPlacementLight.enabled = false;
+                sciencePlacementLight.enabled = false;
+                centralLight.enabled = true;
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.end:
