@@ -69,6 +69,11 @@ public class UIManager : MonoBehaviour
     public GameObject MagicButton;
     public GameObject ScienceButton;
 
+    [Header("Pause Menu Buttons")]
+    public GameObject ResumePauseButton;
+    public GameObject RestartPauseButton;
+    public GameObject QuitPauseButton;
+
     [Header("Win Screen and texts")]
     public GameObject winScreen;
     public TextMeshProUGUI gameResult;
@@ -110,11 +115,13 @@ public class UIManager : MonoBehaviour
     private void OnGameUnPause()
     {
         pausePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnGamePause()
     {
         pausePanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(ResumePauseButton);
     }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>

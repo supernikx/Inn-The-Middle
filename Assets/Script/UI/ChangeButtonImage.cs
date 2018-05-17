@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class ChangeButtonImage : MonoBehaviour {
 
     public Sprite defaultimage;
+    public Sprite defaultHighlitedImage;
+    public Sprite pressedHighlitedImage;
     public Sprite pressedimage;
+
     Image comp;
+    Button button;
     bool pressed;
+    SpriteState state = new SpriteState();
 
     private void OnDisable()
     {
@@ -19,6 +24,7 @@ public class ChangeButtonImage : MonoBehaviour {
     private void Start()
     {
         comp = GetComponent<Image>();
+        button = GetComponent<Button>();
         if (defaultimage != null)
         {
             comp.sprite = defaultimage;
@@ -36,11 +42,22 @@ public class ChangeButtonImage : MonoBehaviour {
         if (pressed)
         {
             comp.sprite = pressedimage;
+            if (pressedHighlitedImage != null)
+            {
+                state = button.spriteState;
+                state.highlightedSprite = pressedHighlitedImage;
+            }          
         }
         else
         {
             comp.sprite = defaultimage;
+            if (defaultHighlitedImage != null)
+            {
+                state = button.spriteState;
+                state.highlightedSprite = defaultHighlitedImage;
+            }            
         }
+        button.spriteState = state;
     }
 
 }

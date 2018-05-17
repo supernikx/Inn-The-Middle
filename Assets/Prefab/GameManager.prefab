@@ -151,6 +151,9 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 0}
   MagicButton: {fileID: 0}
   ScienceButton: {fileID: 0}
+  ResumePauseButton: {fileID: 0}
+  RestartPauseButton: {fileID: 0}
+  QuitPauseButton: {fileID: 0}
   winScreen: {fileID: 0}
   gameResult: {fileID: 0}
 --- !u!114 &114723618909212632
@@ -184,24 +187,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joy1MovementConfirm: 350
   joy2MovementConfirm: 370
-  joy1SelectNextPawn: 352
-  joy2SelectNextPawn: 372
+  joy1SelectNextPawnRight: 355
+  joy1SelectNextPawnLeft: 354
+  joy2SelectNextPawnRight: 375
+  joy2SelectNextPawnLeft: 374
   joy1Attack: 351
   joy2Attack: 371
   joy1ActiveSuperAttack: 353
   joy2ActiveSuperAttack: 373
-  joy1SelectNextPawnSuperAttack: 355
-  joy2SelectNextPawnSuperAttack: 375
-  joy1BouncePattern: 0
-  joy1SniperPattern: 0
-  joy1MeleePattern: 0
-  joy1CrossPattern: 0
-  joy2BouncePattern: 0
-  joy2SniperPattern: 0
-  joy2MeleePattern: 0
-  joy2CrossPattern: 0
   joy1PassTurn: 356
   joy2PassTurn: 376
+  joy1StartDraft: 357
   joyPause: 337
 --- !u!114 &114880029920021300
 MonoBehaviour:

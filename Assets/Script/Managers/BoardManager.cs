@@ -31,7 +31,7 @@ public class BoardManager : MonoBehaviour
             if (_superAttack)
             {
                 CreateMarkList();
-                SelectNextPawnToAttack();
+                SelectNextPawnToAttack(Directions.right);
             }
             else
             {
@@ -459,20 +459,40 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Funzione che seleziona la prossima pedina della lista di quella fazione
     /// </summary>
-    public void SelectNextPawn()
+    public void SelectNextPawn(Directions nextpawn)
     {
         switch (turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
-                MagicPawnIndex++;
-                if (MagicPawnIndex > magicPawns.Count - 1)
-                    MagicPawnIndex = 0;
+                switch (nextpawn)
+                {
+                    case Directions.left:
+                        MagicPawnIndex--;
+                        if (MagicPawnIndex < 0)
+                            MagicPawnIndex = magicPawns.Count - 1;
+                        break;
+                    case Directions.right:
+                        MagicPawnIndex++;
+                        if (MagicPawnIndex > magicPawns.Count - 1)
+                            MagicPawnIndex = 0;
+                        break;
+                }
                 PawnSelected(magicPawns[MagicPawnIndex]);
                 break;
             case Factions.Science:
-                SciencePawnIndex++;
-                if (SciencePawnIndex > sciencePawns.Count - 1)
-                    SciencePawnIndex = 0;
+                switch (nextpawn)
+                {
+                    case Directions.left:
+                        SciencePawnIndex++;
+                        if (SciencePawnIndex > sciencePawns.Count - 1)
+                            SciencePawnIndex = sciencePawns.Count - 1;
+                        break;
+                    case Directions.right:
+                        SciencePawnIndex--;
+                        if (SciencePawnIndex < 0)
+                            SciencePawnIndex = 0;
+                        break;
+                }
                 PawnSelected(sciencePawns[SciencePawnIndex]);
                 break;
         }
@@ -481,39 +501,68 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Funzione che seleziona la prossima pedina che deve subire un superattacco (se è attivo)
     /// </summary>
-    public void SelectNextPawnToAttack()
+    public void SelectNextPawnToAttack(Directions nextpawn)
     {
         PawnHighlighted(false);
-        MarkedPawnIndex++;
-        if (MarkedPawnIndex > MarkedPawnList.Count - 1)
+        switch (nextpawn)
         {
-            MarkedPawnIndex = 0;
+            case Directions.right:
+                MarkedPawnIndex++;
+                if (MarkedPawnIndex > MarkedPawnList.Count - 1)
+                    MarkedPawnIndex = 0;
+                break;
+            case Directions.left:
+                MarkedPawnIndex--;
+                if (MarkedPawnIndex < 0)
+                    MarkedPawnIndex = MarkedPawnList.Count - 1;
+                break;
         }
+
         PawnHighlighted(true, MarkedPawnList[MarkedPawnIndex]);
     }
 
     /// <summary>
     /// Funzione che seleziona la prossima pedina della lista di quella fazione che deve essere piazzata
     /// </summary>
-    public void SelectNextPawnToPlace()
+    public void SelectNextPawnToPlace(Directions nextpawn)
     {
         switch (turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
                 if (pawnSelected != null)
                     pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
-                MagicPawnIndex++;
-                if (MagicPawnIndex > magicPlacing.Count - 1)
-                    MagicPawnIndex = 0;
+                switch (nextpawn)
+                {
+                    case Directions.left:
+                        MagicPawnIndex--;
+                        if (MagicPawnIndex < 0)
+                            MagicPawnIndex = magicPlacing.Count - 1;
+                        break;
+                    case Directions.right:
+                        MagicPawnIndex++;
+                        if (MagicPawnIndex > magicPlacing.Count - 1)
+                            MagicPawnIndex = 0;
+                        break;
+                }
                 PawnSelected(magicPlacing[MagicPawnIndex]);
                 pawnSelected.SetProjection();
                 break;
             case Factions.Science:
                 if (pawnSelected != null)
                     pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
-                SciencePawnIndex++;
-                if (SciencePawnIndex > sciencePlacing.Count - 1)
-                    SciencePawnIndex = 0;
+                switch (nextpawn)
+                {
+                    case Directions.left:
+                        SciencePawnIndex++;
+                        if (SciencePawnIndex > sciencePlacing.Count - 1)
+                            SciencePawnIndex = 0;
+                        break;
+                    case Directions.right:
+                        SciencePawnIndex--;
+                        if (SciencePawnIndex < 0)
+                            SciencePawnIndex = sciencePlacing.Count - 1;
+                        break;
+                }
                 PawnSelected(sciencePlacing[SciencePawnIndex]);
                 pawnSelected.SetProjection();
                 break;

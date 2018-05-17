@@ -26,35 +26,28 @@ public class ControllerInputManager : MonoBehaviour
     [Header("MovementSettings")]
     public KeyCode joy1MovementConfirm;
     public KeyCode joy2MovementConfirm;
-    public KeyCode joy1SelectNextPawn;
-    public KeyCode joy2SelectNextPawn;
+    public KeyCode joy1SelectNextPawnRight;
+    public KeyCode joy1SelectNextPawnLeft;
+    public KeyCode joy2SelectNextPawnRight;
+    public KeyCode joy2SelectNextPawnLeft;
 
     [Header("Attack Settings")]
     public KeyCode joy1Attack;
     public KeyCode joy2Attack;
     public KeyCode joy1ActiveSuperAttack;
     public KeyCode joy2ActiveSuperAttack;
-    public KeyCode joy1SelectNextPawnSuperAttack;
-    public KeyCode joy2SelectNextPawnSuperAttack;
-
-    [Header("ChoosePattern Settings")]
-    public KeyCode joy1BouncePattern;
-    public KeyCode joy1SniperPattern;
-    public KeyCode joy1MeleePattern;
-    public KeyCode joy1CrossPattern;
-    public KeyCode joy2BouncePattern;
-    public KeyCode joy2SniperPattern;
-    public KeyCode joy2MeleePattern;
-    public KeyCode joy2CrossPattern;
 
     [Header("General Settings")]
     public KeyCode joy1PassTurn;
     public KeyCode joy2PassTurn;
+    public KeyCode joy1StartDraft;
     public KeyCode joyPause;
+    bool drafted;
 
     private void Start()
     {
         bm = BoardManager.Instance;
+        drafted = false;
     }
 
     void Update()
@@ -164,10 +157,9 @@ public class ControllerInputManager : MonoBehaviour
                     }
                 }
             }
-
-            if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
+            if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
             {
-                if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
                 {
                     switch (bm.turnManager.CurrentTurnState)
                     {
@@ -258,9 +250,14 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.placing:
-                            if (Input.GetKeyDown(joy1SelectNextPawn))
+                            if (Input.GetKeyDown(joy1SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToPlace();
+                                bm.SelectNextPawnToPlace(Directions.right);
+                            }
+
+                            if (Input.GetKeyDown(joy1SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToPlace(Directions.left);
                             }
 
                             if (bm.pawnSelected != null)
@@ -313,9 +310,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Movement(false);
                             }
 
-                            if (Input.GetKeyDown(joy1SelectNextPawn))
+                            if (!bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnRight))
                             {
-                                bm.SelectNextPawn();
+                                bm.SelectNextPawn(Directions.right);
+                            }
+
+                            if (!bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawn(Directions.left);
                             }
 
                             if (Input.GetKeyDown(joy1Attack))
@@ -323,9 +325,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Attack();
                             }
 
-                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnSuperAttack))
+                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToAttack();
+                                bm.SelectNextPawnToAttack(Directions.right);
+                            }
+
+                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToAttack(Directions.left);
                             }
 
                             if (bm.CanSuperAttack && Input.GetKeyDown(joy1ActiveSuperAttack))
@@ -344,9 +351,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Attack();
                             }
 
-                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnSuperAttack))
+                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToAttack();
+                                bm.SelectNextPawnToAttack(Directions.right);
+                            }
+
+                            if (bm.superAttack && Input.GetKeyDown(joy1SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToAttack(Directions.left);
                             }
 
                             if (bm.CanSuperAttack && Input.GetKeyDown(joy1ActiveSuperAttack))
@@ -358,11 +370,9 @@ public class ControllerInputManager : MonoBehaviour
                             break;
                     }
                 }
-            }
-            else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
-            {
-                if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
                 {
+
                     switch (bm.turnManager.CurrentTurnState)
                     {
                         case TurnManager.PlayTurnState.choosing:
@@ -452,9 +462,14 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.placing:
-                            if (Input.GetKeyDown(joy2SelectNextPawn))
+                            if (Input.GetKeyDown(joy2SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToPlace();
+                                bm.SelectNextPawnToPlace(Directions.right);
+                            }
+
+                            if (Input.GetKeyDown(joy2SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToPlace(Directions.left);
                             }
 
                             if (bm.pawnSelected != null)
@@ -507,9 +522,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Movement(false);
                             }
 
-                            if (Input.GetKeyDown(joy2SelectNextPawn))
+                            if (!bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnRight))
                             {
-                                bm.SelectNextPawn();
+                                bm.SelectNextPawn(Directions.right);
+                            }
+
+                            if (!bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawn(Directions.left);
                             }
 
                             if (Input.GetKeyDown(joy2Attack))
@@ -517,9 +537,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Attack();
                             }
 
-                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnSuperAttack))
+                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToAttack();
+                                bm.SelectNextPawnToAttack(Directions.right);
+                            }
+
+                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToAttack(Directions.left);
                             }
 
                             if (bm.CanSuperAttack && Input.GetKeyDown(joy2ActiveSuperAttack))
@@ -538,9 +563,14 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.Attack();
                             }
 
-                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnSuperAttack))
+                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnRight))
                             {
-                                bm.SelectNextPawnToAttack();
+                                bm.SelectNextPawnToAttack(Directions.right);
+                            }
+
+                            if (bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnToAttack(Directions.left);
                             }
 
                             if (bm.CanSuperAttack && Input.GetKeyDown(joy2ActiveSuperAttack))
@@ -551,6 +581,14 @@ public class ControllerInputManager : MonoBehaviour
                         default:
                             break;
                     }
+                }
+            }
+            else if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft)
+            {
+                if (!drafted && Input.GetKeyDown(joy1StartDraft))
+                {
+                    bm.draftManager.DraftRandomPattern();
+                    drafted = true;
                 }
             }
         }
