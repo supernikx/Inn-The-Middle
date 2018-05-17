@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -814,8 +814,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &88244808
 Animator:
@@ -1223,8 +1221,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &102049221
 Animator:
@@ -1455,37 +1451,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.5, y: 0}
   m_SizeDelta: {x: -743, y: -362}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!84 &117316138
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1134
-  m_Height: 638
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &126060266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,8 +1839,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &160468686
 Animator:
@@ -2179,6 +2142,37 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 272a6adf4cdac204096b4a9ec43a7c45, type: 3}
   m_PrefabInternal: {fileID: 179371968}
+--- !u!84 &180387198
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1134
+  m_Height: 638
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &199526240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,8 +2239,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &199526244
 Animator:
@@ -2498,8 +2490,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &224733904
 Animator:
@@ -2639,8 +2629,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &239855742
 Animator:
@@ -2834,8 +2822,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &260156377
 Animator:
@@ -3041,8 +3027,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &274631373
 Animator:
@@ -3236,8 +3220,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &279494451
 Animator:
@@ -3589,7 +3571,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 117316138}
+  m_TargetTexture: {fileID: 418192054}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -4176,8 +4158,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &393540572
 Animator:
@@ -4317,8 +4297,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &395982414
 Animator:
@@ -4512,8 +4490,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &399729738
 Animator:
@@ -4587,6 +4563,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399729734}
   m_Mesh: {fileID: 4300000, guid: c9e1783b22078934b9e8fc6e1510638c, type: 3}
+--- !u!84 &418192054
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1134
+  m_Height: 638
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &423867265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4653,8 +4660,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &423867269
 Animator:
@@ -4822,8 +4827,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &430012746
 Animator:
@@ -5075,8 +5078,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &441013396
 Animator:
@@ -5328,8 +5329,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &460510649
 Animator:
@@ -5697,8 +5696,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &479430001
 Animator:
@@ -5885,6 +5882,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4089385889377682, guid: 5ab0390e4d8f2a74bbfe01602b4341c5,
     type: 2}
   m_PrefabInternal: {fileID: 482559656}
+--- !u!1001 &489471001
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.5100003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953706011170840, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1515380577442122, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+      propertyPath: m_Name
+      value: bersaglio_trappola (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1ab060839cd6b79419bd9919571aa482, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &491756158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6033,8 +6076,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &494542412
 Animator:
@@ -7609,8 +7650,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &624595338
 Animator:
@@ -8485,8 +8524,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &693510117
 Animator:
@@ -8676,8 +8713,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &722917173
 Animator:
@@ -8817,8 +8852,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &729317739
 Animator:
@@ -9175,8 +9208,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &742748989
 Animator:
@@ -9378,8 +9409,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &763353810
 Animator:
@@ -9519,8 +9548,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &775800465
 Animator:
@@ -9730,8 +9757,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &780502734
 Animator:
@@ -10362,8 +10387,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &826563773
 Animator:
@@ -10934,8 +10957,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &859867868
 Animator:
@@ -11755,8 +11776,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &901073514
 Animator:
@@ -13370,8 +13389,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1017386434
 Animator:
@@ -13569,8 +13586,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1023706203
 Animator:
@@ -13922,8 +13937,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1043047592
 Animator:
@@ -14187,8 +14200,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1066146789
 Animator:
@@ -15113,8 +15124,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1141206118
 Animator:
@@ -15254,8 +15263,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1142344881
 Animator:
@@ -15445,8 +15452,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1151325632
 Animator:
@@ -15980,8 +15985,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1206801923
 Animator:
@@ -16233,8 +16236,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1228096705
 Animator:
@@ -16374,8 +16375,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1233789663
 Animator:
@@ -16837,8 +16836,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1252413443
 Animator:
@@ -16978,8 +16975,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1253581821
 Animator:
@@ -17339,37 +17334,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 884d971ab52c9a84e9a8a84cff3ebf8b, type: 2}
   m_IsPrefabParent: 0
---- !u!84 &1282370320
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1134
-  m_Height: 638
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1293236618
 GameObject:
   m_ObjectHideFlags: 0
@@ -17436,8 +17400,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1293236622
 Animator:
@@ -17577,8 +17539,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1298340665
 Animator:
@@ -18843,8 +18803,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1388512020}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.12, y: -0.14, z: 0}
+  m_LocalScale: {x: 0.71585786, y: 0.71585786, z: 0.71585786}
   m_Children: []
   m_Father: {fileID: 2130298891}
   m_RootOrder: 2
@@ -18963,7 +18923,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1362458634
+  randomSeed: 1101036879
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22637,8 +22597,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1423163229
 Animator:
@@ -23353,8 +23311,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1477063402
 Animator:
@@ -23552,8 +23508,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1493835655
 Animator:
@@ -24275,8 +24229,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1553113618
 Animator:
@@ -24678,8 +24630,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1590785129
 Animator:
@@ -24851,8 +24801,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1596475178
 Animator:
@@ -25162,8 +25110,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1646510548
 Animator:
@@ -25371,8 +25317,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1653129993
 Animator:
@@ -25693,8 +25637,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1670708971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.119999886, y: -0.14000006, z: -0.000000014901161}
+  m_LocalScale: {x: 0.71585786, y: 0.71585786, z: 0.71585786}
   m_Children: []
   m_Father: {fileID: 2130298891}
   m_RootOrder: 1
@@ -25813,7 +25757,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 415866233
+  randomSeed: 101479405
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -29415,8 +29359,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1696329188
 Animator:
@@ -29684,8 +29626,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1715293114
 Animator:
@@ -30009,8 +29949,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1753808981
 Animator:
@@ -30590,8 +30528,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1804428954
 Animator:
@@ -31075,8 +31011,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1833872376}
   outlineCamera: {fileID: 319667778}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 117316138}
-  extraRenderTexture: {fileID: 1282370320}
+  renderTexture: {fileID: 418192054}
+  extraRenderTexture: {fileID: 180387198}
 --- !u!1 &1836621563
 GameObject:
   m_ObjectHideFlags: 0
@@ -31143,8 +31079,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1836621567
 Animator:
@@ -31409,8 +31343,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1869779751
 Animator:
@@ -31605,8 +31537,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1895098040
 Animator:
@@ -32277,8 +32207,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &1950644021
 Animator:
@@ -33188,8 +33116,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &2044871232
 Animator:
@@ -33495,8 +33421,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2087077148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.119999886, y: -0.14000006, z: -0.000000014901161}
+  m_LocalScale: {x: 0.71585786, y: 0.71585786, z: 0.71585786}
   m_Children: []
   m_Father: {fileID: 2130298891}
   m_RootOrder: 0
@@ -33615,7 +33541,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1668009736
+  randomSeed: -1266468419
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -37364,8 +37290,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &2122060516
 Animator:
@@ -37455,7 +37379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2130298889
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -37570,7 +37494,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -399803840
+  randomSeed: -811746153
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -40953,8 +40877,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 0}
-  neutral_black: {fileID: 0}
   element: 0
 --- !u!95 &2133287944
 Animator:
