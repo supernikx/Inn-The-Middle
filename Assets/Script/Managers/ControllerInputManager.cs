@@ -289,11 +289,6 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.check:
-                            if (Input.GetKeyDown(joy1PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy1MovementConfirm))
                             {
                                 bm.Movement(true);
@@ -501,11 +496,6 @@ public class ControllerInputManager : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.check:
-                            if (Input.GetKeyDown(joy1PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy2MovementConfirm))
                             {
                                 bm.Movement(true);

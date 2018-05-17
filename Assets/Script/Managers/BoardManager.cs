@@ -148,23 +148,26 @@ public class BoardManager : MonoBehaviour
     /// <param name="boxclicked"></param>
     public void Movement(bool checkphase)
     {
-        if (pawnSelected.faction == turnManager.CurrentPlayerTurn && pawnSelected.currentBox != pawnSelected.projectionTempBox)
+        if (pawnSelected != null)
         {
-            if (checkphase)
+            if (pawnSelected.faction == turnManager.CurrentPlayerTurn && pawnSelected.currentBox != pawnSelected.projectionTempBox)
             {
-                pawnSelected.OnMovementEnd += OnMovementCheckEnd;
+                if (checkphase)
+                {
+                    pawnSelected.OnMovementEnd += OnMovementCheckEnd;
+                }
+                else
+                {
+                    pawnSelected.OnMovementEnd += OnMovementEnd;
+                }
+                UnmarkAttackMarker();
+                pawnSelected.MoveBehaviour();
             }
             else
             {
-                pawnSelected.OnMovementEnd += OnMovementEnd;
+                CustomLogger.Log("Casella non valida");
             }
-            UnmarkAttackMarker();
-            pawnSelected.MoveBehaviour();
-        }
-        else
-        {
-            CustomLogger.Log("Casella non valida");
-        }
+        }        
     }
 
     /// <summary>
@@ -198,28 +201,31 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
-            Box boxSelected = pawnSelected.currentBox;
-            switch (pawnSelected.faction)
+            if (pawnSelected != null)
             {
-                case Factions.Magic:
-                    boxSelected = magicBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
-                    magicPlacing.Remove(pawnSelected);
-                    break;
-                case Factions.Science:
-                    boxSelected = scienceBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
-                    sciencePlacing.Remove(pawnSelected);
-                    break;
-            }
-            pawnSelected.transform.position = boxSelected.transform.position;
-            pawnSelected.currentBox = boxSelected;
-            pawnSelected.currentBox.free = false;
-            DeselectPawn();
-            pawnsToPlace--;
-            placingsLeft--;
-            if (placingsLeft == 0 || pawnsToPlace == 0)
-            {
-                turnManager.ChangeTurn();
-                placingsLeft = 2;
+                Box boxSelected = pawnSelected.currentBox;
+                switch (pawnSelected.faction)
+                {
+                    case Factions.Magic:
+                        boxSelected = magicBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
+                        magicPlacing.Remove(pawnSelected);
+                        break;
+                    case Factions.Science:
+                        boxSelected = scienceBoard[pawnSelected.projectionPlacingPositionIndex1][pawnSelected.projectionPlacingPositionIndex2].GetComponent<Box>();
+                        sciencePlacing.Remove(pawnSelected);
+                        break;
+                }
+                pawnSelected.transform.position = boxSelected.transform.position;
+                pawnSelected.currentBox = boxSelected;
+                pawnSelected.currentBox.free = false;
+                DeselectPawn();
+                pawnsToPlace--;
+                placingsLeft--;
+                if (placingsLeft == 0 || pawnsToPlace == 0)
+                {
+                    turnManager.ChangeTurn();
+                    placingsLeft = 2;
+                }
             }
         }
     }
@@ -288,15 +294,18 @@ public class BoardManager : MonoBehaviour
     {
         if (pawnSelected != null && !pause)
         {
-            if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
+            if (pawnSelected.CheckAttackPattern())
             {
-                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
+                if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                 {
-                    pawnSelected.DisableMovementBoxes();
+                    if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
+                    {
+                        pawnSelected.DisableMovementBoxes();
+                    }
+                    vfx.ResetMark();
+                    pawnSelected.OnAttackEnd += OnAttackEnd;
+                    pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
                 }
-                vfx.ResetMark();
-                pawnSelected.OnAttackEnd += OnAttackEnd;
-                pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
             }
         }
     }
