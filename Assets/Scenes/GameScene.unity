@@ -302,8 +302,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &35959741
 Animator:
@@ -746,6 +744,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 72352772}
+--- !u!84 &76735630
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 774
+  m_Height: 435
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &77708354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,8 +1330,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &145922857
 Animator:
@@ -1505,8 +1532,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &150939851
 Animator:
@@ -1747,8 +1772,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &191544442
 Animator:
@@ -2166,8 +2189,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &301949647
 Animator:
@@ -2313,8 +2334,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &306941314
 Animator:
@@ -2460,8 +2479,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &337334799
 Animator:
@@ -2675,8 +2692,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &345245013
 Animator:
@@ -3753,8 +3768,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &481148282
 Animator:
@@ -4266,8 +4279,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &530068671
 Animator:
@@ -4849,37 +4860,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 609380600}
---- !u!84 &613056033
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 774
-  m_Height: 435
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &624551701
 GameObject:
   m_ObjectHideFlags: 0
@@ -6028,8 +6008,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &719104540
 Animator:
@@ -6538,8 +6516,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &766942281
 Animator:
@@ -6602,37 +6578,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 766942276}
   m_Mesh: {fileID: 4300000, guid: 9f5cf805c27df874ea8e9612ab38883a, type: 3}
---- !u!84 &789279454
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 774
-  m_Height: 435
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &801150020
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,6 +6956,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 833180602}
+--- !u!84 &835434564
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 774
+  m_Height: 435
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &848208538
 GameObject:
   m_ObjectHideFlags: 0
@@ -7162,8 +7138,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &852564885
 Animator:
@@ -8126,8 +8100,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &977655057
 Animator:
@@ -8412,6 +8384,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1004959261}
+--- !u!84 &1006659250
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 774
+  m_Height: 435
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1010349942
 GameObject:
   m_ObjectHideFlags: 0
@@ -8495,8 +8498,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &1010349947
 Animator:
@@ -9227,8 +9228,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1038061752
 Animator:
@@ -9442,8 +9441,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &1045215939
 Animator:
@@ -9817,8 +9814,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &1143280510
 Animator:
@@ -9964,8 +9959,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &1164786735
 Animator:
@@ -10247,8 +10240,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1183937809
 Animator:
@@ -10549,8 +10540,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &1191573219
 Animator:
@@ -10900,8 +10889,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &1249411616
 Animator:
@@ -11507,8 +11494,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1331089235
 Animator:
@@ -11898,8 +11883,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &1365243381
 Animator:
@@ -12266,8 +12249,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1390946285
 Animator:
@@ -13499,8 +13480,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &1481821031
 Animator:
@@ -13781,37 +13760,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4089385889377682, guid: 5ab0390e4d8f2a74bbfe01602b4341c5,
     type: 2}
   m_PrefabInternal: {fileID: 1522614435}
---- !u!84 &1524916961
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 774
-  m_Height: 435
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1536009577
 GameObject:
   m_ObjectHideFlags: 0
@@ -14425,8 +14373,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 2
 --- !u!95 &1612390427
 Animator:
@@ -15982,8 +15928,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 0
 --- !u!95 &1787614500
 Animator:
@@ -16108,37 +16052,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1807837790
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 774
-  m_Height: 435
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1810393552
 GameObject:
   m_ObjectHideFlags: 0
@@ -16222,8 +16135,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1810393557
 Animator:
@@ -16800,6 +16711,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846008271}
+--- !u!84 &1861844563
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 774
+  m_Height: 435
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1874464731
 Prefab:
   m_ObjectHideFlags: 0
@@ -17097,8 +17039,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &1896823455
 Animator:
@@ -17380,8 +17320,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 3
 --- !u!95 &1934249846
 Animator:
@@ -17704,16 +17642,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 20177321601919324, guid: 1425180ab84f98e46988b12fe66303f9,
-        type: 2}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 1524916961}
-    - target: {fileID: 20707841683335802, guid: 1425180ab84f98e46988b12fe66303f9,
-        type: 2}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 1276153860}
     - target: {fileID: 114795903284651558, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: outlineShaderMaterial
@@ -17723,12 +17651,22 @@ Prefab:
         type: 2}
       propertyPath: renderTexture
       value: 
-      objectReference: {fileID: 613056033}
+      objectReference: {fileID: 835434564}
     - target: {fileID: 114795903284651558, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: extraRenderTexture
       value: 
-      objectReference: {fileID: 789279454}
+      objectReference: {fileID: 1861844563}
+    - target: {fileID: 20707841683335802, guid: 1425180ab84f98e46988b12fe66303f9,
+        type: 2}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 1276153860}
+    - target: {fileID: 20177321601919324, guid: 1425180ab84f98e46988b12fe66303f9,
+        type: 2}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 76735630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1425180ab84f98e46988b12fe66303f9, type: 2}
   m_IsPrefabParent: 0
@@ -18267,8 +18205,6 @@ MonoBehaviour:
   walkable: 0
   free: 0
   neutralKill: 0
-  neutral_white: {fileID: 2100000, guid: 0dbaa66fd9cce6249bf77be328595566, type: 2}
-  neutral_black: {fileID: 2100000, guid: 73b6a6b79525bc64ca5aa5fbcda7044d, type: 2}
   element: 1
 --- !u!95 &2034789054
 Animator:

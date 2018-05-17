@@ -56,7 +56,7 @@ public class BoardManager : MonoBehaviour
     public TurnManager turnManager;
     public DraftManager draftManager;
     public UIManager uiManager;
-    public PawnHighlightManager highlight;
+    public VFXManager vfx;
 
     /// <summary>
     /// Funzioni che iscrivono/disiscrivono il boardmanager agli eventi appena viene abilitato/disabilitato
@@ -109,7 +109,7 @@ public class BoardManager : MonoBehaviour
         draftManager = GetComponent<DraftManager>();
         turnManager = GetComponent<TurnManager>();
         uiManager = GetComponent<UIManager>();
-        highlight = GetComponent<PawnHighlightManager>();
+        vfx = GetComponent<VFXManager>();
     }
 
     void Start()
@@ -294,7 +294,7 @@ public class BoardManager : MonoBehaviour
                 {
                     pawnSelected.DisableMovementBoxes();
                 }
-                highlight.ResetMark();
+                vfx.ResetMark();
                 pawnSelected.OnAttackEnd += OnAttackEnd;
                 pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
             }
@@ -542,7 +542,7 @@ public class BoardManager : MonoBehaviour
                     superAttack = false;
                 }
             }
-            highlight.DeselectPawn();
+            vfx.DeselectPawn();
             pawnSelected.selected = false;
             pawnSelected = null;
         }
@@ -571,7 +571,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            highlight.SelectPawn(pawnSelected);
+                            vfx.SelectPawn(pawnSelected);
                         }
                     }
                     break;
@@ -583,7 +583,7 @@ public class BoardManager : MonoBehaviour
                             {
                                 selected.selected = true;
                                 pawnSelected = selected;
-                                highlight.SelectPawn(pawnSelected);
+                                vfx.SelectPawn(pawnSelected);
                                 pawnSelected.ShowMovementBoxes();
                             }
                             break;
@@ -594,7 +594,7 @@ public class BoardManager : MonoBehaviour
                             }
                             selected.selected = true;
                             pawnSelected = selected;
-                            highlight.SelectPawn(pawnSelected);
+                            vfx.SelectPawn(pawnSelected);
                             pawnSelected.MarkAttackPawn();
                             pawnSelected.ShowAttackPattern();
                             pawnSelected.ShowMovementBoxes();
@@ -638,7 +638,7 @@ public class BoardManager : MonoBehaviour
             if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
                 pawnSelected = p;
-                highlight.SelectPawn(pawnSelected);
+                vfx.SelectPawn(pawnSelected);
                 foundPawn = true;
                 CustomLogger.Log("trovata una pedina");
                 break;
@@ -686,18 +686,18 @@ public class BoardManager : MonoBehaviour
                 {
                     if (p.attackMarker)
                     {
-                        highlight.MarkPawn(p.transform.position);
+                        vfx.MarkPawn(p.transform.position);
                     }
                 }
             }
             else
             {
-                highlight.MarkPawn(_pawnHighlighted.transform.position);
+                vfx.MarkPawn(_pawnHighlighted.transform.position);
             }
         }
         else
         {
-            highlight.ResetMark();
+            vfx.ResetMark();
         }
     }
 

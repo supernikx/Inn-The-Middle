@@ -387,7 +387,7 @@ public class Pawn : MonoBehaviour
                 patternBox.Add(myboard[currentBox.index1 - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
             }
         }
-        bm.highlight.DeselectPawn();
+        bm.vfx.DeselectPawn();
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         animators[activePattern].AttackAnimation(transform, patternBox, startRotation);
     }
@@ -812,7 +812,7 @@ public class Pawn : MonoBehaviour
     public void RandomizePattern()
     {
         graphics[activePattern].SetActive(false);
-        bm.highlight.DeselectPawn();
+        bm.vfx.DeselectPawn();
         UnsubscribeAnimationEvent();
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
         if (activePattern == 4 || activePattern == 5)
@@ -821,7 +821,7 @@ public class Pawn : MonoBehaviour
         }
         activeSpeed = speeds[activePattern];
         graphics[activePattern].SetActive(true);
-        bm.highlight.SelectPawn(this);
+        bm.vfx.SelectPawn(this);
         SubscribeAnimationEvent();
         randomized = true;
     }

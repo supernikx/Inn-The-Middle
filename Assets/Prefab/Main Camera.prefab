@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineThickness: 1.5
-  lineIntensity: 0.5
+  lineIntensity: 2.2
   fillAmount: 0.3
   MovementBox: {r: 0.52205884, g: 0.4913495, b: 0.4913495, a: 1}
-  AttckBoxActivePattern: {r: 0, g: 1, b: 0, a: 1}
+  AttckBoxActivePattern: {r: 0, g: 0.4862745, b: 0, a: 1}
   AttackBoxOtherPattern: {r: 1, g: 0, b: 0, a: 1}
   additiveRendering: 1
   backfaceCulling: 1

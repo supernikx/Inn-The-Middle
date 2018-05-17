@@ -13,17 +13,14 @@ public class Box : MonoBehaviour
     public int index1, index2;
     public Factions board;
     public bool walkable, free, neutralKill;
-    public Material neutral_white, neutral_black;
     public Element element;
 
     //variabili private
     private BoardManager bm;
-    private MeshRenderer mr;
     private BoxOutline outline;
 
     private void Awake()
     {
-        mr = GetComponent<MeshRenderer>();
         outline = GetComponent<BoxOutline>();
         free = true;
     }
@@ -57,13 +54,13 @@ public class Box : MonoBehaviour
         if (element == Element.NeutralWhite)
         {
             element = Element.NeutralBlack;
-            mr.material = neutral_black;
+            bm.vfx.TrapTile(gameObject, true);
             walkable = false;
         }
         else if (element == Element.NeutralBlack)
         {
             element = Element.NeutralWhite;
-            mr.material = neutral_white;
+            bm.vfx.TrapTile(gameObject, false);
         }
     }
 

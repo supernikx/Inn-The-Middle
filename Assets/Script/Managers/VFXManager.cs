@@ -8,30 +8,40 @@ public enum PoolState
     inUse,
 }
 
-public class PawnPoolParticleEffect
+public class PoolParticleEffects
 {
     public PoolState state;
     public ParticleSystem particle;
+    public GameObject owner;
 
-    public PawnPoolParticleEffect(PoolState _state, ParticleSystem _particle)
+    public PoolParticleEffects(PoolState _state, ParticleSystem _particle)
     {
         state = _state;
         particle = _particle;
     }
+
+    public void SetOwner(GameObject g)
+    {
+        owner = g;
+    }
 }
 
-public class PawnHighlightManager : MonoBehaviour
+public class VFXManager : MonoBehaviour
 {
     public Vector3 poolPosition;
     public GameObject selectPawnParticlePrefab;
     public GameObject attackMarkerParticlePrefab;
     public int maxMarker;
+    public GameObject trapTilePrefab;
+    public int maxTrapTile;
 
     Transform parentSelected;
     Transform parentMarker;
+    Transform parentTrap;
 
-    List<PawnPoolParticleEffect> mark = new List<PawnPoolParticleEffect>();
-    PawnPoolParticleEffect select;
+    List<PoolParticleEffects> mark = new List<PoolParticleEffects>();
+    List<PoolParticleEffects> trap = new List<PoolParticleEffects>();
+    PoolParticleEffects select;
 
     private void Start()
     {
@@ -41,19 +51,28 @@ public class PawnHighlightManager : MonoBehaviour
         {
             ParticleSystem instantiedMarker = Instantiate(attackMarkerParticlePrefab, poolPosition, attackMarkerParticlePrefab.transform.rotation, parentMarker).GetComponent<ParticleSystem>();
             instantiedMarker.Stop();
-            mark.Add(new PawnPoolParticleEffect(PoolState.inPool, instantiedMarker));
+            mark.Add(new PoolParticleEffects(PoolState.inPool, instantiedMarker));
+        }
+
+        parentTrap = new GameObject("TrapTile").transform;
+        parentTrap.parent = transform;
+        for (int i = 0; i < maxTrapTile; i++)
+        {
+            ParticleSystem instantietedTrap = Instantiate(trapTilePrefab, poolPosition, trapTilePrefab.transform.rotation, parentTrap).GetComponent<ParticleSystem>();
+            instantietedTrap.Stop();
+            trap.Add(new PoolParticleEffects(PoolState.inPool, instantietedTrap));
         }
 
         parentSelected = new GameObject("SelectedPawn").transform;
         parentSelected.parent = transform;
         ParticleSystem instantiatedSelected = Instantiate(selectPawnParticlePrefab, poolPosition, selectPawnParticlePrefab.transform.rotation, parentSelected).GetComponent<ParticleSystem>();
         instantiatedSelected.Stop();
-        select = new PawnPoolParticleEffect(PoolState.inPool, instantiatedSelected);
+        select = new PoolParticleEffects(PoolState.inPool, instantiatedSelected);
     }
 
     public void MarkPawn(Vector3 pawnPosition)
     {
-        foreach (PawnPoolParticleEffect p in mark)
+        foreach (PoolParticleEffects p in mark)
         {
             if (p.state == PoolState.inPool)
             {
@@ -67,7 +86,7 @@ public class PawnHighlightManager : MonoBehaviour
 
     public void ResetMark()
     {
-        foreach (PawnPoolParticleEffect p in mark)
+        foreach (PoolParticleEffects p in mark)
         {
             if (p.state == PoolState.inUse)
             {
@@ -94,6 +113,38 @@ public class PawnHighlightManager : MonoBehaviour
         select.particle.transform.parent = parentSelected;
         select.particle.transform.position = poolPosition;
         select.state = PoolState.inPool;
+    }
+
+    public void TrapTile(GameObject tile, bool active)
+    {
+        if (active)
+        {
+            foreach (PoolParticleEffects t in trap)
+            {
+                if (t.state == PoolState.inPool)
+                {
+                    t.owner = tile;
+                    t.particle.transform.position = tile.transform.position + new Vector3(0, 0.5f, 0);
+                    t.particle.Play();
+                    t.state = PoolState.inUse;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            foreach (PoolParticleEffects t in trap)
+            {
+                if (t.state == PoolState.inUse && t.owner == tile)
+                {
+                    t.owner = null;
+                    t.particle.transform.position = poolPosition;
+                    t.particle.Stop();
+                    t.state = PoolState.inPool;
+                    return;
+                }
+            }
+        }
     }
 
 }
