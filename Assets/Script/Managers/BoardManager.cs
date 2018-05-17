@@ -198,7 +198,7 @@ public class BoardManager : MonoBehaviour
     {
         if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing && turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
         {
-            Box boxSelected = new Box();
+            Box boxSelected = pawnSelected.currentBox;
             switch (pawnSelected.faction)
             {
                 case Factions.Magic:
@@ -490,7 +490,7 @@ public class BoardManager : MonoBehaviour
                     case Directions.right:
                         SciencePawnIndex--;
                         if (SciencePawnIndex < 0)
-                            SciencePawnIndex = 0;
+                            SciencePawnIndex = sciencePawns.Count - 1;
                         break;
                 }
                 PawnSelected(sciencePawns[SciencePawnIndex]);
@@ -705,7 +705,7 @@ public class BoardManager : MonoBehaviour
     /// <param name="patternIndex"></param>
     public void ChoosePawnPattern(int patternIndex)
     {
-        if (!pause)
+        if (!pause && pawnSelected!=null)
         {
             pawnSelected.ChangePattern(patternIndex);
             if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)
