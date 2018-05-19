@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
         }
         set
         {
+            OnTurnEnd(_currentPlayerTurn);
             _currentPlayerTurn = value;
             OnTurnStart(_currentPlayerTurn);
         }
@@ -97,6 +98,54 @@ public class TurnManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che viene chiamata quando si entra in un nuovo stato del turno ed esegue le funzioni necessarie a quello stato
+    /// </summary>
+    /// <param name="newState"></param>
+    void OnStateStart(PlayTurnState newState)
+    {
+        switch (newState)
+        {
+            case PlayTurnState.choosing:
+                break;
+            case PlayTurnState.placing:
+                BoardManager.Instance.uiManager.choosingUi.SetActive(false);
+                BoardManager.Instance.uiManager.placingUI.SetActive(true);
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
+                //CurrentPlayerTurn = PlayerTurn.P1_turn;
+                break;
+            case PlayTurnState.animation:
+                break;
+            case PlayTurnState.check:
+                BoardManager.Instance.superAttack = false;
+                BoardManager.Instance.uiManager.UIChange();
+                BoardManager.Instance.UnmarkAttackMarker();
+                BoardManager.Instance.CheckSuperAttack();
+                if (BoardManager.Instance.pawnSelected != null)
+                {
+                    BoardManager.Instance.DeselectPawn();
+                }
+                BoardManager.Instance.CheckPhaseControll();
+                break;
+            case PlayTurnState.movementattack:
+                BoardManager.Instance.SelectNextPawn(Directions.idle);
+                break;
+            case PlayTurnState.attack:
+                if (!BoardManager.Instance.pawnSelected.CheckAttackPattern())
+                {
+                    ChangeTurn();
+                }
+                else
+                {
+                    BoardManager.Instance.pawnSelected.MarkAttackPawn();
+                }
+                break;
+            default:
+                break;
+        }
+        BoardManager.Instance.uiManager.UIChange();
+    }
+
+    /// <summary>
     /// Funzione che controlla se è possibile passare dallo stato del turno attuale a newState, ritorna true se è possibile altrimenti false
     /// </summary>
     /// <param name="newState"></param>
@@ -128,89 +177,6 @@ public class TurnManager : MonoBehaviour
             default:
                 return false;
         }
-    }
-
-    /// <summary>
-    /// Funzione che controlla se è possibile passare dalla macro fase attuale a newPhase, ritorna true se è possibile altrimenti false
-    /// </summary>
-    /// <param name="newPhase"></param>
-    /// <returns></returns>
-    bool MacroPhaseChange(MacroPhase newPhase)
-    {
-        switch (newPhase)
-        {
-            case MacroPhase.menu:
-                return true;
-            case MacroPhase.faction:
-                if (CurrentMacroPhase != MacroPhase.menu)
-                    return false;
-                return true;
-            case MacroPhase.draft:
-                if (CurrentMacroPhase != MacroPhase.faction)
-                    return false;
-                return true;
-            case MacroPhase.placing:
-                if (CurrentMacroPhase != MacroPhase.draft)
-                    return false;
-                return true;
-            case MacroPhase.game:
-                if (CurrentMacroPhase != MacroPhase.placing)
-                    return false;
-                return true;
-            case MacroPhase.end:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata quando si entra in un nuovo stato del turno ed esegue le funzioni necessarie a quello stato
-    /// </summary>
-    /// <param name="newState"></param>
-    void OnStateStart(PlayTurnState newState)
-    {
-        switch (newState)
-        {
-            case PlayTurnState.choosing:
-                break;
-            case PlayTurnState.placing:
-                BoardManager.Instance.uiManager.choosingUi.SetActive(false);
-                BoardManager.Instance.uiManager.placingUI.SetActive(true);
-                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
-                //CurrentPlayerTurn = PlayerTurn.P1_turn;
-                break;
-            case PlayTurnState.animation:
-                break;
-            case PlayTurnState.check:
-                BoardManager.Instance.superAttack = false;
-                BoardManager.Instance.uiManager.UIChange();
-                BoardManager.Instance.UnmarkAttackMarker();
-                BoardManager.Instance.CheckSuperAttack();
-                turnsWithoutAttack++;
-                if (BoardManager.Instance.pawnSelected != null)
-                {
-                    BoardManager.Instance.DeselectPawn();
-                }
-                BoardManager.Instance.CheckPhaseControll();
-                break;
-            case PlayTurnState.movementattack:
-                BoardManager.Instance.SelectNextPawn(Directions.idle);
-                break;
-            case PlayTurnState.attack:
-                if (!BoardManager.Instance.pawnSelected.CheckAttackPattern())
-                {
-                    ChangeTurn();
-                }
-                else
-                {
-                    BoardManager.Instance.pawnSelected.MarkAttackPawn();
-                }
-                break;
-            default:
-                break;
-        }
-        BoardManager.Instance.uiManager.UIChange();
     }
 
     /// <summary>
@@ -249,6 +215,40 @@ public class TurnManager : MonoBehaviour
                 break;
         }
         BoardManager.Instance.uiManager.UIChange();
+    }
+
+    /// <summary>
+    /// Funzione che controlla se è possibile passare dalla macro fase attuale a newPhase, ritorna true se è possibile altrimenti false
+    /// </summary>
+    /// <param name="newPhase"></param>
+    /// <returns></returns>
+    bool MacroPhaseChange(MacroPhase newPhase)
+    {
+        switch (newPhase)
+        {
+            case MacroPhase.menu:
+                return true;
+            case MacroPhase.faction:
+                if (CurrentMacroPhase != MacroPhase.menu)
+                    return false;
+                return true;
+            case MacroPhase.draft:
+                if (CurrentMacroPhase != MacroPhase.faction)
+                    return false;
+                return true;
+            case MacroPhase.placing:
+                if (CurrentMacroPhase != MacroPhase.draft)
+                    return false;
+                return true;
+            case MacroPhase.game:
+                if (CurrentMacroPhase != MacroPhase.placing)
+                    return false;
+                return true;
+            case MacroPhase.end:
+                return true;
+            default:
+                return false;
+        }
     }
 
     /// <summary>
@@ -316,17 +316,25 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.game:
                 CurrentTurnState = PlayTurnState.check;
                 numberOfTurns++;
-                if (turnsWithoutAttack >= 8)
-                {
-                    Debug.Log("PASSATI 8 TURNI");
-                    BoardManager.Instance.WinCondition(true);
-                }
+                turnsWithoutAttack++;
                 break;
             default:
                 Debug.Log("Errore: nessuna macrofase");
                 break;
         }
         BoardManager.Instance.uiManager.UIChange();
+    }
+
+    /// <summary>
+    /// Funzione che viene chiamata alla fine del turno
+    /// </summary>
+    void OnTurnEnd(Factions endTurn)
+    {
+        if (turnsWithoutAttack >= 20)
+        {
+            Debug.Log("PASSATI 8 TURNI");
+            BoardManager.Instance.WinCondition(true);
+        }
     }
 
     /// <summary>

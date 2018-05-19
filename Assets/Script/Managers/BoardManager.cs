@@ -178,6 +178,29 @@ public class BoardManager : MonoBehaviour
         pawnSelected.OnMovementEnd -= OnMovementCheckEnd;
         CustomLogger.Log(pawnSelected.faction + " si è mosso");
         pawnSelected.randomized = false;
+        switch (turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                for (int i = 0; i < magicPawns.Count; i++)
+                {
+                    if (magicPawns[i] == pawnSelected)
+                    {
+                        MagicPawnIndex = i;
+                        break;
+                    }
+                }
+                break;
+            case Factions.Science:
+                for (int i = 0; i < sciencePawns.Count; i++)
+                {
+                    if (sciencePawns[i] == pawnSelected)
+                    {
+                        SciencePawnIndex = i;
+                        break;
+                    }
+                }
+                break;
+        }
         DeselectPawn();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
     }
@@ -263,6 +286,9 @@ public class BoardManager : MonoBehaviour
     List<Pawn> MarkedPawnList = new List<Pawn>();
     int MarkedPawnIndex;
 
+    /// <summary>
+    /// Funzione che crea la lista di pedine che possono essere colpite dalla pedina selezionata
+    /// </summary>
     public void CreateMarkList()
     {
         foreach (Pawn p in pawns)
