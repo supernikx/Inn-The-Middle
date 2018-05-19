@@ -7,7 +7,7 @@ public class CalderoneAnimations : PawnAnimationManager
 {
     Transform myPosition;
     Vector3 targetPosition;
-    //Vector3 startRotation;
+    Vector3 startRotation;
     float speed;
 
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
@@ -16,11 +16,11 @@ public class CalderoneAnimations : PawnAnimationManager
         PlayAttackAnimation();
     }
 
-    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed)
+    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
         myPosition = _myPosition;
         targetPosition = _targetPosition;
-        //startRotation = _startRotation;
+        startRotation = _startRotation;
         speed = _speed;
         PlayMovementAnimation(true);
     }
@@ -29,9 +29,21 @@ public class CalderoneAnimations : PawnAnimationManager
     {
         Tween movement = myPosition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
-        //Tween rotate = myPosition.DORotate(startRotation, 1f);
-        //yield return rotate.WaitForCompletion();
+        if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)
+        {
+            OnMovementEnd();
+        }
+        else
+        {
+            PlayJumpAnimation();
+        }
         PlayMovementAnimation(false);
+    }
+
+    private IEnumerator JumpRotation()
+    {
+        Tween rotate = myPosition.DORotate(startRotation, 1f);
+        yield return rotate.WaitForCompletion();       
         OnMovementEnd();
     }
 }

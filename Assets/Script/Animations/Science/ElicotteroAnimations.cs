@@ -61,7 +61,7 @@ public class ElicotteroAnimations : PawnAnimationManager
         bombTargetPosition = new Vector3(targetx, patternBox[0].transform.position.y, targetz);
         _targetPosition = new Vector3 (bombTargetPosition.x, bombTargetPosition.y + YHighOffset, bombTargetPosition.z);
         isAttacking = true;
-        MovementAnimation(_myPosition, _targetPosition, speed);
+        MovementAnimation(_myPosition, _targetPosition, speed, startRotation);
     }
 
     private IEnumerator ReturnToPosition()
@@ -88,7 +88,7 @@ public class ElicotteroAnimations : PawnAnimationManager
         bombAttachedToModel.SetActive(true);
     }
 
-    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed)
+    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
         myPosition = _myPosition;
         targetPosition = _targetPosition;

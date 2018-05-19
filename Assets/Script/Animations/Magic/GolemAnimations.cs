@@ -53,7 +53,7 @@ public class GolemAnimations : PawnAnimationManager
     }
 
 
-    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed)
+    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
         PlayMovementAnimation(true);
         StartCoroutine(Movement(myPosition, targetPosition, speed));

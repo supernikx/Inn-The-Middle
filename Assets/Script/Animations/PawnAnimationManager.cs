@@ -14,7 +14,7 @@ public interface IPawnAnimations
     event PawnAnimationEvents.Events OnDamagedAnimationEnd;
     event PawnAnimationEvents.Events OnMovementAnimationEnd;
     void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation);
-    void MovementAnimation(Transform myPosition, Vector3 targetPosition, float movementSpeed);
+    void MovementAnimation(Transform myPosition, Vector3 targetPosition, float movementSpeed, Vector3 startRotation);
     void PlayDeathAnimation();
     void PlayDamagedAnimation();
 }
@@ -101,6 +101,14 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnMovementEnd();
     }
 
+    public void PlayJumpAnimation()
+    {
+        if (animator.runtimeAnimatorController != null)
+            animator.SetTrigger("Jump");
+        else
+            OnDamagedEnd();
+    }
+
     #endregion
 
     protected virtual void Start()
@@ -109,5 +117,5 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
     }
 
     public abstract void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation);
-    public abstract void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed);
+    public abstract void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 startRotation);
 }

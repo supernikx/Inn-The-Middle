@@ -216,7 +216,7 @@ MonoBehaviour:
   attackMarkerParticlePrefab: {fileID: 1408250317327876, guid: 2369d84d84ebdd847a6839cecea54687,
     type: 2}
   maxMarker: 4
-  trapTilePrefab: {fileID: 1515380577442122, guid: 1ab060839cd6b79419bd9919571aa482,
+  trapTilePrefab: {fileID: 1429235154793992, guid: d0d9f1dd08dd19d40962bf198728e019,
     type: 2}
   maxTrapTile: 16
 --- !u!114 &114893752617296308

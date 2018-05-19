@@ -31,7 +31,7 @@ public class BoardManager : MonoBehaviour
             if (_superAttack)
             {
                 CreateMarkList();
-                SelectNextPawnToAttack(Directions.right);
+                SelectNextPawnToAttack(Directions.idle);
             }
             else
             {
@@ -167,7 +167,7 @@ public class BoardManager : MonoBehaviour
             {
                 CustomLogger.Log("Casella non valida");
             }
-        }        
+        }
     }
 
     /// <summary>
@@ -225,6 +225,10 @@ public class BoardManager : MonoBehaviour
                 {
                     turnManager.ChangeTurn();
                     placingsLeft = 2;
+                }
+                else
+                {
+                    SelectNextPawnToPlace(Directions.idle);
                 }
             }
         }
@@ -300,6 +304,8 @@ public class BoardManager : MonoBehaviour
                 {
                     if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                     {
+                        pawnSelected.DisableAttackPattern();
+                        pawnSelected.ForceMoveProjection(false);
                         pawnSelected.DisableMovementBoxes();
                     }
                     vfx.ResetMark();
@@ -485,6 +491,12 @@ public class BoardManager : MonoBehaviour
                         if (MagicPawnIndex > magicPawns.Count - 1)
                             MagicPawnIndex = 0;
                         break;
+                    case Directions.idle:
+                        if (MagicPawnIndex > magicPawns.Count - 1)
+                            MagicPawnIndex = 0;
+                        else if (MagicPawnIndex < 0)
+                            MagicPawnIndex = magicPawns.Count - 1;
+                        break;
                 }
                 PawnSelected(magicPawns[MagicPawnIndex]);
                 break;
@@ -494,12 +506,18 @@ public class BoardManager : MonoBehaviour
                     case Directions.left:
                         SciencePawnIndex++;
                         if (SciencePawnIndex > sciencePawns.Count - 1)
-                            SciencePawnIndex = sciencePawns.Count - 1;
+                            SciencePawnIndex = 0;
                         break;
                     case Directions.right:
                         SciencePawnIndex--;
                         if (SciencePawnIndex < 0)
                             SciencePawnIndex = sciencePawns.Count - 1;
+                        break;
+                    case Directions.idle:
+                        if (SciencePawnIndex < 0)
+                            SciencePawnIndex = sciencePawns.Count - 1;
+                        else if (SciencePawnIndex > sciencePawns.Count - 1)
+                            SciencePawnIndex = 0;
                         break;
                 }
                 PawnSelected(sciencePawns[SciencePawnIndex]);
@@ -525,8 +543,13 @@ public class BoardManager : MonoBehaviour
                 if (MarkedPawnIndex < 0)
                     MarkedPawnIndex = MarkedPawnList.Count - 1;
                 break;
+            case Directions.idle:
+                if (MarkedPawnIndex < 0)
+                    MarkedPawnIndex = MarkedPawnList.Count - 1;
+                else if (MarkedPawnIndex > MarkedPawnList.Count - 1)
+                    MarkedPawnIndex = 0;
+                break;
         }
-
         PawnHighlighted(true, MarkedPawnList[MarkedPawnIndex]);
     }
 
@@ -552,6 +575,12 @@ public class BoardManager : MonoBehaviour
                         if (MagicPawnIndex > magicPlacing.Count - 1)
                             MagicPawnIndex = 0;
                         break;
+                    case Directions.idle:
+                        if (MagicPawnIndex > magicPlacing.Count - 1)
+                            MagicPawnIndex = 0;
+                        else if (MagicPawnIndex < 0)
+                            MagicPawnIndex = magicPlacing.Count - 1;
+                        break;
                 }
                 PawnSelected(magicPlacing[MagicPawnIndex]);
                 pawnSelected.SetProjection();
@@ -570,6 +599,12 @@ public class BoardManager : MonoBehaviour
                         SciencePawnIndex--;
                         if (SciencePawnIndex < 0)
                             SciencePawnIndex = sciencePlacing.Count - 1;
+                        break;
+                    case Directions.idle:
+                        if (SciencePawnIndex < 0)
+                            SciencePawnIndex = sciencePlacing.Count - 1;
+                        else if (SciencePawnIndex > sciencePlacing.Count - 1)
+                            SciencePawnIndex = 0;
                         break;
                 }
                 PawnSelected(sciencePlacing[SciencePawnIndex]);
@@ -714,7 +749,7 @@ public class BoardManager : MonoBehaviour
     /// <param name="patternIndex"></param>
     public void ChoosePawnPattern(int patternIndex)
     {
-        if (!pause && pawnSelected!=null)
+        if (!pause && pawnSelected != null)
         {
             pawnSelected.ChangePattern(patternIndex);
             if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing)

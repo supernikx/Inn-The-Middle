@@ -16,7 +16,7 @@ public class FantasmaAnimations : PawnAnimationManager
         PlayAttackAnimation();
     }
 
-    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed)
+    public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
         myPosition = _myPosition;
         targetPosition = _targetPosition;

@@ -195,6 +195,7 @@ public class TurnManager : MonoBehaviour
                 BoardManager.Instance.CheckPhaseControll();
                 break;
             case PlayTurnState.movementattack:
+                BoardManager.Instance.SelectNextPawn(Directions.idle);
                 break;
             case PlayTurnState.attack:
                 if (!BoardManager.Instance.pawnSelected.CheckAttackPattern())
@@ -293,6 +294,21 @@ public class TurnManager : MonoBehaviour
                             BoardManager.Instance.uiManager.gameUI.SetActive(true);
                             BoardManager.Instance.uiManager.gameUIPerspective.SetActive(true);
                             CurrentMacroPhase = MacroPhase.game;
+                        }
+                        else
+                        {
+                            switch (CurrentPlayerTurn)
+                            {
+                                case Factions.Magic:
+                                    magicPlacementLight.enabled = true;
+                                    sciencePlacementLight.enabled = false;
+                                    break;
+                                case Factions.Science:
+                                    sciencePlacementLight.enabled = true;
+                                    magicPlacementLight.enabled = false;
+                                    break;
+                            }
+                            BoardManager.Instance.SelectNextPawnToPlace(Directions.idle);
                         }
                         break;
                 }

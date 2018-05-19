@@ -548,7 +548,7 @@ public class Pawn : MonoBehaviour
         currentBox.free = false;
         ForceMoveProjection(true);
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
-        animators[activePattern].MovementAnimation(transform, boxToMove.transform.position, activeSpeed);
+        animators[activePattern].MovementAnimation(transform, boxToMove.transform.position, activeSpeed, startRotation);
     }
 
     /// <summary>

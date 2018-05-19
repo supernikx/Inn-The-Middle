@@ -58,19 +58,19 @@ public class RobotLameAnimations : PawnAnimationManager
         animator.SetTrigger("AttackEnd");
     }
 
-    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed)
+    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
         PlayMovementAnimation(true);
-        StartCoroutine(Movement(myPosition, targetPosition, speed));
+        StartCoroutine(Movement(myPosition, targetPosition, speed, _startRotation));
     }
 
-    private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed)
+    private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
         Tween movement = _myPosition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
+        PlayMovementAnimation(false);
         //Tween rotate = _myPosition.DORotate(_startRotation, 1f);
         //yield return rotate.WaitForCompletion();
-        PlayMovementAnimation(false);
         OnMovementEnd();
     }
 }
