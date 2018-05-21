@@ -15,7 +15,7 @@ public enum Directions
     idle,
 }
 
-public class ControllerInputManager : MonoBehaviour
+public class ControllerInputManagerTwoJoyStick : MonoBehaviour
 {
     BoardManager bm;
 

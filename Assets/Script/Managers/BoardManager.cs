@@ -65,11 +65,15 @@ public class BoardManager : MonoBehaviour
     {
         EventManager.OnPause += OnGamePause;
         EventManager.OnUnPause += OnGameUnPause;
+        EventManager.OnJoystickDisconnected += JoystickDisconnected;
+        EventManager.OnJoystickRiconnected += JoystickRiconnected;
     }
     private void OnDisable()
     {
         EventManager.OnPause -= OnGamePause;
         EventManager.OnUnPause -= OnGameUnPause;
+        EventManager.OnJoystickDisconnected -= JoystickDisconnected;
+        EventManager.OnJoystickRiconnected -= JoystickRiconnected;
     }
 
     #region Pause
@@ -92,6 +96,24 @@ public class BoardManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         pause = false;
+    }
+
+    #endregion
+    #region JoystickDisconected
+
+    private void JoystickDisconnected()
+    {
+        Time.timeScale = 0f;
+        pause = true;
+    }
+
+    private void JoystickRiconnected()
+    {
+        if (!uiManager.pausePanel.activeSelf)
+        {
+            Time.timeScale = 1f;
+            pause = false;
+        }
     }
 
     #endregion

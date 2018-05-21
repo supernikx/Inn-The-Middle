@@ -285,6 +285,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                 if (!DataManager.instance.SkipTitleScreen && Input.anyKeyDown)
                 {
                     DataManager.instance.SkipTitleScreen = true;
+                    StartCoroutine(BoardManager.Instance.uiManager.SkipTitleScreen());
                 }
             }
         }

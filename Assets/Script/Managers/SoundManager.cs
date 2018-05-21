@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    SoundManager instance;
-
     public bool SoundActive;
     public AudioSource GeneralAudioSource;
 
@@ -14,9 +12,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip togglebutton;
     public AudioClip factionslected;
 
-    private void Awake()
+    private void Start()
     {
-        instance = this;
         SoundActive = true;
     }
 

@@ -15,4 +15,10 @@ public class EventManager : MonoBehaviour {
     public static GameEvent OnGameEnd;
     #endregion
 
+    #region Joystickevent
+    public delegate void JoystickEvent();
+    public static JoystickEvent OnJoystickDisconnected;
+    public static JoystickEvent OnJoystickRiconnected;
+    #endregion
+
 }

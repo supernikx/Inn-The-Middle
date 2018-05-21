@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
     public GameObject choosingUi;
     public GameObject placingUI;
     public GameObject gameUI;
+    public GameObject connectjoystick;
     public Animator fadeinoutmenu;
 
     [Header("Main Menu")]
@@ -114,12 +115,16 @@ public class UIManager : MonoBehaviour
     {
         EventManager.OnPause += OnGamePause;
         EventManager.OnUnPause += OnGameUnPause;
+        EventManager.OnJoystickDisconnected += JoystickDisconnected;
+        EventManager.OnJoystickRiconnected += JoystickRiconnected;
     }
 
     private void OnDisable()
     {
         EventManager.OnPause -= OnGamePause;
         EventManager.OnUnPause -= OnGameUnPause;
+        EventManager.OnJoystickDisconnected -= JoystickDisconnected;
+        EventManager.OnJoystickRiconnected -= JoystickRiconnected;
     }
 
     private void OnGameUnPause()
@@ -132,6 +137,16 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(ResumePauseButton);
+    }
+
+    private void JoystickDisconnected()
+    {
+        connectjoystick.SetActive(true);
+    }
+
+    private void JoystickRiconnected()
+    {
+        connectjoystick.SetActive(false);
     }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
