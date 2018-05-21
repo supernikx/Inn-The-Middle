@@ -93,7 +93,7 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         mainCam.enabled = false;
-        //CurrentPlayerTurn = PlayerTurn.P1_turn;
+        draftCam.enabled = true;
         CurrentMacroPhase = MacroPhase.menu;
     }
 
@@ -265,16 +265,23 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.faction:
                 break;
             case MacroPhase.draft:
-                if (BoardManager.Instance.draftManager.pawns.Count == 0)
+                if (BoardManager.Instance.draftManager.hasDrafted)
                 {
-                    draftCam.enabled = false;
-                    mainCam.enabled = true;
-                    BoardManager.Instance.SetPawnsPattern();
-                    BoardManager.Instance.uiManager.draftUI.SetActive(false);
-                    BoardManager.Instance.uiManager.choosingUi.SetActive(true);
-                    CurrentMacroPhase = MacroPhase.placing;
+                    if (BoardManager.Instance.draftManager.DraftPawns.Count == 0)
+                    {
+                        draftCam.enabled = false;
+                        mainCam.enabled = true;
+                        BoardManager.Instance.vfx.DeselectDraftPawn();
+                        BoardManager.Instance.SetPawnsPattern();
+                        BoardManager.Instance.uiManager.draftUI.SetActive(false);
+                        BoardManager.Instance.uiManager.choosingUi.SetActive(true);
+                        CurrentMacroPhase = MacroPhase.placing;
+                    }
+                    else
+                    {
+                        BoardManager.Instance.draftManager.SelectNextDraftPawn(Directions.idle);
+                    }
                 }
-
                 break;
             case MacroPhase.placing:
                 switch (CurrentTurnState)
@@ -292,7 +299,6 @@ public class TurnManager : MonoBehaviour
                         {
                             BoardManager.Instance.uiManager.placingUI.SetActive(false);
                             BoardManager.Instance.uiManager.gameUI.SetActive(true);
-                            BoardManager.Instance.uiManager.gameUIPerspective.SetActive(true);
                             CurrentMacroPhase = MacroPhase.game;
                         }
                         else

@@ -10,12 +10,10 @@ public class FixControllerEventSystem : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         storedSelected = EventSystem.current.firstSelectedGameObject;
-
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () {		
         if (BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.menu || BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction || BoardManager.Instance.pause)
         {
             if (EventSystem.current.currentSelectedGameObject != storedSelected)
@@ -26,6 +24,5 @@ public class FixControllerEventSystem : MonoBehaviour {
                     storedSelected = EventSystem.current.currentSelectedGameObject;
             }
         }
-
 	}
 }

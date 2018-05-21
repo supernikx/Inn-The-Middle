@@ -12,9 +12,6 @@ public class UIManager : MonoBehaviour
     TurnManager tm;
     BoardManager bm;
 
-    [Header("Pause Menu")]
-    public GameObject pausePanel;
-
     /// <summary> Testo per indicare di chi è il turno </summary>
     [Header("Turn Text")]
     public TextMeshProUGUI gameTurnText;
@@ -55,21 +52,25 @@ public class UIManager : MonoBehaviour
     public GameObject p2ChoosingTextEnemy;
 
     [Header("UI Holders references")]
+    
+    public GameObject TitleScreen;
+    public GameObject factionUI;
     public GameObject draftUI;
+    public GameObject choosingUi;
     public GameObject placingUI;
     public GameObject gameUI;
-    public GameObject choosingUi;
-    public GameObject gameUIPerspective;
-    public GameObject factionUI;
+    public Animator fadeinoutmenu;
 
-    [Header("Main Menu ")]
-    public GameObject mainMenuPanel;
+    [Header("Main Menu")]
+    public GameObject MainMenu;
+    public GameObject StartMenuButton;
 
     [Header("Faction Chooice")]
     public GameObject MagicButton;
     public GameObject ScienceButton;
 
-    [Header("Pause Menu Buttons")]
+    [Header("Pause Menu")]
+    public GameObject pausePanel;
     public GameObject ResumePauseButton;
     public GameObject RestartPauseButton;
     public GameObject QuitPauseButton;
@@ -88,13 +89,22 @@ public class UIManager : MonoBehaviour
     {
         winScreen.SetActive(false);
         gameUI.SetActive(false);
-        gameUIPerspective.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
         draftUI.SetActive(false);
         choosingUi.SetActive(false);
         factionUI.SetActive(false);
-        mainMenuPanel.SetActive(true);
+        if (DataManager.instance._SkipTitleScreen)
+        {
+            TitleScreen.SetActive(false);
+            MainMenu.SetActive(true);
+            StartCoroutine(FocusStartButtonMenu());
+        }
+        else
+        {
+            MainMenu.SetActive(false);
+            TitleScreen.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -266,7 +276,18 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        mainMenuPanel.SetActive(false);
+        StartCoroutine(StartGameRoutine());
+    }
+
+    /// <summary>
+    /// Coroutine che viene chiamata alla pressione del pulsante start del menù principale e che fa da transizione tra il menù e la scelta della fazione
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator StartGameRoutine()
+    {
+        fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        MainMenu.SetActive(false);
         factionUI.SetActive(true);
         EventSystem.current.SetSelectedGameObject(MagicButton);
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
@@ -287,18 +308,16 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void UIChange()
     {
-
         switch (tm.CurrentMacroPhase)
         {
             case TurnManager.MacroPhase.menu:
                 winScreen.SetActive(false);
                 gameUI.SetActive(false);
-                gameUIPerspective.SetActive(false);
                 placingUI.SetActive(false);
                 pausePanel.SetActive(false);
                 draftUI.SetActive(false);
                 choosingUi.SetActive(false);
-                mainMenuPanel.SetActive(true);
+                MainMenu.SetActive(true);
                 break;
             case TurnManager.MacroPhase.draft:
                 switch (tm.CurrentPlayerTurn)
@@ -468,6 +487,20 @@ public class UIManager : MonoBehaviour
         {
             tm.ChangeTurn();
         }
+    }
+
+    public IEnumerator FocusStartButtonMenu()
+    {
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.SetSelectedGameObject(StartMenuButton);
+    }
+
+    public IEnumerator SkipTitleScreen()
+    {
+        TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
+        yield return new WaitForSeconds(1f);
+        TitleScreen.SetActive(false);
+        StartCoroutine(FocusStartButtonMenu());
     }
 
     //Funzione provvisoria

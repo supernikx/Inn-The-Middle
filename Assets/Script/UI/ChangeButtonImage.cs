@@ -15,6 +15,12 @@ public class ChangeButtonImage : MonoBehaviour {
     bool pressed;
     SpriteState state = new SpriteState();
 
+    private void Awake()
+    {
+        comp = GetComponent<Image>();
+        button = GetComponent<Button>();
+    }
+
     private void OnDisable()
     {
         defaultimage = comp.sprite;
@@ -23,8 +29,6 @@ public class ChangeButtonImage : MonoBehaviour {
 
     private void Start()
     {
-        comp = GetComponent<Image>();
-        button = GetComponent<Button>();
         if (defaultimage != null)
         {
             comp.sprite = defaultimage;

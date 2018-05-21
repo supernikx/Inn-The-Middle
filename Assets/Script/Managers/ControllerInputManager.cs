@@ -24,8 +24,8 @@ public class ControllerInputManager : MonoBehaviour
 
 
     [Header("MovementSettings")]
-    public KeyCode joy1MovementConfirm;
-    public KeyCode joy2MovementConfirm;
+    public KeyCode joy1Confirm;
+    public KeyCode joy2Confirm;
     public KeyCode joy1SelectNextPawnRight;
     public KeyCode joy1SelectNextPawnLeft;
     public KeyCode joy2SelectNextPawnRight;
@@ -42,12 +42,10 @@ public class ControllerInputManager : MonoBehaviour
     public KeyCode joy2PassTurn;
     public KeyCode joy1StartDraft;
     public KeyCode joyPause;
-    bool drafted;
 
     private void Start()
     {
         bm = BoardManager.Instance;
-        drafted = false;
     }
 
     void Update()
@@ -282,14 +280,14 @@ public class ControllerInputManager : MonoBehaviour
                                     YStickJoy1 = false;
                                 }
 
-                                if (Input.GetKeyDown(joy1MovementConfirm))
+                                if (Input.GetKeyDown(joy1Confirm))
                                 {
                                     bm.PlacingTeleport();
                                 }
                             }
                             break;
                         case TurnManager.PlayTurnState.check:
-                            if (Input.GetKeyDown(joy1MovementConfirm))
+                            if (Input.GetKeyDown(joy1Confirm))
                             {
                                 bm.Movement(true);
                             }
@@ -300,7 +298,7 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.turnManager.ChangeTurn();
                             }
 
-                            if (Input.GetKeyDown(joy1MovementConfirm))
+                            if (Input.GetKeyDown(joy1Confirm))
                             {
                                 bm.Movement(false);
                             }
@@ -489,14 +487,14 @@ public class ControllerInputManager : MonoBehaviour
                                     YStickJoy2 = false;
                                 }
 
-                                if (Input.GetKeyDown(joy2MovementConfirm))
+                                if (Input.GetKeyDown(joy2Confirm))
                                 {
                                     bm.PlacingTeleport();
                                 }
                             }
                             break;
                         case TurnManager.PlayTurnState.check:
-                            if (Input.GetKeyDown(joy2MovementConfirm))
+                            if (Input.GetKeyDown(joy2Confirm))
                             {
                                 bm.Movement(true);
                             }
@@ -507,7 +505,7 @@ public class ControllerInputManager : MonoBehaviour
                                 bm.turnManager.ChangeTurn();
                             }
 
-                            if (Input.GetKeyDown(joy2MovementConfirm))
+                            if (Input.GetKeyDown(joy2Confirm))
                             {
                                 bm.Movement(false);
                             }
@@ -575,10 +573,75 @@ public class ControllerInputManager : MonoBehaviour
             }
             else if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft)
             {
-                if (!drafted && Input.GetKeyDown(joy1StartDraft))
+                if (!bm.draftManager.hasDrafted && Input.GetKeyDown(joy1StartDraft))
                 {
                     bm.draftManager.DraftRandomPattern();
-                    drafted = true;
+                }
+
+                if (bm.draftManager.hasDrafted)
+                {
+                    if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
+                    {
+                        if (Input.GetKeyDown(joy1Confirm))
+                        {
+                            bm.draftManager.ChooseSelectedDraftPawn();
+                        }
+
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") != 0)
+                        {
+                            if (XStickJoy1 == false)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                }
+                                XStickJoy1 = true;
+                            }
+                        }
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == 0)
+                        {
+                            XStickJoy1 = false;
+                        }
+                    }
+                    else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
+                    {
+                        if (Input.GetKeyDown(joy2Confirm))
+                        {
+                            bm.draftManager.ChooseSelectedDraftPawn();
+                        }
+
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") != 0)
+                        {
+                            if (XStickJoy2 == false)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                }
+                                XStickJoy2 = true;
+                            }
+                        }
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == 0)
+                        {
+                            XStickJoy2 = false;
+                        }
+                    }
+                }
+            }
+            else if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.menu)
+            {
+                if (!DataManager.instance.SkipTitleScreen && Input.anyKeyDown)
+                {
+                    DataManager.instance.SkipTitleScreen = true;
+                    StartCoroutine(BoardManager.Instance.uiManager.SkipTitleScreen());
                 }
             }
         }

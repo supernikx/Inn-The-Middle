@@ -29,6 +29,7 @@ public class PoolParticleEffects
 public class VFXManager : MonoBehaviour
 {
     public Vector3 poolPosition;
+    public GameObject selectDraftPawnParticlePrefab;
     public GameObject selectPawnParticlePrefab;
     public GameObject attackMarkerParticlePrefab;
     public int maxMarker;
@@ -36,12 +37,14 @@ public class VFXManager : MonoBehaviour
     public int maxTrapTile;
 
     Transform parentSelected;
+    Transform parentDraftSelected;
     Transform parentMarker;
     Transform parentTrap;
 
     List<PoolParticleEffects> mark = new List<PoolParticleEffects>();
     List<PoolParticleEffects> trap = new List<PoolParticleEffects>();
     PoolParticleEffects select;
+    PoolParticleEffects draftselect;
 
     private void Start()
     {
@@ -68,6 +71,12 @@ public class VFXManager : MonoBehaviour
         ParticleSystem instantiatedSelected = Instantiate(selectPawnParticlePrefab, poolPosition, selectPawnParticlePrefab.transform.rotation, parentSelected).GetComponent<ParticleSystem>();
         instantiatedSelected.Stop();
         select = new PoolParticleEffects(PoolState.inPool, instantiatedSelected);
+
+        parentDraftSelected = new GameObject("SelectedDraftPawn").transform;
+        parentDraftSelected.parent = transform;
+        ParticleSystem instantiatedDraftSelected = Instantiate(selectDraftPawnParticlePrefab, poolPosition, selectDraftPawnParticlePrefab.transform.rotation, parentDraftSelected).GetComponent<ParticleSystem>();
+        instantiatedDraftSelected.Stop();
+        draftselect = new PoolParticleEffects(PoolState.inPool, instantiatedDraftSelected);
     }
 
     public void MarkPawn(Vector3 pawnPosition)
@@ -145,6 +154,22 @@ public class VFXManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SelectDraftPawn(Vector3 pawndraftposition)
+    {
+        if (draftselect.state == PoolState.inUse)
+            DeselectPawn();
+        draftselect.particle.transform.position = pawndraftposition;
+        draftselect.particle.Play();
+        draftselect.state = PoolState.inUse;
+    }
+
+    public void DeselectDraftPawn()
+    {
+        draftselect.particle.Stop();
+        draftselect.particle.transform.position = poolPosition;
+        draftselect.state = PoolState.inPool;
     }
 
 }

@@ -1,0 +1,317 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1654196648849384}
+  m_IsPrefabParent: 1
+--- !u!1 &1654196648849384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4319059142053418}
+  - component: {fileID: 114963789058692300}
+  - component: {fileID: 114723618909212632}
+  - component: {fileID: 114616384863812216}
+  - component: {fileID: 114643060664840586}
+  - component: {fileID: 114893752617296308}
+  - component: {fileID: 114880029920021300}
+  - component: {fileID: 114770459697291012}
+  - component: {fileID: 114626067402029720}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4319059142053418
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114616384863812216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833f4dfc717626a44a0e1fdc69c3bc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114626067402029720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8798a4e11300a134caee0f8ecb39fd0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundActive: 0
+  GeneralAudioSource: {fileID: 0}
+  buttonselection: {fileID: 8300000, guid: c4d9b453aef04344a9d950d6e5147939, type: 3}
+  selectnextbutton: {fileID: 8300000, guid: f63a5441c6a15ed429870b333a81e575, type: 3}
+  togglebutton: {fileID: 8300000, guid: 46e72c84d50dbab4da19bb9e2d492b9e, type: 3}
+  factionslected: {fileID: 8300000, guid: c4e84d7ad0c83c04d95f5547f7d12319, type: 3}
+--- !u!114 &114643060664840586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028a7926a8cbe57429f75d6763107a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTurnText: {fileID: 0}
+  superattackText: {fileID: 0}
+  p1PickingText: {fileID: 0}
+  p2PickingText: {fileID: 0}
+  p1placingText: {fileID: 0}
+  p2placingText: {fileID: 0}
+  MBlueBarReady: {fileID: 0}
+  MBlueBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MGreenBarReady: {fileID: 0}
+  MGreenBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MRedBarReady: {fileID: 0}
+  MRedBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SBlueBarReady: {fileID: 0}
+  SBlueBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SGreenBarReady: {fileID: 0}
+  SGreenBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SRedBarReady: {fileID: 0}
+  SRedBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  choosingPhaseText: {fileID: 0}
+  p1ChoosingPanel: {fileID: 0}
+  p2ChoosingPanel: {fileID: 0}
+  p1ChoosingTextMy: {fileID: 0}
+  p2ChoosingTextMy: {fileID: 0}
+  p1ChoosingTextEnemy: {fileID: 0}
+  p2ChoosingTextEnemy: {fileID: 0}
+  TitleScreen: {fileID: 0}
+  factionUI: {fileID: 0}
+  draftUI: {fileID: 0}
+  choosingUi: {fileID: 0}
+  placingUI: {fileID: 0}
+  gameUI: {fileID: 0}
+  fadeinoutmenu: {fileID: 0}
+  MainMenu: {fileID: 0}
+  StartMenuButton: {fileID: 0}
+  MagicButton: {fileID: 0}
+  ScienceButton: {fileID: 0}
+  pausePanel: {fileID: 0}
+  ResumePauseButton: {fileID: 0}
+  RestartPauseButton: {fileID: 0}
+  QuitPauseButton: {fileID: 0}
+  winScreen: {fileID: 0}
+  gameResult: {fileID: 0}
+--- !u!114 &114723618909212632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39ec0d1efc22f94c9c41f6e5af71b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTurns: 0
+  turnsWithoutAttack: 0
+  mainCam: {fileID: 0}
+  draftCam: {fileID: 0}
+  magicPlacementLight: {fileID: 0}
+  sciencePlacementLight: {fileID: 0}
+  centralLight: {fileID: 0}
+--- !u!114 &114770459697291012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0da4eb6c1ae9564c80191a8f0bed73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joy1Confirm: 350
+  joy2Confirm: 370
+  joy1SelectNextPawnRight: 355
+  joy1SelectNextPawnLeft: 354
+  joy2SelectNextPawnRight: 375
+  joy2SelectNextPawnLeft: 374
+  joy1Attack: 351
+  joy2Attack: 371
+  joy1ActiveSuperAttack: 353
+  joy2ActiveSuperAttack: 373
+  joy1PassTurn: 356
+  joy2PassTurn: 376
+  joy1StartDraft: 357
+  joyPause: 337
+--- !u!114 &114880029920021300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa11a849d73ef794d99a5ab079a07dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolPosition: {x: 1000, y: 1000, z: 1000}
+  selectDraftPawnParticlePrefab: {fileID: 1294362423601174, guid: 069ecaa28f0ca804984045ef80284eeb,
+    type: 2}
+  selectPawnParticlePrefab: {fileID: 1438370527451020, guid: 9dc9b014c5b92ef438f94058768c7b3f,
+    type: 2}
+  attackMarkerParticlePrefab: {fileID: 1408250317327876, guid: 2369d84d84ebdd847a6839cecea54687,
+    type: 2}
+  maxMarker: 4
+  trapTilePrefab: {fileID: 1429235154793992, guid: d0d9f1dd08dd19d40962bf198728e019,
+    type: 2}
+  maxTrapTile: 16
+--- !u!114 &114893752617296308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34a9b281ceda4947a71a273108fcadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DraftPawnsPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  DraftPawnsParticles:
+  - {fileID: 1227054708432294, guid: e7709759155e2d04e82c7937eef02e47, type: 2}
+  - {fileID: 1136782977091002, guid: 0c250606e19531b4e8b41fa832801249, type: 2}
+  - {fileID: 1392414376560950, guid: f1f2b356fca5dc54b8e076399be404fb, type: 2}
+  - {fileID: 1029087808245626, guid: 1d472909932a4a84abac22b8edc1bff6, type: 2}
+  - {fileID: 1843633533410980, guid: 300c612c48a3ad143abc27dad2c26450, type: 2}
+  - {fileID: 1084255320408842, guid: 9a5794872b845db45a6ec1047b0bb251, type: 2}
+  magic_pawns_picks: 
+  science_pawns_picks: 
+  hasDrafted: 0
+  p1_picks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  p2_picks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  draftButton: {fileID: 0}
+--- !u!114 &114963789058692300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1426caf1a0f6ca469a430b83fc8df49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MagicElements: {fileID: 0}
+  ScienceElements: {fileID: 0}
+  pawns: []
+  pawnSelected: {fileID: 0}
+  _superAttack: 0
+  CanSuperAttack: 0
+  pawnsToPlace: 0
+  magicPawns: []
+  sciencePawns: []
+  MagicPawnIndex: 0
+  SciencePawnIndex: 0
+  magictiles: 0
+  sciencetiles: 0
+  boxesArray: []
+  placingsLeft: 0
+  p1Faction: 0
+  p2Faction: 0
+  turnManager: {fileID: 0}
+  draftManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  vfx: {fileID: 0}
+  pause: 0

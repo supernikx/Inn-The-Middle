@@ -729,20 +729,18 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public void SetPawnsPattern()
     {
-        int j = 0;
-        int k = 0;
-        for (int i = 0; i < pawns.Count; i++)
+        int i = 0;
+        foreach (Pawn p in magicPawns)
         {
-            if (pawns[i].faction == Factions.Magic)
-            {
-                pawns[i].ChangePattern(draftManager.magic_pawns_picks[j]);
-                j++;
-            }
-            else if (pawns[i].faction == Factions.Science)
-            {
-                pawns[i].ChangePattern(draftManager.science_pawns_picks[k]);
-                k++;
-            }
+            p.ChangePattern(draftManager.magic_pawns_picks[i]);
+            i++;
+        }
+
+        int j = 0;
+        foreach (Pawn p in sciencePawns)
+        {
+            p.ChangePattern(draftManager.science_pawns_picks[j]);
+            j++;
         }
     }
 
