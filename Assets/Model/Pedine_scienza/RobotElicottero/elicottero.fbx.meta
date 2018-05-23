@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 04062474687e3b14582ba2d2e9f391f8
-timeCreated: 1526232752
+guid: ccf091ad9a3ab9b45ae1e7cc684c476c
+timeCreated: 1527088899
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -58,14 +58,11 @@ ModelImporter:
     4300010: propeller1
     4300012: Head
     7400000: Idle
-    7400002: Take_Bomb
-    7400004: move_forward
-    7400006: Attack
-    7400008: move_backward
-    7400010: stop
-    7400012: hit
-    7400014: death
-    7400016: move_loop
+    7400002: move_loop
+    7400004: attack
+    7400006: attack_end
+    7400008: hit
+    7400010: death
     9500000: //RootNode
     13700000: Bomb1
     13700002: finger1

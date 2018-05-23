@@ -28,7 +28,8 @@ public class JoyStickChecker : MonoBehaviour
         string[] joysticks = Input.GetJoystickNames();
         if (joysticks.Length > 0)
         {
-            if (string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1]))
+
+            if ((joysticks.Length == 1 && string.IsNullOrEmpty(joysticks[0]) || (joysticks.Length >= 1 && string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1]))))
             {
                 if (zerojoystick)
                 {
@@ -41,7 +42,7 @@ public class JoyStickChecker : MonoBehaviour
                     EventManager.OnJoystickDisconnected();
                 }
             }
-            if ((joysticks.Length==1 && !string.IsNullOrEmpty(joysticks[0])) || (joysticks.Length >= 1 && (!string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1])) || (string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))))
+            if ((joysticks.Length == 1 && !string.IsNullOrEmpty(joysticks[0])) || (joysticks.Length >= 2 && (!string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1])) || (joysticks.Length >= 2 && string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))))
             {
                 if (onejoystick)
                 {
@@ -90,6 +91,4 @@ public class JoyStickChecker : MonoBehaviour
         joystickcheck = CheckConncetedController();
         StartCoroutine(joystickcheck);
     }
-
-
 }
