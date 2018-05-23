@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
-using UnityEngine.UI;
-using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -300,6 +298,8 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator StartGameRoutine()
     {
+        bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
+        EventSystem.current.SetSelectedGameObject(null);
         fadeinoutmenu.SetTrigger("Fade");
         yield return new WaitForSeconds(1f);
         MainMenu.SetActive(false);

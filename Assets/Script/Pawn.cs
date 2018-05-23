@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Pawn : MonoBehaviour
 {
@@ -53,7 +50,6 @@ public class Pawn : MonoBehaviour
     [Header("Placing Settings")]
     public int projectionPlacingStartPositionIndex1;
     public int projectionPlacingStartPositionIndex2;
-    public bool placed;
     [HideInInspector]
     public int projectionPlacingPositionIndex1;
     [HideInInspector]

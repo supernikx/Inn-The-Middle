@@ -41,7 +41,7 @@ public class JoyStickChecker : MonoBehaviour
                     EventManager.OnJoystickDisconnected();
                 }
             }
-            if (!string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1]) || string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))
+            if ((joysticks.Length==1 && !string.IsNullOrEmpty(joysticks[0])) || (joysticks.Length >= 1 && (!string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1])) || (string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))))
             {
                 if (onejoystick)
                 {
@@ -57,7 +57,7 @@ public class JoyStickChecker : MonoBehaviour
                         EventManager.OnJoystickRiconnected();
                 }
             }
-            else if (!string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))
+            else if (joysticks.Length >= 2 && !string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))
             {
                 if (twojoystick)
                 {

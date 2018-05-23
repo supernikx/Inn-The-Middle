@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -703,7 +701,6 @@ public class BoardManager : MonoBehaviour
                 case TurnManager.MacroPhase.placing:
                     if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.placing)
                     {
-                        Debug.Log("In Macro Fase Placing");
                         if ((turnManager.CurrentPlayerTurn == selected.faction) && !selected.currentBox)
                         {
                             if (pawnSelected != null)

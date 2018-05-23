@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public enum Factions { Magic = 1, Science = 2 };
 
@@ -111,7 +107,7 @@ public class TurnManager : MonoBehaviour
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
-                //CurrentPlayerTurn = PlayerTurn.P1_turn;
+                BoardManager.Instance.uiManager.UIChange();
                 break;
             case PlayTurnState.animation:
                 break;
@@ -125,9 +121,11 @@ public class TurnManager : MonoBehaviour
                     BoardManager.Instance.DeselectPawn();
                 }
                 BoardManager.Instance.CheckPhaseControll();
+                BoardManager.Instance.uiManager.UIChange();
                 break;
             case PlayTurnState.movementattack:
                 BoardManager.Instance.SelectNextPawn(Directions.idle);
+                BoardManager.Instance.uiManager.UIChange();
                 break;
             case PlayTurnState.attack:
                 if (!BoardManager.Instance.pawnSelected.CheckAttackPattern())
@@ -138,11 +136,11 @@ public class TurnManager : MonoBehaviour
                 {
                     BoardManager.Instance.pawnSelected.MarkAttackPawn();
                 }
+                BoardManager.Instance.uiManager.UIChange();
                 break;
             default:
                 break;
         }
-        BoardManager.Instance.uiManager.UIChange();
     }
 
     /// <summary>
@@ -197,12 +195,16 @@ public class TurnManager : MonoBehaviour
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.placing:
+                Debug.Log("Sei nella fase di posizionamento");
                 centralLight.enabled = false;
                 magicPlacementLight.enabled = true;
                 sciencePlacementLight.enabled = true;
-                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
+                mainCam.GetComponent<Animator>().SetTrigger("StartGame");
+                CurrentTurnState = PlayTurnState.choosing;
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;               
                 break;
             case MacroPhase.game:
+                Debug.Log("Start Game");
                 magicPlacementLight.enabled = false;
                 sciencePlacementLight.enabled = false;
                 centralLight.enabled = true;
@@ -260,7 +262,6 @@ public class TurnManager : MonoBehaviour
         switch (CurrentMacroPhase)
         {
             case MacroPhase.menu:
-                CustomLogger.Log("Sei nella fase di menu");
                 break;
             case MacroPhase.faction:
                 break;
