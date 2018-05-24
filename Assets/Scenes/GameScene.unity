@@ -4857,7 +4857,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1602650197}
+      objectReference: {fileID: 715391650}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -5687,7 +5687,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 31.06
+      value: 18.6
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5707,21 +5707,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1750791568520612, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_Name
-      value: Pawn3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex1
-      value: 3
+      value: Pawn2
       objectReference: {fileID: 0}
     - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
         type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
@@ -6503,6 +6498,37 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!84 &715391650
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 588
+  m_Height: 330
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &719104535
 GameObject:
   m_ObjectHideFlags: 0
@@ -7038,7 +7064,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 18.59
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7058,16 +7084,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1750791568520612, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_Name
-      value: Pawn2
+      value: Pawn3
       objectReference: {fileID: 0}
     - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
         type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
@@ -9038,37 +9064,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945551988}
---- !u!84 &949968358
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 588
-  m_Height: 330
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &977655052
 GameObject:
   m_ObjectHideFlags: 0
@@ -11667,6 +11662,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1249411611}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
+--- !u!84 &1255497297
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 588
+  m_Height: 330
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1259723102
 GameObject:
   m_ObjectHideFlags: 0
@@ -13119,16 +13145,6 @@ Prefab:
       propertyPath: m_Name
       value: Pawn4
       objectReference: {fileID: 0}
-    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex1
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex2
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
   m_IsPrefabParent: 0
@@ -14431,8 +14447,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084659158}
-  - {fileID: 376892478}
   - {fileID: 640089419}
+  - {fileID: 376892478}
   - {fileID: 1395726993}
   - {fileID: 670626904}
   m_Father: {fileID: 0}
@@ -14800,37 +14816,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!84 &1602650197
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 588
-  m_Height: 330
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1605280316
 GameObject:
   m_ObjectHideFlags: 0
@@ -18767,11 +18752,11 @@ Prefab:
       propertyPath: m_Name
       value: Pawn1
       objectReference: {fileID: 0}
-    - target: {fileID: 95271260250721970, guid: 8be777130cdb015419112095136271fd,
+    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
         type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 671d75c7b0f39d441ac2fa140a6f742d, type: 2}
+      propertyPath: projectionPlacingStartPositionIndex2
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
   m_IsPrefabParent: 0

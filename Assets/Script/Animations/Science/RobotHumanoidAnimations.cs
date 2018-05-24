@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class RobotHumanoidAnimations : PawnAnimationManager
 {
-    Vector3 _startRotation;
-    Transform _myPosition;
+    Vector3 startRotation;
+    Transform myPosition;
 
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
@@ -14,33 +14,35 @@ public class RobotHumanoidAnimations : PawnAnimationManager
         PlayAttackAnimation();
     }
 
-    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 startRotation)
+    public override void MovementAnimation(Transform _myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
         PlayMovementAnimation(true);
-        _startRotation = startRotation;
-        _myPosition = myPosition;
+        startRotation = _startRotation;
+        myPosition = _myPosition;
         StartCoroutine(Movement(targetPosition, speed));
     }
 
     private IEnumerator Movement(Vector3 _targetPosition, float _speed)
     {
-        Tween movement = _myPosition.DOMove(_targetPosition, _speed);
+        Tween movement = myPosition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
-        if (_myPosition.eulerAngles.x == _startRotation.x && _myPosition.eulerAngles.y == _startRotation.y && _myPosition.eulerAngles.z == _startRotation.z)
+        if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)
         {
+            PlayMovementAnimation(false);
             OnMovementEnd();
         }
         else
         {           
-            PlayJumpAnimation();
-        }
-        PlayMovementAnimation(false);
+            PlayJumpAnimation(true);
+            PlayMovementAnimation(false);
+        }       
     }
 
     private IEnumerator JumpRotate()
     {
-        Tween rotate = _myPosition.DORotate(_startRotation, 1f);
+        Tween rotate = myPosition.DORotate(startRotation, 1f);
         yield return rotate.WaitForCompletion();
+        PlayJumpAnimation(false);
         OnMovementEnd();
     }
 }

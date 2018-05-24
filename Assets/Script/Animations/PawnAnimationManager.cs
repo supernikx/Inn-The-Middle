@@ -101,10 +101,13 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
             OnMovementEnd();
     }
 
-    public void PlayJumpAnimation()
+    /// <summary>
+    /// Funzione che attiva il trigger Jump per l'animazione di salto
+    /// </summary>
+    public void PlayJumpAnimation(bool _jump)
     {
         if (animator.runtimeAnimatorController != null)
-            animator.SetTrigger("Jump");
+            animator.SetBool("Jump",_jump);
         else
             OnDamagedEnd();
     }

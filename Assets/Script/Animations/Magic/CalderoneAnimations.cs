@@ -31,19 +31,21 @@ public class CalderoneAnimations : PawnAnimationManager
         yield return movement.WaitForCompletion();
         if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)
         {
+            PlayMovementAnimation(false);
             OnMovementEnd();
         }
         else
         {
-            PlayJumpAnimation();
+            PlayJumpAnimation(true);
+            PlayMovementAnimation(false);
         }
-        PlayMovementAnimation(false);
     }
 
     private IEnumerator JumpRotation()
     {
         Tween rotate = myPosition.DORotate(startRotation, 1f);
-        yield return rotate.WaitForCompletion();       
+        yield return rotate.WaitForCompletion();
+        PlayJumpAnimation(false);
         OnMovementEnd();
     }
 }
