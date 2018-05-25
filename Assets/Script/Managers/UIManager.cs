@@ -310,6 +310,7 @@ public class UIManager : MonoBehaviour
         MainMenu.SetActive(false);
         factionUI.SetActive(true);
         EventSystem.current.SetSelectedGameObject(MagicButton);
+        bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.idle;
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
     }
 
@@ -321,6 +322,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator FactionChoosenCoroutine()
     {
+        bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
         EventSystem.current.SetSelectedGameObject(null);
         fadeinoutmenu.SetTrigger("Fade");
         yield return new WaitForSeconds(1f);

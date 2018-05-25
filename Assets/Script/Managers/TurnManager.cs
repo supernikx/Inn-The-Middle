@@ -39,7 +39,7 @@ public class TurnManager : MonoBehaviour
     }
 
     /// <summary> Stato per indicare la fase corrente del macroturno PlayTurn </summary>
-    public enum PlayTurnState { choosing, placing, animation, check, movementattack, attack };
+    public enum PlayTurnState { choosing, placing, animation, check, movementattack, attack, idle };
     /// <summary> PlayTurnState corrente </summary>
     private PlayTurnState _currentTurnState;
     public PlayTurnState CurrentTurnState
@@ -138,6 +138,8 @@ public class TurnManager : MonoBehaviour
                 }
                 BoardManager.Instance.uiManager.UIChange();
                 break;
+            case PlayTurnState.idle:
+                break;
             default:
                 break;
         }
@@ -171,6 +173,8 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.attack:
                 if (CurrentTurnState != PlayTurnState.movementattack && CurrentTurnState != PlayTurnState.animation)
                     return false;
+                return true;
+            case PlayTurnState.idle:
                 return true;
             default:
                 return false;

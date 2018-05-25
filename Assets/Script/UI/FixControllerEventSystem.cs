@@ -14,7 +14,7 @@ public class FixControllerEventSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {		
-        if ((BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.menu && BoardManager.Instance.turnManager.CurrentTurnState != TurnManager.PlayTurnState.animation) || BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction || BoardManager.Instance.pause)
+        if ((BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.menu && BoardManager.Instance.turnManager.CurrentTurnState != TurnManager.PlayTurnState.animation) || (BoardManager.Instance.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.faction && BoardManager.Instance.turnManager.CurrentTurnState != TurnManager.PlayTurnState.animation) || BoardManager.Instance.pause)
         {
             if (EventSystem.current.currentSelectedGameObject != storedSelected)
             {

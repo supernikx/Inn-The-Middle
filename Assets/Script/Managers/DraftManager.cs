@@ -107,7 +107,7 @@ public class DraftManager : MonoBehaviour
                 break;
         }
         bm.uiManager.UpdateDraftChoose();
-        DraftPawns[draftpawnindex].pawnparticle.GetComponent<ParticleSystem>().Stop();
+        DraftPawns[draftpawnindex].pawnparticle.SetActive(false);
         DraftPawns.Remove(DraftPawns[draftpawnindex]);
         picksleft--;
         if (picksleft == 0 || DraftPawns.Count == 0)
