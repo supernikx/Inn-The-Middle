@@ -4398,7 +4398,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1899642944}
+      objectReference: {fileID: 2038198518}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -4479,6 +4479,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &567496650
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 882
+  m_Height: 496
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &575800625
 GameObject:
   m_ObjectHideFlags: 0
@@ -12776,7 +12807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPosition: {x: 1000, y: 1000, z: 1000}
-  selectDraftPawnParticlePrefab: {fileID: 1294362423601174, guid: 069ecaa28f0ca804984045ef80284eeb,
+  selectDraftPawnParticlePrefab: {fileID: 1409525551374778, guid: 4d321f88628db8f4486444f0df9d0ffd,
     type: 2}
   selectPawnParticlePrefab: {fileID: 1438370527451020, guid: 9dc9b014c5b92ef438f94058768c7b3f,
     type: 2}
@@ -14181,37 +14212,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561944695}
---- !u!84 &1571151965
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 882
-  m_Height: 496
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1576500896
 GameObject:
   m_ObjectHideFlags: 0
@@ -14851,12 +14851,12 @@ MonoBehaviour:
   - {fileID: 55682649}
   - {fileID: 1576500897}
   DraftPawnsParticles:
-  - {fileID: 1227054708432294, guid: e7709759155e2d04e82c7937eef02e47, type: 2}
-  - {fileID: 1136782977091002, guid: 0c250606e19531b4e8b41fa832801249, type: 2}
+  - {fileID: 1712949396251340, guid: f3a7ff3f71723a146b9669ac24d2fd07, type: 2}
+  - {fileID: 1817995552215642, guid: cc8f6f47775755846a5386d5b7aac579, type: 2}
   - {fileID: 1392414376560950, guid: f1f2b356fca5dc54b8e076399be404fb, type: 2}
-  - {fileID: 1029087808245626, guid: 1d472909932a4a84abac22b8edc1bff6, type: 2}
-  - {fileID: 1843633533410980, guid: 300c612c48a3ad143abc27dad2c26450, type: 2}
-  - {fileID: 1084255320408842, guid: 9a5794872b845db45a6ec1047b0bb251, type: 2}
+  - {fileID: 1465095300988754, guid: ca288a775f53c6f4784fa0fa3dafa5ba, type: 2}
+  - {fileID: 1958157794658536, guid: bedc45d48fb891848a192c64eeda480f, type: 2}
+  - {fileID: 1316797363862628, guid: 8cfea2e5fbdec2d4792521172e593945, type: 2}
   magic_pawns_picks: 
   science_pawns_picks: 
   hasDrafted: 0
@@ -17087,37 +17087,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1896823450}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
---- !u!84 &1899642944
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 882
-  m_Height: 496
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1908511642
 GameObject:
   m_ObjectHideFlags: 0
@@ -18227,6 +18196,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2034789049}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
+--- !u!84 &2038198518
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 882
+  m_Height: 496
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2050212950
 GameObject:
   m_ObjectHideFlags: 0
