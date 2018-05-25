@@ -298,7 +298,6 @@ public class BoardManager : MonoBehaviour
                 p1Faction = Factions.Science;
                 p2Faction = Factions.Magic;
             }
-            turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
         }
     }
 

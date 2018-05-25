@@ -192,6 +192,7 @@ public class TurnManager : MonoBehaviour
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
             case MacroPhase.draft:
+                SoundManager.instance.StopMenuMusic();
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.placing:
@@ -278,7 +279,7 @@ public class TurnManager : MonoBehaviour
                         BoardManager.Instance.uiManager.choosingUi.SetActive(true);
                         CurrentMacroPhase = MacroPhase.placing;
                     }
-                    else
+                    else if (BoardManager.Instance.draftManager.DraftPawns.Count>0)
                     {
                         BoardManager.Instance.draftManager.SelectNextDraftPawn(Directions.idle);
                     }

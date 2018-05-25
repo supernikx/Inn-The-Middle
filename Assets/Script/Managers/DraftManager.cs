@@ -29,8 +29,6 @@ public class DraftManager : MonoBehaviour
     int picksleft;
     BoardManager bm;
     public bool hasDrafted;
-    public Image[] magic_picks, science_picks;
-    public GameObject draftButton;
 
     private void Start()
     {
@@ -47,12 +45,12 @@ public class DraftManager : MonoBehaviour
             foreach (Transform t in DraftPawnsPositions)
             {
                 int indexNumber = Random.Range(0, DraftPawnsParticles.Count);
-                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, DraftPawnsParticles[indexNumber].transform.rotation,transform);
+                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, DraftPawnsParticles[indexNumber].transform.rotation, transform);
                 DraftPawns.Add(new DraftPawn(instantiateddraftpawn, indexNumber));
                 instantiateddraftpawn.GetComponent<ParticleSystem>().Play();
             }
             hasDrafted = true;
-            draftButton.SetActive(false);
+            bm.uiManager.UIChange();
             SelectNextDraftPawn(Directions.idle);
         }
     }
@@ -71,6 +69,22 @@ public class DraftManager : MonoBehaviour
                 if (draftpawnindex < 0)
                     draftpawnindex = 0;
                 break;
+            case Directions.up:
+                int pastindexup = draftpawnindex;
+                draftpawnindex -= DraftPawns.Count / 2;
+                if (draftpawnindex < 0)
+                    draftpawnindex = pastindexup;
+                else if (draftpawnindex > DraftPawns.Count - 1)
+                    draftpawnindex = pastindexup;
+                break;
+            case Directions.down:
+                int pastindexdown = draftpawnindex;
+                draftpawnindex += DraftPawns.Count / 2;
+                if (draftpawnindex < 0)
+                    draftpawnindex = pastindexdown;
+                else if (draftpawnindex > DraftPawns.Count - 1)
+                    draftpawnindex = pastindexdown;
+                break;
             case Directions.idle:
                 if (draftpawnindex > DraftPawns.Count - 1)
                     draftpawnindex = DraftPawns.Count - 1;
@@ -87,53 +101,12 @@ public class DraftManager : MonoBehaviour
         {
             case Factions.Magic:
                 magic_pawns_picks.Add(DraftPawns[draftpawnindex].patternindex);
-                switch (DraftPawns[draftpawnindex].patternindex)
-                {
-                    case 0:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.blue;
-                        break;
-                    case 1:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.green;
-                        break;
-                    case 2:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.yellow;
-                        break;
-                    case 3:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.red;
-                        break;
-                    case 4:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.white;
-                        break;
-                    case 5:
-                        magic_picks[magic_pawns_picks.Count - 1].color = Color.black;
-                        break;
-                }
                 break;
             case Factions.Science:
                 science_pawns_picks.Add(DraftPawns[draftpawnindex].patternindex);
-                switch (DraftPawns[draftpawnindex].patternindex)
-                {
-                    case 0:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.blue;
-                        break;
-                    case 1:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.green;
-                        break;
-                    case 2:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.yellow;
-                        break;
-                    case 3:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.red;
-                        break;
-                    case 4:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.white;
-                        break;
-                    case 5:
-                        science_picks[science_pawns_picks.Count - 1].color = Color.black;
-                        break;
-                }
                 break;
         }
+        bm.uiManager.UpdateDraftChoose();
         DraftPawns[draftpawnindex].pawnparticle.GetComponent<ParticleSystem>().Stop();
         DraftPawns.Remove(DraftPawns[draftpawnindex]);
         picksleft--;

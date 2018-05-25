@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -14,9 +15,7 @@ public class UIManager : MonoBehaviour
     [Header("Turn Text")]
     public TextMeshProUGUI gameTurnText;
     public GameObject superattackText;
-    public GameObject p1PickingText;
-    public GameObject p2PickingText;
-    public GameObject p1placingText, p2placingText;
+    public GameObject MagicPlacingText, SciencePlacingText;
 
     [Header("Magic Elements")]
     public GameObject MBlueBarReady;
@@ -67,6 +66,12 @@ public class UIManager : MonoBehaviour
     [Header("Faction Chooice")]
     public GameObject MagicButton;
     public GameObject ScienceButton;
+
+    [Header("Draft")]
+    public GameObject MagicPickingText;
+    public GameObject SciencePickingText;
+    public GameObject StartDraftButton;
+    public Image[] magic_picks, science_picks;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
@@ -308,6 +313,22 @@ public class UIManager : MonoBehaviour
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
     }
 
+    public void FactionChoosen(int factionID)
+    {
+        bm.FactionChosen(factionID);
+        StartCoroutine(FactionChoosenCoroutine());
+    }
+
+    private IEnumerator FactionChoosenCoroutine()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        factionUI.SetActive(false);
+        draftUI.SetActive(true);
+        bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
+    }
+
     /// <summary>
     /// Funzione del pulsante tutorial che mostra il tutorial del gioco
     /// </summary>
@@ -335,15 +356,20 @@ public class UIManager : MonoBehaviour
                 MainMenu.SetActive(true);
                 break;
             case TurnManager.MacroPhase.draft:
+                if (bm.draftManager.hasDrafted)
+                {
+                    StartDraftButton.SetActive(false);
+                }
+                
                 switch (tm.CurrentPlayerTurn)
                 {
                     case Factions.Magic:
-                        p1PickingText.SetActive(true);
-                        p2PickingText.SetActive(false);
+                        MagicPickingText.SetActive(true);
+                        SciencePickingText.SetActive(false);
                         break;
                     case Factions.Science:
-                        p1PickingText.SetActive(false);
-                        p2PickingText.SetActive(true);
+                        MagicPickingText.SetActive(false);
+                        SciencePickingText.SetActive(true);
                         break;
                 }
                 break;
@@ -357,12 +383,12 @@ public class UIManager : MonoBehaviour
                         switch (tm.CurrentPlayerTurn)
                         {
                             case Factions.Magic:
-                                p1placingText.SetActive(true);
-                                p2placingText.SetActive(false);
+                                MagicPlacingText.SetActive(true);
+                                SciencePlacingText.SetActive(false);
                                 break;
                             case Factions.Science:
-                                p1placingText.SetActive(false);
-                                p2placingText.SetActive(true);
+                                MagicPlacingText.SetActive(false);
+                                SciencePlacingText.SetActive(true);
                                 break;
                         }
                         break;
@@ -496,6 +522,73 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateDraftChoose()
+    {
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                for (int i = 0; i < bm.draftManager.magic_pawns_picks.Count; i++)
+                {
+                    if (!magic_picks[i].enabled)
+                    {
+                        magic_picks[i].enabled = true;
+                        switch (bm.draftManager.magic_pawns_picks[i])
+                        {
+                            case 0:
+                                magic_picks[i].color = Color.blue;
+                                break;
+                            case 1:
+                                magic_picks[i].color = Color.green;
+                                break;
+                            case 2:
+                                magic_picks[i].color = Color.yellow;
+                                break;
+                            case 3:
+                                magic_picks[i].color = Color.red;
+                                break;
+                            case 4:
+                                magic_picks[i].color = Color.white;
+                                break;
+                            case 5:
+                                magic_picks[i].color = Color.black;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case Factions.Science:
+                for (int i = 0; i < bm.draftManager.science_pawns_picks.Count; i++)
+                {
+                    if (!science_picks[i].enabled)
+                    {
+                        science_picks[i].enabled = true;
+                        switch (bm.draftManager.science_pawns_picks[i])
+                        {
+                            case 0:
+                                science_picks[i].color = Color.blue;
+                                break;
+                            case 1:
+                                science_picks[i].color = Color.green;
+                                break;
+                            case 2:
+                                science_picks[i].color = Color.yellow;
+                                break;
+                            case 3:
+                                science_picks[i].color = Color.red;
+                                break;
+                            case 4:
+                                science_picks[i].color = Color.white;
+                                break;
+                            case 5:
+                                science_picks[i].color = Color.black;
+                                break;
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
     public void PassTurn()
     {
         if (!bm.pause && (tm.CurrentTurnState == TurnManager.PlayTurnState.attack || tm.CurrentTurnState == TurnManager.PlayTurnState.movementattack))
@@ -518,7 +611,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FocusStartButtonMenu());
     }
 
-    //Funzione provvisoria
     public void ActiveSuperAttackText()
     {
         if (BoardManager.Instance.superAttack)

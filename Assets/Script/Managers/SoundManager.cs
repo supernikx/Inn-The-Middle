@@ -3,7 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    public bool SoundActive;
+    public static SoundManager instance;
+
+    public bool _SoundActive;
+    public bool SoundActive {
+        get
+        {
+            return _SoundActive;
+        }
+        set
+        {
+            _SoundActive = value;
+            if (SoundActive && !MusicAudioSource.isPlaying)
+            {
+                MusicAudioSource.Play();
+            }
+            else if (!SoundActive && MusicAudioSource.isPlaying)
+            {
+                MusicAudioSource.Pause();
+            }
+        }
+    }
+    public AudioSource MusicAudioSource;
     public AudioSource GeneralAudioSource;
 
     [Header("Clips Menu")]
@@ -11,6 +32,11 @@ public class SoundManager : MonoBehaviour {
     public AudioClip selectnextbutton;
     public AudioClip togglebutton;
     public AudioClip factionslected;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -68,5 +94,10 @@ public class SoundManager : MonoBehaviour {
                 GeneralAudioSource.Play();
             }
         }
+    }
+
+    public void StopMenuMusic()
+    {
+        MusicAudioSource.Stop();
     }
 }

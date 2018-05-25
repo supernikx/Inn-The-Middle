@@ -604,6 +604,26 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                         {
                             XStickJoy1 = false;
                         }
+
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") != 0)
+                        {
+                            if (YStickJoy1 == false)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
+                                }
+                                YStickJoy1 = true;
+                            }
+                        }
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == 0)
+                        {
+                            YStickJoy1 = false;
+                        }
                     }
                     else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
                     {
@@ -630,6 +650,26 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                         if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == 0)
                         {
                             XStickJoy2 = false;
+                        }
+
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") != 0)
+                        {
+                            if (YStickJoy2 == false)
+                            {
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
+                                }
+                                YStickJoy2 = true;
+                            }
+                        }
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == 0)
+                        {
+                            YStickJoy2 = false;
                         }
                     }
                 }
