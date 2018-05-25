@@ -309,6 +309,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         MainMenu.SetActive(false);
         factionUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
         EventSystem.current.SetSelectedGameObject(MagicButton);
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.idle;
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
@@ -328,6 +329,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         factionUI.SetActive(false);
         draftUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.draft;
     }
 

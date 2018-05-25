@@ -33,6 +33,28 @@ public class SoundManager : MonoBehaviour {
     public AudioClip togglebutton;
     public AudioClip factionslected;
 
+    private void OnEnable()
+    {
+        EventManager.OnPause += OnGamePause;
+        EventManager.OnUnPause += OnGameUnPause;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnPause -= OnGamePause;
+        EventManager.OnUnPause -= OnGameUnPause;
+    }
+
+    private void OnGamePause()
+    {
+        MusicAudioSource.Pause();
+    }
+
+    private void OnGameUnPause()
+    {
+        MusicAudioSource.Play();
+    }
+
     private void Awake()
     {
         instance = this;

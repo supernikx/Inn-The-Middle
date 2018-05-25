@@ -196,7 +196,7 @@ public class TurnManager : MonoBehaviour
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
             case MacroPhase.draft:
-                SoundManager.instance.StopMenuMusic();
+                //SoundManager.instance.StopMenuMusic();
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.placing:

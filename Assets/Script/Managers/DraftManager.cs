@@ -18,6 +18,7 @@ public class DraftPawn
 
 public class DraftManager : MonoBehaviour
 {
+    public Transform VFXParent;
     public List<DraftPawn> DraftPawns;
     public List<Transform> DraftPawnsPositions;
     public List<GameObject> DraftPawnsParticles;
@@ -45,7 +46,7 @@ public class DraftManager : MonoBehaviour
             foreach (Transform t in DraftPawnsPositions)
             {
                 int indexNumber = Random.Range(0, DraftPawnsParticles.Count);
-                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, DraftPawnsParticles[indexNumber].transform.rotation, transform);
+                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, new Quaternion (0,0,0,0), VFXParent);
                 DraftPawns.Add(new DraftPawn(instantiateddraftpawn, indexNumber));
                 instantiateddraftpawn.GetComponent<ParticleSystem>().Play();
             }
