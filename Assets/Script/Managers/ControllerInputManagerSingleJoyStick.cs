@@ -254,49 +254,61 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
 
                 if (bm.draftManager.hasDrafted)
                 {
-                    if (Input.GetKeyDown(joyConfirm))
+                    if (!bm.draftManager.draftEnd)
                     {
-                        bm.draftManager.ChooseSelectedDraftPawn();
-                    }
-
-                    if (Input.GetAxisRaw("JoyStick_HorizontalAxis") != 0)
-                    {
-                        if (XStickJoy == false)
+                        if (Input.GetKeyDown(joyConfirm))
                         {
-                            if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == +1)
+                            bm.draftManager.ChooseSelectedDraftPawn();
+                        }
+
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis") != 0)
+                        {
+                            if (XStickJoy == false)
                             {
-                                bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                }
+                                XStickJoy = true;
                             }
-                            else if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == -1)
+                        }
+                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == 0)
+                        {
+                            XStickJoy = false;
+                        }
+
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis") != 0)
+                        {
+                            if (YStickJoy == false)
                             {
-                                bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                if (Input.GetAxisRaw("JoyStick_VerticalAxis") == +1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
+                                }
+                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis") == -1)
+                                {
+                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
+                                }
+                                YStickJoy = true;
                             }
-                            XStickJoy = true;
+                        }
+                        if (Input.GetAxisRaw("JoyStick_VerticalAxis") == 0)
+                        {
+                            YStickJoy = false;
                         }
                     }
-                    if (Input.GetAxisRaw("JoyStick_HorizontalAxis") == 0)
+                    else
                     {
-                        XStickJoy = false;
-                    }
-
-                    if (Input.GetAxisRaw("JoyStick_VerticalAxis") != 0)
-                    {
-                        if (YStickJoy == false)
+                        if (Input.GetKeyDown(joyPause))
                         {
-                            if (Input.GetAxisRaw("JoyStick_VerticalAxis") == +1)
-                            {
-                                bm.draftManager.SelectNextDraftPawn(Directions.up);
-                            }
-                            else if (Input.GetAxisRaw("JoyStick_VerticalAxis") == -1)
-                            {
-                                bm.draftManager.SelectNextDraftPawn(Directions.down);
-                            }
-                            YStickJoy = true;
+                            bm.draftManager.p1StartPressed = true;
+                            bm.draftManager.p2StartPressed = true;
+                            bm.turnManager.ChangeTurn();
                         }
-                    }
-                    if (Input.GetAxisRaw("JoyStick_VerticalAxis") == 0)
-                    {
-                        YStickJoy = false;
                     }
                 }
             }

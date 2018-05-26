@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     public GameObject p2ChoosingTextEnemy;
 
     [Header("UI Holders references")]
-    
+
     public GameObject TitleScreen;
     public GameObject factionUI;
     public GameObject draftUI;
@@ -133,13 +133,22 @@ public class UIManager : MonoBehaviour
     private void OnGameUnPause()
     {
         pausePanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(FocusOnReumeButton(false));
     }
 
     private void OnGamePause()
     {
         pausePanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(ResumePauseButton);
+        StartCoroutine(FocusOnReumeButton(true));
+    }
+
+    private IEnumerator FocusOnReumeButton(bool focus)
+    {
+        yield return null;
+        if (focus)
+            EventSystem.current.SetSelectedGameObject(ResumePauseButton);
+        else
+            EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void JoystickDisconnected()
@@ -364,17 +373,25 @@ public class UIManager : MonoBehaviour
                 {
                     StartDraftButton.SetActive(false);
                 }
-                
-                switch (tm.CurrentPlayerTurn)
+
+                if (!bm.draftManager.draftEnd)
                 {
-                    case Factions.Magic:
-                        MagicPickingText.SetActive(true);
-                        SciencePickingText.SetActive(false);
-                        break;
-                    case Factions.Science:
-                        MagicPickingText.SetActive(false);
-                        SciencePickingText.SetActive(true);
-                        break;
+                    switch (tm.CurrentPlayerTurn)
+                    {
+                        case Factions.Magic:
+                            MagicPickingText.SetActive(true);
+                            SciencePickingText.SetActive(false);
+                            break;
+                        case Factions.Science:
+                            MagicPickingText.SetActive(false);
+                            SciencePickingText.SetActive(true);
+                            break;
+                    }
+                }
+                else
+                {
+                    SciencePickingText.SetActive(false);
+                    MagicPickingText.SetActive(false);
                 }
                 break;
             case TurnManager.MacroPhase.placing:

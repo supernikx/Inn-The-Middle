@@ -40,6 +40,8 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
     public KeyCode joy2PassTurn;
     public KeyCode joy1StartDraft;
     public KeyCode joyPause;
+    public KeyCode joy1Start;
+    public KeyCode joy2Start;
 
     private void Start()
     {
@@ -578,98 +580,115 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
 
                 if (bm.draftManager.hasDrafted)
                 {
-                    if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
+                    if (!bm.draftManager.draftEnd)
                     {
-                        if (Input.GetKeyDown(joy1Confirm))
+                        if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
                         {
-                            bm.draftManager.ChooseSelectedDraftPawn();
-                        }
-
-                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") != 0)
-                        {
-                            if (XStickJoy1 == false)
+                            if (Input.GetKeyDown(joy1Confirm))
                             {
-                                if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == +1)
+                                bm.draftManager.ChooseSelectedDraftPawn();
+                            }
+
+                            if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") != 0)
+                            {
+                                if (XStickJoy1 == false)
                                 {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                    if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == +1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                    }
+                                    else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == -1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                    }
+                                    XStickJoy1 = true;
                                 }
-                                else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == -1)
+                            }
+                            if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == 0)
+                            {
+                                XStickJoy1 = false;
+                            }
+
+                            if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") != 0)
+                            {
+                                if (YStickJoy1 == false)
                                 {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                    if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == +1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.up);
+                                    }
+                                    else if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == -1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.down);
+                                    }
+                                    YStickJoy1 = true;
                                 }
-                                XStickJoy1 = true;
+                            }
+                            if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == 0)
+                            {
+                                YStickJoy1 = false;
                             }
                         }
-                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_1") == 0)
+                        else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
                         {
-                            XStickJoy1 = false;
-                        }
-
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") != 0)
-                        {
-                            if (YStickJoy1 == false)
+                            if (Input.GetKeyDown(joy2Confirm))
                             {
-                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == +1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
-                                }
-                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == -1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
-                                }
-                                YStickJoy1 = true;
+                                bm.draftManager.ChooseSelectedDraftPawn();
                             }
-                        }
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_1") == 0)
-                        {
-                            YStickJoy1 = false;
+
+                            if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") != 0)
+                            {
+                                if (XStickJoy2 == false)
+                                {
+                                    if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == +1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.right);
+                                    }
+                                    else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == -1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.left);
+                                    }
+                                    XStickJoy2 = true;
+                                }
+                            }
+                            if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == 0)
+                            {
+                                XStickJoy2 = false;
+                            }
+
+                            if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") != 0)
+                            {
+                                if (YStickJoy2 == false)
+                                {
+                                    if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == +1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.up);
+                                    }
+                                    else if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == -1)
+                                    {
+                                        bm.draftManager.SelectNextDraftPawn(Directions.down);
+                                    }
+                                    YStickJoy2 = true;
+                                }
+                            }
+                            if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == 0)
+                            {
+                                YStickJoy2 = false;
+                            }
                         }
                     }
-                    else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
+                    else
                     {
-                        if (Input.GetKeyDown(joy2Confirm))
+                        if (Input.GetKeyDown(joy1Start) && !bm.draftManager.p1StartPressed)
                         {
-                            bm.draftManager.ChooseSelectedDraftPawn();
+                            bm.draftManager.p1StartPressed = true;
+                            bm.turnManager.ChangeTurn();
                         }
 
-                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") != 0)
+                        if (Input.GetKeyDown(joy2Start) && !bm.draftManager.p2StartPressed)
                         {
-                            if (XStickJoy2 == false)
-                            {
-                                if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == +1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.right);
-                                }
-                                else if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == -1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.left);
-                                }
-                                XStickJoy2 = true;
-                            }
-                        }
-                        if (Input.GetAxisRaw("JoyStick_HorizontalAxis_2") == 0)
-                        {
-                            XStickJoy2 = false;
-                        }
-
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") != 0)
-                        {
-                            if (YStickJoy2 == false)
-                            {
-                                if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == +1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
-                                }
-                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == -1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
-                                }
-                                YStickJoy2 = true;
-                            }
-                        }
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis_2") == 0)
-                        {
-                            YStickJoy2 = false;
+                            bm.draftManager.p2StartPressed = true;
+                            bm.turnManager.ChangeTurn();
                         }
                     }
                 }

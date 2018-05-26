@@ -30,6 +30,7 @@ public class DraftManager : MonoBehaviour
     int picksleft;
     BoardManager bm;
     public bool hasDrafted;
+    public bool draftEnd, p1StartPressed, p2StartPressed;
 
     private void Start()
     {
@@ -37,6 +38,10 @@ public class DraftManager : MonoBehaviour
         DraftPawns = new List<DraftPawn>();
         picksleft = 1;
         draftpawnindex = 0;
+        draftEnd = false;
+        hasDrafted = false;
+        p1StartPressed = false;
+        p2StartPressed = false;
     }
 
     public void DraftRandomPattern()
@@ -46,7 +51,7 @@ public class DraftManager : MonoBehaviour
             foreach (Transform t in DraftPawnsPositions)
             {
                 int indexNumber = Random.Range(0, DraftPawnsParticles.Count);
-                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, new Quaternion (0,0,0,0), VFXParent);
+                GameObject instantiateddraftpawn = Instantiate(DraftPawnsParticles[indexNumber], t.position, new Quaternion(0, 0, 0, 0), VFXParent);
                 DraftPawns.Add(new DraftPawn(instantiateddraftpawn, indexNumber));
                 instantiateddraftpawn.GetComponent<ParticleSystem>().Play();
             }
@@ -111,7 +116,19 @@ public class DraftManager : MonoBehaviour
         DraftPawns[draftpawnindex].pawnparticle.SetActive(false);
         DraftPawns.Remove(DraftPawns[draftpawnindex]);
         picksleft--;
-        if (picksleft == 0 || DraftPawns.Count == 0)
+        if (DraftPawns.Count == 1)
+        {
+            bm.turnManager.ChangeTurn();
+            ChooseSelectedDraftPawn();
+            return;
+        }
+        else if (DraftPawns.Count == 0)
+        {
+            bm.vfx.DeselectDraftPawn();
+            draftEnd = true;
+            bm.turnManager.ChangeTurn();
+        }
+        else if (picksleft == 0)
         {
             bm.turnManager.ChangeTurn();
             picksleft = 2;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public enum Factions { Magic = 1, Science = 2 };
 
@@ -273,7 +274,7 @@ public class TurnManager : MonoBehaviour
             case MacroPhase.draft:
                 if (BoardManager.Instance.draftManager.hasDrafted)
                 {
-                    if (BoardManager.Instance.draftManager.DraftPawns.Count == 0)
+                    if (BoardManager.Instance.draftManager.DraftPawns.Count == 0 && BoardManager.Instance.draftManager.draftEnd && BoardManager.Instance.draftManager.p1StartPressed && BoardManager.Instance.draftManager.p2StartPressed)
                     {
                         draftCam.enabled = false;
                         mainCam.enabled = true;
@@ -281,7 +282,7 @@ public class TurnManager : MonoBehaviour
                         BoardManager.Instance.SetPawnsPattern();
                         BoardManager.Instance.uiManager.draftUI.SetActive(false);
                         BoardManager.Instance.uiManager.choosingUi.SetActive(true);
-                        CurrentMacroPhase = MacroPhase.placing;
+                        StartCoroutine(StartPlacingDelay());
                     }
                     else if (BoardManager.Instance.draftManager.DraftPawns.Count>0)
                     {
@@ -347,6 +348,12 @@ public class TurnManager : MonoBehaviour
             Debug.Log("PASSATI 8 TURNI");
             BoardManager.Instance.WinCondition(true);
         }
+    }
+
+    private IEnumerator StartPlacingDelay()
+    {
+        yield return null;
+        CurrentMacroPhase = MacroPhase.placing;
     }
 
     /// <summary>

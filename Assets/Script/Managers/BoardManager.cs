@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 
 public class BoardManager : MonoBehaviour
@@ -93,6 +94,12 @@ public class BoardManager : MonoBehaviour
     private void OnGameUnPause()
     {
         Time.timeScale = 1f;
+        StartCoroutine(UnPauseCoroutine());
+    }
+
+    public IEnumerator UnPauseCoroutine()
+    {
+        yield return null;
         pause = false;
     }
 
