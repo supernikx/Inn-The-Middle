@@ -11,6 +11,8 @@ public class RobotLameAnimations : PawnAnimationManager
     Vector3 ChainsawkStartPosition;
     int bounceCount;
     List<Vector3> bouncePositions = new List<Vector3>();
+    Vector3 startrotation;
+    Transform myposition;
 
     protected override void Start()
     {
@@ -19,9 +21,11 @@ public class RobotLameAnimations : PawnAnimationManager
         ChainsawkStartPosition = Chainsaw.transform.position;
     }
 
-    public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
+    public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
-        myPosition.eulerAngles = startRotation;
+        startrotation = _startRotation;
+        myposition = _myPosition;
+        _myPosition.eulerAngles = _startRotation;
         ChainsawkStartPosition = Chainsaw.transform.position;
         bouncePositions.Clear();
         bounceCount = 0;
@@ -58,19 +62,35 @@ public class RobotLameAnimations : PawnAnimationManager
         animator.SetTrigger("AttackEnd");
     }
 
-    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
+    public override void MovementAnimation(Transform _myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
+        myposition = _myPosition;
+        startrotation = _startRotation;
         PlayMovementAnimation(true);
-        StartCoroutine(Movement(myPosition, targetPosition, speed, _startRotation));
+        StartCoroutine(Movement(targetPosition, speed, _startRotation));
     }
 
-    private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
+    private IEnumerator Movement( Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
-        Tween movement = _myPosition.DOMove(_targetPosition, _speed);
+        Tween movement = myposition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
-        PlayMovementAnimation(false);
-        //Tween rotate = _myPosition.DORotate(_startRotation, 1f);
-        //yield return rotate.WaitForCompletion();
+        if (myposition.eulerAngles.x == startrotation.x && myposition.eulerAngles.y == startrotation.y && myposition.eulerAngles.z == startrotation.z)
+        {
+            PlayMovementAnimation(false);
+            OnMovementEnd();
+        }
+        else
+        {
+            PlayMovementAnimation(false);
+            PlayJumpAnimation(true);
+        }
+    }
+
+    private IEnumerator JumpRotation()
+    {
+        Tween rotate = myposition.DORotate(startrotation, 1f);
+        yield return rotate.WaitForCompletion();
+        PlayJumpAnimation(false);
         OnMovementEnd();
     }
 }
