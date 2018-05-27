@@ -3709,37 +3709,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 306941309}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
---- !u!84 &320907471
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 684
-  m_Height: 384
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &329288517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,7 +5540,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1869720082}
+      objectReference: {fileID: 2135415271}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -7270,6 +7239,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1892296578}
+        m_MethodName: ActiveDeactiveTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &697537775
@@ -7513,7 +7493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &744571691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15943,6 +15923,37 @@ Transform:
   m_PrefabParentObject: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd,
     type: 2}
   m_PrefabInternal: {fileID: 1395726992}
+--- !u!84 &1405482251
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 684
+  m_Height: 384
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1406606830
 GameObject:
   m_ObjectHideFlags: 0
@@ -21093,37 +21104,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846008271}
---- !u!84 &1869720082
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 684
-  m_Height: 384
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1875312178
 GameObject:
   m_ObjectHideFlags: 0
@@ -21887,9 +21867,36 @@ Prefab:
       propertyPath: joy2Start
       value: 377
       objectReference: {fileID: 0}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: tutorialtoggle
+      value: 
+      objectReference: {fileID: 697537777}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: soundtoggle
+      value: 
+      objectReference: {fileID: 1448993457}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1892296577 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1654196648849384, guid: 68f5057250c54534eb0d8e502fc56f25,
+    type: 2}
+  m_PrefabInternal: {fileID: 1892296576}
+--- !u!114 &1892296578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892296577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213afb774f1219649a219c331c591633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TutorialActive: 0
 --- !u!1 &1893501061
 GameObject:
   m_ObjectHideFlags: 0
@@ -24320,6 +24327,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2114245453}
+--- !u!84 &2135415271
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 684
+  m_Height: 384
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2135816615
 GameObject:
   m_ObjectHideFlags: 0

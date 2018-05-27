@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour
     [Header("Main Menu")]
     public GameObject MainMenu;
     public GameObject StartMenuButton;
+    public ChangeButtonImage soundtoggle;
+    public ChangeButtonImage tutorialtoggle;
 
     [Header("Faction Chooice")]
     public GameObject MagicButton;
@@ -106,7 +108,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            MainMenu.SetActive(false);
+            MainMenu.SetActive(true);
             TitleScreen.SetActive(true);
         }
     }

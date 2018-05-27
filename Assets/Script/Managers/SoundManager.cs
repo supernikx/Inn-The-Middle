@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
     public static SoundManager instance;
 
     public bool _SoundActive;
-    public bool SoundActive {
+    public bool SoundActive
+    {
         get
         {
             return _SoundActive;
@@ -17,10 +19,12 @@ public class SoundManager : MonoBehaviour {
             if (SoundActive && !MusicAudioSource.isPlaying)
             {
                 MusicAudioSource.Play();
+                PlayerPrefs.SetInt("Sound", 1);
             }
             else if (!SoundActive && MusicAudioSource.isPlaying)
             {
                 MusicAudioSource.Pause();
+                PlayerPrefs.SetInt("Sound", 0);
             }
         }
     }
@@ -62,7 +66,28 @@ public class SoundManager : MonoBehaviour {
 
     private void Start()
     {
-        SoundActive = true;
+        int soundindex = PlayerPrefs.GetInt("Sound", -1);
+        if (soundindex == -1)
+        {
+            PlayerPrefs.SetInt("Sound", 1);
+            SoundActive = true;
+        }
+        else
+        {
+            switch (soundindex)
+            {
+                case 0:
+                    SoundActive = false;
+                    BoardManager.Instance.uiManager.soundtoggle.ChangeImage();
+                    break;
+                case 1:
+                    SoundActive = true;
+                    break;
+                default:
+                    Debug.Log("Dato salvato non valido");
+                    break;
+            }
+        }
     }
 
     public void ActiveDeactiveSound()

@@ -19,16 +19,6 @@ public class ChangeButtonImage : MonoBehaviour {
     {
         comp = GetComponent<Image>();
         button = GetComponent<Button>();
-    }
-
-    private void OnDisable()
-    {
-        defaultimage = comp.sprite;
-        pressed = false;
-    }
-
-    private void Start()
-    {
         if (defaultimage != null)
         {
             comp.sprite = defaultimage;
@@ -37,6 +27,12 @@ public class ChangeButtonImage : MonoBehaviour {
         {
             defaultimage = comp.sprite;
         }
+        pressed = false;
+    }
+
+    private void OnDisable()
+    {
+        defaultimage = comp.sprite;
         pressed = false;
     }
 
