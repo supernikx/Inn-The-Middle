@@ -5,25 +5,46 @@ using DG.Tweening;
 
 public class RagnoMagicoAnimations : PawnAnimationManager
 {
-    public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
+    Vector3 startRotation;
+    Transform myPosition;
+
+    public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
-        myPosition.eulerAngles = startRotation;
+        startRotation = _startRotation;
+        myPosition = _myPosition;
+        _myPosition.eulerAngles = _startRotation;
         PlayAttackAnimation();
     }
 
-    public override void MovementAnimation(Transform myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
+    public override void MovementAnimation(Transform _myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
+        startRotation = _startRotation;
+        myPosition = _myPosition;
         PlayMovementAnimation(true);
-        StartCoroutine(Movement(myPosition, targetPosition, speed, _startRotation));
+        StartCoroutine(Movement(targetPosition, speed));
     }
 
-    private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
+    private IEnumerator Movement(Vector3 _targetPosition, float _speed)
     {
-        Tween move = _myPosition.DOMove(_targetPosition, _speed);
+        Tween move = myPosition.DOMove(_targetPosition, _speed);
         yield return move.WaitForCompletion();
-        //Tween rotate = _myPosition.DORotate(_startRotation, 1f);
-        //yield return rotate.WaitForCompletion();
-        PlayMovementAnimation(false);
+        if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)
+        {
+            PlayMovementAnimation(false);
+            OnMovementEnd();
+        }
+        else
+        {
+            PlayJumpAnimation(true);
+            PlayMovementAnimation(false);
+        }
+    }
+
+    private IEnumerator JumpRotation()
+    {
+        Tween rotate = myPosition.DORotate(startRotation, 0.5f);
+        yield return rotate.WaitForCompletion();
+        PlayJumpAnimation(false);
         OnMovementEnd();
     }
 }
