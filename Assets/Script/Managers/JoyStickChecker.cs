@@ -11,6 +11,7 @@ public class JoyStickChecker : MonoBehaviour
     IEnumerator joystickcheck;
     StandaloneInputModule[] modules;
     bool zerojoystick, onejoystick, twojoystick;
+    List<int> connectedjoysticks;
 
     // Use this for initialization
     void Start()
@@ -18,6 +19,7 @@ public class JoyStickChecker : MonoBehaviour
         zerojoystick = true;
         onejoystick = true;
         twojoystick = true;
+        connectedjoysticks = new List<int>();
         modules = EventSystem.current.gameObject.GetComponents<StandaloneInputModule>();
         joystickcheck = CheckConncetedController();
         StartCoroutine(joystickcheck);
@@ -25,24 +27,17 @@ public class JoyStickChecker : MonoBehaviour
 
     private IEnumerator CheckConncetedController()
     {
+        connectedjoysticks.Clear();
         string[] joysticks = Input.GetJoystickNames();
-        if (joysticks.Length > 0)
+        for (int i = 0; i < joysticks.Length; i++)
         {
+            if (!string.IsNullOrEmpty(joysticks[i]))
+                connectedjoysticks.Add(i);
+        }
 
-            if ((joysticks.Length == 1 && string.IsNullOrEmpty(joysticks[0]) || (joysticks.Length >= 1 && string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1]))))
-            {
-                if (zerojoystick)
-                {
-                    onejoystick = true;
-                    twojoystick = true;
-                    zerojoystick = false;
-                    Debug.Log("0 joystick connessi");
-                    modules[0].enabled = false;
-                    modules[1].enabled = false;
-                    EventManager.OnJoystickDisconnected();
-                }
-            }
-            if ((joysticks.Length == 1 && !string.IsNullOrEmpty(joysticks[0])) || (joysticks.Length >= 2 && (!string.IsNullOrEmpty(joysticks[0]) && string.IsNullOrEmpty(joysticks[1])) || (joysticks.Length >= 2 && string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))))
+        if (connectedjoysticks.Count > 0)
+        {
+            if (connectedjoysticks.Count == 1)
             {
                 if (onejoystick)
                 {
@@ -58,7 +53,7 @@ public class JoyStickChecker : MonoBehaviour
                         EventManager.OnJoystickRiconnected();
                 }
             }
-            else if (joysticks.Length >= 2 && !string.IsNullOrEmpty(joysticks[0]) && !string.IsNullOrEmpty(joysticks[1]))
+            else if (connectedjoysticks.Count >= 2)
             {
                 if (twojoystick)
                 {
@@ -83,6 +78,8 @@ public class JoyStickChecker : MonoBehaviour
                 twojoystick = true;
                 zerojoystick = false;
                 Debug.Log("0 joystick connessi");
+                modules[0].enabled = false;
+                modules[1].enabled = false;
                 EventManager.OnJoystickDisconnected();
             }
         }
