@@ -75,22 +75,6 @@ public class DraftManager : MonoBehaviour
                 if (draftpawnindex < 0)
                     draftpawnindex = 0;
                 break;
-            case Directions.up:
-                int pastindexup = draftpawnindex;
-                draftpawnindex -= DraftPawns.Count / 2;
-                if (draftpawnindex < 0)
-                    draftpawnindex = pastindexup;
-                else if (draftpawnindex > DraftPawns.Count - 1)
-                    draftpawnindex = pastindexup;
-                break;
-            case Directions.down:
-                int pastindexdown = draftpawnindex;
-                draftpawnindex += DraftPawns.Count / 2;
-                if (draftpawnindex < 0)
-                    draftpawnindex = pastindexdown;
-                else if (draftpawnindex > DraftPawns.Count - 1)
-                    draftpawnindex = pastindexdown;
-                break;
             case Directions.idle:
                 if (draftpawnindex > DraftPawns.Count - 1)
                     draftpawnindex = DraftPawns.Count - 1;

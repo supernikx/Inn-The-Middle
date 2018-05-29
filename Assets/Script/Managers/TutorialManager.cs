@@ -41,7 +41,7 @@ public class TutorialManager : MonoBehaviour {
                     break;
                 case 1:
                     TutorialActive = true;
-                    BoardManager.Instance.uiManager.tutorialtoggle.ChangeImage();
+                    BoardManager.Instance.uiManager.tutorialtogglemenu.ChangeImage();
                     break;
                 default:
                     Debug.Log("Dato salvato non valido");

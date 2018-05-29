@@ -62,8 +62,8 @@ public class UIManager : MonoBehaviour
     [Header("Main Menu")]
     public GameObject MainMenu;
     public GameObject StartMenuButton;
-    public ChangeButtonImage soundtoggle;
-    public ChangeButtonImage tutorialtoggle;
+    public ChangeButtonImage soundtogglemenu;
+    public ChangeButtonImage tutorialtogglemenu;
 
     [Header("Faction Chooice")]
     public GameObject MagicButton;
@@ -80,6 +80,7 @@ public class UIManager : MonoBehaviour
     public GameObject ResumePauseButton;
     public GameObject RestartPauseButton;
     public GameObject QuitPauseButton;
+    public ChangeButtonImage soundtogglepause;
 
     [Header("Win Screen and texts")]
     public GameObject winScreen;
@@ -142,15 +143,7 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(true);
         StartCoroutine(FocusOnReumeButton(true));
-    }
-
-    private IEnumerator FocusOnReumeButton(bool focus)
-    {
-        yield return null;
-        if (focus)
-            EventSystem.current.SetSelectedGameObject(ResumePauseButton);
-        else
-            EventSystem.current.SetSelectedGameObject(null);
+        UpdateSoundUI();
     }
 
     private void JoystickDisconnected()
@@ -161,6 +154,15 @@ public class UIManager : MonoBehaviour
     private void JoystickRiconnected()
     {
         connectjoystick.SetActive(false);
+    }
+
+    private IEnumerator FocusOnReumeButton(bool focus)
+    {
+        yield return null;
+        if (focus)
+            EventSystem.current.SetSelectedGameObject(ResumePauseButton);
+        else
+            EventSystem.current.SetSelectedGameObject(null);
     }
 
     /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
@@ -609,6 +611,35 @@ public class UIManager : MonoBehaviour
                     }
                 }
                 break;
+        }
+    }
+
+    public void UpdateSoundUI()
+    {
+        bool pause = true;
+        if (!SoundManager.instance.SoundActive)
+        {
+            if (!pausePanel.activeSelf)
+            {
+                pausePanel.SetActive(true);
+                pause = false;
+            }
+            soundtogglepause.SetPressedImage();
+            if (!pause)
+                pausePanel.SetActive(false);
+            soundtogglemenu.SetPressedImage();
+        }
+        else
+        {
+            if (!pausePanel.activeSelf)
+            {
+                pausePanel.SetActive(true);
+                pause = false;
+            }
+            soundtogglepause.SetDefaultImage();
+            if (!pause)
+                pausePanel.SetActive(false);
+            soundtogglemenu.SetDefaultImage();
         }
     }
 

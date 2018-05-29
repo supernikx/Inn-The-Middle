@@ -280,26 +280,6 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                         {
                             XStickJoy = false;
                         }
-
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis") != 0)
-                        {
-                            if (YStickJoy == false)
-                            {
-                                if (Input.GetAxisRaw("JoyStick_VerticalAxis") == +1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.up);
-                                }
-                                else if (Input.GetAxisRaw("JoyStick_VerticalAxis") == -1)
-                                {
-                                    bm.draftManager.SelectNextDraftPawn(Directions.down);
-                                }
-                                YStickJoy = true;
-                            }
-                        }
-                        if (Input.GetAxisRaw("JoyStick_VerticalAxis") == 0)
-                        {
-                            YStickJoy = false;
-                        }
                     }
                     else
                     {

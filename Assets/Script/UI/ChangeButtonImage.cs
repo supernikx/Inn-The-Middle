@@ -30,12 +30,6 @@ public class ChangeButtonImage : MonoBehaviour {
         pressed = false;
     }
 
-    private void OnDisable()
-    {
-        defaultimage = comp.sprite;
-        pressed = false;
-    }
-
     public void ChangeImage()
     {
         pressed = !pressed;
@@ -58,6 +52,30 @@ public class ChangeButtonImage : MonoBehaviour {
             }            
         }
         button.spriteState = state;
+    }
+
+    public void SetPressedImage()
+    {
+        comp.sprite = pressedimage;
+        if (pressedHighlitedImage != null)
+        {
+            state = button.spriteState;
+            state.highlightedSprite = pressedHighlitedImage;
+        }
+        button.spriteState = state;
+        pressed = true;
+    }
+
+    public void SetDefaultImage()
+    {
+        comp.sprite = defaultimage;
+        if (defaultHighlitedImage != null)
+        {
+            state = button.spriteState;
+            state.highlightedSprite = defaultHighlitedImage;
+        }
+        button.spriteState = state;
+        pressed = false;
     }
 
 }

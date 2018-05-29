@@ -16,16 +16,30 @@ public class SoundManager : MonoBehaviour
         set
         {
             _SoundActive = value;
-            if (SoundActive && !MusicAudioSource.isPlaying)
+            if (!BoardManager.Instance.pause)
             {
-                MusicAudioSource.Play();
-                PlayerPrefs.SetInt("Sound", 1);
+                if (SoundActive && !MusicAudioSource.isPlaying)
+                {
+                    MusicAudioSource.Play();
+                    PlayerPrefs.SetInt("Sound", 1);
+                }
+                else if (!SoundActive && MusicAudioSource.isPlaying)
+                {
+                    MusicAudioSource.Pause();
+                    PlayerPrefs.SetInt("Sound", 0);
+                }
             }
-            else if (!SoundActive && MusicAudioSource.isPlaying)
+            else
             {
-                MusicAudioSource.Pause();
-                PlayerPrefs.SetInt("Sound", 0);
-            }
+                if (SoundActive)
+                {
+                    PlayerPrefs.SetInt("Sound", 1);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Sound", 0);
+                }
+            }            
         }
     }
     public AudioSource MusicAudioSource;
@@ -51,12 +65,14 @@ public class SoundManager : MonoBehaviour
 
     private void OnGamePause()
     {
-        MusicAudioSource.Pause();
+        if (SoundActive)
+            MusicAudioSource.Pause();
     }
 
     private void OnGameUnPause()
     {
-        MusicAudioSource.Play();
+        if (SoundActive)
+            MusicAudioSource.Play();
     }
 
     private void Awake()
@@ -78,7 +94,6 @@ public class SoundManager : MonoBehaviour
             {
                 case 0:
                     SoundActive = false;
-                    BoardManager.Instance.uiManager.soundtoggle.ChangeImage();
                     break;
                 case 1:
                     SoundActive = true;
@@ -88,6 +103,7 @@ public class SoundManager : MonoBehaviour
                     break;
             }
         }
+        BoardManager.Instance.uiManager.UpdateSoundUI();
     }
 
     public void ActiveDeactiveSound()
