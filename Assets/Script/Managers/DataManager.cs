@@ -17,10 +17,6 @@ public class DataManager : MonoBehaviour
         set
         {
             _SkipTitleScreen = value;
-            if (_SkipTitleScreen)
-            {
-                BoardManager.Instance.uiManager.UIChange();
-            }
         }
     }
 

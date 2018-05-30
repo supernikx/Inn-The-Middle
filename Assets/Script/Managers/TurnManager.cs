@@ -89,8 +89,8 @@ public class TurnManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mainCam.enabled = false;
-        draftCam.enabled = true;
+        mainCam.enabled = true;
+        draftCam.enabled = false;
         CurrentMacroPhase = MacroPhase.menu;
     }
 
@@ -194,6 +194,8 @@ public class TurnManager : MonoBehaviour
                 CustomLogger.Log("Sei nella fase di menu");
                 break;
             case MacroPhase.faction:
+                draftCam.enabled = true;
+                mainCam.enabled = false;
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
             case MacroPhase.draft:

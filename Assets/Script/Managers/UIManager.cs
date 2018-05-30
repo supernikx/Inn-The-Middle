@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            MainMenu.SetActive(true);
+            MainMenu.SetActive(false);
             TitleScreen.SetActive(true);
         }
     }
@@ -616,30 +616,50 @@ public class UIManager : MonoBehaviour
 
     public void UpdateSoundUI()
     {
-        bool pause = true;
+        bool flag = true;
         if (!SoundManager.instance.SoundActive)
         {
             if (!pausePanel.activeSelf)
             {
                 pausePanel.SetActive(true);
-                pause = false;
+                flag = false;
             }
             soundtogglepause.SetPressedImage();
-            if (!pause)
+            if (!flag)
                 pausePanel.SetActive(false);
+
+            flag = true;
+
+            if (!MainMenu.activeSelf)
+            {
+                MainMenu.SetActive(true);
+                flag = false;
+            }
             soundtogglemenu.SetPressedImage();
+            if (!flag)
+                MainMenu.SetActive(false);
         }
         else
         {
             if (!pausePanel.activeSelf)
             {
                 pausePanel.SetActive(true);
-                pause = false;
+                flag = false;
             }
             soundtogglepause.SetDefaultImage();
-            if (!pause)
+            if (!flag)
                 pausePanel.SetActive(false);
+
+            flag = true;
+
+            if (!MainMenu.activeSelf)
+            {
+                MainMenu.SetActive(true);
+                flag = false;
+            }
             soundtogglemenu.SetDefaultImage();
+            if (!flag)
+                MainMenu.SetActive(false);
         }
     }
 
@@ -662,6 +682,8 @@ public class UIManager : MonoBehaviour
         TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
         yield return new WaitForSeconds(1f);
         TitleScreen.SetActive(false);
+        MainMenu.SetActive(true);
+        yield return new WaitForSeconds(1.3f);
         StartCoroutine(FocusStartButtonMenu());
     }
 
