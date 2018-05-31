@@ -74,6 +74,8 @@ public class UIManager : MonoBehaviour
     public GameObject SciencePickingText;
     public GameObject StartDraftButton;
     public Image[] magic_picks, science_picks;
+    public GameObject MagicStartPressed;
+    public GameObject ScienceStartPressed;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
@@ -98,7 +100,11 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
+        #region Draft
         draftUI.SetActive(false);
+        MagicStartPressed.SetActive(false);
+        ScienceStartPressed.SetActive(false);
+        #endregion
         choosingUi.SetActive(false);
         factionUI.SetActive(false);
         if (DataManager.instance._SkipTitleScreen)
@@ -328,12 +334,20 @@ public class UIManager : MonoBehaviour
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
     }
 
+    /// <summary>
+    /// Funzione che chiama la coroutine FactionChosenCoroutine e che imposta la fazione scelta dal giocatore 1/2
+    /// </summary>
+    /// <param name="factionID"></param>
     public void FactionChoosen(int factionID)
     {
         bm.FactionChosen(factionID);
         StartCoroutine(FactionChoosenCoroutine());
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando è stata scelta la fazione ed esegue il fade fra le due fasi
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FactionChoosenCoroutine()
     {
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
@@ -396,6 +410,26 @@ public class UIManager : MonoBehaviour
                 {
                     SciencePickingText.SetActive(false);
                     MagicPickingText.SetActive(false);
+                    if (bm.draftManager.p1StartPressed)
+                        switch (bm.p1Faction)
+                        {
+                            case Factions.Magic:
+                                MagicStartPressed.SetActive(true);
+                                break;
+                            case Factions.Science:
+                                ScienceStartPressed.SetActive(true);
+                                break;
+                        }
+                    if (bm.draftManager.p2StartPressed)
+                        switch (bm.p2Faction)
+                        {
+                            case Factions.Magic:
+                                MagicStartPressed.SetActive(true);
+                                break;
+                            case Factions.Science:
+                                ScienceStartPressed.SetActive(true);
+                                break;
+                        }
                 }
                 break;
             case TurnManager.MacroPhase.placing:
@@ -470,6 +504,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta la tacca superattack ready nei contatori
+    /// </summary>
     private void UpdateReadyElement()
     {
         //Magic
@@ -547,6 +584,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che aggiorna le pedine scelta dai giocatori nella fase di draft
+    /// </summary>
     public void UpdateDraftChoose()
     {
         switch (bm.turnManager.CurrentPlayerTurn)
@@ -614,6 +654,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che aggiorna le icone del suono (main menù e draft)
+    /// </summary>
     public void UpdateSoundUI()
     {
         bool flag = true;
@@ -663,30 +706,32 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void PassTurn()
-    {
-        if (!bm.pause && (tm.CurrentTurnState == TurnManager.PlayTurnState.attack || tm.CurrentTurnState == TurnManager.PlayTurnState.movementattack))
-        {
-            tm.ChangeTurn();
-        }
-    }
-
+    /// <summary>
+    /// Funzione che imposta il focus del main menù sullo start button
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator FocusStartButtonMenu()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1.3f);
         EventSystem.current.SetSelectedGameObject(StartMenuButton);
     }
 
+    /// <summary>
+    /// Funzione che imposta lo skip del title screen per la prossima volta che si torna al main menù
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator SkipTitleScreen()
     {
         TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
         yield return new WaitForSeconds(1f);
         TitleScreen.SetActive(false);
         MainMenu.SetActive(true);
-        yield return new WaitForSeconds(1.3f);
         StartCoroutine(FocusStartButtonMenu());
     }
 
+    /// <summary>
+    /// Funzione che attiva il super-atacco
+    /// </summary>
     public void ActiveSuperAttackText()
     {
         if (BoardManager.Instance.superAttack)

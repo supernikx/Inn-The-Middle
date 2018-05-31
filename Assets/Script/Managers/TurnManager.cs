@@ -278,12 +278,6 @@ public class TurnManager : MonoBehaviour
                 {
                     if (BoardManager.Instance.draftManager.DraftPawns.Count == 0 && BoardManager.Instance.draftManager.draftEnd && BoardManager.Instance.draftManager.p1StartPressed && BoardManager.Instance.draftManager.p2StartPressed)
                     {
-                        draftCam.enabled = false;
-                        mainCam.enabled = true;
-                        BoardManager.Instance.vfx.DeselectDraftPawn();
-                        BoardManager.Instance.SetPawnsPattern();
-                        BoardManager.Instance.uiManager.draftUI.SetActive(false);
-                        BoardManager.Instance.uiManager.choosingUi.SetActive(true);
                         StartCoroutine(StartPlacingDelay());
                     }
                     else if (BoardManager.Instance.draftManager.DraftPawns.Count>0)
@@ -352,8 +346,20 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che fa iniziare la placing phase triggerando il fade dalla fase di draft a quella di placing
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator StartPlacingDelay()
     {
+        BoardManager.Instance.uiManager.fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        draftCam.enabled = false;
+        mainCam.enabled = true;
+        BoardManager.Instance.vfx.DeselectDraftPawn();
+        BoardManager.Instance.SetPawnsPattern();
+        BoardManager.Instance.uiManager.draftUI.SetActive(false);
+        BoardManager.Instance.uiManager.choosingUi.SetActive(true);
         yield return null;
         CurrentMacroPhase = MacroPhase.placing;
     }

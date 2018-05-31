@@ -151,19 +151,31 @@ public class BoardManager : MonoBehaviour
         sciencePlacing = new List<Pawn>();
         MagicPawnIndex = 0;
         SciencePawnIndex = 0;
-        foreach (Pawn p in pawns)
-        {
-            if (p.faction == Factions.Magic)
-            {
-                magicPawns.Add(p);
-            }
-            else if (p.faction == Factions.Science)
-            {
-                sciencePawns.Add(p);
-            }
-        }
+        SetupPawns();
         sciencePlacing = new List<Pawn>(sciencePawns);
         magicPlacing = new List<Pawn>(magicPawns);
+    }
+
+    void SetupPawns()
+    {
+        int magicnumber = 1;
+        int sciencenumber = 1;
+        while (magicPawns.Count < 4 || sciencePawns.Count < 4)
+        {
+            foreach (Pawn p in pawns)
+            {
+                if (p.faction == Factions.Magic && p.name == ("Pawn" + magicnumber))
+                {
+                    magicPawns.Add(p);
+                    magicnumber++;
+                }
+                else if (p.faction == Factions.Science && p.name == ("Pawn" + sciencenumber))
+                {
+                    sciencePawns.Add(p);
+                    sciencenumber++;
+                }
+            }
+        }
     }
 
     #region Movement
@@ -533,12 +545,12 @@ public class BoardManager : MonoBehaviour
             case Factions.Magic:
                 switch (nextpawn)
                 {
-                    case Directions.left:
+                    case Directions.right:
                         MagicPawnIndex--;
                         if (MagicPawnIndex < 0)
                             MagicPawnIndex = magicPawns.Count - 1;
                         break;
-                    case Directions.right:
+                    case Directions.left:
                         MagicPawnIndex++;
                         if (MagicPawnIndex > magicPawns.Count - 1)
                             MagicPawnIndex = 0;
@@ -555,12 +567,12 @@ public class BoardManager : MonoBehaviour
             case Factions.Science:
                 switch (nextpawn)
                 {
-                    case Directions.left:
+                    case Directions.right:
                         SciencePawnIndex++;
                         if (SciencePawnIndex > sciencePawns.Count - 1)
                             SciencePawnIndex = 0;
                         break;
-                    case Directions.right:
+                    case Directions.left:
                         SciencePawnIndex--;
                         if (SciencePawnIndex < 0)
                             SciencePawnIndex = sciencePawns.Count - 1;
@@ -617,12 +629,12 @@ public class BoardManager : MonoBehaviour
                     pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
                 switch (nextpawn)
                 {
-                    case Directions.left:
+                    case Directions.right:
                         MagicPawnIndex--;
                         if (MagicPawnIndex < 0)
                             MagicPawnIndex = magicPlacing.Count - 1;
                         break;
-                    case Directions.right:
+                    case Directions.left:
                         MagicPawnIndex++;
                         if (MagicPawnIndex > magicPlacing.Count - 1)
                             MagicPawnIndex = 0;
@@ -642,12 +654,12 @@ public class BoardManager : MonoBehaviour
                     pawnSelected.projections[pawnSelected.activePattern].SetActive(false);
                 switch (nextpawn)
                 {
-                    case Directions.left:
+                    case Directions.right:
                         SciencePawnIndex++;
                         if (SciencePawnIndex > sciencePlacing.Count - 1)
                             SciencePawnIndex = 0;
                         break;
-                    case Directions.right:
+                    case Directions.left:
                         SciencePawnIndex--;
                         if (SciencePawnIndex < 0)
                             SciencePawnIndex = sciencePlacing.Count - 1;
