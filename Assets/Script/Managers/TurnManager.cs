@@ -61,6 +61,7 @@ public class TurnManager : MonoBehaviour
 
     public int numberOfTurns;
     public int turnsWithoutAttack;
+    public bool CheckAlreadyDone;
 
     [Header("Camera references")]
     public Camera mainCam;
@@ -91,6 +92,7 @@ public class TurnManager : MonoBehaviour
     {
         mainCam.enabled = true;
         draftCam.enabled = false;
+        CheckAlreadyDone = false;
         CurrentMacroPhase = MacroPhase.menu;
     }
 
@@ -113,15 +115,17 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.animation:
                 break;
             case PlayTurnState.check:
-                BoardManager.Instance.superAttack = false;
-                BoardManager.Instance.uiManager.UIChange();
-                BoardManager.Instance.UnmarkAttackMarker();
-                BoardManager.Instance.CheckSuperAttack();
-                if (BoardManager.Instance.pawnSelected != null)
+                if (!CheckAlreadyDone)
                 {
-                    BoardManager.Instance.DeselectPawn();
+                    BoardManager.Instance.superAttack = false;
+                    BoardManager.Instance.UnmarkAttackMarker();
+                    BoardManager.Instance.CheckSuperAttack();
+                    if (BoardManager.Instance.pawnSelected != null)
+                    {
+                        BoardManager.Instance.DeselectPawn();
+                    }
+                    BoardManager.Instance.CheckPhaseControll();
                 }
-                BoardManager.Instance.CheckPhaseControll();
                 BoardManager.Instance.uiManager.UIChange();
                 break;
             case PlayTurnState.movementattack:
@@ -294,7 +298,7 @@ public class TurnManager : MonoBehaviour
                             CurrentTurnState = PlayTurnState.placing;
                         else
                         {
-                            BoardManager.Instance.SetPawnToChoose();
+                            BoardManager.Instance.SetPawnToChoose(true);
                         }
                         break;
                     case PlayTurnState.placing:
@@ -323,6 +327,7 @@ public class TurnManager : MonoBehaviour
                 }
                 break;
             case MacroPhase.game:
+                CheckAlreadyDone = false;
                 CurrentTurnState = PlayTurnState.check;
                 numberOfTurns++;
                 turnsWithoutAttack++;

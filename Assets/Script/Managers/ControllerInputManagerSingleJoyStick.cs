@@ -173,6 +173,16 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                         {
                             bm.Movement(true);
                         }
+
+                        if (Input.GetKeyDown(joySelectNextPawnRight))
+                        {
+                            bm.SelectNextPawnCheckPhase(Directions.right);
+                        }
+
+                        if (Input.GetKeyDown(joySelectNextPawnLeft))
+                        {
+                            bm.SelectNextPawnCheckPhase(Directions.left);
+                        }
                         break;
                     case TurnManager.PlayTurnState.movementattack:
                         if (Input.GetKeyDown(joyPassTurn))

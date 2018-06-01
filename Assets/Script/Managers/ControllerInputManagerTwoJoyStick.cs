@@ -291,6 +291,16 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             {
                                 bm.Movement(true);
                             }
+
+                            if (Input.GetKeyDown(joy1SelectNextPawnRight))
+                            {
+                                bm.SelectNextPawnCheckPhase(Directions.right);
+                            }
+
+                            if (Input.GetKeyDown(joy1SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnCheckPhase(Directions.left);
+                            }
                             break;
                         case TurnManager.PlayTurnState.movementattack:
                             if (Input.GetKeyDown(joy1PassTurn))
@@ -497,6 +507,16 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             if (Input.GetKeyDown(joy2Confirm))
                             {
                                 bm.Movement(true);
+                            }
+
+                            if (!bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnRight))
+                            {
+                                bm.SelectNextPawnCheckPhase(Directions.right);
+                            }
+
+                            if (!bm.superAttack && Input.GetKeyDown(joy2SelectNextPawnLeft))
+                            {
+                                bm.SelectNextPawnCheckPhase(Directions.left);
                             }
                             break;
                         case TurnManager.PlayTurnState.movementattack:

@@ -93,6 +93,7 @@ public class UIManager : MonoBehaviour
         bm = GetComponent<BoardManager>();
         tm = GetComponent<TurnManager>();
     }
+
     // Use this for initialization
     void Start()
     {
@@ -130,7 +131,6 @@ public class UIManager : MonoBehaviour
         EventManager.OnJoystickDisconnected += JoystickDisconnected;
         EventManager.OnJoystickRiconnected += JoystickRiconnected;
     }
-
     private void OnDisable()
     {
         EventManager.OnPause -= OnGamePause;
@@ -139,12 +139,18 @@ public class UIManager : MonoBehaviour
         EventManager.OnJoystickRiconnected -= JoystickRiconnected;
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando il gioco esce dalla pausa
+    /// </summary>
     private void OnGameUnPause()
     {
         pausePanel.SetActive(false);
         StartCoroutine(FocusOnReumeButton(false));
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando il gioco entra dalla pausa
+    /// </summary>
     private void OnGamePause()
     {
         pausePanel.SetActive(true);
@@ -152,16 +158,27 @@ public class UIManager : MonoBehaviour
         UpdateSoundUI();
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando il joystick si disconnette
+    /// </summary>
     private void JoystickDisconnected()
     {
         connectjoystick.SetActive(true);
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando il joystick si riconnette
+    /// </summary>
     private void JoystickRiconnected()
     {
         connectjoystick.SetActive(false);
     }
 
+    /// <summary>
+    /// Funzione che imposta il focus o lo disabilita sul pulsante resume del menù di pausa, in base al bool passato come parametro
+    /// </summary>
+    /// <param name="focus"></param>
+    /// <returns></returns>
     private IEnumerator FocusOnReumeButton(bool focus)
     {
         yield return null;
@@ -171,13 +188,18 @@ public class UIManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
     }
 
-    /// <summary> Funzione richiamabile per il tasto Resume del menu di pausa </summary>
+    /// <summary>
+    ///  Funzione richiamabile per il tasto Resume del menu di pausa
+    /// </summary>
     public void ResumeGame()
     {
         if (EventManager.OnUnPause != null)
             EventManager.OnUnPause();
     }
 
+    /// <summary>
+    /// Funzione che aggiorna i contatori degli elementi 
+    /// </summary>
     public void UpdateElementsUI()
     {
         int mredelements = bm.MagicElements.redElement;
@@ -260,7 +282,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void SetChoosingUI()
+    /// <summary>
+    /// Funzione che imposta l'ui della choosing phase
+    /// </summary>
+    public void SetChoosingUI()
     {
         if (tm.CurrentPlayerTurn == Factions.Magic)
         {
@@ -474,6 +499,7 @@ public class UIManager : MonoBehaviour
                         SetChoosingUI();
                         break;
                     case TurnManager.PlayTurnState.check:
+                        choosingUi.SetActive(false);
                         ActiveSuperAttackText();
                         UpdateReadyElement();
                         break;

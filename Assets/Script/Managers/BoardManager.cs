@@ -97,6 +97,10 @@ public class BoardManager : MonoBehaviour
         StartCoroutine(UnPauseCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine che viene chiamata quando si toglie la pausa
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator UnPauseCoroutine()
     {
         yield return null;
@@ -106,12 +110,18 @@ public class BoardManager : MonoBehaviour
     #endregion
     #region JoystickDisconected
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si disconnette un joystick
+    /// </summary>
     private void JoystickDisconnected()
     {
         Time.timeScale = 0f;
         pause = true;
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si riconnette un joystick
+    /// </summary>
     private void JoystickRiconnected()
     {
         if (!uiManager.pausePanel.activeSelf)
@@ -156,6 +166,9 @@ public class BoardManager : MonoBehaviour
         magicPlacing = new List<Pawn>(magicPawns);
     }
 
+    /// <summary>
+    /// Funzione che crea le 2 Liste di pedine Magic e Science nell'ordine corretto
+    /// </summary>
     void SetupPawns()
     {
         int magicnumber = 1;
@@ -194,6 +207,7 @@ public class BoardManager : MonoBehaviour
                 if (checkphase)
                 {
                     pawnSelected.OnMovementEnd += OnMovementCheckEnd;
+                    PawnToRandom.Remove(pawnSelected);
                 }
                 else
                 {
@@ -240,8 +254,11 @@ public class BoardManager : MonoBehaviour
                 }
                 break;
         }
-        DeselectPawn();
         turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+        if (PawnToRandom.Count > 0)
+            SelectNextPawnCheckPhase(Directions.idle);
+        else
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
     }
 
     /// <summary>
@@ -391,17 +408,6 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che viene chiamata quando viene uccisa una pedina nella fase di check perchè non aveva più caselle adiacenti disponbibili
-    /// </summary>
-    /// <param name="pawnKilled"></param>
-    private void OnPawnKilled(Pawn pawnKilled)
-    {
-        pawnKilled.OnDeathEnd -= OnPawnKilled;
-        DeselectPawn();
-        turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
-    }
-
-    /// <summary>
     /// Funzione che attiva/disattiv ail bool superattack
     /// </summary>
     public void ActiveSuperAttack()
@@ -431,40 +437,33 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Controlla se una pedina si trova su una casella non walkable la obbliga a muoversi e nel caso non ci siano caselle libere adiacenti la uccide
+    /// Funzione che viene chiamata all'inizio di ogni turno della fase di game e crea la lista di pedina colpite
     /// </summary>
+    List<Pawn> PawnToRandom = new List<Pawn>();
+    int checkpawnindex = 0;
     public void CheckPhaseControll()
     {
-        if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.check)
+        turnManager.CheckAlreadyDone = true;
+        PawnToRandom.Clear();
+        checkpawnindex = 0;
+        foreach (Pawn p in pawns)
         {
-            for (int i = 0; i < pawns.Count; i++)
+            if (!p.currentBox.walkable)
             {
-                if (!pawns[i].currentBox.walkable)
+                if (CheckFreeBoxes(p))
                 {
-                    if (CheckFreeBoxes(pawns[i]))
-                    {
-                        CustomLogger.Log(pawns[i] + " è in casella !walkable");
-                        PawnSelected(pawns[i]);
-                        if (pawns[i].randomized)
-                        {
-                            return;
-                        }
-                        pawns[i].RandomizePattern();
-                        return;
-                    }
-                    else
-                    {
-                        CustomLogger.Log(pawns[i] + " non ha caselle libere adiacenti");
-                        turnManager.CurrentTurnState = TurnManager.PlayTurnState.animation;
-                        pawns[i].OnDeathEnd += OnPawnKilled;
-                        pawns[i].KillPawn();
-                        return;
-                    }
+                    PawnToRandom.Add(p);
+                }
+                else
+                {
+                    p.KillPawn();
                 }
             }
-            DeselectPawn();
-            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
         }
+        if (PawnToRandom.Count > 0)
+            RandomizePatterns(PawnToRandom);
+        else
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
     }
 
     /// <summary>
@@ -678,6 +677,61 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che seleziona la prossima pedina della lista fra le pedine che sono state colpite e sono obbligate a spostarsi
+    /// </summary>
+    /// <param name="nextpawn"></param>
+    public void SelectNextPawnCheckPhase(Directions nextpawn)
+    {
+        switch (turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                switch (nextpawn)
+                {
+                    case Directions.right:
+                        checkpawnindex--;
+                        if (checkpawnindex < 0)
+                            checkpawnindex = PawnToRandom.Count - 1;
+                        break;
+                    case Directions.left:
+                        checkpawnindex++;
+                        if (checkpawnindex > PawnToRandom.Count - 1)
+                            checkpawnindex = 0;
+                        break;
+                    case Directions.idle:
+                        if (checkpawnindex > PawnToRandom.Count - 1)
+                            checkpawnindex = 0;
+                        else if (checkpawnindex < 0)
+                            checkpawnindex = PawnToRandom.Count - 1;
+                        break;
+                }
+                PawnSelected(PawnToRandom[checkpawnindex]);
+                break;
+            case Factions.Science:
+                switch (nextpawn)
+                {
+                    case Directions.right:
+                        checkpawnindex++;
+                        if (checkpawnindex > PawnToRandom.Count - 1)
+                            checkpawnindex = 0;
+                        break;
+                    case Directions.left:
+                        checkpawnindex--;
+                        if (checkpawnindex < 0)
+                            checkpawnindex = PawnToRandom.Count - 1;
+                        break;
+                    case Directions.idle:
+                        if (checkpawnindex < 0)
+                            checkpawnindex = PawnToRandom.Count - 1;
+                        else if (checkpawnindex > PawnToRandom.Count - 1)
+                            checkpawnindex = 0;
+                        break;
+                }
+                PawnSelected(PawnToRandom[checkpawnindex]);
+                break;
+        }
+    }
+
+    /// <summary>
     /// Funzione che imposta la variabile pawnSelected a null, imposta a false il bool selected
     /// </summary>
     public void DeselectPawn()
@@ -730,18 +784,38 @@ public class BoardManager : MonoBehaviour
                             vfx.SelectPawn(pawnSelected);
                         }
                     }
+                    else if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.choosing)
+                    {
+                        if (pawnSelected != null)
+                        {
+                            DeselectPawn();
+                        }
+                        selected.selected = true;
+                        pawnSelected = selected;
+                        vfx.SelectPawn(pawnSelected);
+                    }
                     break;
                 case TurnManager.MacroPhase.game:
                     switch (turnManager.CurrentTurnState)
                     {
                         case TurnManager.PlayTurnState.check:
-                            if (pawnSelected == null)
+                            if (pawnSelected != null)
                             {
-                                selected.selected = true;
-                                pawnSelected = selected;
-                                vfx.SelectPawn(pawnSelected);
-                                pawnSelected.ShowMovementBoxes();
+                                DeselectPawn();
                             }
+                            selected.selected = true;
+                            pawnSelected = selected;
+                            vfx.SelectPawn(pawnSelected);
+                            pawnSelected.ShowMovementBoxes();
+                            break;
+                        case TurnManager.PlayTurnState.choosing:
+                            if (pawnSelected != null)
+                            {
+                                DeselectPawn();
+                            }
+                            selected.selected = true;
+                            pawnSelected = selected;
+                            vfx.SelectPawn(pawnSelected);
                             break;
                         case TurnManager.PlayTurnState.movementattack:
                             if (pawnSelected != null)
@@ -784,24 +858,37 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Imposta la pedina di cui bisogna scegliere il pattern in base al turno del giocatore
     /// </summary>
-    public void SetPawnToChoose()
-    {
+    public void SetPawnToChoose(bool startchoose)
+    {        
         bool foundPawn = false;
         foreach (Pawn p in pawns)
         {
             if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
-                pawnSelected = p;
-                vfx.SelectPawn(pawnSelected);
+                PawnSelected(p);
                 foundPawn = true;
                 CustomLogger.Log("trovata una pedina");
                 break;
             }
         }
         if (foundPawn)
+        {
+            uiManager.SetChoosingUI();
             return;
-        turnManager.ChangeTurn();
-        CustomLogger.Log("Cambio turno");
+        }
+        else
+        {
+            if (startchoose)
+            {
+                turnManager.ChangeTurn();
+                CustomLogger.Log("Cambio turno");
+            }
+            else
+            {
+                turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+                SelectNextPawnCheckPhase(Directions.idle);
+            }
+        }
     }
 
     /// <summary>
@@ -820,8 +907,7 @@ public class BoardManager : MonoBehaviour
             }
             else if (turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game)
             {
-                uiManager.choosingUi.SetActive(false);
-                turnManager.CurrentTurnState = TurnManager.PlayTurnState.check;
+                SetPawnToChoose(false);
             }
         }
     }
@@ -852,6 +938,28 @@ public class BoardManager : MonoBehaviour
         else
         {
             vfx.ResetMark();
+        }
+    }
+
+    /// <summary>
+    /// Funzione che randomizza la lista di pedine che gli viene passata come parametro
+    /// </summary>
+    /// <param name="randomize"></param>
+    public void RandomizePatterns(List<Pawn> randomize)
+    {
+        foreach (Pawn p in randomize)
+        {
+            if (!p.randomized)
+                p.RandomizePattern();
+        }
+        if (CheckPawnToChoose())
+        {
+            turnManager.CurrentTurnState = TurnManager.PlayTurnState.choosing;
+            SetPawnToChoose(false);
+        }
+        else
+        {
+            SelectNextPawnCheckPhase(Directions.idle);
         }
     }
 
