@@ -617,37 +617,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 3977088}
---- !u!84 &5107289
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &5853127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,11 +3270,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
         type: 2}
-      propertyPath: speeds.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
       value: 2
       objectReference: {fileID: 0}
@@ -5787,37 +5751,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 530068666}
   m_Mesh: {fileID: 4300000, guid: 9ccfe7863d36aa147a0ad013cd1560ce, type: 3}
---- !u!84 &532660308
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &533929590 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4254654169152540, guid: 60da75f05310f4d4e807f811481595b7,
@@ -5886,7 +5819,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 5107289}
+      objectReference: {fileID: 2027650331}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -8911,6 +8844,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 780588041}
+--- !u!84 &794166248
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &824891457
 GameObject:
   m_ObjectHideFlags: 0
@@ -13064,6 +13028,11 @@ Prefab:
       propertyPath: m_Name
       value: Pawn1
       objectReference: {fileID: 0}
+    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
+        type: 2}
+      propertyPath: projectionPlacingStartPositionIndex2
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
   m_IsPrefabParent: 0
@@ -13404,11 +13373,6 @@ Prefab:
         type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
-      propertyPath: speeds.Array.data[0]
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
@@ -18779,11 +18743,6 @@ Prefab:
       propertyPath: m_Name
       value: Pawn4
       objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex2
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
   m_IsPrefabParent: 0
@@ -24030,6 +23989,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019558274}
+--- !u!84 &2027650331
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2034789049
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class GolemAnimations : PawnAnimationManager
 {
-
+    public ParticleSystem bounceVFXeffect;
+    List<ParticleSystem> bounceeffects;
     public GameObject rock;
     Transform myposition;
     Vector3 startrotation;
@@ -18,6 +19,12 @@ public class GolemAnimations : PawnAnimationManager
         base.Start();
         rock.SetActive(false);
         rockStartPosition = rock.transform.position;
+        bounceeffects = new List<ParticleSystem>();
+        for (int i = 0; i < 3; i++)
+        {
+            bounceeffects.Add(Instantiate(bounceVFXeffect, transform));
+            bounceeffects[i].Stop();
+        }
     }
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
@@ -41,21 +48,36 @@ public class GolemAnimations : PawnAnimationManager
         rock.SetActive(true);
         Tween launch1 = rock.transform.DOJump(bouncePositions[0], 1.5f, 1, 0.25f);
         yield return launch1.WaitForCompletion();
+        bounceeffects[0].transform.position = bouncePositions[0];
+        bounceeffects[0].Play();
         if (bounceCount > 1)
         {
             Tween launch2 = rock.transform.DOJump(bouncePositions[1], 1.3f, 1, 0.25f);
             yield return launch2.WaitForCompletion();
+            bounceeffects[1].transform.position = bouncePositions[1];
+            bounceeffects[1].Play();
             if (bounceCount > 2)
             {
                 Tween launch3 = rock.transform.DOJump(bouncePositions[2], 1.2f, 1, 0.25f);
                 yield return launch3.WaitForCompletion();
+                bounceeffects[2].transform.position = bouncePositions[2];
+                bounceeffects[2].Play();
             }
         }
         rock.SetActive(false);
         rock.transform.position = rockStartPosition;
+        StartCoroutine(ResetVFX());
         OnAttackEnd();
     }
 
+    IEnumerator ResetVFX()
+    {
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < 3; i++)
+        {
+            bounceeffects[i].Stop();
+        }
+    }
 
     public override void MovementAnimation(Transform _myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
     {
