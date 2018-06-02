@@ -1112,7 +1112,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1502,7 +1501,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -4437,6 +4435,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364502767}
+--- !u!84 &367119466
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &376892478 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4196745098953396, guid: 8be777130cdb015419112095136271fd,
@@ -4921,7 +4950,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 5
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -5574,7 +5602,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -5839,7 +5866,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 887665789}
+      objectReference: {fileID: 367119466}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -6247,7 +6274,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -6618,7 +6644,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -7033,7 +7058,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -9601,7 +9625,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -10175,37 +10198,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885868488}
---- !u!84 &887665789
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1038
-  m_Height: 584
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &894577377
 GameObject:
   m_ObjectHideFlags: 0
@@ -12652,7 +12644,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -12970,7 +12961,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 28
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -15001,37 +14991,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1331089230}
   m_Mesh: {fileID: 4300000, guid: 9f5cf805c27df874ea8e9612ab38883a, type: 3}
---- !u!84 &1334961626
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1038
-  m_Height: 584
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1340618078
 GameObject:
   m_ObjectHideFlags: 0
@@ -16139,7 +16098,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -16631,7 +16589,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17815,7 +17772,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -20296,7 +20252,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -20519,7 +20474,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21489,7 +21443,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21785,7 +21738,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21876,26 +21828,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MagicElements
+      propertyPath: VFXParent
       value: 
-      objectReference: {fileID: 1071915833}
-    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1357063828}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: ScienceElements
+      propertyPath: DraftPawnsPositions.Array.data[0]
       value: 
-      objectReference: {fileID: 1446618818}
-    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1386923296}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MusicAudioSource
+      propertyPath: DraftPawnsPositions.Array.data[1]
       value: 
-      objectReference: {fileID: 1236123128}
-    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 894577378}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: GeneralAudioSource
+      propertyPath: DraftPawnsPositions.Array.data[2]
       value: 
-      objectReference: {fileID: 549647557}
+      objectReference: {fileID: 1545798559}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1389239546}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[4]
+      value: 
+      objectReference: {fileID: 883586739}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[5]
+      value: 
+      objectReference: {fileID: 1007333954}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[6]
+      value: 
+      objectReference: {fileID: 55682649}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[7]
+      value: 
+      objectReference: {fileID: 1576500897}
     - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: mainCam
@@ -21921,6 +21898,26 @@ Prefab:
       propertyPath: centralLight
       value: 
       objectReference: {fileID: 149640172}
+    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MagicElements
+      value: 
+      objectReference: {fileID: 1071915833}
+    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceElements
+      value: 
+      objectReference: {fileID: 1446618818}
+    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MusicAudioSource
+      value: 
+      objectReference: {fileID: 1236123128}
+    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: GeneralAudioSource
+      value: 
+      objectReference: {fileID: 549647557}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: gameTurnText
@@ -22298,6 +22295,16 @@ Prefab:
       objectReference: {fileID: 1949888721}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: soundtogglemenu
+      value: 
+      objectReference: {fileID: 1448993457}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: tutorialtogglemenu
+      value: 
+      objectReference: {fileID: 697537777}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: MagicButton
       value: 
       objectReference: {fileID: 329288517}
@@ -22363,6 +22370,16 @@ Prefab:
       objectReference: {fileID: 1055807563}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: MagicStartPressed
+      value: 
+      objectReference: {fileID: 643736471}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceStartPressed
+      value: 
+      objectReference: {fileID: 1939250182}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 657037451}
@@ -22383,6 +22400,11 @@ Prefab:
       objectReference: {fileID: 71909811}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: soundtogglepause
+      value: 
+      objectReference: {fileID: 1685448255}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 1474988486}
@@ -22391,121 +22413,15 @@ Prefab:
       propertyPath: gameResult
       value: 
       objectReference: {fileID: 1821825283}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: VFXParent
-      value: 
-      objectReference: {fileID: 1357063828}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1386923296}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 894577378}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 1545798559}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 1389239546}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 883586739}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[5]
-      value: 
-      objectReference: {fileID: 1007333954}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[6]
-      value: 
-      objectReference: {fileID: 55682649}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[7]
-      value: 
-      objectReference: {fileID: 1576500897}
-    - target: {fileID: 114770459697291012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: joy1Start
-      value: 357
-      objectReference: {fileID: 0}
-    - target: {fileID: 114770459697291012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: joy2Start
-      value: 377
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: tutorialtoggle
-      value: 
-      objectReference: {fileID: 697537777}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtoggle
-      value: 
-      objectReference: {fileID: 1448993457}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtogglepause
-      value: 
-      objectReference: {fileID: 1685448255}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtogglemenu
-      value: 
-      objectReference: {fileID: 1448993457}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: tutorialtogglemenu
-      value: 
-      objectReference: {fileID: 697537777}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: MagicStartPressed
-      value: 
-      objectReference: {fileID: 643736471}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceStartPressed
-      value: 
-      objectReference: {fileID: 1939250182}
-    - target: {fileID: 114282883163228012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1892296577 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1654196648849384, guid: 68f5057250c54534eb0d8e502fc56f25,
+--- !u!114 &1892296578 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114122555650413852, guid: 68f5057250c54534eb0d8e502fc56f25,
     type: 2}
   m_PrefabInternal: {fileID: 1892296576}
---- !u!114 &1892296578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1892296577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 213afb774f1219649a219c331c591633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _TutorialActive: 0
 --- !u!1 &1893501061
 GameObject:
   m_ObjectHideFlags: 0
@@ -23482,7 +23398,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -24055,7 +23970,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -24587,7 +24501,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 9
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25075,6 +24988,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2114245453}
+--- !u!84 &2131284999
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2135816615
 GameObject:
   m_ObjectHideFlags: 0
@@ -25323,7 +25267,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25481,7 +25424,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
