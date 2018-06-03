@@ -370,17 +370,18 @@ public class Pawn : MonoBehaviour
         _pawnAnimationEnded = 0;
         patternBox.Clear();
         BoardManager.Instance.turnManager.turnsWithoutAttack = 0;
+        int currentRow = currentBox.index1;
         int currentColumn = currentBox.index2;
         foreach (Pattern p in patterns[activePattern].pattern)
         {
-            if ((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentBox.index1 < enemyboard.Length && p.index1 - currentBox.index1 >= 0))
+            if ((currentColumn + p.index2 < enemyboard[0].Length && currentColumn + p.index2 >= 0) && (p.index1 - currentRow < enemyboard.Length && p.index1 - currentRow >= 0))
             {
-                patternBox.Add(enemyboard[p.index1 - currentBox.index1][currentColumn + p.index2].GetComponent<Box>());
+                patternBox.Add(enemyboard[p.index1 - currentRow][currentColumn + p.index2].GetComponent<Box>());
             }
 
-            else if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentBox.index1 - p.index1 < myboard.Length && currentBox.index1 - p.index1 - 1 >= 0))
+            else if ((currentColumn + p.index2 < myboard[0].Length && currentColumn + p.index2 >= 0) && (currentRow - p.index1 < myboard.Length && currentRow - p.index1 - 1 >= 0))
             {
-                patternBox.Add(myboard[currentBox.index1 - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
+                patternBox.Add(myboard[currentRow - p.index1 - 1][currentColumn + p.index2].GetComponent<Box>());
             }
         }
         bm.vfx.DeselectPawn();

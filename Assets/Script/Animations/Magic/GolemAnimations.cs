@@ -22,8 +22,9 @@ public class GolemAnimations : PawnAnimationManager
         bounceeffects = new List<ParticleSystem>();
         for (int i = 0; i < 3; i++)
         {
-            bounceeffects.Add(Instantiate(bounceVFXeffect, transform));
-            bounceeffects[i].Stop();
+            ParticleSystem vfxinstantiated = Instantiate(bounceVFXeffect, transform);
+            vfxinstantiated.Stop();
+            bounceeffects.Add(vfxinstantiated);
         }
     }
 
