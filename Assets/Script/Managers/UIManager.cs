@@ -501,7 +501,6 @@ public class UIManager : MonoBehaviour
                     case TurnManager.PlayTurnState.check:
                         choosingUi.SetActive(false);
                         ActiveSuperAttackText();
-                        UpdateReadyElement();
                         break;
                     case TurnManager.PlayTurnState.movementattack:
                         switch (tm.CurrentPlayerTurn)
@@ -533,7 +532,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Funzione che imposta la tacca superattack ready nei contatori
     /// </summary>
-    private void UpdateReadyElement()
+    public void UpdateReadyElement()
     {
         //Magic
         if (bm.MagicElements.redElement >= 1 && bm.MagicElements.blueElement >= 1 && bm.MagicElements.greenElement >= 1)

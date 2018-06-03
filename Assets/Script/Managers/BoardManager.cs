@@ -27,14 +27,17 @@ public class BoardManager : MonoBehaviour
         {
             _superAttack = value;
             uiManager.ActiveSuperAttackText();
-            if (_superAttack)
+            if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack)
             {
-                CreateMarkList();
-                SelectNextPawnToAttack(Directions.idle);
-            }
-            else
-            {
-                PawnHighlighted(true);
+                if (_superAttack)
+                {
+                    CreateMarkList();
+                    SelectNextPawnToAttack(Directions.idle);
+                }
+                else
+                {
+                    PawnHighlighted(true);
+                }
             }
         }
     }
@@ -214,6 +217,7 @@ public class BoardManager : MonoBehaviour
                     pawnSelected.OnMovementEnd += OnMovementEnd;
                 }
                 UnmarkAttackMarker();
+                PawnHighlighted(false);
                 pawnSelected.MoveBehaviour();
             }
             else
@@ -539,6 +543,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public void SelectNextPawn(Directions nextpawn)
     {
+        PawnHighlighted(false);
         switch (turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:

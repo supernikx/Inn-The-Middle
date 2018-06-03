@@ -34,14 +34,6 @@ public class Pawn : MonoBehaviour
         set
         {
             _attackMarker = value;
-            if (_attackMarker)
-            {
-                bm.PawnHighlighted(true, this);
-            }
-            else
-            {
-                bm.PawnHighlighted(false);
-            }
         }
     }
     public int activePattern;
@@ -350,8 +342,9 @@ public class Pawn : MonoBehaviour
                             CustomLogger.Log("c'è una pedina avversaria nel pattern");
                         }
                     }
-                }
+                }                
             }
+            bm.PawnHighlighted(true);
         }
     }
 

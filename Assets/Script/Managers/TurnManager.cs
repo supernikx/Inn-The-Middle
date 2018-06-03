@@ -119,11 +119,13 @@ public class TurnManager : MonoBehaviour
                 {
                     BoardManager.Instance.superAttack = false;
                     BoardManager.Instance.UnmarkAttackMarker();
+                    BoardManager.Instance.PawnHighlighted(false);
                     BoardManager.Instance.CheckSuperAttack();
                     if (BoardManager.Instance.pawnSelected != null)
                     {
                         BoardManager.Instance.DeselectPawn();
                     }
+                    BoardManager.Instance.uiManager.UIChange();
                     BoardManager.Instance.CheckPhaseControll();
                 }
                 BoardManager.Instance.uiManager.UIChange();

@@ -24,6 +24,7 @@ public class PlayerElements : MonoBehaviour
                 break;
         }
         BoardManager.Instance.uiManager.UpdateElementsUI();
+        BoardManager.Instance.uiManager.UpdateReadyElement();
     }
 
     public bool CheckSuperAttack()
@@ -56,5 +57,6 @@ public class PlayerElements : MonoBehaviour
             blueElement -= 3;
         }
         BoardManager.Instance.uiManager.UpdateElementsUI();
+        BoardManager.Instance.uiManager.UpdateReadyElement();
     }
 }

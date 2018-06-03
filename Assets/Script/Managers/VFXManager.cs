@@ -81,16 +81,31 @@ public class VFXManager : MonoBehaviour
 
     public void MarkPawn(Vector3 pawnPosition)
     {
-        foreach (PoolParticleEffects p in mark)
+        if (CheckOtherMarker(pawnPosition))
         {
-            if (p.state == PoolState.inPool)
+            foreach (PoolParticleEffects p in mark)
             {
-                p.particle.transform.position = pawnPosition;
-                p.particle.Play();
-                p.state = PoolState.inUse;
-                return;
+                if (p.state == PoolState.inPool)
+                {
+                    p.particle.transform.position = pawnPosition;
+                    p.particle.Play();
+                    p.state = PoolState.inUse;
+                    return;
+                }
             }
         }
+    }
+
+    bool CheckOtherMarker(Vector3 _position)
+    {
+        foreach (PoolParticleEffects p in mark)
+        {
+            if (p.particle.transform.position.x == _position.x && p.particle.transform.position.y == _position.y && p.particle.transform.position.z == _position.z)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void ResetMark()
