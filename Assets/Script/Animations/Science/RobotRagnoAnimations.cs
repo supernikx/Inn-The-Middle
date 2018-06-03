@@ -47,4 +47,26 @@ public class RobotRagnoAnimations : PawnAnimationManager
         PlayJumpAnimation(false);
         OnMovementEnd();
     }
+
+
+    #region VFX
+
+    [Header("VFX Reference")]
+    public ParticleSystem AttackCharge;
+
+    protected override void Start()
+    {
+        base.Start();
+        AttackCharge.Stop();
+    }
+
+    public IEnumerator PlayChargeVFX()
+    {
+        AttackCharge.Play();
+        yield return new WaitForSeconds(AttackCharge.main.duration);
+        Debug.Log("Sparo");
+    }
+
+    #endregion
+
 }

@@ -703,6 +703,10 @@ public class Pawn : MonoBehaviour
         ShowMovementBoxes();
     }
 
+    /// <summary>
+    /// Funzione che muove la proiezione nella placing phase nella direzione passata come parametro
+    /// </summary>
+    /// <param name="projectionDirection"></param>
     public void MoveProjectionPlacing(Directions projectionDirection)
     {
         switch (projectionDirection)
@@ -746,6 +750,9 @@ public class Pawn : MonoBehaviour
         projections[activePattern].transform.position = new Vector3(myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.x, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.y + graphics[activePattern].transform.position.y, myboard[projectionPlacingPositionIndex1][projectionPlacingPositionIndex2].position.z);
     }
 
+    /// <summary>
+    /// Funzione che imposta la posizione della proiezione della pedine selezionata nella fase di placing
+    /// </summary>
     public void SetProjection()
     {
         projections[activePattern].SetActive(true);
@@ -811,10 +818,6 @@ public class Pawn : MonoBehaviour
         bm.vfx.DeselectPawn();
         UnsubscribeAnimationEvent();
         activePattern = UnityEngine.Random.Range(0, patterns.Count);
-        if (activePattern == 4 || activePattern == 5)
-        {
-            bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.choosing;
-        }
         activeSpeed = speeds[activePattern];
         graphics[activePattern].SetActive(true);
         bm.vfx.SelectPawn(this);

@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114770459697291012}
   - component: {fileID: 114282883163228012}
   - component: {fileID: 114626067402029720}
+  - component: {fileID: 114122555650413852}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -49,6 +50,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114122555650413852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213afb774f1219649a219c331c591633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TutorialActive: 0
 --- !u!114 &114157139931533906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +215,8 @@ MonoBehaviour:
   fadeinoutmenu: {fileID: 0}
   MainMenu: {fileID: 0}
   StartMenuButton: {fileID: 0}
+  soundtogglemenu: {fileID: 0}
+  tutorialtogglemenu: {fileID: 0}
   MagicButton: {fileID: 0}
   ScienceButton: {fileID: 0}
   MagicPickingText: {fileID: 0}
@@ -217,10 +232,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  MagicStartPressed: {fileID: 0}
+  ScienceStartPressed: {fileID: 0}
   pausePanel: {fileID: 0}
   ResumePauseButton: {fileID: 0}
   RestartPauseButton: {fileID: 0}
   QuitPauseButton: {fileID: 0}
+  soundtogglepause: {fileID: 0}
   winScreen: {fileID: 0}
   gameResult: {fileID: 0}
 --- !u!114 &114723618909212632
@@ -236,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTurns: 0
   turnsWithoutAttack: 0
+  CheckAlreadyDone: 0
   mainCam: {fileID: 0}
   draftCam: {fileID: 0}
   magicPlacementLight: {fileID: 0}
@@ -266,6 +285,8 @@ MonoBehaviour:
   joy2PassTurn: 376
   joy1StartDraft: 357
   joyPause: 337
+  joy1Start: 357
+  joy2Start: 377
 --- !u!114 &114880029920021300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,9 +301,9 @@ MonoBehaviour:
   poolPosition: {x: 1000, y: 1000, z: 1000}
   selectDraftPawnParticlePrefab: {fileID: 1664194174667578, guid: 3cc45b685652dcf48ba6082fa51de164,
     type: 2}
-  selectPawnParticlePrefab: {fileID: 1438370527451020, guid: 9dc9b014c5b92ef438f94058768c7b3f,
+  selectPawnParticlePrefab: {fileID: 1216386761171494, guid: 00a346d7c9675b046ab51279b6602c92,
     type: 2}
-  attackMarkerParticlePrefab: {fileID: 1408250317327876, guid: 2369d84d84ebdd847a6839cecea54687,
+  attackMarkerParticlePrefab: {fileID: 1320169676769844, guid: d36ec58d938ce034eac92d8a19be0bb4,
     type: 2}
   maxMarker: 4
   trapTilePrefab: {fileID: 1429235154793992, guid: d0d9f1dd08dd19d40962bf198728e019,
@@ -319,6 +340,9 @@ MonoBehaviour:
   magic_pawns_picks: 
   science_pawns_picks: 
   hasDrafted: 0
+  draftEnd: 0
+  p1StartPressed: 0
+  p2StartPressed: 0
 --- !u!114 &114963789058692300
 MonoBehaviour:
   m_ObjectHideFlags: 1

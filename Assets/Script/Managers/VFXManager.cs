@@ -110,7 +110,7 @@ public class VFXManager : MonoBehaviour
     {
         if (select.state == PoolState.inUse)
             DeselectPawn();
-        select.particle.transform.position = pawnSelected.transform.position;
+        select.particle.transform.position = new Vector3(pawnSelected.transform.position.x, pawnSelected.transform.position.y + 0.5f, pawnSelected.transform.position.z);
         select.particle.transform.parent = pawnSelected.transform;
         select.particle.Play();
         select.state = PoolState.inUse;

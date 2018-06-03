@@ -3270,11 +3270,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
         type: 2}
-      propertyPath: speeds.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
       value: 2
       objectReference: {fileID: 0}
@@ -4760,17 +4755,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1622944297}
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1012168688}
         m_MethodName: ButtonSelection
         m_Mode: 1
@@ -5835,7 +5819,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1498645030}
+      objectReference: {fileID: 2027650331}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -5876,6 +5860,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &549647560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 549647558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 18bb10e1c60c8a54399156a73024d8c7, type: 2}
 --- !u!4 &549647563 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4723014916144702, guid: 1425180ab84f98e46988b12fe66303f9,
@@ -7951,17 +7947,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1622944297}
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1012168688}
         m_MethodName: ButtonSelection
         m_Mode: 1
@@ -8859,6 +8844,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 780588041}
+--- !u!84 &794166248
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &824891457
 GameObject:
   m_ObjectHideFlags: 0
@@ -13012,6 +13028,11 @@ Prefab:
       propertyPath: m_Name
       value: Pawn1
       objectReference: {fileID: 0}
+    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
+        type: 2}
+      propertyPath: projectionPlacingStartPositionIndex2
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
   m_IsPrefabParent: 0
@@ -13352,11 +13373,6 @@ Prefab:
         type: 2}
       propertyPath: projectionPlacingStartPositionIndex2
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
-      propertyPath: speeds.Array.data[0]
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
@@ -17481,37 +17497,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1481821026}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
---- !u!84 &1498645030
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1498764116
 GameObject:
   m_ObjectHideFlags: 0
@@ -18757,11 +18742,6 @@ Prefab:
     - target: {fileID: 1383610221742736, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
       propertyPath: m_Name
       value: Pawn4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023977006686886, guid: 6255a3f86a7ed6040bb68bd6945c8636,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex2
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
@@ -21816,26 +21796,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MagicElements
+      propertyPath: VFXParent
       value: 
-      objectReference: {fileID: 1071915833}
-    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1357063828}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: ScienceElements
+      propertyPath: DraftPawnsPositions.Array.data[0]
       value: 
-      objectReference: {fileID: 1446618818}
-    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1386923296}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MusicAudioSource
+      propertyPath: DraftPawnsPositions.Array.data[1]
       value: 
-      objectReference: {fileID: 1236123128}
-    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 894577378}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: GeneralAudioSource
+      propertyPath: DraftPawnsPositions.Array.data[2]
       value: 
-      objectReference: {fileID: 549647557}
+      objectReference: {fileID: 1545798559}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1389239546}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[4]
+      value: 
+      objectReference: {fileID: 883586739}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[5]
+      value: 
+      objectReference: {fileID: 1007333954}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[6]
+      value: 
+      objectReference: {fileID: 55682649}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[7]
+      value: 
+      objectReference: {fileID: 1576500897}
     - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: mainCam
@@ -21861,6 +21866,26 @@ Prefab:
       propertyPath: centralLight
       value: 
       objectReference: {fileID: 149640172}
+    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MagicElements
+      value: 
+      objectReference: {fileID: 1071915833}
+    - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceElements
+      value: 
+      objectReference: {fileID: 1446618818}
+    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MusicAudioSource
+      value: 
+      objectReference: {fileID: 1236123128}
+    - target: {fileID: 114626067402029720, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: GeneralAudioSource
+      value: 
+      objectReference: {fileID: 549647557}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: gameTurnText
@@ -22238,6 +22263,16 @@ Prefab:
       objectReference: {fileID: 1949888721}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: soundtogglemenu
+      value: 
+      objectReference: {fileID: 1448993457}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: tutorialtogglemenu
+      value: 
+      objectReference: {fileID: 697537777}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: MagicButton
       value: 
       objectReference: {fileID: 329288517}
@@ -22303,6 +22338,16 @@ Prefab:
       objectReference: {fileID: 1055807563}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: MagicStartPressed
+      value: 
+      objectReference: {fileID: 643736471}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceStartPressed
+      value: 
+      objectReference: {fileID: 1939250182}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 657037451}
@@ -22323,6 +22368,11 @@ Prefab:
       objectReference: {fileID: 71909811}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
+      propertyPath: soundtogglepause
+      value: 
+      objectReference: {fileID: 1685448255}
+    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 1474988486}
@@ -22331,121 +22381,15 @@ Prefab:
       propertyPath: gameResult
       value: 
       objectReference: {fileID: 1821825283}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: VFXParent
-      value: 
-      objectReference: {fileID: 1357063828}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1386923296}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 894577378}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 1545798559}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 1389239546}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 883586739}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[5]
-      value: 
-      objectReference: {fileID: 1007333954}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[6]
-      value: 
-      objectReference: {fileID: 55682649}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[7]
-      value: 
-      objectReference: {fileID: 1576500897}
-    - target: {fileID: 114770459697291012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: joy1Start
-      value: 357
-      objectReference: {fileID: 0}
-    - target: {fileID: 114770459697291012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: joy2Start
-      value: 377
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: tutorialtoggle
-      value: 
-      objectReference: {fileID: 697537777}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtoggle
-      value: 
-      objectReference: {fileID: 1448993457}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtogglepause
-      value: 
-      objectReference: {fileID: 1685448255}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: soundtogglemenu
-      value: 
-      objectReference: {fileID: 1448993457}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: tutorialtogglemenu
-      value: 
-      objectReference: {fileID: 697537777}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: MagicStartPressed
-      value: 
-      objectReference: {fileID: 643736471}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceStartPressed
-      value: 
-      objectReference: {fileID: 1939250182}
-    - target: {fileID: 114282883163228012, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f5057250c54534eb0d8e502fc56f25, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1892296577 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1654196648849384, guid: 68f5057250c54534eb0d8e502fc56f25,
+--- !u!114 &1892296578 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114122555650413852, guid: 68f5057250c54534eb0d8e502fc56f25,
     type: 2}
   m_PrefabInternal: {fileID: 1892296576}
---- !u!114 &1892296578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1892296577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 213afb774f1219649a219c331c591633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _TutorialActive: 0
 --- !u!1 &1893501061
 GameObject:
   m_ObjectHideFlags: 0
@@ -23888,37 +23832,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1997743311}
   m_Mesh: {fileID: 4300000, guid: 32b5968c28a5ec946b63ba0a8ffed6b8, type: 3}
---- !u!84 &2016447434
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2019558274
 GameObject:
   m_ObjectHideFlags: 0
@@ -24076,6 +23989,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019558274}
+--- !u!84 &2027650331
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2034789049
 GameObject:
   m_ObjectHideFlags: 0
