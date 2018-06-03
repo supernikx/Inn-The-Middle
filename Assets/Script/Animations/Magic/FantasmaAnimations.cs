@@ -106,11 +106,11 @@ public class FantasmaAnimations : PawnAnimationManager
     {
         RIdleFireBall.SetActive(false);
         RLaunchFireBall.SetActive(true);
-        Tween firestlaunch = RLaunchFireBall.transform.DOMove(targetPosition, 1.4f);
-        yield return new WaitForSeconds(0.6f);
+        Tween firestlaunch = RLaunchFireBall.transform.DOMove(targetPosition, 1.2f);
+        yield return new WaitForSeconds(0.3f);
         LIdleFireBall.SetActive(false);
         LLaunchFireBall.SetActive(true);
-        Tween secondlaunch = LLaunchFireBall.transform.DOMove(targetPosition, 0.8f);
+        Tween secondlaunch = LLaunchFireBall.transform.DOMove(targetPosition, 0.9f);
         yield return secondlaunch.WaitForCompletion();
         RLaunchFireBall.SetActive(false);
         LLaunchFireBall.SetActive(false);
