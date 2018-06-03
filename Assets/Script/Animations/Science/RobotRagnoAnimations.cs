@@ -82,7 +82,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
         AttackCharge.Play();
         yield return new WaitForSeconds(AttackCharge.main.duration);
         ProjectileVFX.SetActive(true);
-        Tween shoot = ProjectileVFX.transform.DOMove(new Vector3(targetPosition.x+ZOffset, targetPosition.y,targetPosition.z), 1f);
+        Tween shoot = ProjectileVFX.transform.DOMove(new Vector3(targetPosition.x+ZOffset, targetPosition.y,targetPosition.z), 0.6f);
         yield return shoot.WaitForCompletion();
         ProjectileVFX.SetActive(false);
         ExplosionVFX.transform.position = targetPosition;

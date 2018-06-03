@@ -746,7 +746,7 @@ public class BoardManager : MonoBehaviour
             {
                 pawnSelected.DisableMovementBoxes();
                 pawnSelected.DisableAttackPattern();
-                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack));
+                pawnSelected.ForceMoveProjection(!(turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.check));
                 if (turnManager.CurrentTurnState == TurnManager.PlayTurnState.attack || turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack)
                 {
                     UnmarkAttackMarker();

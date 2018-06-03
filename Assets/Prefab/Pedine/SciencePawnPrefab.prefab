@@ -10544,7 +10544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   YOffset: 3.5
-  ZOffset: 3.5
+  ZOffset: 4
   AttackCharge: {fileID: 198049479841416930}
   ProjectileVFX: {fileID: 1723281562426588}
   ExplosionVFX: {fileID: 198581194003359450}
