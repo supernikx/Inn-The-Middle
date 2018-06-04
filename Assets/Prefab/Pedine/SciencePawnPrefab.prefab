@@ -10594,6 +10594,8 @@ MonoBehaviour:
   rightHand: {fileID: 1894891080362616}
   Chainsaw: {fileID: 1453528158388638}
   ChainsawLunchPosition: {fileID: 4509075413958882}
+  bounceVFXeffect: {fileID: 198115564488693574, guid: 92a660529c5160a4aaf644a046976473,
+    type: 2}
 --- !u!114 &114321404835605124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10611,6 +10613,7 @@ MonoBehaviour:
   ProjectileVFX: {fileID: 1723281562426588}
   ExplosionVFX: {fileID: 198581194003359450}
   ShootVFX: {fileID: 198747485498365818}
+  laserVFX: {fileID: 0}
 --- !u!114 &114526710935387986
 MonoBehaviour:
   m_ObjectHideFlags: 1

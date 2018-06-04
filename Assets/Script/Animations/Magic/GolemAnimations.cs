@@ -4,15 +4,17 @@ using UnityEngine;
 using DG.Tweening;
 
 public class GolemAnimations : PawnAnimationManager
-{
-    public ParticleSystem bounceVFXeffect;
-    List<ParticleSystem> bounceeffects;
+{        
     public GameObject rock;
     Transform myposition;
     Vector3 startrotation;
     Vector3 rockStartPosition;
     int bounceCount;
     List<Vector3> bouncePositions = new List<Vector3>();
+
+    [Header("VFX References")]
+    public ParticleSystem bounceVFXeffect;
+    List<ParticleSystem> bounceeffects;
 
     protected override void Start()
     {
