@@ -870,8 +870,8 @@ public class BoardManager : MonoBehaviour
         {
             if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
-                PawnSelected(p);
                 foundPawn = true;
+                PawnSelected(p);                
                 CustomLogger.Log("trovata una pedina");
                 break;
             }

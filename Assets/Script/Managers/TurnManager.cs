@@ -376,10 +376,13 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public void ChangeTurn()
     {
-        if (CurrentPlayerTurn == Factions.Magic)
-            CurrentPlayerTurn = Factions.Science;
-        else if (CurrentPlayerTurn == Factions.Science)
-            CurrentPlayerTurn = Factions.Magic;
+        if ((CurrentMacroPhase == MacroPhase.draft || CurrentMacroPhase == MacroPhase.placing) || (CurrentMacroPhase == MacroPhase.game && (CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.choosing)))
+        {
+            if (CurrentPlayerTurn == Factions.Magic)
+                CurrentPlayerTurn = Factions.Science;
+            else if (CurrentPlayerTurn == Factions.Science)
+                CurrentPlayerTurn = Factions.Magic;
+        }
     }
 
 }
