@@ -93,7 +93,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
         ExplosionVFX.Stop();
     }
 
-    public IEnumerator PlayChargeVFX()
+    public IEnumerator Shoot()
     {
         AttackCharge.Play();
         yield return new WaitForSeconds(AttackCharge.main.duration);

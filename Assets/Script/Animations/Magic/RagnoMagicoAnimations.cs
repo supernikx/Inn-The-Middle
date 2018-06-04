@@ -5,14 +5,40 @@ using DG.Tweening;
 
 public class RagnoMagicoAnimations : PawnAnimationManager
 {
+    public Transform ShootPosition;
+    public float YOffset;
     Vector3 startRotation;
     Transform myPosition;
+    Vector3 targetPosition;
+    Vector3 lasertargetposition;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
         startRotation = _startRotation;
         myPosition = _myPosition;
         _myPosition.eulerAngles = _startRotation;
+        int index = 0;
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            if (Mathf.Approximately(_myPosition.position.x, patternBox[i].transform.position.x))
+            {
+                index = i;
+                break;
+            }
+        }
+        targetPosition = new Vector3(patternBox[0].transform.position.x, patternBox[index].transform.position.y + YOffset, patternBox[index].transform.position.z);
+        float minz = 0;
+        float maxz = 0;
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            if (patternBox[i].transform.position.z <= 0)
+                minz = patternBox[i].transform.position.z;
+            else if (patternBox[i].transform.position.z > maxz)
+            {
+                maxz = patternBox[i].transform.position.z;
+            }
+        }
+        lasertargetposition = new Vector3(targetPosition.x, targetPosition.y, (minz + maxz) / 2);
         PlayAttackAnimation();
     }
 
@@ -47,4 +73,27 @@ public class RagnoMagicoAnimations : PawnAnimationManager
         PlayJumpAnimation(false);
         OnMovementEnd();
     }
+
+    #region VFX
+
+    [Header("VFX References")]
+    public GameObject bulletVFX;
+
+    protected override void Start()
+    {
+        base.Start();
+        bulletVFX.SetActive(false);
+    }
+
+    public IEnumerator Shoot()
+    {
+        bulletVFX.SetActive(true);
+        Tween shoot = bulletVFX.transform.DOMove(targetPosition, 1f);
+        yield return shoot.WaitForCompletion();
+        bulletVFX.SetActive(false);
+        bulletVFX.transform.position = ShootPosition.position;
+        OnAttackEnd();
+    }
+
+    #endregion
 }
