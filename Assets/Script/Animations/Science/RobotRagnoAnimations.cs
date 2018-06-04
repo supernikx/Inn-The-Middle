@@ -10,6 +10,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
     Transform myPosition;
     Vector3 startRotation;
     Vector3 targetPosition;
+    Vector3 lasertargetposition;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
@@ -26,6 +27,18 @@ public class RobotRagnoAnimations : PawnAnimationManager
             }
         }
         targetPosition = new Vector3(patternBox[0].transform.position.x, patternBox[index].transform.position.y + YOffset, patternBox[index].transform.position.z);
+        float minz = 0;
+        float maxz = 0;
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            if (patternBox[i].transform.position.z <= 0)
+                minz = patternBox[i].transform.position.z;
+            else if (patternBox[i].transform.position.z > maxz)
+            {
+                maxz = patternBox[i].transform.position.z;
+            }
+        }
+        lasertargetposition = new Vector3(targetPosition.x, targetPosition.y, (minz + maxz) / 2);
         PlayAttackAnimation();
     }
 
@@ -69,6 +82,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
     public GameObject ProjectileVFX;
     public ParticleSystem ExplosionVFX;
     public ParticleSystem ShootVFX;
+    public ParticleSystem laserVFX;
 
     protected override void Start()
     {
@@ -90,12 +104,16 @@ public class RobotRagnoAnimations : PawnAnimationManager
         ProjectileVFX.SetActive(false);
         ExplosionVFX.transform.position = targetPosition;
         ExplosionVFX.Play();
-        yield return new WaitForSeconds(1f);
-        Debug.Log("laser");
+        yield return new WaitForSeconds(0.3f);
+        laserVFX.transform.position = lasertargetposition;
+        laserVFX.Play();
+        yield return new WaitForSeconds(1f);        
         ShootVFX.Stop();
         ProjectileVFX.transform.position = AttackCharge.transform.position;
         ExplosionVFX.Stop();
         ExplosionVFX.transform.position = AttackCharge.transform.position;
+        laserVFX.Stop();
+        laserVFX.transform.position = AttackCharge.transform.position;
         OnAttackEnd();
     }
 
