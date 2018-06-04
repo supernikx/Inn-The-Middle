@@ -68,12 +68,14 @@ public class RobotRagnoAnimations : PawnAnimationManager
     public ParticleSystem AttackCharge;
     public GameObject ProjectileVFX;
     public ParticleSystem ExplosionVFX;
+    public ParticleSystem ShootVFX;
 
     protected override void Start()
     {
         base.Start();
         AttackCharge.Stop();
         ProjectileVFX.SetActive(false);
+        ShootVFX.Stop();
         ExplosionVFX.Stop();
     }
 
@@ -81,6 +83,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
     {
         AttackCharge.Play();
         yield return new WaitForSeconds(AttackCharge.main.duration);
+        ShootVFX.Play();
         ProjectileVFX.SetActive(true);
         Tween shoot = ProjectileVFX.transform.DOMove(new Vector3(targetPosition.x+ZOffset, targetPosition.y,targetPosition.z), 0.6f);
         yield return shoot.WaitForCompletion();
@@ -89,6 +92,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
         ExplosionVFX.Play();
         yield return new WaitForSeconds(1f);
         Debug.Log("laser");
+        ShootVFX.Stop();
         ProjectileVFX.transform.position = AttackCharge.transform.position;
         ExplosionVFX.Stop();
         ExplosionVFX.transform.position = AttackCharge.transform.position;
