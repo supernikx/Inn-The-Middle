@@ -78,6 +78,8 @@ public class RagnoMagicoAnimations : PawnAnimationManager
 
     [Header("VFX References")]
     public GameObject bulletVFX;
+    public ParticleSystem ExplosionVFX;
+    public ParticleSystem ShootVFX;
 
     protected override void Start()
     {
@@ -87,10 +89,17 @@ public class RagnoMagicoAnimations : PawnAnimationManager
 
     public IEnumerator Shoot()
     {
+        ShootVFX.transform.position = ShootPosition.position;
+        ShootVFX.Play();
         bulletVFX.SetActive(true);
         Tween shoot = bulletVFX.transform.DOMove(targetPosition, 1f);
         yield return shoot.WaitForCompletion();
         bulletVFX.SetActive(false);
+        ExplosionVFX.transform.position = targetPosition;
+        ExplosionVFX.Play();
+        yield return new WaitForSeconds(1f);
+        ShootVFX.Stop();
+        ExplosionVFX.Stop();
         bulletVFX.transform.position = ShootPosition.position;
         OnAttackEnd();
     }

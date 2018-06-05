@@ -111,9 +111,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
         ShootVFX.Stop();
         ProjectileVFX.transform.position = AttackCharge.transform.position;
         ExplosionVFX.Stop();
-        ExplosionVFX.transform.position = AttackCharge.transform.position;
         laserVFX.Stop();
-        laserVFX.transform.position = AttackCharge.transform.position;
         OnAttackEnd();
     }
 
