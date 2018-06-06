@@ -625,13 +625,13 @@ public class UIManager : MonoBehaviour
                         switch (bm.draftManager.magic_pawns_picks[i])
                         {
                             case 0:
-                                magic_picks[i].color = Color.blue;
+                                magic_picks[i].color = Color.yellow;
                                 break;
                             case 1:
                                 magic_picks[i].color = Color.green;
                                 break;
                             case 2:
-                                magic_picks[i].color = Color.yellow;
+                                magic_picks[i].color = Color.blue;
                                 break;
                             case 3:
                                 magic_picks[i].color = Color.red;
@@ -655,13 +655,13 @@ public class UIManager : MonoBehaviour
                         switch (bm.draftManager.science_pawns_picks[i])
                         {
                             case 0:
-                                science_picks[i].color = Color.blue;
+                                science_picks[i].color = Color.yellow;
                                 break;
                             case 1:
                                 science_picks[i].color = Color.green;
                                 break;
                             case 2:
-                                science_picks[i].color = Color.yellow;
+                                science_picks[i].color = Color.blue;
                                 break;
                             case 3:
                                 science_picks[i].color = Color.red;
