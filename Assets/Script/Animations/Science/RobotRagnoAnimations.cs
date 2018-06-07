@@ -107,11 +107,11 @@ public class RobotRagnoAnimations : PawnAnimationManager
         yield return new WaitForSeconds(0.3f);
         laserVFX.transform.position = lasertargetposition;
         laserVFX.Play();
-        yield return new WaitForSeconds(1f);        
-        ShootVFX.Stop();
-        ProjectileVFX.transform.position = AttackCharge.transform.position;
+        yield return new WaitForSeconds(0.5f);        
+        ShootVFX.Stop();        
         ExplosionVFX.Stop();
         laserVFX.Stop();
+        ProjectileVFX.transform.position = AttackCharge.transform.position;
         OnAttackEnd();
     }
 
