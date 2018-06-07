@@ -92,6 +92,11 @@ public class FantasmaAnimations : PawnAnimationManager
     public GameObject LIdleFireBall;
     public GameObject RLaunchFireBall;
     public GameObject LLaunchFireBall;
+    public ParticleSystem ExplosionVFX;
+    public ParticleSystem TileExplosionVFXPrefab;
+    public ParticleSystem RubbleVFXPrefab;
+    List<ParticleSystem> RubbleVFX;
+    List<ParticleSystem> TileExplosionVFX;
 
     protected override void Start()
     {
@@ -100,6 +105,18 @@ public class FantasmaAnimations : PawnAnimationManager
         LIdleFireBall.SetActive(true);
         RLaunchFireBall.SetActive(false);
         LLaunchFireBall.SetActive(false);
+        ExplosionVFX.Stop();
+        RubbleVFX = new List<ParticleSystem>();
+        TileExplosionVFX = new List<ParticleSystem>();
+        for (int i = 0; i < 4; i++)
+        {
+            ParticleSystem vfxinstantiated = Instantiate(RubbleVFXPrefab, transform);
+            vfxinstantiated.Stop();
+            RubbleVFX.Add(vfxinstantiated);
+            vfxinstantiated = Instantiate(TileExplosionVFXPrefab, transform);
+            vfxinstantiated.Stop();
+            TileExplosionVFX.Add(vfxinstantiated);
+        }
     }
 
     public IEnumerator LauncheFireBalls()
@@ -114,6 +131,27 @@ public class FantasmaAnimations : PawnAnimationManager
         yield return secondlaunch.WaitForCompletion();
         RLaunchFireBall.SetActive(false);
         LLaunchFireBall.SetActive(false);
+        ExplosionVFX.transform.position = targetPosition;
+        ExplosionVFX.Play();
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            RubbleVFX[i].transform.position = targetPosition;
+            RubbleVFX[i].Play();
+            RubbleVFX[i].transform.DOJump(patternBox[i].transform.position, 4.5f, 1, 0.8f);
+        }
+        yield return new WaitForSeconds(0.8f);
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            RubbleVFX[i].Stop();
+            TileExplosionVFX[i].transform.position = RubbleVFX[i].transform.position + new Vector3(0, 1f, 0);
+            TileExplosionVFX[i].Play();
+        }
+        yield return new WaitForSeconds(1f);
+        ExplosionVFX.Stop();
+        foreach (ParticleSystem vfx in TileExplosionVFX)
+        {
+            vfx.Stop();
+        }
         LIdleFireBall.SetActive(true);
         RIdleFireBall.SetActive(true);
         RLaunchFireBall.transform.position = RIdleFireBall.transform.position;

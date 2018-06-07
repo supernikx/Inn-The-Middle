@@ -73,9 +73,10 @@ public class UIManager : MonoBehaviour
     public GameObject MagicPickingText;
     public GameObject SciencePickingText;
     public GameObject StartDraftButton;
-    public Image[] magic_picks, science_picks;
+    public SetDraftImagePatterns[] magic_picks, science_picks;
     public GameObject MagicStartPressed;
     public GameObject ScienceStartPressed;
+    public GameObject PressStartDraftText;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
@@ -433,6 +434,7 @@ public class UIManager : MonoBehaviour
                 }
                 else
                 {
+                    PressStartDraftText.SetActive(true);
                     SciencePickingText.SetActive(false);
                     MagicPickingText.SetActive(false);
                     if (bm.draftManager.p1StartPressed)
@@ -619,61 +621,13 @@ public class UIManager : MonoBehaviour
             case Factions.Magic:
                 for (int i = 0; i < bm.draftManager.magic_pawns_picks.Count; i++)
                 {
-                    if (!magic_picks[i].enabled)
-                    {
-                        magic_picks[i].enabled = true;
-                        switch (bm.draftManager.magic_pawns_picks[i])
-                        {
-                            case 0:
-                                magic_picks[i].color = Color.yellow;
-                                break;
-                            case 1:
-                                magic_picks[i].color = Color.green;
-                                break;
-                            case 2:
-                                magic_picks[i].color = Color.blue;
-                                break;
-                            case 3:
-                                magic_picks[i].color = Color.red;
-                                break;
-                            case 4:
-                                magic_picks[i].color = Color.white;
-                                break;
-                            case 5:
-                                magic_picks[i].color = Color.black;
-                                break;
-                        }
-                    }
+                    magic_picks[i].SetPatternImage(bm.draftManager.magic_pawns_picks[i]);
                 }
                 break;
             case Factions.Science:
                 for (int i = 0; i < bm.draftManager.science_pawns_picks.Count; i++)
                 {
-                    if (!science_picks[i].enabled)
-                    {
-                        science_picks[i].enabled = true;
-                        switch (bm.draftManager.science_pawns_picks[i])
-                        {
-                            case 0:
-                                science_picks[i].color = Color.yellow;
-                                break;
-                            case 1:
-                                science_picks[i].color = Color.green;
-                                break;
-                            case 2:
-                                science_picks[i].color = Color.blue;
-                                break;
-                            case 3:
-                                science_picks[i].color = Color.red;
-                                break;
-                            case 4:
-                                science_picks[i].color = Color.white;
-                                break;
-                            case 5:
-                                science_picks[i].color = Color.black;
-                                break;
-                        }
-                    }
+                    science_picks[i].SetPatternImage(bm.draftManager.science_pawns_picks[i]);
                 }
                 break;
         }

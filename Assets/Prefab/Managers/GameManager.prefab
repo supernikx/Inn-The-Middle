@@ -234,6 +234,7 @@ MonoBehaviour:
   - {fileID: 0}
   MagicStartPressed: {fileID: 0}
   ScienceStartPressed: {fileID: 0}
+  PressStartDraftText: {fileID: 0}
   pausePanel: {fileID: 0}
   ResumePauseButton: {fileID: 0}
   RestartPauseButton: {fileID: 0}
