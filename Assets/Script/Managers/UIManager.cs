@@ -78,6 +78,14 @@ public class UIManager : MonoBehaviour
     public GameObject ScienceStartPressed;
     public GameObject PressStartDraftText;
 
+    [Header("Game")]
+    public Image SFrameImage;
+    public Image SOn;
+    public Image SOff;
+    public Image SAngry;
+    public Image SHappy;
+    public Image SSurprised;
+
     [Header("Pause Menu")]
     public GameObject pausePanel;
     public GameObject ResumePauseButton;
@@ -140,6 +148,25 @@ public class UIManager : MonoBehaviour
         EventManager.OnJoystickRiconnected -= JoystickRiconnected;
     }
 
+
+    /// <summary>
+    /// Funzione che viene chiamata quando il joystick si disconnette
+    /// </summary>
+    private void JoystickDisconnected()
+    {
+        connectjoystick.SetActive(true);
+    }
+
+    /// <summary>
+    /// Funzione che viene chiamata quando il joystick si riconnette
+    /// </summary>
+    private void JoystickRiconnected()
+    {
+        connectjoystick.SetActive(false);
+    }
+
+    #region Pause
+
     /// <summary>
     /// Funzione che viene chiamata quando il gioco esce dalla pausa
     /// </summary>
@@ -157,22 +184,6 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(true);
         StartCoroutine(FocusOnReumeButton(true));
         UpdateSoundUI();
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata quando il joystick si disconnette
-    /// </summary>
-    private void JoystickDisconnected()
-    {
-        connectjoystick.SetActive(true);
-    }
-
-    /// <summary>
-    /// Funzione che viene chiamata quando il joystick si riconnette
-    /// </summary>
-    private void JoystickRiconnected()
-    {
-        connectjoystick.SetActive(false);
     }
 
     /// <summary>
@@ -196,6 +207,25 @@ public class UIManager : MonoBehaviour
     {
         if (EventManager.OnUnPause != null)
             EventManager.OnUnPause();
+    }
+
+    #endregion
+
+    #region Game
+
+    /// <summary>
+    /// Funzione che attiva il super-atacco
+    /// </summary>
+    public void ActiveSuperAttackText()
+    {
+        if (BoardManager.Instance.superAttack)
+        {
+            superattackText.SetActive(true);
+        }
+        else
+        {
+            superattackText.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -284,6 +314,86 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che imposta la tacca superattack ready nei contatori
+    /// </summary>
+    public void UpdateReadyElement()
+    {
+        //Magic
+        if (bm.MagicElements.redElement >= 1 && bm.MagicElements.blueElement >= 1 && bm.MagicElements.greenElement >= 1)
+        {
+            MRedBarReady.SetActive(true);
+            MBlueBarReady.SetActive(true);
+            MGreenBarReady.SetActive(true);
+        }
+        else
+        {
+            if (bm.MagicElements.redElement >= 3 && !MRedBarReady.activeSelf)
+            {
+                MRedBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.redElement < 3 && MRedBarReady.activeSelf)
+            {
+                MRedBarReady.SetActive(false);
+            }
+
+            if (bm.MagicElements.blueElement >= 3 && !MBlueBarReady.activeSelf)
+            {
+                MBlueBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.blueElement < 3 && MBlueBarReady.activeSelf)
+            {
+                MBlueBarReady.SetActive(false);
+            }
+
+            if (bm.MagicElements.greenElement >= 3 && !MGreenBarReady.activeSelf)
+            {
+                MGreenBarReady.SetActive(true);
+            }
+            else if (bm.MagicElements.greenElement < 3 && MGreenBarReady.activeSelf)
+            {
+                MGreenBarReady.SetActive(false);
+            }
+        }
+
+        //Science
+        if (bm.ScienceElements.redElement >= 1 && bm.ScienceElements.blueElement >= 1 && bm.ScienceElements.greenElement >= 1)
+        {
+            SRedBarReady.SetActive(true);
+            SBlueBarReady.SetActive(true);
+            SGreenBarReady.SetActive(true);
+        }
+        else
+        {
+            if (bm.ScienceElements.redElement >= 3 && !SRedBarReady.activeSelf)
+            {
+                SRedBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.redElement < 3 && SRedBarReady.activeSelf)
+            {
+                SRedBarReady.SetActive(false);
+            }
+
+            if (bm.ScienceElements.blueElement >= 3 && !SBlueBarReady.activeSelf)
+            {
+                SBlueBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.blueElement < 3 && SBlueBarReady.activeSelf)
+            {
+                SBlueBarReady.SetActive(false);
+            }
+
+            if (bm.ScienceElements.greenElement >= 3 && !SGreenBarReady.activeSelf)
+            {
+                SGreenBarReady.SetActive(true);
+            }
+            else if (bm.ScienceElements.greenElement < 3 && SGreenBarReady.activeSelf)
+            {
+                SGreenBarReady.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
     /// Funzione che imposta l'ui della choosing phase
     /// </summary>
     public void SetChoosingUI()
@@ -332,6 +442,49 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateExpressions(Expressions e)
+    {
+        StartCoroutine(UpdateExpressionsCoroutine(e));
+    }
+
+    public IEnumerator UpdateExpressionsCoroutine (Expressions e)
+    {
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                break;
+            case Factions.Science:
+                switch (e)
+                {
+                    case Expressions.On:
+                        SFrameImage.sprite = SOn.sprite;
+                        break;
+                    case Expressions.Off:
+                        SFrameImage.sprite = SOff.sprite;
+                        break;
+                    case Expressions.Happy:
+                        SFrameImage.sprite = SHappy.sprite;
+                        yield return new WaitForSeconds(1.5f);
+                        SFrameImage.sprite = SOn.sprite;
+                        break;
+                    case Expressions.Angry:
+                        SFrameImage.sprite = SAngry.sprite;
+                        yield return new WaitForSeconds(1.5f);
+                        SFrameImage.sprite = SOn.sprite;
+                        break;
+                    case Expressions.Surprised:
+                        SFrameImage.sprite = SSurprised.sprite;
+                        yield return new WaitForSeconds(1.5f);
+                        SFrameImage.sprite = SOn.sprite;
+                        break;
+                }
+                break;
+        }
+        yield return null;
+    }
+
+    #endregion
+
     #region MainMenu
 
     /// <summary>
@@ -358,6 +511,16 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(MagicButton);
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.idle;
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
+    }
+
+    /// <summary>
+    /// Funzione che imposta il focus del main menù sullo start button
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator FocusStartButtonMenu()
+    {
+        yield return new WaitForSeconds(1.3f);
+        EventSystem.current.SetSelectedGameObject(StartMenuButton);
     }
 
     /// <summary>
@@ -392,6 +555,19 @@ public class UIManager : MonoBehaviour
     public void Tutorial()
     {
 
+    }
+
+    /// <summary>
+    /// Funzione che imposta lo skip del title screen per la prossima volta che si torna al main menù
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator SkipTitleScreen()
+    {
+        TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
+        yield return new WaitForSeconds(1f);
+        TitleScreen.SetActive(false);
+        MainMenu.SetActive(true);
+        StartCoroutine(FocusStartButtonMenu());
     }
 
     #endregion
@@ -532,86 +708,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che imposta la tacca superattack ready nei contatori
-    /// </summary>
-    public void UpdateReadyElement()
-    {
-        //Magic
-        if (bm.MagicElements.redElement >= 1 && bm.MagicElements.blueElement >= 1 && bm.MagicElements.greenElement >= 1)
-        {
-            MRedBarReady.SetActive(true);
-            MBlueBarReady.SetActive(true);
-            MGreenBarReady.SetActive(true);
-        }
-        else
-        {
-            if (bm.MagicElements.redElement >= 3 && !MRedBarReady.activeSelf)
-            {
-                MRedBarReady.SetActive(true);
-            }
-            else if (bm.MagicElements.redElement < 3 && MRedBarReady.activeSelf)
-            {
-                MRedBarReady.SetActive(false);
-            }
-
-            if (bm.MagicElements.blueElement >= 3 && !MBlueBarReady.activeSelf)
-            {
-                MBlueBarReady.SetActive(true);
-            }
-            else if (bm.MagicElements.blueElement < 3 && MBlueBarReady.activeSelf)
-            {
-                MBlueBarReady.SetActive(false);
-            }
-
-            if (bm.MagicElements.greenElement >= 3 && !MGreenBarReady.activeSelf)
-            {
-                MGreenBarReady.SetActive(true);
-            }
-            else if (bm.MagicElements.greenElement < 3 && MGreenBarReady.activeSelf)
-            {
-                MGreenBarReady.SetActive(false);
-            }
-        }
-
-        //Science
-        if (bm.ScienceElements.redElement >= 1 && bm.ScienceElements.blueElement >= 1 && bm.ScienceElements.greenElement >= 1)
-        {
-            SRedBarReady.SetActive(true);
-            SBlueBarReady.SetActive(true);
-            SGreenBarReady.SetActive(true);
-        }
-        else
-        {
-            if (bm.ScienceElements.redElement >= 3 && !SRedBarReady.activeSelf)
-            {
-                SRedBarReady.SetActive(true);
-            }
-            else if (bm.ScienceElements.redElement < 3 && SRedBarReady.activeSelf)
-            {
-                SRedBarReady.SetActive(false);
-            }
-
-            if (bm.ScienceElements.blueElement >= 3 && !SBlueBarReady.activeSelf)
-            {
-                SBlueBarReady.SetActive(true);
-            }
-            else if (bm.ScienceElements.blueElement < 3 && SBlueBarReady.activeSelf)
-            {
-                SBlueBarReady.SetActive(false);
-            }
-
-            if (bm.ScienceElements.greenElement >= 3 && !SGreenBarReady.activeSelf)
-            {
-                SGreenBarReady.SetActive(true);
-            }
-            else if (bm.ScienceElements.greenElement < 3 && SGreenBarReady.activeSelf)
-            {
-                SGreenBarReady.SetActive(false);
-            }
-        }
-    }
-
-    /// <summary>
     /// Funzione che aggiorna le pedine scelta dai giocatori nella fase di draft
     /// </summary>
     public void UpdateDraftChoose()
@@ -684,42 +780,13 @@ public class UIManager : MonoBehaviour
                 MainMenu.SetActive(false);
         }
     }
+}
 
-    /// <summary>
-    /// Funzione che imposta il focus del main menù sullo start button
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator FocusStartButtonMenu()
-    {
-        yield return new WaitForSeconds(1.3f);
-        EventSystem.current.SetSelectedGameObject(StartMenuButton);
-    }
-
-    /// <summary>
-    /// Funzione che imposta lo skip del title screen per la prossima volta che si torna al main menù
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator SkipTitleScreen()
-    {
-        TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
-        yield return new WaitForSeconds(1f);
-        TitleScreen.SetActive(false);
-        MainMenu.SetActive(true);
-        StartCoroutine(FocusStartButtonMenu());
-    }
-
-    /// <summary>
-    /// Funzione che attiva il super-atacco
-    /// </summary>
-    public void ActiveSuperAttackText()
-    {
-        if (BoardManager.Instance.superAttack)
-        {
-            superattackText.SetActive(true);
-        }
-        else
-        {
-            superattackText.SetActive(false);
-        }
-    }
+public enum Expressions
+{
+    On,
+    Off,
+    Happy,
+    Angry,
+    Surprised,
 }

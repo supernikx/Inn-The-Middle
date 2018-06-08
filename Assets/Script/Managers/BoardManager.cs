@@ -395,6 +395,7 @@ public class BoardManager : MonoBehaviour
                     }
                     vfx.ResetMark();
                     pawnSelected.OnAttackEnd += OnAttackEnd;
+                    uiManager.UpdateExpressions(Expressions.Happy);
                     pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
                 }
             }
@@ -465,7 +466,10 @@ public class BoardManager : MonoBehaviour
             }
         }
         if (PawnToRandom.Count > 0)
+        {
+            uiManager.UpdateExpressions(Expressions.Surprised);
             RandomizePatterns(PawnToRandom);
+        }
         else
             turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
     }

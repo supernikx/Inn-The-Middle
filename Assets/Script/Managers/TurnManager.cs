@@ -117,7 +117,11 @@ public class TurnManager : MonoBehaviour
             case PlayTurnState.check:
                 if (!CheckAlreadyDone)
                 {
-                    BoardManager.Instance.superAttack = false;
+                    if (BoardManager.Instance.superAttack)
+                    {
+                        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Angry);
+                        BoardManager.Instance.superAttack = false;
+                    }
                     BoardManager.Instance.UnmarkAttackMarker();
                     BoardManager.Instance.PawnHighlighted(false);
                     BoardManager.Instance.CheckSuperAttack();
@@ -273,6 +277,7 @@ public class TurnManager : MonoBehaviour
     /// <param name="newTurn"></param>
     void OnTurnStart(Factions newTurn)
     {
+        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.On);
         switch (CurrentMacroPhase)
         {
             case MacroPhase.menu:
@@ -346,6 +351,7 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     void OnTurnEnd(Factions endTurn)
     {
+        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Off);
         if (turnsWithoutAttack >= 20)
         {
             Debug.Log("PASSATI 8 TURNI");
@@ -377,11 +383,11 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn()
     {
         if ((CurrentMacroPhase == MacroPhase.draft || CurrentMacroPhase == MacroPhase.placing) || (CurrentMacroPhase == MacroPhase.game && (CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.choosing)))
-        {
+        {            
             if (CurrentPlayerTurn == Factions.Magic)
                 CurrentPlayerTurn = Factions.Science;
             else if (CurrentPlayerTurn == Factions.Science)
-                CurrentPlayerTurn = Factions.Magic;
+                CurrentPlayerTurn = Factions.Magic;            
         }
     }
 
