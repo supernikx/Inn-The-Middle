@@ -1118,7 +1118,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1508,7 +1507,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1737,6 +1735,52 @@ RectTransform:
   m_AnchoredPosition: {x: -8, y: -2.1481628}
   m_SizeDelta: {x: -698, y: -340}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &94783057
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1618035794}
+    m_Modifications:
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383610221742736, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+      propertyPath: m_Name
+      value: Pawn1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &100970932
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,7 +4247,7 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636,
     type: 2}
-  m_PrefabInternal: {fileID: 1227902554}
+  m_PrefabInternal: {fileID: 94783057}
 --- !u!1 &364502767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,7 +4794,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 5
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -5409,7 +5452,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -5669,7 +5711,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1028228336}
+      objectReference: {fileID: 1953961841}
     - target: {fileID: 20538806460945544, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: field of view
@@ -6083,7 +6125,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -6454,7 +6495,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -6756,7 +6796,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -7167,7 +7206,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1048
+      value: 1026
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7689,37 +7728,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 719104535}
   m_Mesh: {fileID: 4300000, guid: 9f5cf805c27df874ea8e9612ab38883a, type: 3}
---- !u!84 &720298428
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &729426275
 Prefab:
   m_ObjectHideFlags: 0
@@ -7729,7 +7737,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 596
+      value: 561
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9362,7 +9370,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -11487,37 +11494,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1015057731}
   m_Mesh: {fileID: 4300000, guid: 9f5cf805c27df874ea8e9612ab38883a, type: 3}
---- !u!84 &1028228336
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1030770396
 GameObject:
   m_ObjectHideFlags: 0
@@ -11595,7 +11571,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 396
+      value: 361
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12396,7 +12372,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -12714,7 +12689,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 28
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -13615,6 +13589,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1191573214}
   m_Mesh: {fileID: 4300000, guid: 9ccfe7863d36aa147a0ad013cd1560ce, type: 3}
+--- !u!84 &1195374466
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1200293347
 GameObject:
   m_ObjectHideFlags: 0
@@ -13788,7 +13793,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -35
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13970,52 +13975,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1222665985}
   m_Mesh: {fileID: 4300000, guid: 32b5968c28a5ec946b63ba0a8ffed6b8, type: 3}
---- !u!1001 &1227902554
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1618035794}
-    m_Modifications:
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -7.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115575927426328, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383610221742736, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-      propertyPath: m_Name
-      value: Pawn1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6255a3f86a7ed6040bb68bd6945c8636, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1231579010
 GameObject:
   m_ObjectHideFlags: 0
@@ -15825,7 +15784,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -16323,7 +16281,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -16529,7 +16486,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1261
+      value: 1227
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -16882,7 +16839,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17712,7 +17668,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -17773,7 +17728,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 839
+      value: 826
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -20111,7 +20066,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -20334,7 +20288,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21357,7 +21310,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -21653,7 +21605,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -22457,11 +22408,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 171
+      value: 157
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -22502,6 +22453,11 @@ Prefab:
     - target: {fileID: 1373615491247194, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_Name
       value: SeconPick
+      objectReference: {fileID: 0}
+    - target: {fileID: 224765105080868762, guid: 6625b1a13b3341a4a97e2e1e8b598aa4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -377
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
@@ -23314,6 +23270,37 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!84 &1953961841
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1954660493
 GameObject:
   m_ObjectHideFlags: 0
@@ -23417,7 +23404,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -23737,7 +23723,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1456
+      value: 1427
       objectReference: {fileID: 0}
     - target: {fileID: 4081574576838952, guid: 6625b1a13b3341a4a97e2e1e8b598aa4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -24092,7 +24078,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -24624,7 +24609,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: 9
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25360,7 +25344,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -25518,7 +25501,6 @@ MonoBehaviour:
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
