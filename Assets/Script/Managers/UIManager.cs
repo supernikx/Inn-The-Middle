@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
     public GameObject p2ChoosingTextEnemy;
 
     [Header("UI Holders references")]
-
     public GameObject TitleScreen;
     public GameObject factionUI;
     public GameObject draftUI;
@@ -60,6 +59,7 @@ public class UIManager : MonoBehaviour
     public Animator fadeinoutmenu;
 
     [Header("Main Menu")]
+    public GameObject Title;
     public GameObject MainMenu;
     public GameObject StartMenuButton;
     public ChangeButtonImage soundtogglemenu;
@@ -110,6 +110,7 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
+        Title.SetActive(true);
         #region Draft
         draftUI.SetActive(false);
         MagicStartPressed.SetActive(false);
@@ -120,6 +121,7 @@ public class UIManager : MonoBehaviour
         if (DataManager.instance._SkipTitleScreen)
         {
             TitleScreen.SetActive(false);
+            Title.GetComponent<Animator>().SetTrigger("MainMenu");
             MainMenu.SetActive(true);
             StartCoroutine(FocusStartButtonMenu());
         }
@@ -506,6 +508,7 @@ public class UIManager : MonoBehaviour
         fadeinoutmenu.SetTrigger("Fade");
         yield return new WaitForSeconds(1f);
         MainMenu.SetActive(false);
+        Title.SetActive(false);
         factionUI.SetActive(true);
         yield return new WaitForSeconds(1f);
         EventSystem.current.SetSelectedGameObject(MagicButton);
@@ -564,6 +567,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator SkipTitleScreen()
     {
         TitleScreen.GetComponent<Animator>().SetTrigger("KeyPressed");
+        Title.GetComponent<Animator>().SetTrigger("KeyPressed");
         yield return new WaitForSeconds(1f);
         TitleScreen.SetActive(false);
         MainMenu.SetActive(true);
