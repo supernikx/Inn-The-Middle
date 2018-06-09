@@ -125,12 +125,15 @@ public class SoundManager : MonoBehaviour
 
     public void SelectNextButton()
     {
-        if (SoundActive)
+        if (GeneralAudioSource != null)
         {
-            if (selectnextbutton != null)
+            if (SoundActive)
             {
-                GeneralAudioSource.clip = selectnextbutton;
-                GeneralAudioSource.Play();
+                if (selectnextbutton != null)
+                {
+                    GeneralAudioSource.clip = selectnextbutton;
+                    GeneralAudioSource.Play();
+                }
             }
         }
     }
