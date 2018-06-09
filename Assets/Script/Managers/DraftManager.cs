@@ -83,6 +83,7 @@ public class DraftManager : MonoBehaviour
                 break;
         }
         bm.vfx.SelectDraftPawn(DraftPawns[draftpawnindex].pawnparticle.transform.position);
+        bm.uiManager.UpdateDraftDissolvedChoose(DraftPawns[draftpawnindex].patternindex);
     }
 
     public void ChooseSelectedDraftPawn()

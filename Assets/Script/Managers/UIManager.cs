@@ -449,7 +449,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(UpdateExpressionsCoroutine(e));
     }
 
-    public IEnumerator UpdateExpressionsCoroutine (Expressions e)
+    public IEnumerator UpdateExpressionsCoroutine(Expressions e)
     {
         switch (bm.turnManager.CurrentPlayerTurn)
         {
@@ -711,6 +711,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    int magicpickindex = 0;
+    int sciencepickindex = 0;
     /// <summary>
     /// Funzione che aggiorna le pedine scelta dai giocatori nella fase di draft
     /// </summary>
@@ -719,16 +721,25 @@ public class UIManager : MonoBehaviour
         switch (bm.turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
-                for (int i = 0; i < bm.draftManager.magic_pawns_picks.Count; i++)
-                {
-                    magic_picks[i].SetPatternImage(bm.draftManager.magic_pawns_picks[i]);
-                }
+                magic_picks[magicpickindex].SetPatternImage(bm.draftManager.magic_pawns_picks[magicpickindex]);
+                magicpickindex++;
                 break;
             case Factions.Science:
-                for (int i = 0; i < bm.draftManager.science_pawns_picks.Count; i++)
-                {
-                    science_picks[i].SetPatternImage(bm.draftManager.science_pawns_picks[i]);
-                }
+                science_picks[sciencepickindex].SetPatternImage(bm.draftManager.science_pawns_picks[sciencepickindex]);
+                sciencepickindex++;
+                break;
+        }
+    }
+
+    public void UpdateDraftDissolvedChoose(int patternindex)
+    {
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                magic_picks[magicpickindex].SetDissolvedPatternImage(patternindex);
+                break;
+            case Factions.Science:
+                science_picks[sciencepickindex].SetDissolvedPatternImage(patternindex);
                 break;
         }
     }
