@@ -52,6 +52,27 @@ public class BoardManager : MonoBehaviour
     public Box[] boxesArray;
     public int placingsLeft;
     public Factions p1Faction, p2Faction;
+    [HideInInspector]
+    private bool _TutorialInProgress = false;
+    public bool TutorialInProgress
+    {
+        get
+        {
+            return _TutorialInProgress;
+        }
+        set
+        {
+            _TutorialInProgress = value;
+            if (_TutorialInProgress)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+        }
+    }
 
     //managers
     [Header("Managers")]
@@ -59,6 +80,7 @@ public class BoardManager : MonoBehaviour
     public DraftManager draftManager;
     public UIManager uiManager;
     public VFXManager vfx;
+    public TutorialManager tutorial;
 
     /// <summary>
     /// Funzioni che iscrivono/disiscrivono il boardmanager agli eventi appena viene abilitato/disabilitato
@@ -150,6 +172,7 @@ public class BoardManager : MonoBehaviour
         turnManager = GetComponent<TurnManager>();
         uiManager = GetComponent<UIManager>();
         vfx = GetComponent<VFXManager>();
+        tutorial = GetComponent<TutorialManager>();
     }
 
     void Start()

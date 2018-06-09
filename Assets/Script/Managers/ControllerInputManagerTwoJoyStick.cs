@@ -50,7 +50,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
 
     void Update()
     {
-        if (!bm.pause)
+        if (!bm.pause && !bm.TutorialInProgress)
         {
             if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null)
             {
@@ -681,6 +681,12 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                     StartCoroutine(BoardManager.Instance.uiManager.SkipTitleScreen());
                 }
             }
+        }
+        else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) &&
+        ((Input.GetKeyDown(joy1Confirm) && bm.turnManager.CurrentPlayerTurn == bm.p1Faction) || ((Input.GetKeyDown(joy2Confirm) && bm.turnManager.CurrentPlayerTurn == bm.p2Faction))) && bm.TutorialInProgress)
+        {
+            bm.TutorialInProgress = false;
+            bm.tutorial.DraftDisableAButton();
         }
 
         if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))

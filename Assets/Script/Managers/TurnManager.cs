@@ -208,9 +208,9 @@ public class TurnManager : MonoBehaviour
                 mainCam.enabled = false;
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
-            case MacroPhase.draft:
-                //SoundManager.instance.StopMenuMusic();
+            case MacroPhase.draft:                
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
+                BoardManager.Instance.tutorial.StartDraftTutorial();
                 break;
             case MacroPhase.placing:
                 Debug.Log("Sei nella fase di posizionamento");
@@ -294,8 +294,9 @@ public class TurnManager : MonoBehaviour
                     else if (BoardManager.Instance.draftManager.DraftPawns.Count>0)
                     {
                         BoardManager.Instance.draftManager.SelectNextDraftPawn(Directions.idle);
+                        BoardManager.Instance.tutorial.DraftTutorial();
                     }
-                }
+                }                
                 break;
             case MacroPhase.placing:
                 switch (CurrentTurnState)
@@ -351,7 +352,11 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     void OnTurnEnd(Factions endTurn)
     {
-        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Off);
+        if (CurrentMacroPhase == MacroPhase.game)
+        {
+            BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Off);
+        }
+
         if (turnsWithoutAttack >= 20)
         {
             Debug.Log("PASSATI 8 TURNI");

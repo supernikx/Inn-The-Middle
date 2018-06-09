@@ -58,6 +58,7 @@ public class DraftManager : MonoBehaviour
             hasDrafted = true;
             bm.uiManager.UIChange();
             SelectNextDraftPawn(Directions.idle);
+            bm.tutorial.DraftTutorial();
         }
     }
 

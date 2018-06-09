@@ -31,7 +31,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
 
     void Update()
     {
-        if (!bm.pause)
+        if (!bm.pause && !bm.TutorialInProgress)
         {
             if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null)
             {
@@ -311,6 +311,12 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                 }
             }
         }
+        else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) && Input.GetKeyDown(joyConfirm))
+        {
+            bm.TutorialInProgress = false;
+            bm.tutorial.DraftDisableAButton();
+        }
+
         if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))
         {
             if (bm.pause)
