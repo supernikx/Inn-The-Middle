@@ -330,6 +330,7 @@ public class TurnManager : MonoBehaviour
                                     break;
                             }
                             BoardManager.Instance.SelectNextPawnToPlace(Directions.idle);
+                            BoardManager.Instance.tutorial.PlacingTutorial();
                         }
                         break;
                 }

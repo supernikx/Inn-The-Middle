@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
 {
     BoardManager bm;
     int DraftTextIndex = 0;
+    int PlacingTextIndex = 0;
 
     [Header("Draft")]
     public GameObject MagicDraft;
@@ -17,6 +18,13 @@ public class TutorialManager : MonoBehaviour
     public GameObject MagicADraftButton;
     public GameObject ScienceADraftButton;
     public List<string> DraftText = new List<string>();
+
+    [Header("Placing")]
+    public GameObject MagicPlacing;
+    public GameObject SciencePlacing;
+    public TextMeshProUGUI MagicPlacingText;
+    public TextMeshProUGUI SciencePlacingText;
+    public List<string> PlacingText = new List<string>();
 
     public bool _TutorialActive;
     public bool TutorialActive
@@ -69,6 +77,9 @@ public class TutorialManager : MonoBehaviour
         ScienceDraft.SetActive(false);
         MagicADraftButton.SetActive(false);
         ScienceADraftButton.SetActive(false);
+
+        MagicPlacing.SetActive(false);
+        SciencePlacing.SetActive(false);
 }
 
     public void ActiveDeactiveTutorial()
@@ -100,8 +111,6 @@ public class TutorialManager : MonoBehaviour
     {
         if (TutorialActive)
         {
-            MagicDraft.SetActive(false);
-            ScienceDraft.SetActive(false);
             if (bm.draftManager.hasDrafted)
             {
                 bm.TutorialInProgress = true;
@@ -141,6 +150,32 @@ public class TutorialManager : MonoBehaviour
         button.SetActive(false);
     }
 
+    #endregion
+
+    #region Placing Tutorial
+
+    public void PlacingTutorial()
+    {
+        if (TutorialActive)
+        {
+            bm.TutorialInProgress = true;
+            switch (bm.turnManager.CurrentPlayerTurn)
+            {
+                case Factions.Magic:
+                    MagicPlacing.SetActive(true);
+                    MagicPlacingText.text = PlacingText[PlacingTextIndex];
+                    break;
+                case Factions.Science:
+                    SciencePlacing.SetActive(true);
+                    SciencePlacingText.text = PlacingText[PlacingTextIndex];
+                    break;
+            }
+            PlacingTextIndex++;
+        }
+    }
+
+    #endregion
+
     public void AButtonPressed()
     {
         switch (bm.turnManager.CurrentMacroPhase)
@@ -157,6 +192,15 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case TurnManager.MacroPhase.placing:
+                switch (bm.turnManager.CurrentPlayerTurn)
+                {
+                    case Factions.Magic:
+                        MagicPlacing.SetActive(false);
+                        break;
+                    case Factions.Science:
+                        SciencePlacing.SetActive(false);
+                        break;
+                }
                 break;
             case TurnManager.MacroPhase.game:
                 break;
@@ -165,6 +209,4 @@ public class TutorialManager : MonoBehaviour
         }
         bm.TutorialInProgress = false;
     }
-
-    #endregion
 }
