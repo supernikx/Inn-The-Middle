@@ -681,6 +681,13 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                     StartCoroutine(BoardManager.Instance.uiManager.SkipTitleScreen());
                 }
             }
+            else if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end)
+            {
+                if (Input.anyKeyDown)
+                {
+                    bm.level.ReloadLevel();
+                }
+            }
         }
         else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) &&
         ((Input.GetKeyDown(joy1Confirm) && bm.turnManager.CurrentPlayerTurn == bm.p1Faction) || ((Input.GetKeyDown(joy2Confirm) && bm.turnManager.CurrentPlayerTurn == bm.p2Faction))) && bm.TutorialInProgress)
@@ -688,7 +695,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
             bm.tutorial.AButtonPressed();
         }
 
-        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))
+        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing) && Input.GetKeyDown(joyPause))
         {
             if (bm.pause)
                 EventManager.OnUnPause();

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Factions { Magic = 1, Science = 2 };
+public enum Factions {None, Magic, Science};
 
 public class TurnManager : MonoBehaviour
 {
@@ -82,7 +82,7 @@ public class TurnManager : MonoBehaviour
         EventManager.OnGameEnd -= OnGameEnd;
     }
 
-    private void OnGameEnd()
+    private void OnGameEnd(Factions WinFaction)
     {
         CurrentMacroPhase = MacroPhase.end;
     }

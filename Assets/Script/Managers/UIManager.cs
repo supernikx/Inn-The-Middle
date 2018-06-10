@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
     public GameObject choosingUi;
     public GameObject placingUI;
     public GameObject gameUI;
+    public GameObject winScreen;
     public GameObject connectjoystick;
     public Animator fadeinoutmenu;
 
@@ -94,8 +95,10 @@ public class UIManager : MonoBehaviour
     public ChangeButtonImage soundtogglepause;
 
     [Header("Win Screen and texts")]
-    public GameObject winScreen;
-    public TextMeshProUGUI gameResult;
+    public GameObject MagicWinImage;
+    public GameObject ScienceWinImage;
+    public GameObject DrawWinImage;
+    public TextMeshProUGUI TurnWinText;
 
     private void Awake()
     {
@@ -106,7 +109,12 @@ public class UIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        #region WinCondition
         winScreen.SetActive(false);
+        MagicWinImage.SetActive(false);
+        ScienceWinImage.SetActive(false);
+        DrawWinImage.SetActive(false);
+        #endregion
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
@@ -141,6 +149,7 @@ public class UIManager : MonoBehaviour
         EventManager.OnUnPause += OnGameUnPause;
         EventManager.OnJoystickDisconnected += JoystickDisconnected;
         EventManager.OnJoystickRiconnected += JoystickRiconnected;
+        EventManager.OnGameEnd += SetWinScreen;
     }
     private void OnDisable()
     {
@@ -148,6 +157,7 @@ public class UIManager : MonoBehaviour
         EventManager.OnUnPause -= OnGameUnPause;
         EventManager.OnJoystickDisconnected -= JoystickDisconnected;
         EventManager.OnJoystickRiconnected -= JoystickRiconnected;
+        EventManager.OnGameEnd -= SetWinScreen;
     }
 
 
@@ -576,6 +586,43 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region Draft
+
+    int magicpickindex = 0;
+    int sciencepickindex = 0;
+    /// <summary>
+    /// Funzione che aggiorna le pedine scelta dai giocatori nella fase di draft
+    /// </summary>
+    public void UpdateDraftChoose()
+    {
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                magic_picks[magicpickindex].SetPatternImage(bm.draftManager.magic_pawns_picks[magicpickindex]);
+                magicpickindex++;
+                break;
+            case Factions.Science:
+                science_picks[sciencepickindex].SetPatternImage(bm.draftManager.science_pawns_picks[sciencepickindex]);
+                sciencepickindex++;
+                break;
+        }
+    }
+
+    public void UpdateDraftDissolvedChoose(int patternindex)
+    {
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                magic_picks[magicpickindex].SetDissolvedPatternImage(patternindex);
+                break;
+            case Factions.Science:
+                science_picks[sciencepickindex].SetDissolvedPatternImage(patternindex);
+                break;
+        }
+    }
+
+    #endregion
+    
     /// <summary>
     /// Funzione che aggiorna l'ui in base alla fase e stato del turno
     /// </summary>
@@ -711,39 +758,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    int magicpickindex = 0;
-    int sciencepickindex = 0;
-    /// <summary>
-    /// Funzione che aggiorna le pedine scelta dai giocatori nella fase di draft
-    /// </summary>
-    public void UpdateDraftChoose()
-    {
-        switch (bm.turnManager.CurrentPlayerTurn)
-        {
-            case Factions.Magic:
-                magic_picks[magicpickindex].SetPatternImage(bm.draftManager.magic_pawns_picks[magicpickindex]);
-                magicpickindex++;
-                break;
-            case Factions.Science:
-                science_picks[sciencepickindex].SetPatternImage(bm.draftManager.science_pawns_picks[sciencepickindex]);
-                sciencepickindex++;
-                break;
-        }
-    }
-
-    public void UpdateDraftDissolvedChoose(int patternindex)
-    {
-        switch (bm.turnManager.CurrentPlayerTurn)
-        {
-            case Factions.Magic:
-                magic_picks[magicpickindex].SetDissolvedPatternImage(patternindex);
-                break;
-            case Factions.Science:
-                science_picks[sciencepickindex].SetDissolvedPatternImage(patternindex);
-                break;
-        }
-    }
-
     /// <summary>
     /// Funzione che aggiorna le icone del suono (main menù e draft)
     /// </summary>
@@ -794,6 +808,24 @@ public class UIManager : MonoBehaviour
             if (!flag)
                 MainMenu.SetActive(false);
         }
+    }
+
+    public void SetWinScreen(Factions WinFaction)
+    {
+        winScreen.SetActive(true);
+        switch (WinFaction)
+        {
+            case Factions.None:
+                DrawWinImage.SetActive(true);
+                break;
+            case Factions.Magic:
+                ScienceWinImage.SetActive(true);
+                break;
+            case Factions.Science:
+                ScienceWinImage.SetActive(true);
+                break;
+        }
+        TurnWinText.text = bm.turnManager.numberOfTurns.ToString() + " Turns";
     }
 }
 

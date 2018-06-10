@@ -11,7 +11,7 @@ public class EventManager : MonoBehaviour {
     #endregion
 
     #region GameEvent
-    public delegate void GameEvent();
+    public delegate void GameEvent(Factions faction);
     public static GameEvent OnGameEnd;
     #endregion
 

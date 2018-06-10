@@ -78,6 +78,7 @@ public class BoardManager : MonoBehaviour
     [Header("Managers")]
     public TurnManager turnManager;
     public DraftManager draftManager;
+    public LevelManager level;
     public UIManager uiManager;
     public VFXManager vfx;
     public TutorialManager tutorial;
@@ -170,6 +171,7 @@ public class BoardManager : MonoBehaviour
         }
         draftManager = GetComponent<DraftManager>();
         turnManager = GetComponent<TurnManager>();
+        level = GetComponent<LevelManager>();
         uiManager = GetComponent<UIManager>();
         vfx = GetComponent<VFXManager>();
         tutorial = GetComponent<TutorialManager>();
@@ -1006,15 +1008,11 @@ public class BoardManager : MonoBehaviour
         {
             if (magicPawns.Count > sciencePawns.Count)
             {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Magic wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                EventManager.OnGameEnd();
+                EventManager.OnGameEnd(Factions.Magic);
             }
             else if (sciencePawns.Count > magicPawns.Count)
             {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Science wins by having more pawns! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                EventManager.OnGameEnd();
+                EventManager.OnGameEnd(Factions.Science);
             }
             else if (magicPawns.Count == sciencePawns.Count)
             {
@@ -1032,21 +1030,15 @@ public class BoardManager : MonoBehaviour
 
                 if (magictiles > sciencetiles)
                 {
-                    uiManager.winScreen.SetActive(true);
-                    uiManager.gameResult.text = "Magic wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                    EventManager.OnGameEnd();
+                    EventManager.OnGameEnd(Factions.Magic);
                 }
                 else if (sciencetiles > magictiles)
                 {
-                    uiManager.winScreen.SetActive(true);
-                    uiManager.gameResult.text = "Science wins by destroying more tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                    EventManager.OnGameEnd();
+                    EventManager.OnGameEnd(Factions.Science);
                 }
                 else if (magictiles == sciencetiles)
                 {
-                    uiManager.winScreen.SetActive(true);
-                    uiManager.gameResult.text = "DRAW! Both players had the same amount of pawns and destroyed the same amount of tiles! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                    EventManager.OnGameEnd();
+                    EventManager.OnGameEnd(Factions.None);
                 }
             }
         }
@@ -1054,16 +1046,12 @@ public class BoardManager : MonoBehaviour
         {
             if (magicPawns.Count == 0)
             {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Science wins! \n " + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                EventManager.OnGameEnd();
+                EventManager.OnGameEnd(Factions.Science);
 
             }
             else if (sciencePawns.Count == 0)
             {
-                uiManager.winScreen.SetActive(true);
-                uiManager.gameResult.text = "Magic wins! \n" + "The game ended in " + turnManager.numberOfTurns + " turns.";
-                EventManager.OnGameEnd();
+                EventManager.OnGameEnd(Factions.Magic);
             }
         }
     }

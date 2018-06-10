@@ -310,13 +310,20 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                     StartCoroutine(BoardManager.Instance.uiManager.SkipTitleScreen());
                 }
             }
+            else if (bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end)
+            {
+                if (Input.anyKeyDown)
+                {
+                    bm.level.ReloadLevel();
+                }
+            }
         }
         else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) && Input.GetKeyDown(joyConfirm))
         {
             bm.tutorial.AButtonPressed();
         }
 
-        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))
+        if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing) && Input.GetKeyDown(joyPause))
         {
             if (bm.pause)
                 EventManager.OnUnPause();
