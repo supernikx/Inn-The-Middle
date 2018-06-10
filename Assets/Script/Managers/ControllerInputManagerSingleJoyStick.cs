@@ -313,8 +313,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
         }
         else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) && Input.GetKeyDown(joyConfirm))
         {
-            bm.TutorialInProgress = false;
-            bm.tutorial.DraftDisableAButton();
+            bm.tutorial.AButtonPressed();
         }
 
         if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.end) && Input.GetKeyDown(joyPause))

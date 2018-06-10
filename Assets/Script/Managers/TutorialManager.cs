@@ -14,8 +14,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject ScienceDraft;
     public TextMeshProUGUI MagicDraftText;
     public TextMeshProUGUI ScienceDraftText;
-    public GameObject MagicDraftAButtonImage;
-    public GameObject ScienceDraftAButtonImage;
+    public GameObject MagicADraftButton;
+    public GameObject ScienceADraftButton;
     public List<string> DraftText = new List<string>();
 
     public bool _TutorialActive;
@@ -67,9 +67,9 @@ public class TutorialManager : MonoBehaviour
         bm = BoardManager.Instance;
         MagicDraft.SetActive(false);
         ScienceDraft.SetActive(false);
-        MagicDraftAButtonImage.SetActive(false);
-        ScienceDraftAButtonImage.SetActive(false);
-    }
+        MagicADraftButton.SetActive(false);
+        ScienceADraftButton.SetActive(false);
+}
 
     public void ActiveDeactiveTutorial()
     {
@@ -109,26 +109,24 @@ public class TutorialManager : MonoBehaviour
                 {
                     case Factions.Magic:
                         MagicDraft.SetActive(true);
+                        MagicADraftButton.SetActive(true);
                         MagicDraftText.text = DraftText[DraftTextIndex];
-                        if (DraftTextIndex < DraftText.Count - 1)
-                        {
-                            MagicDraftAButtonImage.SetActive(true);
-                        }
-                        else
+                        if (DraftTextIndex >= DraftText.Count - 1)
                         {
                             bm.TutorialInProgress = false;
+                            MagicADraftButton.SetActive(false);
+                            StartCoroutine(LastDraftText(MagicDraft));
                         }
                         break;
                     case Factions.Science:
                         ScienceDraft.SetActive(true);
+                        ScienceADraftButton.SetActive(true);
                         ScienceDraftText.text = DraftText[DraftTextIndex];
-                        if (DraftTextIndex < DraftText.Count - 1)
-                        {
-                            ScienceDraftAButtonImage.SetActive(true);
-                        }
-                        else
+                        if (DraftTextIndex >= DraftText.Count - 1)
                         {
                             bm.TutorialInProgress = false;
+                            ScienceADraftButton.SetActive(false);
+                            StartCoroutine(LastDraftText(ScienceDraft));
                         }
                         break;
                 }
@@ -137,15 +135,35 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void DraftDisableAButton()
+    IEnumerator LastDraftText(GameObject button)
     {
-        if (TutorialActive)
+        yield return new WaitForSeconds(2f);
+        button.SetActive(false);
+    }
+
+    public void AButtonPressed()
+    {
+        switch (bm.turnManager.CurrentMacroPhase)
         {
-            if (MagicDraftAButtonImage.activeSelf)
-                MagicDraftAButtonImage.SetActive(false);
-            if (ScienceDraftAButtonImage.activeSelf)
-                ScienceDraftAButtonImage.SetActive(false);
+            case TurnManager.MacroPhase.draft:
+                switch (bm.turnManager.CurrentPlayerTurn)
+                {
+                    case Factions.Magic:
+                        MagicDraft.SetActive(false);
+                        break;
+                    case Factions.Science:
+                        ScienceDraft.SetActive(false);
+                        break;
+                }
+                break;
+            case TurnManager.MacroPhase.placing:
+                break;
+            case TurnManager.MacroPhase.game:
+                break;
+            case TurnManager.MacroPhase.end:
+                break;
         }
+        bm.TutorialInProgress = false;
     }
 
     #endregion
