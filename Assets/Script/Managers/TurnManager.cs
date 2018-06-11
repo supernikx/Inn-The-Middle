@@ -302,11 +302,18 @@ public class TurnManager : MonoBehaviour
                 switch (CurrentTurnState)
                 {
                     case PlayTurnState.choosing:
-                        if (!BoardManager.Instance.CheckPawnToChoose())
-                            CurrentTurnState = PlayTurnState.placing;
+                        if ((BoardManager.Instance.tutorial.ChoosingTutorialDone && BoardManager.Instance.tutorial.TutorialActive) || !BoardManager.Instance.tutorial.TutorialActive)
+                        {
+                            if (!BoardManager.Instance.CheckPawnToChoose())
+                                CurrentTurnState = PlayTurnState.placing;
+                            else
+                            {
+                                BoardManager.Instance.SetPawnToChoose(true);
+                            }
+                        }
                         else
                         {
-                            BoardManager.Instance.SetPawnToChoose(true);
+                            BoardManager.Instance.tutorial.ChoosingTutorial();
                         }
                         break;
                     case PlayTurnState.placing:
@@ -340,6 +347,10 @@ public class TurnManager : MonoBehaviour
                 CurrentTurnState = PlayTurnState.check;
                 numberOfTurns++;
                 turnsWithoutAttack++;
+                if (!BoardManager.Instance.tutorial.GameTutorialDone)
+                {
+                    BoardManager.Instance.tutorial.GameTutorial();
+                }
                 break;
             default:
                 Debug.Log("Errore: nessuna macrofase");

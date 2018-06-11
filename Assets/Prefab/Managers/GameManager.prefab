@@ -61,6 +61,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213afb774f1219649a219c331c591633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MagicDraft: {fileID: 0}
+  ScienceDraft: {fileID: 0}
+  MagicDraftText: {fileID: 0}
+  ScienceDraftText: {fileID: 0}
+  MagicADraftButton: {fileID: 0}
+  ScienceADraftButton: {fileID: 0}
+  DraftText:
+  - Excellent! Now both of the players will choose their pawns. Press Start and prepare
+    to pick one.
+  - "Look carefully, by moving the indicator between the \u201Csouls\u201D with the
+    control stick, you can see their attack patterns. Pick one!"
+  - "Now we\u2019re choosing 2 pawns."
+  - We can pick 2 pawns as well.
+  - Once again, 2 for our team!
+  - "We\u2019ll use wisely the last one!"
+  MagicChoosing: {fileID: 0}
+  ScienceChoosing: {fileID: 0}
+  MagicChoosingText: {fileID: 0}
+  ScienceChoosingText: {fileID: 0}
+  ChoosingText:
+  - 'Now by using the D-pad we can select the attack of the white and black pawns. '
+  - Indeed, you choose the attack for the white ones, but the opponent chooses for
+    the black ones.
+  ChoosingTutorialDone: 0
+  MagicPlacing: {fileID: 0}
+  SciencePlacing: {fileID: 0}
+  MagicPlacingText: {fileID: 0}
+  SciencePlacingText: {fileID: 0}
+  PlacingText:
+  - Use the LB and RB buttons to select the pawns. Choose with the control stick in
+    which tile you want to place them and press A to confirm your choice.
+  - "Let\u2019s place 2 more and then it will be our opponent\u2019s turn."
+  - "Let\u2019s put on the board 2 of our pawns."
+  - Now we can place the last couple.
+  - Lay the last one, so we can start the match.
+  MagicGame: {fileID: 0}
+  ScienceGame: {fileID: 0}
+  MagicGameText: {fileID: 0}
+  ScienceGameText: {fileID: 0}
+  GameP1Text:
+  - Ok, lets start from the basics. You can select one of my pawns pressing L/R bumper
+    buttons and move the selected pawn using the left analogic stick.
+  - To win you have to destroy all the enemys pawns using the SPECIAL ATTACK.
+  - Normally you can use only the base attack that force the enemy pawn to change
+    his pattern and to shift in another box. The player who attack also gain the material
+    that was above the pawn hitted.
+  - The special attack its avaiable only if you have previously took 3 material elements
+    with the same colour or 3 element of each colour.
+  - "If you can attack with one of your pawns, Se qualcuna delle tue pedine ha la
+    possibilit\xE0 di attaccare, selezionala premendo L/R bumper per far apparire
+    il suo pattern, e in seguito il tasto B per completare l\u2019azione. "
+  - "Mi raccomando valuta bene le tue mosse, perch\xE9 le azioni che ti ho appena
+    spiegato, potranno essere eseguite una volta sola per turno!"
+  GameP2Text:
+  - "Adesso tocca a noi. Il mio avversario ha gi\xE0 spiegato tutto. Servir\xE0 giusto
+    un ripasso..."
+  - "Seleziona una pedina con L/R, poi muovila scegliendo dove con la levetta sx e
+    infine, se ne hai la possibilit\xE0, scegli con quale pedina vuoi attaccare l\u2019avversario
+    utilizzando sempre L/R e il tasto B. "
+  GameTutorialDone: 0
+  SuperAttackTutorialDone: 0
   _TutorialActive: 0
 --- !u!114 &114157139931533906
 MonoBehaviour:
@@ -211,8 +272,10 @@ MonoBehaviour:
   choosingUi: {fileID: 0}
   placingUI: {fileID: 0}
   gameUI: {fileID: 0}
+  winScreen: {fileID: 0}
   connectjoystick: {fileID: 0}
   fadeinoutmenu: {fileID: 0}
+  Title: {fileID: 0}
   MainMenu: {fileID: 0}
   StartMenuButton: {fileID: 0}
   soundtogglemenu: {fileID: 0}
@@ -235,13 +298,22 @@ MonoBehaviour:
   MagicStartPressed: {fileID: 0}
   ScienceStartPressed: {fileID: 0}
   PressStartDraftText: {fileID: 0}
+  SFrameImage: {fileID: 0}
+  SOn: {fileID: 114430358753861094, guid: 35ebd13ffe8cf1149a96ae935a641582, type: 2}
+  SOff: {fileID: 114589482024996932, guid: 74fffc855baaf6c42bab30fd3011b5ae, type: 2}
+  SAngry: {fileID: 114230518783740568, guid: d2627f4057a55c3458fbdd8e969a774e, type: 2}
+  SHappy: {fileID: 114939729208710696, guid: 14a76a2c6f14c634a8c1deb82538b5b6, type: 2}
+  SSurprised: {fileID: 114166350362837126, guid: 46e2deb23fe6e4d46b6584a0af4a9ece,
+    type: 2}
   pausePanel: {fileID: 0}
   ResumePauseButton: {fileID: 0}
   RestartPauseButton: {fileID: 0}
   QuitPauseButton: {fileID: 0}
   soundtogglepause: {fileID: 0}
-  winScreen: {fileID: 0}
-  gameResult: {fileID: 0}
+  MagicWinImage: {fileID: 0}
+  ScienceWinImage: {fileID: 0}
+  DrawWinImage: {fileID: 0}
+  TurnWinText: {fileID: 0}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,6 +446,8 @@ MonoBehaviour:
   p2Faction: 0
   turnManager: {fileID: 0}
   draftManager: {fileID: 0}
+  level: {fileID: 0}
   uiManager: {fileID: 0}
   vfx: {fileID: 0}
+  tutorial: {fileID: 0}
   pause: 0

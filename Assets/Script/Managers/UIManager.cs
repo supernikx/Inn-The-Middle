@@ -690,7 +690,7 @@ public class UIManager : MonoBehaviour
                 switch (tm.CurrentTurnState)
                 {
                     case TurnManager.PlayTurnState.choosing:
-                        SetChoosingUI();
+                        //SetChoosingUI();
                         break;
                     case TurnManager.PlayTurnState.placing:
                         switch (tm.CurrentPlayerTurn)
