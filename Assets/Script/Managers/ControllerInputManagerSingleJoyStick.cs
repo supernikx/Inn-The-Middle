@@ -318,7 +318,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                 }
             }
         }
-        else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) && Input.GetKeyDown(joyConfirm) && bm.TutorialInProgress &&!bm.pause)
+        else if ((bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.game || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.placing || bm.turnManager.CurrentMacroPhase == TurnManager.MacroPhase.draft) && Input.GetKeyDown(joyConfirm) && bm.TutorialInProgress && !bm.pause)
         {
             bm.tutorial.AButtonPressed();
         }

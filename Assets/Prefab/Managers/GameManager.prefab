@@ -121,6 +121,11 @@ MonoBehaviour:
     infine, se ne hai la possibilit\xE0, scegli con quale pedina vuoi attaccare l\u2019avversario
     utilizzando sempre L/R e il tasto B. "
   GameTutorialDone: 0
+  SuperAttackText: "Ah ah ah ora si fa sul serio. Hai ottenuto abbastanza materiali
+    ( 3 dello stesso tipo o uno per ogni tipo) per usare l\u2019ATTACCO SPECIALE!
+    Questo attacco distrugge definitivamente una pedina dell\u2019avversario e sar\xE0
+    necessaria per raggiungere la vittoria. Per Attivarlo premi Y prima di un attacco
+    normale!"
   SuperAttackTutorialDone: 0
   _TutorialActive: 0
 --- !u!114 &114157139931533906

@@ -25,6 +25,10 @@ public class PlayerElements : MonoBehaviour
         }
         BoardManager.Instance.uiManager.UpdateElementsUI();
         BoardManager.Instance.uiManager.UpdateReadyElement();
+        if (CheckSuperAttack() && !BoardManager.Instance.tutorial.SuperAttackTutorialDone)
+        {
+            BoardManager.Instance.tutorial.SuperAttackTutorial();
+        }
     }
 
     public bool CheckSuperAttack()

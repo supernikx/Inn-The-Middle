@@ -45,8 +45,11 @@ public class TutorialManager : MonoBehaviour
     public List<string> GameP1Text = new List<string>();
     public List<string> GameP2Text = new List<string>();
     public bool GameTutorialDone;
+
+    public string SuperAttackText;
     public bool SuperAttackTutorialDone;
 
+    [Header("General")]
     public bool _TutorialActive;
     public bool TutorialActive
     {
@@ -202,6 +205,10 @@ public class TutorialManager : MonoBehaviour
             }
             ChoosingTextIndex++;
         }
+        else
+        {
+            ChoosingTutorialDone = true;
+        }
     }
 
     #endregion
@@ -268,6 +275,33 @@ public class TutorialManager : MonoBehaviour
                 GameP2TextIndex++;
             }
         }
+        else
+        {
+            GameTutorialDone = true;
+        }
+    }
+
+    public void SuperAttackTutorial()
+    {
+        if (TutorialActive)
+        {
+            bm.TutorialInProgress = true;
+            switch (bm.turnManager.CurrentPlayerTurn)
+            {
+                case Factions.Magic:
+                    MagicGame.SetActive(true);
+                    MagicGameText.text = SuperAttackText;
+                    break;
+                case Factions.Science:
+                    ScienceGame.SetActive(true);
+                    ScienceGameText.text = SuperAttackText;
+                    break;
+            }
+        }
+        else
+        {
+            SuperAttackTutorialDone = true;
+        }
     }
 
     #endregion
@@ -326,42 +360,58 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case TurnManager.MacroPhase.game:
-                if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
-                {
-                    if (GameP1Text.Count > GameP1TextIndex)
-                        GameTutorial();
-                    else
+                if (!GameTutorialDone) {
+                    if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
                     {
-                        switch (bm.p1Faction)
+                        if (GameP1Text.Count > GameP1TextIndex)
+                            GameTutorial();
+                        else
                         {
-                            case Factions.Magic:
-                                MagicGame.SetActive(false);
-                                break;
-                            case Factions.Science:
-                                ScienceGame.SetActive(false);
-                                break;
-                        }      
-                        bm.TutorialInProgress = false;
+                            switch (bm.p1Faction)
+                            {
+                                case Factions.Magic:
+                                    MagicGame.SetActive(false);
+                                    break;
+                                case Factions.Science:
+                                    ScienceGame.SetActive(false);
+                                    break;
+                            }
+                            bm.TutorialInProgress = false;
+                        }
+                    }
+                    else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
+                    {
+                        if (GameP2Text.Count > GameP2TextIndex)
+                            GameTutorial();
+                        else
+                        {
+                            switch (bm.p2Faction)
+                            {
+                                case Factions.Magic:
+                                    MagicGame.SetActive(false);
+                                    break;
+                                case Factions.Science:
+                                    ScienceGame.SetActive(false);
+                                    break;
+                            }
+                            bm.TutorialInProgress = false;
+                            GameTutorialDone = true;
+                        }
                     }
                 }
-                else if (bm.turnManager.CurrentPlayerTurn == bm.p2Faction)
+                else if (!SuperAttackTutorialDone)
                 {
-                    if (GameP2Text.Count > GameP2TextIndex)
-                        GameTutorial();
-                    else
+                    switch (bm.turnManager.CurrentPlayerTurn)
                     {
-                        switch (bm.p2Faction)
-                        {
-                            case Factions.Magic:
-                                MagicGame.SetActive(false);
-                                break;
-                            case Factions.Science:
-                                ScienceGame.SetActive(false);
-                                break;
-                        }
-                        bm.TutorialInProgress = false;
-                        GameTutorialDone = true;
+                        case Factions.Magic:
+                            MagicGame.SetActive(false);
+                            break;
+                        case Factions.Science:
+                            ScienceGame.SetActive(false);
+                            break;
                     }
+                    SuperAttackTutorialDone = true;
+                    bm.TutorialInProgress = false;
                 }
                 break;
             case TurnManager.MacroPhase.end:
