@@ -87,13 +87,17 @@ public class TurnManager : MonoBehaviour
         CurrentMacroPhase = MacroPhase.end;
     }
 
+    private void Awake()
+    {
+        CurrentMacroPhase = MacroPhase.menu;
+    }
+
     // Use this for initialization
     void Start()
     {
         mainCam.enabled = true;
         draftCam.enabled = false;
-        CheckAlreadyDone = false;
-        CurrentMacroPhase = MacroPhase.menu;
+        CheckAlreadyDone = false;        
     }
 
     /// <summary>

@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Holders references")]
     public GameObject TitleScreen;
+    public GameObject OptionsMenu;
     public GameObject factionUI;
     public GameObject draftUI;
     public GameObject choosingUi;
@@ -115,6 +116,7 @@ public class UIManager : MonoBehaviour
         ScienceWinImage.SetActive(false);
         DrawWinImage.SetActive(false);
         #endregion
+        OptionsMenu.SetActive(true);
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
@@ -524,6 +526,14 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(MagicButton);
         bm.turnManager.CurrentTurnState = TurnManager.PlayTurnState.idle;
         bm.turnManager.CurrentMacroPhase = TurnManager.MacroPhase.faction;
+    }
+
+    /// <summary>
+    /// Funzione che invoca la coroutine
+    /// </summary>
+    public void FocusStartButton()
+    {
+        StartCoroutine(FocusStartButtonMenu());
     }
 
     /// <summary>

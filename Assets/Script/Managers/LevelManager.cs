@@ -17,19 +17,4 @@ public class LevelManager : MonoBehaviour {
     {
         Application.Quit();
     }
-
-    public void SetResolution()
-    {
-
-    }
-
-    public void SetFullScreen(bool fullscreen)
-    {
-        Screen.fullScreen = fullscreen;
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }
 }
