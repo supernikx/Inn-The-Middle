@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class SoundManager : MonoBehaviour
     }
     public AudioSource MusicAudioSource;
     public AudioSource GeneralAudioSource;
+    public AudioMixer audioMixer;
 
     [Header("Clips Menu")]
     public AudioClip buttonselection;
@@ -104,6 +106,16 @@ public class SoundManager : MonoBehaviour
             }
         }
         BoardManager.Instance.uiManager.UpdateSoundUI();
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        audioMixer.SetFloat("SFXVolume", volume);
     }
 
     public void ActiveDeactiveSound()
