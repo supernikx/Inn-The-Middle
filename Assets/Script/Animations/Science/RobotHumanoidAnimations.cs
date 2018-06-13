@@ -8,6 +8,15 @@ public class RobotHumanoidAnimations : PawnAnimationManager
     Vector3 startRotation;
     Transform myPosition;
 
+    [Header("VFX Refrences")]
+    public ParticleSystem AttackVFX;
+
+    protected override void Start()
+    {
+        base.Start();
+        AttackVFX.Stop();
+    }
+
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
         myPosition.eulerAngles = startRotation;
@@ -20,6 +29,14 @@ public class RobotHumanoidAnimations : PawnAnimationManager
         startRotation = _startRotation;
         myPosition = _myPosition;
         StartCoroutine(Movement(targetPosition, speed));
+    }
+
+    public IEnumerator AttackVFXWave()
+    {
+        AttackVFX.Play();
+        yield return new WaitForSeconds(AttackVFX.main.duration);
+        AttackVFX.Stop();
+        OnAttackEnd();
     }
 
     private IEnumerator Movement(Vector3 _targetPosition, float _speed)
