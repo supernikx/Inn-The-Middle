@@ -33,6 +33,7 @@ public class BoardManager : MonoBehaviour
                 {
                     CreateMarkList();
                     SelectNextPawnToAttack(Directions.idle);
+                    SoundManager.instance.ActiveSuperAttack();
                 }
                 else
                 {
@@ -357,11 +358,13 @@ public class BoardManager : MonoBehaviour
             {
                 p1Faction = Factions.Magic;
                 p2Faction = Factions.Science;
+                SoundManager.instance.FactionSelected(Factions.Magic);
             }
             else if (_factionID == 2)
             {
                 p1Faction = Factions.Science;
                 p2Faction = Factions.Magic;
+                SoundManager.instance.FactionSelected(Factions.Science);
             }
         }
     }
@@ -443,7 +446,6 @@ public class BoardManager : MonoBehaviour
     public void ActiveSuperAttack()
     {
         superAttack = !superAttack;
-        Debug.Log("superattacco premuto");
     }
 
     #endregion

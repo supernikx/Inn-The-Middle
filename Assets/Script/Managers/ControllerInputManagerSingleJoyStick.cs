@@ -220,7 +220,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                             bm.SelectNextPawnToAttack(Directions.left);
                         }
 
-                        if (bm.CanSuperAttack && Input.GetKeyDown(joyActiveSuperAttack))
+                        if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joyActiveSuperAttack))
                         {
                             bm.ActiveSuperAttack();
                         }
@@ -246,7 +246,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
                             bm.SelectNextPawnToAttack(Directions.left);
                         }
 
-                        if (bm.CanSuperAttack && Input.GetKeyDown(joyActiveSuperAttack))
+                        if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joyActiveSuperAttack))
                         {
                             bm.ActiveSuperAttack();
                         }

@@ -16,6 +16,9 @@ public class GolemAnimations : PawnAnimationManager
     public ParticleSystem bounceVFXeffect;
     List<ParticleSystem> bounceeffects;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     protected override void Start()
     {
         base.Start();
@@ -92,7 +95,7 @@ public class GolemAnimations : PawnAnimationManager
 
     private IEnumerator Movement(Vector3 _targetPosition, float _speed)
     {
-
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = myposition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
 

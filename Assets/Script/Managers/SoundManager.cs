@@ -44,13 +44,24 @@ public class SoundManager : MonoBehaviour
         }
     }
     public AudioSource MusicAudioSource;
-    public AudioSource GeneralAudioSource;
+    public AudioSource EffectsAudioSource;
 
     [Header("Clips Menu")]
-    public AudioClip buttonselection;
-    public AudioClip selectnextbutton;
-    public AudioClip togglebutton;
-    public AudioClip factionslected;
+    public AudioClip ButtonSelectionClip;
+    public AudioClip VolumeBarClip;
+    public AudioClip MagicFactionSelectionClip;
+    public AudioClip ScienceFactionSelectionClip;
+    public AudioClip StartDraftClip;
+    public AudioClip SelectDraftPawnClip;
+
+    [Header("Clip Game")]
+    public AudioClip ActiveSuperAttackClip;
+    public AudioClip TrapTileSafeClip;
+    public AudioClip TrapTileClip;
+
+    [Header("Clip Pawns")]
+    public AudioClip MagicPawnDeath;
+    public AudioClip SciencePawnDeath;
 
     private void OnEnable()
     {
@@ -116,55 +127,142 @@ public class SoundManager : MonoBehaviour
     {
         if (SoundActive)
         {
-            if (buttonselection != null)
+            if (ButtonSelectionClip != null)
             {
-                GeneralAudioSource.clip = buttonselection;
-                GeneralAudioSource.Play();
+                EffectsAudioSource.clip = ButtonSelectionClip;
+                EffectsAudioSource.Play();
             }
         }
     }
 
-    public void SelectNextButton()
+    public void VolumeBar()
     {
-        if (GeneralAudioSource != null)
+        if (SoundActive)
         {
-            if (SoundActive)
+            if (VolumeBarClip != null)
             {
-                if (selectnextbutton != null)
+                EffectsAudioSource.clip = VolumeBarClip;
+                EffectsAudioSource.Play();
+            }
+        }
+    }
+
+    public void StartDraft()
+    {
+        if (SoundActive)
+        {
+            if (StartDraftClip != null)
+            {
+                EffectsAudioSource.clip = StartDraftClip;
+                EffectsAudioSource.Play();
+            }
+        }
+    }
+
+    public void SelectDraftPawn()
+    {
+        if (SoundActive)
+        {
+            if (SelectDraftPawnClip != null)
+            {
+                EffectsAudioSource.clip = SelectDraftPawnClip;
+                EffectsAudioSource.Play();
+            }
+        }
+    }
+
+    public void FactionSelected(Factions faction)
+    {
+        if (SoundActive)
+        {
+            switch (faction)
+            {
+                case Factions.Magic:
+                    if (MagicFactionSelectionClip != null)
+                    {
+                        EffectsAudioSource.clip = MagicFactionSelectionClip;
+                        EffectsAudioSource.Play();
+                    }
+                    break;
+                case Factions.Science:
+                    if (ScienceFactionSelectionClip != null)
+                    {
+                        EffectsAudioSource.clip = ScienceFactionSelectionClip;
+                        EffectsAudioSource.Play();
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void ActiveSuperAttack()
+    {
+        if (SoundActive)
+        {
+            if (ActiveSuperAttackClip != null)
+            {
+                EffectsAudioSource.clip = ActiveSuperAttackClip;
+                EffectsAudioSource.Play();
+            }
+        }
+    }
+
+    public void TrapTile(bool active)
+    {
+        if (SoundActive)
+        {
+            if (active)
+            {
+                if (TrapTileClip != null)
                 {
-                    GeneralAudioSource.clip = selectnextbutton;
-                    GeneralAudioSource.Play();
+                    EffectsAudioSource.clip = TrapTileClip;
+                    EffectsAudioSource.Play();
+                }
+            }
+            else
+            {
+                if (TrapTileSafeClip != null)
+                {
+                    EffectsAudioSource.clip = TrapTileSafeClip;
+                    EffectsAudioSource.Play();
                 }
             }
         }
     }
 
-    public void ToggleButton()
+    public void PawnSFX(AudioClip ClipToPlay)
     {
         if (SoundActive)
         {
-            if (togglebutton != null)
+            if (ClipToPlay != null)
             {
-                GeneralAudioSource.clip = togglebutton;
-                GeneralAudioSource.Play();
+                EffectsAudioSource.clip = ClipToPlay;
+                EffectsAudioSource.Play();
             }
         }
     }
 
-    public void FactionSelected()
+    public void PawnDeathVFX(Factions faction)
     {
         if (SoundActive)
         {
-            if (factionslected != null)
+            switch (faction)
             {
-                GeneralAudioSource.clip = factionslected;
-                GeneralAudioSource.Play();
+                case Factions.Magic:
+                    if (MagicPawnDeath != null)
+                    {
+                        EffectsAudioSource.clip = MagicPawnDeath;
+                        EffectsAudioSource.Play();
+                    }
+                    break;
+                case Factions.Science:
+                    if (SciencePawnDeath != null)
+                    {
+                        EffectsAudioSource.clip = SciencePawnDeath;
+                        EffectsAudioSource.Play();
+                    }
+                    break;
             }
         }
-    }
-
-    public void StopMenuMusic()
-    {
-        MusicAudioSource.Stop();
     }
 }

@@ -56,11 +56,13 @@ public class Box : MonoBehaviour
             element = Element.NeutralBlack;
             bm.vfx.TrapTile(gameObject, true);
             walkable = false;
+            SoundManager.instance.TrapTile(true);
         }
         else if (element == Element.NeutralBlack)
         {
             element = Element.NeutralWhite;
             bm.vfx.TrapTile(gameObject, false);
+            SoundManager.instance.TrapTile(false);
         }
     }
 

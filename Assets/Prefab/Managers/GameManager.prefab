@@ -184,11 +184,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundActive: 0
   MusicAudioSource: {fileID: 0}
-  GeneralAudioSource: {fileID: 0}
-  buttonselection: {fileID: 8300000, guid: c4d9b453aef04344a9d950d6e5147939, type: 3}
-  selectnextbutton: {fileID: 8300000, guid: f63a5441c6a15ed429870b333a81e575, type: 3}
-  togglebutton: {fileID: 8300000, guid: 46e72c84d50dbab4da19bb9e2d492b9e, type: 3}
-  factionslected: {fileID: 8300000, guid: c4e84d7ad0c83c04d95f5547f7d12319, type: 3}
+  EffectsAudioSource: {fileID: 0}
+  ButtonSelectionClip: {fileID: 8300000, guid: 4cbef99a6dcf1324899c1f621ee768d1, type: 3}
+  VolumeBarClip: {fileID: 8300000, guid: 0bccc28294aa2d647aeb21f098afb413, type: 3}
+  MagicFactionSelectionClip: {fileID: 8300000, guid: 9388d637d1a8f0e489e002b9d284c291,
+    type: 3}
+  ScienceFactionSelectionClip: {fileID: 8300000, guid: a110f932ceb847444876bc0a1271c08f,
+    type: 3}
+  StartDraftClip: {fileID: 8300000, guid: f8975e24c1e6eb64eba28acc3ba3f090, type: 3}
+  SelectDraftPawnClip: {fileID: 8300000, guid: 90f268cf3dd408c4d9c9547807e0d838, type: 3}
+  ActiveSuperAttackClip: {fileID: 8300000, guid: bc840144b86fda648969253a9a64e981,
+    type: 3}
+  TrapTileSafeClip: {fileID: 8300000, guid: a3b63470dad66614f9c42cf4fbceb425, type: 3}
+  TrapTileClip: {fileID: 8300000, guid: 649b7fa8ac90eb34fbc97ebbff56601e, type: 3}
+  MagicPawnDeath: {fileID: 8300000, guid: 584772cbd379790458a727e2f871fb77, type: 3}
+  SciencePawnDeath: {fileID: 8300000, guid: 335b4bf8e8235af419b1493ff451d427, type: 3}
 --- !u!114 &114643060664840586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,6 +282,7 @@ MonoBehaviour:
   p1ChoosingTextEnemy: {fileID: 0}
   p2ChoosingTextEnemy: {fileID: 0}
   TitleScreen: {fileID: 0}
+  OptionsMenu: {fileID: 0}
   factionUI: {fileID: 0}
   draftUI: {fileID: 0}
   choosingUi: {fileID: 0}

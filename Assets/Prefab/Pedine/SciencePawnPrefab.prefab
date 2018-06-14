@@ -6644,7 +6644,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750791568520612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.99, y: 0, z: 43.15}
+  m_LocalPosition: {x: 24.99, y: 0, z: 5.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4497218526466216}
@@ -10999,6 +10999,7 @@ MonoBehaviour:
   ChainsawLunchPosition: {fileID: 4509075413958882}
   bounceVFXeffect: {fileID: 198115564488693574, guid: 92a660529c5160a4aaf644a046976473,
     type: 2}
+  MovementClip: {fileID: 8300000, guid: cd5b72e08b667dd4089a48db74dd986e, type: 3}
 --- !u!114 &114321404835605124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11012,6 +11013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   YOffset: 3.5
   ZOffset: 4
+  MovementClip: {fileID: 8300000, guid: 07b1bc16cd36cf04e810a33810f921af, type: 3}
   AttackCharge: {fileID: 198621207539513528}
   ProjectileVFX: {fileID: 1723281562426588}
   ExplosionVFX: {fileID: 198881954348772156}
@@ -11057,7 +11059,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c29e26ad8ddf4d428573c97d0c5e0fa, type: 2}
   - {fileID: 11400000, guid: 97e4e577d2bce1e4988f5c8e3d5af0be, type: 2}
   projectionPlacingStartPositionIndex1: 3
-  projectionPlacingStartPositionIndex2: 7
+  projectionPlacingStartPositionIndex2: 1
   projectionPlacingPositionIndex1: 3
   projectionPlacingPositionIndex2: 1
   projectionTempBox: {fileID: 0}
@@ -11073,6 +11075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackVFX: {fileID: 198090604900854858}
+  MovementClip: {fileID: 8300000, guid: e703b50a07949b64bbe28e85c87178d7, type: 3}
 --- !u!114 &114863958375170692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11087,6 +11090,7 @@ MonoBehaviour:
   bombToMove: {fileID: 1204067348681804}
   bombReturnPosition: {fileID: 4905196300913434}
   YHighOffset: 8
+  MovementClip: {fileID: 8300000, guid: 18e0a0271f3595149be75c926ef39563, type: 3}
 --- !u!137 &137000174474106170
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

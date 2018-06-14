@@ -12,6 +12,9 @@ public class FantasmaAnimations : PawnAnimationManager
     Vector3 startRotation;
     float speed;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     public override void AttackAnimation(Transform _myPosition, List<Box> _patternBox, Vector3 _startRotation)
     {
         myposition = _myPosition;
@@ -63,6 +66,7 @@ public class FantasmaAnimations : PawnAnimationManager
 
     public IEnumerator MovementAnimationStart()
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = myposition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
         if (myposition.eulerAngles.x == startRotation.x && myposition.eulerAngles.y == startRotation.y && myposition.eulerAngles.z == startRotation.z)

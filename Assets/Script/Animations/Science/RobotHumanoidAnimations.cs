@@ -11,6 +11,9 @@ public class RobotHumanoidAnimations : PawnAnimationManager
     [Header("VFX Refrences")]
     public ParticleSystem AttackVFX;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     protected override void Start()
     {
         base.Start();
@@ -41,6 +44,7 @@ public class RobotHumanoidAnimations : PawnAnimationManager
 
     private IEnumerator Movement(Vector3 _targetPosition, float _speed)
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = myPosition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
         if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)

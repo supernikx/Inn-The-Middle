@@ -276,7 +276,7 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true e marchia queste pedine con l'attackMarker, altrimenti ritorna false
+    /// Funzione che controlla se nel pattern è presente una pedina aversaria, allora ritorna true, altrimenti ritorna false
     /// </summary>
     /// <returns></returns>
     public bool CheckAttackPattern()
@@ -491,6 +491,7 @@ public class Pawn : MonoBehaviour
         currentBox.free = true;
         currentBox = null;
         animators[activePattern].PlayDeathAnimation();
+        SoundManager.instance.PawnDeathVFX(faction);
     }
 
     /// <summary>

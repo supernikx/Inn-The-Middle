@@ -18,6 +18,9 @@ public class RobotLameAnimations : PawnAnimationManager
     public ParticleSystem bounceVFXeffect;
     List<ParticleSystem> bounceeffects;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     protected override void Start()
     {
         base.Start();
@@ -98,6 +101,7 @@ public class RobotLameAnimations : PawnAnimationManager
 
     private IEnumerator Movement( Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = myposition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
         if (myposition.eulerAngles.x == startrotation.x && myposition.eulerAngles.y == startrotation.y && myposition.eulerAngles.z == startrotation.z)

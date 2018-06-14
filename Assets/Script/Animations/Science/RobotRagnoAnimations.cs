@@ -12,6 +12,9 @@ public class RobotRagnoAnimations : PawnAnimationManager
     Vector3 targetPosition;
     Vector3 lasertargetposition;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
         startRotation = _startRotation;
@@ -52,6 +55,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
 
     private IEnumerator Movement(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = _myPosition.DOMove(_targetPosition, _speed);
         yield return movement.WaitForCompletion();
         if (_myPosition.eulerAngles.x == _startRotation.x && _myPosition.eulerAngles.y == _startRotation.y && _myPosition.eulerAngles.z == _startRotation.z)

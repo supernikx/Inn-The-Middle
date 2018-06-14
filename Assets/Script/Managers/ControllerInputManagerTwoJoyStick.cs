@@ -338,7 +338,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                                 bm.SelectNextPawnToAttack(Directions.left);
                             }
 
-                            if (bm.CanSuperAttack && Input.GetKeyDown(joy1ActiveSuperAttack))
+                            if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joy1ActiveSuperAttack))
                             {
                                 bm.ActiveSuperAttack();
                             }
@@ -364,7 +364,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                                 bm.SelectNextPawnToAttack(Directions.left);
                             }
 
-                            if (bm.CanSuperAttack && Input.GetKeyDown(joy1ActiveSuperAttack))
+                            if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joy1ActiveSuperAttack))
                             {
                                 bm.ActiveSuperAttack();
                             }
@@ -555,7 +555,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                                 bm.SelectNextPawnToAttack(Directions.left);
                             }
 
-                            if (bm.CanSuperAttack && Input.GetKeyDown(joy2ActiveSuperAttack))
+                            if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joy2ActiveSuperAttack))
                             {
                                 bm.ActiveSuperAttack();
                             }
@@ -581,7 +581,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                                 bm.SelectNextPawnToAttack(Directions.left);
                             }
 
-                            if (bm.CanSuperAttack && Input.GetKeyDown(joy2ActiveSuperAttack))
+                            if (bm.CanSuperAttack && bm.pawnSelected.CheckAttackPattern() && Input.GetKeyDown(joy2ActiveSuperAttack))
                             {
                                 bm.ActiveSuperAttack();
                             }

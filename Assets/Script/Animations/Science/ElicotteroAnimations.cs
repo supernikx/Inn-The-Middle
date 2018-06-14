@@ -15,6 +15,9 @@ public class ElicotteroAnimations : PawnAnimationManager
     Vector3 startRotation;
     float speed = 0.7f;
 
+    [Header("Sound References")]
+    public AudioClip MovementClip;
+
     protected override void Start()
     {
         base.Start();
@@ -65,6 +68,7 @@ public class ElicotteroAnimations : PawnAnimationManager
     {
         animator.SetBool("MovementAttack", false);
         animator.SetBool("Back", true);
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween backmovement = myPosition.DOMove(startPosition, speed);
         yield return backmovement.WaitForCompletion();
         animator.SetBool("Back", false);
@@ -91,10 +95,9 @@ public class ElicotteroAnimations : PawnAnimationManager
 
     public IEnumerator MoveAttack()
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movementattack = myPosition.DOMove(targetPosition, speed);
         yield return movementattack.WaitForCompletion();
-        //Tween rotate = myPosition.DORotate(startRotation, 1f);
-        //yield return rotate.WaitForCompletion();
         animator.SetBool("MovementAttack", true);
         PlayAttackAnimation();
     }
@@ -111,6 +114,7 @@ public class ElicotteroAnimations : PawnAnimationManager
 
     public IEnumerator Movement()
     {
+        SoundManager.instance.PawnSFX(MovementClip);
         Tween movement = myPosition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
         PlayMovementAnimation(false);

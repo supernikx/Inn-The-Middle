@@ -48,6 +48,7 @@ public class DraftManager : MonoBehaviour
     {
         if (!hasDrafted)
         {
+            SoundManager.instance.StartDraft();
             foreach (Transform t in DraftPawnsPositions)
             {
                 int indexNumber = Random.Range(0, DraftPawnsParticles.Count);
@@ -89,6 +90,7 @@ public class DraftManager : MonoBehaviour
 
     public void ChooseSelectedDraftPawn()
     {
+        SoundManager.instance.SelectDraftPawn();
         switch (bm.turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
