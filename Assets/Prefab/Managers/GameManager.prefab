@@ -104,28 +104,28 @@ MonoBehaviour:
   - Ok, lets start from the basics. You can select one of my pawns pressing L/R bumper
     buttons and move the selected pawn using the left analogic stick.
   - To win you have to destroy all the enemys pawns using the SPECIAL ATTACK.
-  - Normally you can use only the base attack that force the enemy pawn to change
-    his pattern and to shift in another box. The player who attack also gain the material
-    that was above the pawn hitted.
-  - The special attack its avaiable only if you have previously took 3 material elements
-    with the same colour or 3 element of each colour.
-  - "If you can attack with one of your pawns, Se qualcuna delle tue pedine ha la
-    possibilit\xE0 di attaccare, selezionala premendo L/R bumper per far apparire
-    il suo pattern, e in seguito il tasto B per completare l\u2019azione. "
-  - "Mi raccomando valuta bene le tue mosse, perch\xE9 le azioni che ti ho appena
-    spiegato, potranno essere eseguite una volta sola per turno!"
+  - Normally you can use only the Basic attack. When this attack hit an enemy pawn,
+    it force the hitted pawn to change his pattern and to shift in another adjcent
+    box. The player who attack also get the box where was the enemy pawn and gain
+    the corrispondent element.
+  - The special attack its available only if you have previously took 3 elements with
+    the same colour or 3 element of each colour.
+  - "If you can attack with one of your pawns, select it by pressing L/R bumper (It\u2019ll
+    show you his pattern) and then the B button to complete your turn."
+  - Be careful! Choose wisely your moves. You can move or attack once per turn!
   GameP2Text:
-  - "Adesso tocca a noi. Il mio avversario ha gi\xE0 spiegato tutto. Servir\xE0 giusto
-    un ripasso..."
-  - "Seleziona una pedina con L/R, poi muovila scegliendo dove con la levetta sx e
-    infine, se ne hai la possibilit\xE0, scegli con quale pedina vuoi attaccare l\u2019avversario
-    utilizzando sempre L/R e il tasto B. "
+  - Now its our turn! Our enemy has already explained everything. We just need a little
+    revision...
+  - 'You can select the pawn with L/R bumber, then you can move it where you want
+    (only in adjacent boxes) using the left analog stick and finally, only if you
+    have the chance, select with which pawn you want to attack the enemy by pressing
+    again L/R bumper and the B button. '
   GameTutorialDone: 0
-  SuperAttackText: "Ah ah ah ora si fa sul serio. Hai ottenuto abbastanza materiali
-    ( 3 dello stesso tipo o uno per ogni tipo) per usare l\u2019ATTACCO SPECIALE!
-    Questo attacco distrugge definitivamente una pedina dell\u2019avversario e sar\xE0
-    necessaria per raggiungere la vittoria. Per Attivarlo premi Y prima di un attacco
-    normale!"
+  SuperAttackText: "Ah ah ah now it\u2019s for real! You\u2019ve got enough elements
+    to unleash the SPECIAL ATTACK! Look at your indicator. You have 3 of the same
+    element or one of each type. This powerful attack destroy completely an enemy
+    pawn. It will be necessary to achieve the victory. To active it, press the Y button
+    before using the Basic attack. "
   SuperAttackTutorialDone: 0
   _TutorialActive: 0
 --- !u!114 &114157139931533906
