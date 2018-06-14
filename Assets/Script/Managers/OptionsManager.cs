@@ -28,6 +28,7 @@ public class OptionsManager : MonoBehaviour
     [Header("Screen Settings")]
     public Dropdown ResolutionDropdown;
     public Dropdown QualityDropdown;
+    public Toggle FullScreenToggle;
     public List<Resolutions> resolutions = new List<Resolutions>();
     List<string> resolutionOptions = new List<string>();
     int currentResolutionIndex;
@@ -47,7 +48,7 @@ public class OptionsManager : MonoBehaviour
             ResolutionDropdown.ClearOptions();
             foreach (Resolutions r in resolutions)
             {
-                resolutionOptions.Add(r.width + " x "+r.height);
+                resolutionOptions.Add(r.width + " x " + r.height);
             }
             ResolutionDropdown.AddOptions(resolutionOptions);
         }
@@ -61,8 +62,18 @@ public class OptionsManager : MonoBehaviour
         EffectsSlider.value = PlayerPrefs.GetFloat("EffectsVolume", -40f);
         audioMixer.SetFloat("MusicVolume", MusicSlider.value);
         audioMixer.SetFloat("SFXVolume", EffectsSlider.value);
+        if (PlayerPrefs.GetInt("FullScreen", 1) == 1)
+        {
+            Screen.fullScreen = true;
+            FullScreenToggle.isOn = true;
+        }
+        else
+        {
+            Screen.fullScreen = false;
+            FullScreenToggle.isOn = false;
+        }
         currentResolutionIndex = PlayerPrefs.GetInt("Resolution", 0);
-        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, true);
+        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, Screen.fullScreen);
         ResolutionDropdown.value = currentResolutionIndex;
         ResolutionDropdown.RefreshShownValue();
         QualityDropdown.value = PlayerPrefs.GetInt("Quality", 2);
@@ -72,30 +83,42 @@ public class OptionsManager : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         currentResolutionIndex = resolutionIndex;
+        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, Screen.fullScreen);
+        PlayerPrefs.SetInt("Resolution", currentResolutionIndex);
+    }
+
+    public void SetFullScreen(bool fullscreen)
+    {
+        Screen.fullScreen = fullscreen;
+        if (fullscreen)
+        {
+            PlayerPrefs.SetInt("FullScreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FullScreen", 0);
+        }
     }
 
     public void SetQuality(int _qualityIndex)
     {
         qualityIndex = _qualityIndex;
+        QualitySettings.SetQualityLevel(qualityIndex);
+        PlayerPrefs.SetInt("Quality", qualityIndex);
     }
 
     public void SetMusicVolume(float volume)
     {
         MusicVolume = volume;
         audioMixer.SetFloat("MusicVolume", volume);
+        PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
     }
 
     public void SetSFXVolume(float volume)
     {
         EffectsVolume = volume;
         audioMixer.SetFloat("SFXVolume", volume);
-    }
-
-    public void Apply()
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, true);
-        SaveSettings();
+        PlayerPrefs.SetFloat("EffectsVolume", EffectsVolume);
     }
 
     private void SaveSettings()
@@ -104,11 +127,20 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetFloat("EffectsVolume", EffectsVolume);
         PlayerPrefs.SetInt("Resolution", currentResolutionIndex);
         PlayerPrefs.SetInt("Quality", qualityIndex);
+        if (Screen.fullScreen)
+        {
+            PlayerPrefs.SetInt("FullScreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FullScreen", 0);
+        }
         Debug.Log("Impostazioni salvate");
     }
 
     public void ResetToDefault()
     {
+        FullScreenToggle.isOn = true;
         qualityIndex = 2;
         QualityDropdown.value = qualityIndex;
         QualityDropdown.RefreshShownValue();
