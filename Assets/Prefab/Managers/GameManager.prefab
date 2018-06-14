@@ -109,7 +109,7 @@ MonoBehaviour:
     box. The player who attack also get the box where was the enemy pawn and gain
     the corrispondent element.
   - The special attack its available only if you have previously took 3 elements with
-    the same colour or 3 element of each colour.
+    the same colour or 1 element of each colour.
   - "If you can attack with one of your pawns, select it by pressing L/R bumper (It\u2019ll
     show you his pattern) and then the B button to complete your turn."
   - Be careful! Choose wisely your moves. You can move or attack once per turn!
