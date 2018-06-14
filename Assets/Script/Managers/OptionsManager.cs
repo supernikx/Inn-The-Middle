@@ -57,8 +57,8 @@ public class OptionsManager : MonoBehaviour
 
     private void LoadSettings()
     {
-        MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", -50f);
-        EffectsSlider.value = PlayerPrefs.GetFloat("EffectsVolume", -50f);
+        MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", -40f);
+        EffectsSlider.value = PlayerPrefs.GetFloat("EffectsVolume", -40f);
         audioMixer.SetFloat("MusicVolume", MusicSlider.value);
         audioMixer.SetFloat("SFXVolume", EffectsSlider.value);
         currentResolutionIndex = PlayerPrefs.GetInt("Resolution", 0);
@@ -105,6 +105,23 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetInt("Resolution", currentResolutionIndex);
         PlayerPrefs.SetInt("Quality", qualityIndex);
         Debug.Log("Impostazioni salvate");
+    }
+
+    public void ResetToDefault()
+    {
+        qualityIndex = 2;
+        QualityDropdown.value = qualityIndex;
+        QualityDropdown.RefreshShownValue();
+        QualitySettings.SetQualityLevel(qualityIndex);
+        currentResolutionIndex = 0;
+        ResolutionDropdown.value = currentResolutionIndex;
+        ResolutionDropdown.RefreshShownValue();
+        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, true);
+        audioMixer.SetFloat("MusicVolume", -40f);
+        audioMixer.SetFloat("SFXVolume", -40f);
+        MusicSlider.value = -40f;
+        EffectsSlider.value = -40f;
+        SaveSettings();
     }
 
     #region FocusFix

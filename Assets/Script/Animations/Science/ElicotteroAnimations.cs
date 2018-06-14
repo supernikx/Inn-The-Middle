@@ -8,12 +8,21 @@ public class ElicotteroAnimations : PawnAnimationManager
     public GameObject bombToMove;
     public Transform bombReturnPosition;
     public float YHighOffset;
+    public float YBombHighExplosion;
     Transform myPosition;
     Vector3 bombTargetPosition;
     Vector3 targetPosition;
     Vector3 startPosition;
     Vector3 startRotation;
     float speed = 0.7f;
+    List<Box> patternBox = new List<Box>();
+
+    [Header("VFX References")]
+    public ParticleSystem ExplosionVFX;
+    public ParticleSystem TileExplosionVFXPrefab;
+    public ParticleSystem RubbleVFXPrefab;
+    List<ParticleSystem> RubbleVFX = new List<ParticleSystem>();
+    List<ParticleSystem> TileExplosionVFX = new List<ParticleSystem>();
 
     [Header("Sound References")]
     public AudioClip MovementClip;
@@ -22,13 +31,15 @@ public class ElicotteroAnimations : PawnAnimationManager
     {
         base.Start();
         bombToMove.SetActive(false);
+        ExplosionVFX.Stop();
     }
 
-    public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 startRotation)
+    public override void AttackAnimation(Transform _myPosition, List<Box> _patternBox, Vector3 startRotation)
     {
         myPosition.eulerAngles = startRotation;
         Vector3 _targetPosition = new Vector3();
         startPosition = _myPosition.position;
+        patternBox = _patternBox;
         float targetx = -1;
         float targetz = -1;
         if (patternBox.Count == 2)
@@ -59,8 +70,8 @@ public class ElicotteroAnimations : PawnAnimationManager
                 targetz = patternBox[0].transform.position.z;
             }
         }
-        bombTargetPosition = new Vector3(targetx, patternBox[0].transform.position.y, targetz);
-        _targetPosition = new Vector3(bombTargetPosition.x, bombTargetPosition.y + YHighOffset, bombTargetPosition.z);
+        bombTargetPosition = new Vector3(targetx, patternBox[0].transform.position.y + YBombHighExplosion, targetz);
+        _targetPosition = new Vector3(bombTargetPosition.x, patternBox[0].transform.position.y + YHighOffset, bombTargetPosition.z);
         MovementAnimationAttack(_myPosition, _targetPosition, speed, startRotation);
     }
 
@@ -77,10 +88,37 @@ public class ElicotteroAnimations : PawnAnimationManager
     public IEnumerator LaunchBomb()
     {
         bombToMove.SetActive(true);
-        Tween fallBomb = bombToMove.transform.DOMove(bombTargetPosition, 1f);
+        Tween fallBomb = bombToMove.transform.DOMove(bombTargetPosition, 0.3f);
         yield return fallBomb.WaitForCompletion();
         bombToMove.SetActive(false);
         bombToMove.transform.position = bombReturnPosition.position;
+        ExplosionVFX.transform.position = bombTargetPosition;
+        ExplosionVFX.Play();
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            ParticleSystem vfxinstantiated = Instantiate(RubbleVFXPrefab, bombTargetPosition, RubbleVFXPrefab.transform.rotation);
+            vfxinstantiated.Play();
+            vfxinstantiated.transform.DOJump(patternBox[i].transform.position, 4.5f, 1, 0.8f);
+            RubbleVFX.Add(vfxinstantiated);
+        }
+        yield return new WaitForSeconds(0.8f);
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            RubbleVFX[i].Stop();
+            Destroy(RubbleVFX[i].gameObject);
+            ParticleSystem vfxinstantiated = Instantiate(TileExplosionVFXPrefab, patternBox[i].transform.position + new Vector3(0, 1f, 0), TileExplosionVFXPrefab.transform.rotation);
+            vfxinstantiated.Play();
+            TileExplosionVFX.Add(vfxinstantiated);
+        }        
+        yield return new WaitForSeconds(1f);
+        ExplosionVFX.Stop();
+        for (int i = 0; i < patternBox.Count; i++)
+        {
+            TileExplosionVFX[i].Stop();
+            Destroy(TileExplosionVFX[i].gameObject);
+        }
+        TileExplosionVFX.Clear();
+        RubbleVFX.Clear();
     }
 
     public void MovementAnimationAttack(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
