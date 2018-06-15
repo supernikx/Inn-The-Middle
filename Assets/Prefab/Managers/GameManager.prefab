@@ -183,7 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundActive: 0
   MusicAudioSource: {fileID: 0}
-  EffectsAudioSource: {fileID: 0}
+  MenuEffectsAudioSource: {fileID: 0}
+  GameEffectsAudioSource: {fileID: 0}
   ButtonSelectionClip: {fileID: 8300000, guid: 4cbef99a6dcf1324899c1f621ee768d1, type: 3}
   VolumeBarClip: {fileID: 8300000, guid: 0bccc28294aa2d647aeb21f098afb413, type: 3}
   MagicFactionSelectionClip: {fileID: 8300000, guid: 9388d637d1a8f0e489e002b9d284c291,

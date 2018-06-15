@@ -44,7 +44,8 @@ public class SoundManager : MonoBehaviour
         }
     }
     public AudioSource MusicAudioSource;
-    public AudioSource EffectsAudioSource;
+    public AudioSource MenuEffectsAudioSource;
+    public AudioSource GameEffectsAudioSource;
 
     [Header("Clips Menu")]
     public AudioClip ButtonSelectionClip;
@@ -78,13 +79,19 @@ public class SoundManager : MonoBehaviour
     private void OnGamePause()
     {
         if (SoundActive)
+        {
             MusicAudioSource.Pause();
+            GameEffectsAudioSource.Pause();
+        }
     }
 
     private void OnGameUnPause()
     {
         if (SoundActive)
+        {
             MusicAudioSource.Play();
+            GameEffectsAudioSource.Play();
+        }
     }
 
     private void Awake()
@@ -129,8 +136,8 @@ public class SoundManager : MonoBehaviour
         {
             if (ButtonSelectionClip != null)
             {
-                EffectsAudioSource.clip = ButtonSelectionClip;
-                EffectsAudioSource.Play();
+                MenuEffectsAudioSource.clip = ButtonSelectionClip;
+                MenuEffectsAudioSource.Play();
             }
         }
     }
@@ -141,8 +148,8 @@ public class SoundManager : MonoBehaviour
         {
             if (VolumeBarClip != null)
             {
-                EffectsAudioSource.clip = VolumeBarClip;
-                EffectsAudioSource.Play();
+                MenuEffectsAudioSource.clip = VolumeBarClip;
+                MenuEffectsAudioSource.Play();
             }
         }
     }
@@ -153,8 +160,8 @@ public class SoundManager : MonoBehaviour
         {
             if (StartDraftClip != null)
             {
-                EffectsAudioSource.clip = StartDraftClip;
-                EffectsAudioSource.Play();
+                MenuEffectsAudioSource.clip = StartDraftClip;
+                MenuEffectsAudioSource.Play();
             }
         }
     }
@@ -165,8 +172,8 @@ public class SoundManager : MonoBehaviour
         {
             if (SelectDraftPawnClip != null)
             {
-                EffectsAudioSource.clip = SelectDraftPawnClip;
-                EffectsAudioSource.Play();
+                MenuEffectsAudioSource.clip = SelectDraftPawnClip;
+                MenuEffectsAudioSource.Play();
             }
         }
     }
@@ -180,15 +187,15 @@ public class SoundManager : MonoBehaviour
                 case Factions.Magic:
                     if (MagicFactionSelectionClip != null)
                     {
-                        EffectsAudioSource.clip = MagicFactionSelectionClip;
-                        EffectsAudioSource.Play();
+                        MenuEffectsAudioSource.clip = MagicFactionSelectionClip;
+                        MenuEffectsAudioSource.Play();
                     }
                     break;
                 case Factions.Science:
                     if (ScienceFactionSelectionClip != null)
                     {
-                        EffectsAudioSource.clip = ScienceFactionSelectionClip;
-                        EffectsAudioSource.Play();
+                        MenuEffectsAudioSource.clip = ScienceFactionSelectionClip;
+                        MenuEffectsAudioSource.Play();
                     }
                     break;
             }
@@ -201,8 +208,8 @@ public class SoundManager : MonoBehaviour
         {
             if (ActiveSuperAttackClip != null)
             {
-                EffectsAudioSource.clip = ActiveSuperAttackClip;
-                EffectsAudioSource.Play();
+                GameEffectsAudioSource.clip = ActiveSuperAttackClip;
+                GameEffectsAudioSource.Play();
             }
         }
     }
@@ -215,16 +222,16 @@ public class SoundManager : MonoBehaviour
             {
                 if (TrapTileClip != null)
                 {
-                    EffectsAudioSource.clip = TrapTileClip;
-                    EffectsAudioSource.Play();
+                    GameEffectsAudioSource.clip = TrapTileClip;
+                    GameEffectsAudioSource.Play();
                 }
             }
             else
             {
                 if (TrapTileSafeClip != null)
                 {
-                    EffectsAudioSource.clip = TrapTileSafeClip;
-                    EffectsAudioSource.Play();
+                    GameEffectsAudioSource.clip = TrapTileSafeClip;
+                    GameEffectsAudioSource.Play();
                 }
             }
         }
@@ -236,8 +243,8 @@ public class SoundManager : MonoBehaviour
         {
             if (ClipToPlay != null)
             {
-                EffectsAudioSource.clip = ClipToPlay;
-                EffectsAudioSource.Play();
+                GameEffectsAudioSource.clip = ClipToPlay;
+                GameEffectsAudioSource.Play();
             }
         }
     }
@@ -251,15 +258,15 @@ public class SoundManager : MonoBehaviour
                 case Factions.Magic:
                     if (MagicPawnDeath != null)
                     {
-                        EffectsAudioSource.clip = MagicPawnDeath;
-                        EffectsAudioSource.Play();
+                        GameEffectsAudioSource.clip = MagicPawnDeath;
+                        GameEffectsAudioSource.Play();
                     }
                     break;
                 case Factions.Science:
                     if (SciencePawnDeath != null)
                     {
-                        EffectsAudioSource.clip = SciencePawnDeath;
-                        EffectsAudioSource.Play();
+                        GameEffectsAudioSource.clip = SciencePawnDeath;
+                        GameEffectsAudioSource.Play();
                     }
                     break;
             }
