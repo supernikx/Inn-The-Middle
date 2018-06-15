@@ -7,15 +7,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-
     TurnManager tm;
     BoardManager bm;
-
-    /// <summary> Testo per indicare di chi è il turno </summary>
-    [Header("Turn Text")]
-    public TextMeshProUGUI gameTurnText;
-    public GameObject superattackText;
-    public GameObject MagicPlacingText, SciencePlacingText;
 
     [Header("Magic Elements")]
     public GameObject MBlueBarReady;
@@ -40,13 +33,8 @@ public class UIManager : MonoBehaviour
     private int SRedBarindex;
 
     [Header("Choosing References")]
-    public GameObject choosingPhaseText;
-    public GameObject p1ChoosingPanel;
-    public GameObject p2ChoosingPanel;
-    public GameObject p1ChoosingTextMy;
-    public GameObject p2ChoosingTextMy;
-    public GameObject p1ChoosingTextEnemy;
-    public GameObject p2ChoosingTextEnemy;
+    public GameObject MagicChoosingPanel;
+    public GameObject ScienceChoosingPanel;
 
     [Header("UI Holders references")]
     public GameObject TitleScreen;
@@ -80,13 +68,31 @@ public class UIManager : MonoBehaviour
     public GameObject ScienceStartPressed;
     public GameObject PressStartDraftText;
 
-    [Header("Game")]
+    [Header("Placing")]
+    public Image MagicPlacingFrame;
+    public Image SciencePlacingFrame;
+
+    [Header("Game Science")]
+    public Image SSuperAttackImage;
+    public Sprite SSuperAttackOn;
+    public Sprite SSuperAttackOff;
     public Image SFrameImage;
-    public Image SOn;
-    public Image SOff;
-    public Image SAngry;
-    public Image SHappy;
-    public Image SSurprised;
+    public Sprite SOn;
+    public Sprite SOff;
+    public Sprite SAngry;
+    public Sprite SHappy;
+    public Sprite SSurprised;
+
+    [Header("Game Magic")]
+    public Image MSuperAttackImage;
+    public Sprite MSuperAttackOn;
+    public Sprite MSuperAttackOff;
+    public Image MFrameImage;
+    public Sprite MOn;
+    public Sprite MOff;
+    public Sprite MAngry;
+    public Sprite MHappy;
+    public Sprite MSurprised;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;
@@ -232,13 +238,22 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ActiveSuperAttackText()
     {
-        if (BoardManager.Instance.superAttack)
+        if (bm.superAttack)
         {
-            superattackText.SetActive(true);
+            switch (bm.turnManager.CurrentPlayerTurn)
+            {
+                case Factions.Magic:
+                    MSuperAttackImage.sprite = MSuperAttackOn;
+                    break;
+                case Factions.Science:
+                    SSuperAttackImage.sprite = SSuperAttackOn;
+                    break;
+            }
         }
         else
         {
-            superattackText.SetActive(false);
+            MSuperAttackImage.sprite = MSuperAttackOff;
+            SSuperAttackImage.sprite = SSuperAttackOff;
         }
     }
 
@@ -416,42 +431,46 @@ public class UIManager : MonoBehaviour
         {
             if (bm.pawnSelected.activePattern == 4)
             {
-                p1ChoosingTextEnemy.SetActive(false);
-                p1ChoosingTextMy.SetActive(true);
-                p2ChoosingTextEnemy.SetActive(false);
-                p2ChoosingTextMy.SetActive(false);
-                p1ChoosingPanel.SetActive(true);
-                p2ChoosingPanel.SetActive(false);
+                if (tm.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                {
+                    MagicPlacingFrame.sprite = MOn;
+                    SciencePlacingFrame.sprite = SOff;
+                }
+                MagicChoosingPanel.SetActive(true);
+                ScienceChoosingPanel.SetActive(false);
             }
             else if (bm.pawnSelected.activePattern == 5)
             {
-                p1ChoosingTextEnemy.SetActive(false);
-                p1ChoosingTextMy.SetActive(false);
-                p2ChoosingTextEnemy.SetActive(true);
-                p2ChoosingTextMy.SetActive(false);
-                p1ChoosingPanel.SetActive(false);
-                p2ChoosingPanel.SetActive(true);
+                if (tm.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                {
+                    MagicPlacingFrame.sprite = MOn;
+                    SciencePlacingFrame.sprite = SOff;
+                }
+                MagicChoosingPanel.SetActive(false);
+                ScienceChoosingPanel.SetActive(true);
             }
         }
         else if (tm.CurrentPlayerTurn == Factions.Science)
         {
             if (bm.pawnSelected.activePattern == 4)
             {
-                p1ChoosingTextEnemy.SetActive(false);
-                p1ChoosingTextMy.SetActive(false);
-                p2ChoosingTextEnemy.SetActive(false);
-                p2ChoosingTextMy.SetActive(true);
-                p1ChoosingPanel.SetActive(false);
-                p2ChoosingPanel.SetActive(true);
+                if (tm.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                {
+                    SciencePlacingFrame.sprite = SOn;
+                    MagicPlacingFrame.sprite = MOff;
+                }
+                MagicChoosingPanel.SetActive(false);
+                ScienceChoosingPanel.SetActive(true);
             }
             else if (bm.pawnSelected.activePattern == 5)
             {
-                p1ChoosingTextEnemy.SetActive(true);
-                p1ChoosingTextMy.SetActive(false);
-                p2ChoosingTextEnemy.SetActive(false);
-                p2ChoosingTextMy.SetActive(false);
-                p1ChoosingPanel.SetActive(true);
-                p2ChoosingPanel.SetActive(false);
+                if (tm.CurrentMacroPhase == TurnManager.MacroPhase.placing)
+                {
+                    SciencePlacingFrame.sprite = SOn;
+                    MagicPlacingFrame.sprite = MOff;
+                }
+                MagicChoosingPanel.SetActive(true);
+                ScienceChoosingPanel.SetActive(false);
             }
         }
     }
@@ -466,31 +485,55 @@ public class UIManager : MonoBehaviour
         switch (bm.turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
+                switch (e)
+                {
+                    case Expressions.On:
+                        MFrameImage.sprite = MOn;
+                        break;
+                    case Expressions.Off:
+                        MFrameImage.sprite = MOff;
+                        break;
+                        /*case Expressions.Happy:
+                            MFrameImage.sprite = MHappy;
+                            yield return new WaitForSeconds(1.5f);
+                            MFrameImage.sprite = MOn;
+                            break;
+                        case Expressions.Angry:
+                            MFrameImage.sprite = MAngry;
+                            yield return new WaitForSeconds(1.5f);
+                            MFrameImage.sprite = MOn;
+                            break;
+                        case Expressions.Surprised:
+                            MFrameImage.sprite = MSurprised;
+                            yield return new WaitForSeconds(1.5f);
+                            MFrameImage.sprite = MOn;
+                            break;*/
+                }
                 break;
             case Factions.Science:
                 switch (e)
                 {
                     case Expressions.On:
-                        SFrameImage.sprite = SOn.sprite;
+                        SFrameImage.sprite = SOn;
                         break;
                     case Expressions.Off:
-                        SFrameImage.sprite = SOff.sprite;
+                        SFrameImage.sprite = SOff;
                         break;
-                    case Expressions.Happy:
-                        SFrameImage.sprite = SHappy.sprite;
-                        yield return new WaitForSeconds(1.5f);
-                        SFrameImage.sprite = SOn.sprite;
-                        break;
-                    case Expressions.Angry:
-                        SFrameImage.sprite = SAngry.sprite;
-                        yield return new WaitForSeconds(1.5f);
-                        SFrameImage.sprite = SOn.sprite;
-                        break;
-                    case Expressions.Surprised:
-                        SFrameImage.sprite = SSurprised.sprite;
-                        yield return new WaitForSeconds(1.5f);
-                        SFrameImage.sprite = SOn.sprite;
-                        break;
+                        /*case Expressions.Happy:
+                            SFrameImage.sprite = SHappy;
+                            yield return new WaitForSeconds(1.5f);
+                            SFrameImage.sprite = SOn;
+                            break;
+                        case Expressions.Angry:
+                            SFrameImage.sprite = SAngry;
+                            yield return new WaitForSeconds(1.5f);
+                            SFrameImage.sprite = SOn;
+                            break;
+                        case Expressions.Surprised:
+                            SFrameImage.sprite = SSurprised;
+                            yield return new WaitForSeconds(1.5f);
+                            SFrameImage.sprite = SOn;
+                            break;*/
                 }
                 break;
         }
@@ -632,7 +675,7 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
-    
+
     /// <summary>
     /// Funzione che aggiorna l'ui in base alla fase e stato del turno
     /// </summary>
@@ -700,18 +743,17 @@ public class UIManager : MonoBehaviour
                 switch (tm.CurrentTurnState)
                 {
                     case TurnManager.PlayTurnState.choosing:
-                        //SetChoosingUI();
                         break;
                     case TurnManager.PlayTurnState.placing:
                         switch (tm.CurrentPlayerTurn)
                         {
                             case Factions.Magic:
-                                MagicPlacingText.SetActive(true);
-                                SciencePlacingText.SetActive(false);
+                                MagicPlacingFrame.sprite = MOn;
+                                SciencePlacingFrame.sprite = SOff;
                                 break;
                             case Factions.Science:
-                                MagicPlacingText.SetActive(false);
-                                SciencePlacingText.SetActive(true);
+                                SciencePlacingFrame.sprite = SOn;
+                                MagicPlacingFrame.sprite = MOff;
                                 break;
                         }
                         break;
@@ -720,21 +762,10 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             case TurnManager.MacroPhase.game:
-                switch (tm.CurrentPlayerTurn)
-                {
-                    case Factions.Magic:
-                        gameTurnText.text = "MAGIC TURN";
-                        break;
-                    case Factions.Science:
-                        gameTurnText.text = "SCIENCE TURN";
-                        break;
-                }
-
                 switch (tm.CurrentTurnState)
                 {
                     case TurnManager.PlayTurnState.choosing:
                         choosingUi.SetActive(true);
-                        choosingPhaseText.SetActive(false);
                         SetChoosingUI();
                         break;
                     case TurnManager.PlayTurnState.check:

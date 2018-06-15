@@ -104,7 +104,7 @@ public class TurnManager : MonoBehaviour
     {
         switch (newState)
         {
-            case PlayTurnState.choosing:
+            case PlayTurnState.choosing:                
                 break;
             case PlayTurnState.placing:
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
@@ -308,6 +308,7 @@ public class TurnManager : MonoBehaviour
                                 CurrentTurnState = PlayTurnState.placing;
                             else
                             {
+                                BoardManager.Instance.uiManager.placingUI.SetActive(true);
                                 BoardManager.Instance.SetPawnToChoose(true);
                             }
                         }

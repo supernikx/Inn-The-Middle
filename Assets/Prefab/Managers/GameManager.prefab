@@ -211,9 +211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTurnText: {fileID: 0}
-  superattackText: {fileID: 0}
-  MagicPlacingText: {fileID: 0}
-  SciencePlacingText: {fileID: 0}
   MBlueBarReady: {fileID: 0}
   MBlueBars:
   - {fileID: 0}
@@ -274,13 +271,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  choosingPhaseText: {fileID: 0}
-  p1ChoosingPanel: {fileID: 0}
-  p2ChoosingPanel: {fileID: 0}
-  p1ChoosingTextMy: {fileID: 0}
-  p2ChoosingTextMy: {fileID: 0}
-  p1ChoosingTextEnemy: {fileID: 0}
-  p2ChoosingTextEnemy: {fileID: 0}
+  MagicChoosingPanel: {fileID: 0}
+  ScienceChoosingPanel: {fileID: 0}
   TitleScreen: {fileID: 0}
   OptionsMenu: {fileID: 0}
   factionUI: {fileID: 0}
@@ -314,13 +306,26 @@ MonoBehaviour:
   MagicStartPressed: {fileID: 0}
   ScienceStartPressed: {fileID: 0}
   PressStartDraftText: {fileID: 0}
+  MagicPlacingFrame: {fileID: 0}
+  SciencePlacingFrame: {fileID: 0}
+  SSuperAttackImage: {fileID: 0}
+  SSuperAttackOn: {fileID: 21300000, guid: 1757a22714f9dcc4d9be50f8d390452a, type: 3}
+  SSuperAttackOff: {fileID: 21300000, guid: 39902e6d41e276b428638daa9550482e, type: 3}
   SFrameImage: {fileID: 0}
-  SOn: {fileID: 114430358753861094, guid: 35ebd13ffe8cf1149a96ae935a641582, type: 2}
-  SOff: {fileID: 114589482024996932, guid: 74fffc855baaf6c42bab30fd3011b5ae, type: 2}
-  SAngry: {fileID: 114230518783740568, guid: d2627f4057a55c3458fbdd8e969a774e, type: 2}
-  SHappy: {fileID: 114939729208710696, guid: 14a76a2c6f14c634a8c1deb82538b5b6, type: 2}
-  SSurprised: {fileID: 114166350362837126, guid: 46e2deb23fe6e4d46b6584a0af4a9ece,
-    type: 2}
+  SOn: {fileID: 21300000, guid: 6f9b15c1f93142745a638a6d7fdb22b0, type: 3}
+  SOff: {fileID: 21300000, guid: f2b1e1ddd8c18714b8d1ed652c2b5fc0, type: 3}
+  SAngry: {fileID: 0}
+  SHappy: {fileID: 0}
+  SSurprised: {fileID: 0}
+  MSuperAttackImage: {fileID: 0}
+  MSuperAttackOn: {fileID: 21300000, guid: 37525ae617110af41a6ebb7283cefbe8, type: 3}
+  MSuperAttackOff: {fileID: 21300000, guid: 0cf0e4f4c0b430645b5effb8c10e4d89, type: 3}
+  MFrameImage: {fileID: 0}
+  MOn: {fileID: 21300000, guid: f62409177c527b64b8a0e718b55bb0f5, type: 3}
+  MOff: {fileID: 21300000, guid: ce169ce83bf24c04a99791d3a032e627, type: 3}
+  MAngry: {fileID: 0}
+  MHappy: {fileID: 0}
+  MSurprised: {fileID: 0}
   pausePanel: {fileID: 0}
   ResumePauseButton: {fileID: 0}
   RestartPauseButton: {fileID: 0}
