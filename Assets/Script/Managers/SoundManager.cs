@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("Sound", 0);
                 }
-            }            
+            }
         }
     }
     public AudioSource MusicAudioSource;
@@ -76,12 +76,21 @@ public class SoundManager : MonoBehaviour
         EventManager.OnUnPause -= OnGameUnPause;
     }
 
+    bool SFXWasPlaying = false;
     private void OnGamePause()
     {
         if (SoundActive)
         {
             MusicAudioSource.Pause();
-            GameEffectsAudioSource.Pause();
+            if (GameEffectsAudioSource.isPlaying)
+            {
+                SFXWasPlaying = true;
+                GameEffectsAudioSource.Pause();
+            }
+            else
+            {
+                SFXWasPlaying = false;
+            }
         }
     }
 
@@ -90,7 +99,8 @@ public class SoundManager : MonoBehaviour
         if (SoundActive)
         {
             MusicAudioSource.Play();
-            GameEffectsAudioSource.Play();
+            if (SFXWasPlaying)
+                GameEffectsAudioSource.Play();
         }
     }
 

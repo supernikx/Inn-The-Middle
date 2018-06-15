@@ -13,10 +13,17 @@ public class CalderoneAnimations : PawnAnimationManager
     [Header("Sound References")]
     public AudioClip MovementClip;
 
+    [Header("VFX References")]
+    public ParticleSystem SpoonAttackVFX;
+    public ParticleSystem SplashVFX;
+    public ParticleSystem ShieldAttackVFX;
+    public ParticleSystem PoolVFX;
+
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
         myPosition.eulerAngles = startRotation;
         PlayAttackAnimation();
+        StartCoroutine(StartSpoonAttack());
     }
 
     public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
@@ -52,4 +59,25 @@ public class CalderoneAnimations : PawnAnimationManager
         PlayJumpAnimation(false);
         OnMovementEnd();
     }
+
+    #region VFX
+
+    public IEnumerator StartSpoonAttack()
+    {
+        SpoonAttackVFX.Play();
+        yield return new WaitForSeconds(0.1f);        
+        PoolVFX.Play();
+        yield return new WaitForSeconds(0.1f);
+        SplashVFX.Play();
+        yield return new WaitForSeconds(0.6f);
+        SpoonAttackVFX.Stop();
+        SplashVFX.Stop();
+        PoolVFX.Stop();
+        yield return new WaitForSeconds(1f);
+        ShieldAttackVFX.Play();
+        yield return new WaitForSeconds(1f);
+        ShieldAttackVFX.Stop();
+    }
+
+    #endregion
 }
