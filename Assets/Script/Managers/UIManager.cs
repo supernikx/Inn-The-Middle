@@ -690,7 +690,6 @@ public class UIManager : MonoBehaviour
                 pausePanel.SetActive(false);
                 draftUI.SetActive(false);
                 choosingUi.SetActive(false);
-                MainMenu.SetActive(true);
                 break;
             case TurnManager.MacroPhase.draft:
                 if (bm.draftManager.hasDrafted)
