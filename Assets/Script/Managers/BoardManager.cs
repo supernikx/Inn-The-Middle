@@ -171,6 +171,7 @@ public class BoardManager : MonoBehaviour
             Destroy(gameObject);
         }
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         draftManager = GetComponent<DraftManager>();
         turnManager = GetComponent<TurnManager>();
         level = GetComponent<LevelManager>();
