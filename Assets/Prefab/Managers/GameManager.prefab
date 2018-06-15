@@ -69,11 +69,11 @@ MonoBehaviour:
   ScienceADraftButton: {fileID: 0}
   DraftText:
   - Excellent! Now both of the players will choose their pawns. Press Start and prepare
-    to pick one.
+    to pick one
   - "Look carefully, by moving the indicator between the \u201Csouls\u201D with the
     control stick, you can see their attack patterns. Pick one!"
-  - "Now we\u2019re choosing 2 pawns."
-  - We can pick 2 pawns as well.
+  - "Now we\u2019re choosing 2 pawns"
+  - We can pick 2 pawns as well
   - Once again, 2 for our team!
   - "We\u2019ll use wisely the last one!"
   MagicChoosing: {fileID: 0}
@@ -81,9 +81,9 @@ MonoBehaviour:
   MagicChoosingText: {fileID: 0}
   ScienceChoosingText: {fileID: 0}
   ChoosingText:
-  - 'Now by using the D-pad we can select the attack of the white and black pawns. '
+  - Now by using the D-pad we can select the attack of the white and black pawns
   - Indeed, you choose the attack for the white ones, but the opponent chooses for
-    the black ones.
+    the black ones
   ChoosingTutorialDone: 0
   MagicPlacing: {fileID: 0}
   SciencePlacing: {fileID: 0}
@@ -91,41 +91,40 @@ MonoBehaviour:
   SciencePlacingText: {fileID: 0}
   PlacingText:
   - Use the LB and RB buttons to select the pawns. Choose with the control stick in
-    which tile you want to place them and press A to confirm your choice.
-  - "Let\u2019s place 2 more and then it will be our opponent\u2019s turn."
-  - "Let\u2019s put on the board 2 of our pawns."
-  - Now we can place the last couple.
-  - Lay the last one, so we can start the match.
+    which tile you want to place them and press A to confirm your choice
+  - "Let\u2019s place 2 more and then it will be our opponent\u2019s turn"
+  - "Let\u2019s put on the board 2 of our pawns"
+  - Now we can place the last couple
+  - Lay the last one, so we can start the match
   MagicGame: {fileID: 0}
   ScienceGame: {fileID: 0}
   MagicGameText: {fileID: 0}
   ScienceGameText: {fileID: 0}
   GameP1Text:
-  - Ok, lets start from the basics. You can select one of my pawns pressing L/R bumper
-    buttons and move the selected pawn using the left analogic stick.
-  - To win you have to destroy all the enemys pawns using the SPECIAL ATTACK.
-  - Normally you can use only the Basic attack. When this attack hit an enemy pawn,
-    it force the hitted pawn to change his pattern and to shift in another adjcent
-    box. The player who attack also get the box where was the enemy pawn and gain
-    the corrispondent element.
-  - The special attack its available only if you have previously took 3 elements with
-    the same colour or 1 element of each colour.
-  - "If you can attack with one of your pawns, select it by pressing L/R bumper (It\u2019ll
-    show you his pattern) and then the B button to complete your turn."
+  - "Ok, let\u2019s start from the basics. You can select one of my pawns by pressing
+    L/R bumper buttons and move the selected pawn using the left analog stick"
+  - To win you have to destroy all the enemies pawns using the SPECIAL ATTACK
+  - Normally you can use only the Basic attack. When this one hits an enemy pawn,
+    it forces the hitted pawn to change his pattern and to shift in another box nearby
+    it. The player who attacks also get the box where was the enemy pawn and gain
+    the corrispondent element
+  - The special attack is available only if you have previously took 3 elements with
+    the same colour or 1 element of each colour
+  - If you can attack with one of your pawns, select it by pressing L/R bumper (It
+    will show you his pattern) and then the B button to complete your turn
   - Be careful! Choose wisely your moves. You can move or attack once per turn!
   GameP2Text:
-  - Now its our turn! Our enemy has already explained everything. We just need a little
-    revision...
-  - 'You can select the pawn with L/R bumber, then you can move it where you want
-    (only in adjacent boxes) using the left analog stick and finally, only if you
-    have the chance, select with which pawn you want to attack the enemy by pressing
-    again L/R bumper and the B button. '
+  - "Now it\u2019s our turn! My opponent has already explained everything. We just
+    need a little recap"
+  - You can select the pawn with L/R bumper, then you can move it where you want (only
+    in nearby boxes) using the left analog stick. Then, if you have the chance, select
+    which pawn has to attack the enemy, by pressing again L/R bumper and the B button
   GameTutorialDone: 0
   SuperAttackText: "Ah ah ah now it\u2019s for real! You\u2019ve got enough elements
-    to unleash the SPECIAL ATTACK! Look at your indicator. You have 3 of the same
-    element or one of each type. This powerful attack destroy completely an enemy
-    pawn. It will be necessary to achieve the victory. To active it, press the Y button
-    before using the Basic attack. "
+    to unleash the SPECIAL ATTACK! Look at the indicator. You have 3 of the same element
+    or one of each type. This powerful attack destroys completely an enemy pawn. It
+    is necessary to gain the victory. To activate it, press the Y button before using
+    the Basic attack"
   SuperAttackTutorialDone: 0
   _TutorialActive: 0
 --- !u!114 &114157139931533906
@@ -210,7 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028a7926a8cbe57429f75d6763107a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTurnText: {fileID: 0}
   MBlueBarReady: {fileID: 0}
   MBlueBars:
   - {fileID: 0}
