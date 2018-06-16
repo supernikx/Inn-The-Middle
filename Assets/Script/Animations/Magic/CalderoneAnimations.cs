@@ -64,16 +64,17 @@ public class CalderoneAnimations : PawnAnimationManager
 
     public IEnumerator StartSpoonAttack()
     {
+        yield return new WaitForSeconds(0.3f);
         SpoonAttackVFX.Play();
         yield return new WaitForSeconds(0.1f);        
         PoolVFX.Play();
         yield return new WaitForSeconds(0.1f);
         SplashVFX.Play();
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.45f);
         SpoonAttackVFX.Stop();
         SplashVFX.Stop();
         PoolVFX.Stop();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
         ShieldAttackVFX.Play();
         yield return new WaitForSeconds(1f);
         ShieldAttackVFX.Stop();
