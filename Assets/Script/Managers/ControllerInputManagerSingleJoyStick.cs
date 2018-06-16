@@ -33,7 +33,7 @@ public class ControllerInputManagerSingleJoyStick : MonoBehaviour
     {
         if (!bm.pause && !bm.TutorialInProgress)
         {
-            if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null)
+            if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null && !bm.superAttack)
             {
                 XAxisJoy = Input.GetAxisRaw("JoyStick_HorizontalAxis");
                 YAxisJoy = Input.GetAxisRaw("JoyStick_VerticalAxis");

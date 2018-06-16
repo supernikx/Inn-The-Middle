@@ -52,7 +52,7 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
     {
         if (!bm.pause && !bm.TutorialInProgress)
         {
-            if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null)
+            if ((bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.check || bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.movementattack) && bm.pawnSelected != null && !bm.superAttack)
             {
                 if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
                 {
