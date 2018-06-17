@@ -282,4 +282,10 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
+
+    public void PawnMovementEnd()
+    {
+        if (GameEffectsAudioSource.isPlaying)
+            GameEffectsAudioSource.Stop();
+    }
 }

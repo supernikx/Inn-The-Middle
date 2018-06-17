@@ -48,6 +48,7 @@ public abstract class PawnAnimationManager : MonoBehaviour, IPawnAnimations
     }
     public virtual void OnMovementEnd()
     {
+        SoundManager.instance.PawnMovementEnd();
         if (OnMovementAnimationEnd != null)
             OnMovementAnimationEnd();
     }

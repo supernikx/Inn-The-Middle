@@ -36,8 +36,7 @@ public class CalderoneAnimations : PawnAnimationManager
     }
 
     private IEnumerator MovementJumpEnd()
-    {
-        SoundManager.instance.PawnSFX(MovementClip);
+    {        
         Tween movement = myPosition.DOMove(targetPosition, speed);
         yield return movement.WaitForCompletion();
         if (myPosition.eulerAngles.x == startRotation.x && myPosition.eulerAngles.y == startRotation.y && myPosition.eulerAngles.z == startRotation.z)
@@ -59,6 +58,15 @@ public class CalderoneAnimations : PawnAnimationManager
         PlayJumpAnimation(false);
         OnMovementEnd();
     }
+
+    #region SFX
+
+    public void PlayMovementSound()
+    {
+        SoundManager.instance.PawnSFX(MovementClip);
+    }
+
+    #endregion
 
     #region VFX
 
