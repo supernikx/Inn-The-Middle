@@ -11,6 +11,7 @@ public enum Directions
     downright,
     downleft,
     idle,
+    none,
 }
 
 public class ControllerInputManagerTwoJoyStick : MonoBehaviour

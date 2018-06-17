@@ -323,20 +323,31 @@ public class Pawn : MonoBehaviour
     /// </summary>
     public void MarkAttackPawn()
     {
+        int currentColumn, currentRow;
+        if (projectionTempBox != null)
+        {
+            currentColumn = projectionTempBox.index2;
+            currentRow = projectionTempBox.index1;
+        }
+        else
+        {
+            currentColumn = currentBox.index2;
+            currentRow = currentBox.index1;
+        }
+
         if (activePattern == 2 && !CheckAttackPattern())
         {
             return;
         }
         else
         {
-            int currentColumn = currentBox.index2;
             foreach (Pattern a in patterns[activePattern].pattern)
             {
                 foreach (Pawn p in bm.pawns)
                 {
                     if (p.faction != faction)
                     {
-                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentBox.index1 < enemyboard.Length && a.index1 - currentBox.index1 >= 0)) && ((p.currentBox.index1 == a.index1 - currentBox.index1) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0)) && ((p.currentBox.index1 == a.index1 - currentRow) && (p.currentBox.index2 == currentColumn + a.index2)))
                         {
                             p.attackMarker = true;
                             CustomLogger.Log("c'è una pedina avversaria nel pattern");
@@ -553,6 +564,7 @@ public class Pawn : MonoBehaviour
 
     #region Projection
 
+    Directions OldDirection = Directions.none;
     /// <summary>
     /// Funzione che sposta la proiezione nella direzione che gli viene passata come parametro
     /// </summary>
@@ -560,142 +572,149 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     public void MoveProjection(Directions projectionDirection)
     {
-        Box boxToMove = currentBox;
-        bool moved = false;
-        switch (faction)
+        if (projectionDirection != OldDirection)
         {
-            case Factions.Magic:
-                switch (projectionDirection)
-                {
-                    case Directions.up:
-                        if (currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.down:
-                        if (currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.right:
-                        if (currentBox.index1 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.left:
-                        if (currentBox.index1 + 1 < myboard.Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.upright:
-                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.upleft:
-                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.downright:
-                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.downleft:
-                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.idle:
-                        projections[activePattern].SetActive(false);
-                        break;
-                }
-                break;
-            case Factions.Science:
-                switch (projectionDirection)
-                {
-                    case Directions.up:
-                        if (currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.down:
-                        if (currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.right:
-                        if (currentBox.index1 + 1 < myboard.Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.left:
-                        if (currentBox.index1 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.upright:
-                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.upleft:
-                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.downright:
-                        if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.downleft:
-                        if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
-                        {
-                            boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
-                        }
-                        break;
-                    case Directions.idle:
-                        projections[activePattern].SetActive(false);
-                        break;
-                }
-                break;
+            Box boxToMove = currentBox;
+            bool moved = false;
+            bm.UnmarkAttackMarker();
+            bm.PawnHighlighted(false);
+            OldDirection = projectionDirection;
+            switch (faction)
+            {
+                case Factions.Magic:
+                    switch (projectionDirection)
+                    {
+                        case Directions.up:
+                            if (currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.down:
+                            if (currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.right:
+                            if (currentBox.index1 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.left:
+                            if (currentBox.index1 + 1 < myboard.Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.upright:
+                            if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.upleft:
+                            if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.downright:
+                            if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.downleft:
+                            if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.idle:
+                            projections[activePattern].SetActive(false);
+                            break;
+                    }
+                    break;
+                case Factions.Science:
+                    switch (projectionDirection)
+                    {
+                        case Directions.up:
+                            if (currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.down:
+                            if (currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.right:
+                            if (currentBox.index1 + 1 < myboard.Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.left:
+                            if (currentBox.index1 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.upright:
+                            if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.upleft:
+                            if (currentBox.index1 - 1 >= 0 && currentBox.index2 + 1 < myboard[0].Length)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 + 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.downright:
+                            if (currentBox.index1 + 1 < myboard.Length && currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 + 1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.downleft:
+                            if (currentBox.index1 - 1 >= 0 && currentBox.index2 - 1 >= 0)
+                            {
+                                boxToMove = myboard[currentBox.index1 - 1][currentBox.index2 - 1].GetComponent<Box>();
+                            }
+                            break;
+                        case Directions.idle:
+                            projections[activePattern].SetActive(false);
+                            break;
+                    }
+                    break;
+            }
+            if (bm.CheckFreeBox(boxToMove))
+            {
+                moved = true;
+            }
+            DisableAttackPattern();
+            if (moved)
+            {
+                projections[activePattern].SetActive(true);
+                transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
+                transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
+                projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
+                projectionTempBox = boxToMove;
+            }
+            else
+            {
+                ForceMoveProjection(false);
+            }
+            ShowAttackPattern();
+            ShowMovementBoxes();
+            MarkAttackPawn();
         }
-        if (bm.CheckFreeBox(boxToMove))
-        {
-            moved = true;
-        }
-        DisableAttackPattern();
-        if (moved)
-        {
-            projections[activePattern].SetActive(true);
-            transform.LookAt(new Vector3(boxToMove.transform.position.x, transform.position.y, boxToMove.transform.position.z));
-            transform.Rotate(new Vector3(0, 90 - startRotation.y, 0));
-            projections[activePattern].transform.position = new Vector3(boxToMove.transform.position.x, boxToMove.transform.position.y + graphics[activePattern].transform.position.y, boxToMove.transform.position.z);
-            projectionTempBox = boxToMove;
-        }
-        else
-        {
-            ForceMoveProjection(false);
-        }
-        ShowAttackPattern();
-        ShowMovementBoxes();
     }
 
     /// <summary>
