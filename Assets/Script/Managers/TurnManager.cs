@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Factions {None, Magic, Science};
+public enum Factions { None, Magic, Science };
 
 public class TurnManager : MonoBehaviour
 {
@@ -93,7 +93,7 @@ public class TurnManager : MonoBehaviour
         CurrentMacroPhase = MacroPhase.menu;
         mainCam.enabled = true;
         draftCam.enabled = false;
-        CheckAlreadyDone = false;        
+        CheckAlreadyDone = false;
     }
 
     /// <summary>
@@ -104,7 +104,11 @@ public class TurnManager : MonoBehaviour
     {
         switch (newState)
         {
-            case PlayTurnState.choosing:                
+            case PlayTurnState.choosing:
+                if (CurrentMacroPhase == MacroPhase.game && !BoardManager.Instance.tutorial.ChoosingTutorialDone && BoardManager.Instance.tutorial.TutorialActive)
+                {
+                    BoardManager.Instance.tutorial.ChoosingTutorial();
+                }
                 break;
             case PlayTurnState.placing:
                 BoardManager.Instance.uiManager.choosingUi.SetActive(false);
@@ -208,7 +212,7 @@ public class TurnManager : MonoBehaviour
                 mainCam.enabled = false;
                 CustomLogger.Log("Sei nella fase di scelta fazione");
                 break;
-            case MacroPhase.draft:                
+            case MacroPhase.draft:
                 CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 BoardManager.Instance.tutorial.StartDraftTutorial();
                 break;
@@ -219,7 +223,7 @@ public class TurnManager : MonoBehaviour
                 sciencePlacementLight.enabled = true;
                 mainCam.GetComponent<Animator>().SetTrigger("StartGame");
                 CurrentTurnState = PlayTurnState.choosing;
-                CurrentPlayerTurn = BoardManager.Instance.p1Faction;               
+                CurrentPlayerTurn = BoardManager.Instance.p1Faction;
                 break;
             case MacroPhase.game:
                 Debug.Log("Start Game");
@@ -291,30 +295,30 @@ public class TurnManager : MonoBehaviour
                     {
                         StartCoroutine(StartPlacingDelay());
                     }
-                    else if (BoardManager.Instance.draftManager.DraftPawns.Count>0)
+                    else if (BoardManager.Instance.draftManager.DraftPawns.Count > 0)
                     {
                         BoardManager.Instance.draftManager.SelectNextDraftPawn(Directions.idle);
                         BoardManager.Instance.tutorial.DraftTutorial();
                     }
-                }                
+                }
                 break;
             case MacroPhase.placing:
                 switch (CurrentTurnState)
                 {
                     case PlayTurnState.choosing:
-                        if ((BoardManager.Instance.tutorial.ChoosingTutorialDone && BoardManager.Instance.tutorial.TutorialActive) || !BoardManager.Instance.tutorial.TutorialActive)
+                        if (!BoardManager.Instance.CheckPawnToChoose())
+                            CurrentTurnState = PlayTurnState.placing;
+                        else
                         {
-                            if (!BoardManager.Instance.CheckPawnToChoose())
-                                CurrentTurnState = PlayTurnState.placing;
-                            else
+                            if ((BoardManager.Instance.tutorial.ChoosingTutorialDone && BoardManager.Instance.tutorial.TutorialActive) || !BoardManager.Instance.tutorial.TutorialActive)
                             {
                                 BoardManager.Instance.uiManager.placingUI.SetActive(true);
                                 BoardManager.Instance.SetPawnToChoose(true);
                             }
-                        }
-                        else
-                        {
-                            BoardManager.Instance.tutorial.ChoosingTutorial();
+                            else
+                            {
+                                BoardManager.Instance.tutorial.ChoosingTutorial();
+                            }
                         }
                         break;
                     case PlayTurnState.placing:
@@ -401,11 +405,11 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn()
     {
         if ((CurrentMacroPhase == MacroPhase.draft || CurrentMacroPhase == MacroPhase.placing) || (CurrentMacroPhase == MacroPhase.game && (CurrentTurnState != PlayTurnState.check && CurrentTurnState != PlayTurnState.choosing)))
-        {            
+        {
             if (CurrentPlayerTurn == Factions.Magic)
                 CurrentPlayerTurn = Factions.Science;
             else if (CurrentPlayerTurn == Factions.Science)
-                CurrentPlayerTurn = Factions.Magic;            
+                CurrentPlayerTurn = Factions.Magic;
         }
     }
 

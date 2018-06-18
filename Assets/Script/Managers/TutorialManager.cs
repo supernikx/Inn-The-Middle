@@ -360,7 +360,34 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case TurnManager.MacroPhase.game:
-                if (!GameTutorialDone) {
+                if (bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.choosing)
+                {
+                    MagicChoosing.SetActive(false);
+                    ScienceChoosing.SetActive(false);
+                    if (ChoosingTextIndex < ChoosingText.Count)
+                    {
+                        switch (bm.turnManager.CurrentPlayerTurn)
+                        {
+                            case Factions.Magic:
+                                ScienceChoosing.SetActive(true);
+                                ScienceChoosingText.text = ChoosingText[ChoosingTextIndex];
+                                break;
+                            case Factions.Science:
+                                MagicChoosing.SetActive(true);
+                                MagicChoosingText.text = ChoosingText[ChoosingTextIndex];
+                                break;
+                        }
+                        ChoosingTextIndex++;
+                    }
+                    else if (ChoosingTextIndex == ChoosingText.Count)
+                    {
+                        ChoosingTutorialDone = true;
+                        bm.TutorialInProgress = false;
+                    }
+                }
+
+                if (!GameTutorialDone)
+                {
                     if (bm.turnManager.CurrentPlayerTurn == bm.p1Faction)
                     {
                         if (GameP1Text.Count > GameP1TextIndex)

@@ -859,7 +859,7 @@ public class UIManager : MonoBehaviour
                 DrawWinImage.SetActive(true);
                 break;
             case Factions.Magic:
-                ScienceWinImage.SetActive(true);
+                MagicWinImage.SetActive(true);
                 break;
             case Factions.Science:
                 ScienceWinImage.SetActive(true);

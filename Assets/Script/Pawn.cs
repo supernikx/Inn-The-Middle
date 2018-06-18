@@ -319,6 +319,60 @@ public class Pawn : MonoBehaviour
     }
 
     /// <summary>
+    /// Funzione che controlla se nel pattern della proiezione è presente una pedina avversaria, nel caso ritorna true altrimenti ritorna false
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckProjectionAttackPattern()
+    {
+        int currentColumn, currentRow;
+        if (projectionTempBox != null)
+        {
+            currentColumn = projectionTempBox.index2;
+            currentRow = projectionTempBox.index1;
+        }
+        else
+        {
+            currentColumn = currentBox.index2;
+            currentRow = currentBox.index1;
+        }
+
+        if (activePattern == 2)
+        {
+            int patternindex1 = patterns[activePattern].pattern[0].index1;
+            int patternindex2 = patterns[activePattern].pattern[0].index2;
+            foreach (Pawn p in bm.pawns)
+            {
+                if (p.faction != faction)
+                {
+                    if (((currentColumn + patternindex2 < enemyboard[0].Length && currentColumn + patternindex2 >= 0) && (patternindex1 - currentRow < enemyboard.Length && patternindex1 - currentRow >= 0)) && ((p.currentBox.index1 == patternindex1 - currentRow) && (p.currentBox.index2 == currentColumn + patternindex2)))
+                    {
+                        CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (Pattern a in patterns[activePattern].pattern)
+            {
+                foreach (Pawn p in bm.pawns)
+                {
+                    if (p.faction != faction)
+                    {
+                        if (((currentColumn + a.index2 < enemyboard[0].Length && currentColumn + a.index2 >= 0) && (a.index1 - currentRow < enemyboard.Length && a.index1 - currentRow >= 0)) && ((p.currentBox.index1 == a.index1 - currentRow) && (p.currentBox.index2 == currentColumn + a.index2)))
+                        {
+                            CustomLogger.Log("c'è una pedina avversaria nel pattern");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Funzione che marchia con markattack le pedine presenti nel pattern
     /// </summary>
     public void MarkAttackPawn()
@@ -335,7 +389,7 @@ public class Pawn : MonoBehaviour
             currentRow = currentBox.index1;
         }
 
-        if (activePattern == 2 && !CheckAttackPattern())
+        if (activePattern == 2 && !CheckProjectionAttackPattern())
         {
             return;
         }
