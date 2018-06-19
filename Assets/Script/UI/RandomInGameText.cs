@@ -29,6 +29,8 @@ public class RandomInGameText : MonoBehaviour
     public GameObject ScienceComic;
     public TextMeshProUGUI MagicComicText;
     public TextMeshProUGUI ScienceComicText;
+    public GameObject MagicAButton;
+    public GameObject ScienceAButton;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class RandomInGameText : MonoBehaviour
     {
         if ((bm.tutorial.TutorialActive && bm.tutorial.DraftTutorialDone && bm.tutorial.ChoosingTutorialDone && bm.tutorial.PlacingTutorialDone && bm.tutorial.SuperAttackTutorialDone && bm.tutorial.GameTutorialDone) || !bm.tutorial.TutorialActive)
         {
+            MagicAButton.SetActive(false);
+            ScienceAButton.SetActive(false);
             switch (Random.Range(0,2))
             {
                 case 0:
