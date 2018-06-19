@@ -885,7 +885,7 @@ public class Pawn : MonoBehaviour
         graphics[activePattern].SetActive(false);
         bm.vfx.DeselectPawn();
         UnsubscribeAnimationEvent();        
-        activePattern = UnityEngine.Random.Range(0, patterns.Count);
+        activePattern = Random.Range(0, patterns.Count);
         activeSpeed = speeds[activePattern];
         graphics[activePattern].SetActive(true);
         bm.vfx.SelectPawn(this);

@@ -83,6 +83,7 @@ public class BoardManager : MonoBehaviour
     public UIManager uiManager;
     public VFXManager vfx;
     public TutorialManager tutorial;
+    public RandomInGameText randomtext;
 
     /// <summary>
     /// Funzioni che iscrivono/disiscrivono il boardmanager agli eventi appena viene abilitato/disabilitato
@@ -178,6 +179,7 @@ public class BoardManager : MonoBehaviour
         uiManager = GetComponent<UIManager>();
         vfx = GetComponent<VFXManager>();
         tutorial = GetComponent<TutorialManager>();
+        randomtext = GetComponent<RandomInGameText>();
     }
 
     void Start()
@@ -426,6 +428,7 @@ public class BoardManager : MonoBehaviour
                     vfx.ResetMark();
                     pawnSelected.OnAttackEnd += OnAttackEnd;
                     uiManager.UpdateExpressions(Expressions.Happy);
+                    randomtext.GenerateRandomText(PhraseType.Positive, Factions.None);
                     pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
                 }
             }
@@ -496,6 +499,7 @@ public class BoardManager : MonoBehaviour
         }
         if (PawnToRandom.Count > 0)
         {
+            randomtext.GenerateRandomText(PhraseType.Negative, Factions.None);
             uiManager.UpdateExpressions(Expressions.Surprised);
             RandomizePatterns(PawnToRandom);
         }
@@ -897,14 +901,14 @@ public class BoardManager : MonoBehaviour
     /// Imposta la pedina di cui bisogna scegliere il pattern in base al turno del giocatore
     /// </summary>
     public void SetPawnToChoose(bool startchoose)
-    {        
+    {
         bool foundPawn = false;
         foreach (Pawn p in pawns)
         {
             if ((p.activePattern == 4 || p.activePattern == 5) && p.faction == turnManager.CurrentPlayerTurn)
             {
                 foundPawn = true;
-                PawnSelected(p);                
+                PawnSelected(p);
                 CustomLogger.Log("trovata una pedina");
                 break;
             }

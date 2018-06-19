@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject MagicADraftButton;
     public GameObject ScienceADraftButton;
     public List<string> DraftText = new List<string>();
+    public bool DraftTutorialDone;
 
     [Header("Choosing")]
     public GameObject MagicChoosing;
@@ -36,6 +37,7 @@ public class TutorialManager : MonoBehaviour
     public TextMeshProUGUI MagicPlacingText;
     public TextMeshProUGUI SciencePlacingText;
     public List<string> PlacingText = new List<string>();
+    public bool PlacingTutorialDone;
 
     [Header("Game")]
     public GameObject MagicGame;
@@ -321,6 +323,7 @@ public class TutorialManager : MonoBehaviour
                         break;
                 }
                 bm.TutorialInProgress = false;
+                DraftTutorialDone = true;
                 break;
             case TurnManager.MacroPhase.placing:
                 if (bm.turnManager.CurrentTurnState == TurnManager.PlayTurnState.choosing)
@@ -357,6 +360,7 @@ public class TutorialManager : MonoBehaviour
                             break;
                     }
                     bm.TutorialInProgress = false;
+                    PlacingTutorialDone = true;
                 }
                 break;
             case TurnManager.MacroPhase.game:
@@ -440,8 +444,6 @@ public class TutorialManager : MonoBehaviour
                     SuperAttackTutorialDone = true;
                     bm.TutorialInProgress = false;
                 }
-                break;
-            case TurnManager.MacroPhase.end:
                 break;
         }
     }

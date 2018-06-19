@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114282883163228012}
   - component: {fileID: 114626067402029720}
   - component: {fileID: 114122555650413852}
+  - component: {fileID: 114455771083970490}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -76,6 +77,7 @@ MonoBehaviour:
   - We can pick 2 pawns as well
   - Once again, 2 for our team!
   - "We\u2019ll use wisely the last one!"
+  DraftTutorialDone: 0
   MagicChoosing: {fileID: 0}
   ScienceChoosing: {fileID: 0}
   MagicChoosingText: {fileID: 0}
@@ -96,6 +98,7 @@ MonoBehaviour:
   - "Let\u2019s put on the board 2 of our pawns"
   - Now we can place the last couple
   - Lay the last one, so we can start the match
+  PlacingTutorialDone: 0
   MagicGame: {fileID: 0}
   ScienceGame: {fileID: 0}
   MagicGameText: {fileID: 0}
@@ -159,6 +162,41 @@ MonoBehaviour:
   joyPassTurn: 336
   joyStartDraft: 337
   joyPause: 337
+--- !u!114 &114455771083970490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654196648849384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11e03ac4378460468edc5d1c5ff6140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GeneralPositive:
+  - "Bad Mistake\u2026 ahahah"
+  - 'This will hurt you '
+  - 'Ops, Sorry Buddy '
+  - Who wins gets a free drink!
+  - Come on try hard!
+  - Easy peasy
+  - 'How much did we bet? '
+  - "I\u2019ll take this ;)"
+  - Getting closer to the victory!
+  GeneralNegative:
+  - IMPOSSIBLE!
+  - You cheater!
+  - Stop it
+  - It's not fair!
+  - Umpf... Nice move
+  SciencePositive: []
+  ScienceNegative: []
+  MagicPositive: []
+  MagicNegative: []
+  MagicComic: {fileID: 0}
+  ScienceComic: {fileID: 0}
+  MagicComicText: {fileID: 0}
+  ScienceComicText: {fileID: 0}
 --- !u!114 &114616384863812216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,4 +508,5 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   vfx: {fileID: 0}
   tutorial: {fileID: 0}
+  randomtext: {fileID: 0}
   pause: 0
