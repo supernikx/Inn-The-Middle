@@ -552,6 +552,14 @@ public class Pawn : MonoBehaviour
     /// <param name="pawnToKill"></param>
     public void KillPawn()
     {
+        if (faction == Factions.Magic)
+        {
+            BoardManager.Instance.magicPawns.Remove(this);
+        }
+        else if (faction == Factions.Science)
+        {
+            BoardManager.Instance.sciencePawns.Remove(this);
+        }
         DisableAttackPattern();
         currentBox.free = true;
         currentBox = null;
@@ -566,18 +574,13 @@ public class Pawn : MonoBehaviour
     /// </summary>
     private void DeathAnimationEnd()
     {
-        if (faction == Factions.Magic)
-        {
-            BoardManager.Instance.magicPawns.Remove(this);
-        }
-        else if (faction == Factions.Science)
-        {
-            BoardManager.Instance.sciencePawns.Remove(this);
-        }
-        bm.WinCondition(false);
         bm.pawns.Remove(this);
+        bm.WinCondition(false);         
+        if (OnDeathEnd != null)
+        {
+            OnDeathEnd(this);
+        }       
         gameObject.SetActive(false);
-        OnDeathEnd(this);
     }
 
     #endregion

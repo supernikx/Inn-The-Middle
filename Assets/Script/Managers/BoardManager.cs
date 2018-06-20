@@ -483,28 +483,39 @@ public class BoardManager : MonoBehaviour
         turnManager.CheckAlreadyDone = true;
         PawnToRandom.Clear();
         checkpawnindex = 0;
-        foreach (Pawn p in pawns)
+        if (turnManager.CurrentPlayerTurn == Factions.Magic && magicPawns.Count == 1 && !CheckFreeBoxes(magicPawns[0]) && !magicPawns[0].CheckAttackPattern())
         {
-            if (!p.currentBox.walkable)
-            {
-                if (CheckFreeBoxes(p))
-                {
-                    PawnToRandom.Add(p);
-                }
-                else
-                {
-                    p.KillPawn();
-                }
-            }
+            magicPawns[0].KillPawn();
         }
-        if (PawnToRandom.Count > 0)
+        else if (turnManager.CurrentPlayerTurn == Factions.Science && sciencePawns.Count == 1 && !CheckFreeBoxes(sciencePawns[0]) && !sciencePawns[0].CheckAttackPattern())
         {
-            randomtext.GenerateRandomText(PhraseType.Negative, Factions.None);
-            uiManager.UpdateExpressions(Expressions.Surprised);
-            RandomizePatterns(PawnToRandom);
+            sciencePawns[0].KillPawn();
         }
         else
-            turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
+        {
+            foreach (Pawn p in pawns)
+            {
+                if (!p.currentBox.walkable)
+                {
+                    if (CheckFreeBoxes(p))
+                    {
+                        PawnToRandom.Add(p);
+                    }
+                    else
+                    {
+                        p.KillPawn();
+                    }
+                }
+            }
+            if (PawnToRandom.Count > 0)
+            {
+                randomtext.GenerateRandomText(PhraseType.Negative, Factions.None);
+                uiManager.UpdateExpressions(Expressions.Surprised);
+                RandomizePatterns(PawnToRandom);
+            }
+            else
+                turnManager.CurrentTurnState = TurnManager.PlayTurnState.movementattack;
+        }
     }
 
     /// <summary>

@@ -34,12 +34,14 @@ public class ElicotteroAnimations : PawnAnimationManager
         ExplosionVFX.Stop();
     }
 
-    public override void AttackAnimation(Transform _myPosition, List<Box> _patternBox, Vector3 startRotation)
+    public override void AttackAnimation(Transform _myPosition, List<Box> _patternBox, Vector3 _startRotation)
     {
+        myPosition = _myPosition;
+        startPosition = myPosition.position;
+        startRotation = _startRotation;
         myPosition.eulerAngles = startRotation;
-        Vector3 _targetPosition = new Vector3();
-        startPosition = _myPosition.position;
         patternBox = _patternBox;
+        Vector3 _targetPosition = new Vector3();
         float targetx = -1;
         float targetz = -1;
         if (patternBox.Count == 2)
