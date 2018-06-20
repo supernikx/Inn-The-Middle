@@ -483,15 +483,48 @@ public class BoardManager : MonoBehaviour
         turnManager.CheckAlreadyDone = true;
         PawnToRandom.Clear();
         checkpawnindex = 0;
-        if (turnManager.CurrentPlayerTurn == Factions.Magic && magicPawns.Count == 1 && !CheckFreeBoxes(magicPawns[0]) && !magicPawns[0].CheckAttackPattern())
+        int checktrappedpawns = 0;
+        bool allpawnblocked = false;
+        switch (turnManager.CurrentPlayerTurn)
         {
-            magicPawns[0].KillPawn();
+            case Factions.Magic:
+                for (int i = 0; i < magicPawns.Count; i++)
+                {
+                    if (CheckFreeBoxes(magicPawns[i]) || magicPawns[i].CheckAttackPattern())
+                    {
+                        break;
+                    }
+                    checktrappedpawns++;
+                }
+                if (checktrappedpawns == magicPawns.Count)
+                {
+                    foreach (Pawn p in new List<Pawn>(magicPawns))
+                    {
+                        p.KillPawn();                       
+                    }
+                    allpawnblocked = true;
+                }
+                break;
+            case Factions.Science:
+                for (int i = 0; i < sciencePawns.Count; i++)
+                {
+                    if (CheckFreeBoxes(sciencePawns[i]) || sciencePawns[i].CheckAttackPattern())
+                    {
+                        break;
+                    }
+                    checktrappedpawns++;
+                }
+                if (checktrappedpawns == sciencePawns.Count)
+                {
+                    foreach (Pawn p in new List<Pawn>(sciencePawns))
+                    {
+                        p.KillPawn();                        
+                    }
+                    allpawnblocked = true;
+                }
+                break;
         }
-        else if (turnManager.CurrentPlayerTurn == Factions.Science && sciencePawns.Count == 1 && !CheckFreeBoxes(sciencePawns[0]) && !sciencePawns[0].CheckAttackPattern())
-        {
-            sciencePawns[0].KillPawn();
-        }
-        else
+        if (!allpawnblocked)
         {
             foreach (Pawn p in pawns)
             {
