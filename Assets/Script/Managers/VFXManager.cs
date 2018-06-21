@@ -31,6 +31,8 @@ public class VFXManager : MonoBehaviour
     public Vector3 poolPosition;
     public GameObject selectDraftPawnParticlePrefab;
     public GameObject selectPawnParticlePrefab;
+    public GameObject reDarftPawnParticlePrefab;
+    public int maxReDraft;
     public GameObject attackMarkerParticlePrefab;
     public int maxMarker;
     public GameObject trapTilePrefab;
@@ -38,13 +40,16 @@ public class VFXManager : MonoBehaviour
 
     Transform parentSelected;
     Transform parentDraftSelected;
+    Transform parentReDraftPawn;
     Transform parentMarker;
     Transform parentTrap;
 
     List<PoolParticleEffects> mark = new List<PoolParticleEffects>();
     List<PoolParticleEffects> trap = new List<PoolParticleEffects>();
+    List<PoolParticleEffects> redraftpawn = new List<PoolParticleEffects>();
     PoolParticleEffects select;
     PoolParticleEffects draftselect;
+    
 
     private void Start()
     {
@@ -64,6 +69,15 @@ public class VFXManager : MonoBehaviour
             ParticleSystem instantietedTrap = Instantiate(trapTilePrefab, poolPosition, trapTilePrefab.transform.rotation, parentTrap).GetComponent<ParticleSystem>();
             instantietedTrap.Stop();
             trap.Add(new PoolParticleEffects(PoolState.inPool, instantietedTrap));
+        }
+
+        parentReDraftPawn = new GameObject("ReDraftPawn").transform;
+        parentReDraftPawn.parent = transform;
+        for (int i = 0; i < maxReDraft; i++)
+        {
+            ParticleSystem instantiatedReDraftPawn = Instantiate(reDarftPawnParticlePrefab, poolPosition, reDarftPawnParticlePrefab.transform.rotation, parentReDraftPawn).GetComponent<ParticleSystem>();
+            instantiatedReDraftPawn.Stop();
+            redraftpawn.Add(new PoolParticleEffects(PoolState.inPool, instantiatedReDraftPawn));
         }
 
         parentSelected = new GameObject("SelectedPawn").transform;
@@ -185,6 +199,28 @@ public class VFXManager : MonoBehaviour
         draftselect.particle.Stop();
         draftselect.particle.transform.position = poolPosition;
         draftselect.state = PoolState.inPool;
+    }
+
+    public void ReDraftPawn(Vector3 _PawnPosition)
+    {
+        foreach (PoolParticleEffects p in redraftpawn)
+        {
+            if (p.state == PoolState.inPool)
+            {
+                p.state = PoolState.inUse;
+                p.particle.transform.position = new Vector3(_PawnPosition.x, 4.5f, _PawnPosition.z);
+                StartCoroutine(ReDraftPawnCoroutine(p));
+                return;
+            }
+        }
+    }
+
+    private IEnumerator ReDraftPawnCoroutine(PoolParticleEffects _p)
+    {
+        _p.particle.Play();
+        yield return new WaitForSeconds(_p.particle.main.duration);
+        _p.particle.Stop();
+        _p.state = PoolState.inPool;
     }
 
 }

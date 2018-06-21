@@ -452,6 +452,9 @@ MonoBehaviour:
     type: 2}
   selectPawnParticlePrefab: {fileID: 1216386761171494, guid: 00a346d7c9675b046ab51279b6602c92,
     type: 2}
+  reDarftPawnParticlePrefab: {fileID: 1405217970844884, guid: ff1018b1d2edd2546bc0387be2bc4406,
+    type: 2}
+  maxReDraft: 4
   attackMarkerParticlePrefab: {fileID: 1320169676769844, guid: d36ec58d938ce034eac92d8a19be0bb4,
     type: 2}
   maxMarker: 4

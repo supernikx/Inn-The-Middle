@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Pawn : MonoBehaviour
@@ -884,16 +885,26 @@ public class Pawn : MonoBehaviour
     /// Funzione che randomizza il pattern della pedina e attiva il modello corrispondente
     /// </summary>
     public void RandomizePattern()
-    {
+    {       
         graphics[activePattern].SetActive(false);
         bm.vfx.DeselectPawn();
         UnsubscribeAnimationEvent();        
         activePattern = Random.Range(0, patterns.Count);
         activeSpeed = speeds[activePattern];
-        graphics[activePattern].SetActive(true);
+        StartCoroutine(ActiveNewPatternGraphics());
         bm.vfx.SelectPawn(this);
         SubscribeAnimationEvent();
         randomized = true;
+    }
+
+    /// <summary>
+    /// Funzione per attivare in ritardo la grafica della nuova pedina
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ActiveNewPatternGraphics()
+    {
+        yield return new WaitForSeconds(0.1f);
+        graphics[activePattern].SetActive(true);
     }
 
     /// <summary>

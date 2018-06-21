@@ -500,7 +500,7 @@ public class BoardManager : MonoBehaviour
                 {
                     foreach (Pawn p in new List<Pawn>(magicPawns))
                     {
-                        p.KillPawn();                       
+                        p.KillPawn();
                     }
                     allpawnblocked = true;
                 }
@@ -518,7 +518,7 @@ public class BoardManager : MonoBehaviour
                 {
                     foreach (Pawn p in new List<Pawn>(sciencePawns))
                     {
-                        p.KillPawn();                        
+                        p.KillPawn();
                     }
                     allpawnblocked = true;
                 }
@@ -1036,7 +1036,11 @@ public class BoardManager : MonoBehaviour
         foreach (Pawn p in randomize)
         {
             if (!p.randomized)
+            {
+                vfx.ReDraftPawn(p.transform.position);
                 p.RandomizePattern();
+            }
+
         }
         if (CheckPawnToChoose())
         {

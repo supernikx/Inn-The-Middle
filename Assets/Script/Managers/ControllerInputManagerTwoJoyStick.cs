@@ -304,11 +304,6 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.movementattack:
-                            if (Input.GetKeyDown(joy1PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy1Confirm))
                             {
                                 bm.Movement(false);
@@ -345,11 +340,6 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.attack:
-                            if (Input.GetKeyDown(joy1PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy1Attack))
                             {
                                 bm.Attack();
@@ -521,11 +511,6 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.movementattack:
-                            if (Input.GetKeyDown(joy2PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy2Confirm))
                             {
                                 bm.Movement(false);
@@ -562,11 +547,6 @@ public class ControllerInputManagerTwoJoyStick : MonoBehaviour
                             }
                             break;
                         case TurnManager.PlayTurnState.attack:
-                            if (Input.GetKeyDown(joy2PassTurn))
-                            {
-                                bm.turnManager.ChangeTurn();
-                            }
-
                             if (Input.GetKeyDown(joy2Attack))
                             {
                                 bm.Attack();
