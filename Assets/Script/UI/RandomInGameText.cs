@@ -37,41 +37,57 @@ public class RandomInGameText : MonoBehaviour
         bm = BoardManager.Instance;
     }
 
-    public void GenerateRandomText(PhraseType type, Factions faction)
+    public void GenerateRandomText(PhraseType type)
     {
         if ((bm.tutorial.TutorialActive && bm.tutorial.DraftTutorialDone && bm.tutorial.ChoosingTutorialDone && bm.tutorial.PlacingTutorialDone && bm.tutorial.SuperAttackTutorialDone && bm.tutorial.GameTutorialDone) || !bm.tutorial.TutorialActive)
         {
             MagicAButton.SetActive(false);
             ScienceAButton.SetActive(false);
-            switch (Random.Range(0,2))
+            switch (Random.Range(0, 2))
             {
                 case 0:
                     switch (type)
                     {
                         case PhraseType.Positive:
-                            switch (faction)
+                            if (Random.Range(0, 11) % 2 == 0)
                             {
-                                case Factions.None:
-                                    stringindex = Random.Range(0, GeneralPositive.Count);
-                                    StartCoroutine(ShowPhrase(GeneralPositive[stringindex]));
-                                    break;
-                                case Factions.Magic:
-                                    break;
-                                case Factions.Science:
-                                    break;
+                                stringindex = Random.Range(0, GeneralPositive.Count);
+                                StartCoroutine(ShowPhrase(GeneralPositive[stringindex]));
+                            }
+                            else
+                            {
+                                switch (bm.turnManager.CurrentPlayerTurn)
+                                {
+                                    case Factions.Magic:
+                                        stringindex = Random.Range(0, MagicPositive.Count);
+                                        StartCoroutine(ShowPhrase(MagicPositive[stringindex]));
+                                        break;
+                                    case Factions.Science:
+                                        stringindex = Random.Range(0, SciencePositive.Count);
+                                        StartCoroutine(ShowPhrase(SciencePositive[stringindex]));
+                                        break;
+                                }
                             }
                             break;
                         case PhraseType.Negative:
-                            switch (faction)
+                            if (Random.Range(0, 11) % 2 == 0)
                             {
-                                case Factions.None:
-                                    stringindex = Random.Range(0, GeneralNegative.Count);
-                                    StartCoroutine(ShowPhrase(GeneralNegative[stringindex]));
-                                    break;
-                                case Factions.Magic:
-                                    break;
-                                case Factions.Science:
-                                    break;
+                                stringindex = Random.Range(0, GeneralNegative.Count);
+                                StartCoroutine(ShowPhrase(GeneralNegative[stringindex]));
+                            }
+                            else
+                            {
+                                switch (bm.turnManager.CurrentPlayerTurn)
+                                {
+                                    case Factions.Magic:
+                                        stringindex = Random.Range(0, MagicNegative.Count);
+                                        StartCoroutine(ShowPhrase(MagicNegative[stringindex]));
+                                        break;
+                                    case Factions.Science:
+                                        stringindex = Random.Range(0, ScienceNegative.Count);
+                                        StartCoroutine(ShowPhrase(ScienceNegative[stringindex]));
+                                        break;
+                                }
                             }
                             break;
                     }

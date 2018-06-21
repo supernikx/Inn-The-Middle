@@ -428,7 +428,7 @@ public class BoardManager : MonoBehaviour
                     vfx.ResetMark();
                     pawnSelected.OnAttackEnd += OnAttackEnd;
                     uiManager.UpdateExpressions(Expressions.Happy);
-                    randomtext.GenerateRandomText(PhraseType.Positive, Factions.None);
+                    randomtext.GenerateRandomText(PhraseType.Positive);
                     pawnSelected.AttackBehaviour(superAttack, (superAttack) ? MarkedPawnList[MarkedPawnIndex] : null);
                 }
             }
@@ -542,7 +542,7 @@ public class BoardManager : MonoBehaviour
             }
             if (PawnToRandom.Count > 0)
             {
-                randomtext.GenerateRandomText(PhraseType.Negative, Factions.None);
+                randomtext.GenerateRandomText(PhraseType.Negative);
                 uiManager.UpdateExpressions(Expressions.Surprised);
                 RandomizePatterns(PawnToRandom);
             }

@@ -189,14 +189,25 @@ MonoBehaviour:
   - Stop it
   - It's not fair!
   - Umpf... Nice move
-  SciencePositive: []
-  ScienceNegative: []
-  MagicPositive: []
-  MagicNegative: []
+  SciencePositive:
+  - Scientific method Baby!
+  - "Ho fatto due calcoli\u2026 Stai perdendo  "
+  - "Science is meticulous. Magic is\u2026 Stupid "
+  ScienceNegative:
+  - You boorish Wizard!
+  MagicPositive:
+  - 'Ringrazia che non ho portato il libro di incantesimi  '
+  - 'Lo avevi promesso. Se vinco mi ridai la bacchetta '
+  - 'Have you checked your robots? They are creaking a bit '
+  MagicNegative:
+  - "Vorrei vedere te con questa barba\u2026 Non aiuta per niente"
+  - 'Per la barba di Merlino, non toccare le mie pedine! '
   MagicComic: {fileID: 0}
   ScienceComic: {fileID: 0}
   MagicComicText: {fileID: 0}
   ScienceComicText: {fileID: 0}
+  MagicAButton: {fileID: 0}
+  ScienceAButton: {fileID: 0}
 --- !u!114 &114616384863812216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,6 +383,13 @@ MonoBehaviour:
   ScienceWinImage: {fileID: 0}
   DrawWinImage: {fileID: 0}
   TurnWinText: {fileID: 0}
+  ScienceTurnMaterial: {fileID: 2100000, guid: 624fcbe6d08f46c4eaa607a904d53ec0, type: 2}
+  MagicTurnMaterial: {fileID: 2100000, guid: 2a7ac2c365535ed469cf1cca67ec7d67, type: 2}
+  ScienceTurnMaterialEmission: {fileID: 2100000, guid: 4fafd99f8117459429560927d179af47,
+    type: 2}
+  MagicTurnMaterialEmission: {fileID: 2100000, guid: 0de2fe242b0c3f244a3e7886c31d91bf,
+    type: 2}
+  TurnButton: {fileID: 0}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1
