@@ -107,6 +107,15 @@ public class UIManager : MonoBehaviour
     public GameObject DrawWinImage;
     public TextMeshProUGUI TurnWinText;
 
+    [Header("Turn Button")]
+    public Material ScienceTurnMaterial;
+    public Material MagicTurnMaterial;
+    public Material ScienceTurnMaterialEmission;
+    public Material MagicTurnMaterialEmission;
+    public GameObject TurnButton;
+    MeshRenderer TurnButtonActualMeshRender;
+    Animator TurnButtonAnimator;
+
     private void Awake()
     {
         bm = GetComponent<BoardManager>();
@@ -134,6 +143,8 @@ public class UIManager : MonoBehaviour
         #endregion
         choosingUi.SetActive(false);
         factionUI.SetActive(false);
+        TurnButtonActualMeshRender = TurnButton.GetComponent<MeshRenderer>();
+        TurnButtonAnimator = TurnButton.GetComponent<Animator>();
         if (DataManager.instance._SkipTitleScreen)
         {
             TitleScreen.SetActive(false);
@@ -475,11 +486,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che chiama la coroutine che aggiorna le espressioni dei 2 personaggi
+    /// </summary>
+    /// <param name="e"></param>
     public void UpdateExpressions(Expressions e)
     {
         StartCoroutine(UpdateExpressionsCoroutine(e));
     }
 
+    /// <summary>
+    /// Coroutine che imposta al personaggio di turno l'espressione passata come parametro
+    /// </summary>
+    /// <param name="e"></param>
+    /// <returns></returns>
     public IEnumerator UpdateExpressionsCoroutine(Expressions e)
     {
         switch (bm.turnManager.CurrentPlayerTurn)
@@ -538,6 +558,53 @@ public class UIManager : MonoBehaviour
                 break;
         }
         yield return null;
+    }
+
+    /// <summary>
+    /// Funzione che stoppa e riavvia la funzione che cambia il pulsante centrale della plancia che indica il turno
+    /// </summary>
+    IEnumerator changebuttonroutine;
+    public void ChangeButton()
+    {
+        if (changebuttonroutine != null)
+        {
+            StopCoroutine(changebuttonroutine);
+        }        
+        changebuttonroutine = ChangeTurnButtonCoroutne();
+        StartCoroutine(changebuttonroutine);
+    }
+
+    /// <summary>
+    /// Funzione che aggiorna il pulsante centrale sulla board che indica il turno
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ChangeTurnButtonCoroutne()
+    {
+        TurnButtonAnimator.SetTrigger("Flip");
+        yield return new WaitForSeconds(0.23f);
+        switch (bm.turnManager.CurrentPlayerTurn)
+        {
+            case Factions.Magic:
+                TurnButtonActualMeshRender.material = MagicTurnMaterial;
+                for (int i = 0; i < 3; i++)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    TurnButtonActualMeshRender.material = MagicTurnMaterialEmission;
+                    yield return new WaitForSeconds(0.3f);
+                    TurnButtonActualMeshRender.material = MagicTurnMaterial;
+                }                
+                break;
+            case Factions.Science:
+                TurnButtonActualMeshRender.material = ScienceTurnMaterial;
+                for (int i = 0; i < 3; i++)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    TurnButtonActualMeshRender.material = ScienceTurnMaterialEmission;
+                    yield return new WaitForSeconds(0.3f);
+                    TurnButtonActualMeshRender.material = ScienceTurnMaterial;
+                }
+                break;
+        }
     }
 
     #endregion

@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
                     MusicAudioSource.Play();
                     PlayerPrefs.SetInt("Sound", 1);
                 }
-                else if (!SoundActive && MusicAudioSource.isPlaying)
+                else if (!SoundActive)
                 {
                     MusicAudioSource.Pause();
                     PlayerPrefs.SetInt("Sound", 0);

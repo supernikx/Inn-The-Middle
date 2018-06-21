@@ -346,6 +346,7 @@ public class TurnManager : MonoBehaviour
                         }
                         break;
                 }
+                BoardManager.Instance.uiManager.ChangeButton();
                 break;
             case MacroPhase.game:
                 CheckAlreadyDone = false;
@@ -356,6 +357,7 @@ public class TurnManager : MonoBehaviour
                 {
                     BoardManager.Instance.tutorial.GameTutorial();
                 }
+                BoardManager.Instance.uiManager.ChangeButton();
                 break;
             default:
                 Debug.Log("Errore: nessuna macrofase");
