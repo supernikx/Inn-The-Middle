@@ -580,7 +580,8 @@ public class Pawn : MonoBehaviour
         if (OnDeathEnd != null)
         {
             OnDeathEnd(this);
-        }       
+        }
+        bm.vfx.DeathVFX(transform.position, faction);
         gameObject.SetActive(false);
     }
 

@@ -37,16 +37,24 @@ public class VFXManager : MonoBehaviour
     public int maxMarker;
     public GameObject trapTilePrefab;
     public int maxTrapTile;
+    public GameObject MagicDeathVFXPrefab;
+    public int maxMagicDeathVFX;
+    public GameObject ScienceDeathVFXPrefab;
+    public int maxScienceDeathVFX;
 
     Transform parentSelected;
     Transform parentDraftSelected;
     Transform parentReDraftPawn;
     Transform parentMarker;
     Transform parentTrap;
+    Transform parentMagicDeath;
+    Transform parentScienceDeath;
 
     List<PoolParticleEffects> mark = new List<PoolParticleEffects>();
     List<PoolParticleEffects> trap = new List<PoolParticleEffects>();
     List<PoolParticleEffects> redraftpawn = new List<PoolParticleEffects>();
+    List<PoolParticleEffects> magicdeathvfx = new List<PoolParticleEffects>();
+    List<PoolParticleEffects> sciencedeathvfx = new List<PoolParticleEffects>();
     PoolParticleEffects select;
     PoolParticleEffects draftselect;
     
@@ -78,6 +86,24 @@ public class VFXManager : MonoBehaviour
             ParticleSystem instantiatedReDraftPawn = Instantiate(reDarftPawnParticlePrefab, poolPosition, reDarftPawnParticlePrefab.transform.rotation, parentReDraftPawn).GetComponent<ParticleSystem>();
             instantiatedReDraftPawn.Stop();
             redraftpawn.Add(new PoolParticleEffects(PoolState.inPool, instantiatedReDraftPawn));
+        }
+
+        parentMagicDeath = new GameObject("MagicDeathVFX").transform;
+        parentMagicDeath.parent = transform;
+        for (int i = 0; i < maxMagicDeathVFX; i++)
+        {
+            ParticleSystem instantiatedReDraftPawn = Instantiate(MagicDeathVFXPrefab, poolPosition, MagicDeathVFXPrefab.transform.rotation, parentMagicDeath).GetComponent<ParticleSystem>();
+            instantiatedReDraftPawn.Stop();
+            magicdeathvfx.Add(new PoolParticleEffects(PoolState.inPool, instantiatedReDraftPawn));
+        }
+
+        parentScienceDeath = new GameObject("ScienceDeathVFX").transform;
+        parentScienceDeath.parent = transform;
+        for (int i = 0; i < maxScienceDeathVFX; i++)
+        {
+            ParticleSystem instantiatedReDraftPawn = Instantiate(ScienceDeathVFXPrefab, poolPosition, ScienceDeathVFXPrefab.transform.rotation, parentScienceDeath).GetComponent<ParticleSystem>();
+            instantiatedReDraftPawn.Stop();
+            sciencedeathvfx.Add(new PoolParticleEffects(PoolState.inPool, instantiatedReDraftPawn));
         }
 
         parentSelected = new GameObject("SelectedPawn").transform;
@@ -216,6 +242,45 @@ public class VFXManager : MonoBehaviour
     }
 
     private IEnumerator ReDraftPawnCoroutine(PoolParticleEffects _p)
+    {
+        _p.particle.Play();
+        yield return new WaitForSeconds(_p.particle.main.duration);
+        _p.particle.Stop();
+        _p.state = PoolState.inPool;
+    }
+
+    public void DeathVFX (Vector3 pawnPosition, Factions faction)
+    {
+        switch (faction)
+        {
+            case Factions.Magic:
+                foreach (PoolParticleEffects p in magicdeathvfx)
+                {
+                    if (p.state == PoolState.inPool)
+                    {
+                        p.state = PoolState.inUse;
+                        p.particle.transform.position = pawnPosition;
+                        StartCoroutine(DeathVFXCoroutine(p));
+                        return;
+                    }
+                }
+                break;
+            case Factions.Science:
+                foreach (PoolParticleEffects p in sciencedeathvfx)
+                {
+                    if (p.state == PoolState.inPool)
+                    {
+                        p.state = PoolState.inUse;
+                        p.particle.transform.position = pawnPosition;
+                        StartCoroutine(DeathVFXCoroutine(p));
+                        return;
+                    }
+                }
+                break;
+        }
+    }
+
+    private IEnumerator DeathVFXCoroutine(PoolParticleEffects _p)
     {
         _p.particle.Play();
         yield return new WaitForSeconds(_p.particle.main.duration);

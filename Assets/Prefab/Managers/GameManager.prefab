@@ -461,6 +461,12 @@ MonoBehaviour:
   trapTilePrefab: {fileID: 1429235154793992, guid: d0d9f1dd08dd19d40962bf198728e019,
     type: 2}
   maxTrapTile: 16
+  MagicDeathVFXPrefab: {fileID: 1549066286909276, guid: 597da8661e35f664397a77acc2c44fbc,
+    type: 2}
+  maxMagicDeathVFX: 4
+  ScienceDeathVFXPrefab: {fileID: 1089014120235252, guid: 6f131f26244cffd4196bf7625fa75bed,
+    type: 2}
+  maxScienceDeathVFX: 4
 --- !u!114 &114893752617296308
 MonoBehaviour:
   m_ObjectHideFlags: 1
