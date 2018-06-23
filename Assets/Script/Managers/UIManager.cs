@@ -971,7 +971,7 @@ public class UIManager : MonoBehaviour
                 {
                     LampRendere.material.SetColor("_EmissionColor", new Color(actualbrightness, actualbrightness, actualbrightness, 1f));
                     actualbrightness -= 0.05f;
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(0.05f);
                 }
                 lampincreasbrightness = true;
             }
