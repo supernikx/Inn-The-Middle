@@ -112,7 +112,7 @@ public class RandomInGameText : MonoBehaviour
                 ScienceComicText.text = _phrase;
                 break;
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         MagicComic.SetActive(false);
         ScienceComic.SetActive(false);
     }

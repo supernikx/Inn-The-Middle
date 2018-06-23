@@ -181,7 +181,7 @@ MonoBehaviour:
   - Come on try hard!
   - Easy peasy
   - 'How much did we bet? '
-  - "I\u2019ll take this ;)"
+  - "I\u2019ll take this"
   - Getting closer to the victory!
   GeneralNegative:
   - IMPOSSIBLE!
@@ -191,17 +191,18 @@ MonoBehaviour:
   - Umpf... Nice move
   SciencePositive:
   - Scientific method Baby!
-  - "Ho fatto due calcoli\u2026 Stai perdendo  "
-  - "Science is meticulous. Magic is\u2026 Stupid "
+  - "I have calculated\u2026 your defeat!"
+  - "Science is meticulous. Magic is\u2026 Stupid"
   ScienceNegative:
   - You boorish Wizard!
+  - "I can\u2019t lose\u2026 Its mathematically impossible! "
   MagicPositive:
-  - 'Ringrazia che non ho portato il libro di incantesimi  '
-  - 'Lo avevi promesso. Se vinco mi ridai la bacchetta '
+  - "You\u2019re lucky, I haven\u2019t brought my wizard book!"
+  - "You\u2019ve promised it. If I win, you will give me back my wand!"
   - 'Have you checked your robots? They are creaking a bit '
   MagicNegative:
-  - "Vorrei vedere te con questa barba\u2026 Non aiuta per niente"
-  - 'Per la barba di Merlino, non toccare le mie pedine! '
+  - "I\u2019d like to see you in my shoes\u2026 with this beard!"
+  - "Don\u2019t touch my pawns, for Merlin\u2019s sake!"
   MagicComic: {fileID: 0}
   ScienceComic: {fileID: 0}
   MagicComicText: {fileID: 0}

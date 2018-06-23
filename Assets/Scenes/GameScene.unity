@@ -7653,7 +7653,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1670669509}
+      objectReference: {fileID: 610331929}
     - target: {fileID: 20707841683335802, guid: 1425180ab84f98e46988b12fe66303f9,
         type: 2}
       propertyPath: m_TargetTexture
@@ -8058,6 +8058,33 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 490808634}
   m_Script: {fileID: 11500000, guid: 5600507a0fa0a5e4fadfa2a587c3a7bc, type: 3}
+--- !u!84 &610331929
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &616463563
 GameObject:
   m_ObjectHideFlags: 0
@@ -8418,6 +8445,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 643736471}
+--- !u!84 &643986170
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &651685226
 GameObject:
   m_ObjectHideFlags: 0
@@ -21712,33 +21766,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1435320727}
---- !u!84 &1438853817
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1446515349
 Prefab:
   m_ObjectHideFlags: 0
@@ -24939,33 +24966,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661970991}
---- !u!84 &1670669509
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1675614432
 GameObject:
   m_ObjectHideFlags: 0
@@ -27683,106 +27683,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: VFXParent
-      value: 
-      objectReference: {fileID: 1357063828}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1386923296}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 894577378}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 1545798559}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 1389239546}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 883586739}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[5]
-      value: 
-      objectReference: {fileID: 1007333954}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[6]
-      value: 
-      objectReference: {fileID: 55682649}
-    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: DraftPawnsPositions.Array.data[7]
-      value: 
-      objectReference: {fileID: 1576500897}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: mainCam
-      value: 
-      objectReference: {fileID: 1833872376}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: draftCam
-      value: 
-      objectReference: {fileID: 2111485903}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: magicPlacementLight
-      value: 
-      objectReference: {fileID: 149640174}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: sciencePlacementLight
-      value: 
-      objectReference: {fileID: 149640173}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: centralLight
-      value: 
-      objectReference: {fileID: 149640172}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: MagicComic
-      value: 
-      objectReference: {fileID: 1218865745}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceComic
-      value: 
-      objectReference: {fileID: 2021448410}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: MagicComicText
-      value: 
-      objectReference: {fileID: 2133887884}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceComicText
-      value: 
-      objectReference: {fileID: 1633345396}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: MagicAButton
-      value: 
-      objectReference: {fileID: 883849854}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceAButton
-      value: 
-      objectReference: {fileID: 1913076291}
     - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: MagicElements
@@ -28323,6 +28223,106 @@ Prefab:
       propertyPath: TurnButton
       value: 
       objectReference: {fileID: 1787467198}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MagicComic
+      value: 
+      objectReference: {fileID: 1218865745}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceComic
+      value: 
+      objectReference: {fileID: 2021448410}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MagicComicText
+      value: 
+      objectReference: {fileID: 2133887884}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceComicText
+      value: 
+      objectReference: {fileID: 1633345396}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: MagicAButton
+      value: 
+      objectReference: {fileID: 883849854}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceAButton
+      value: 
+      objectReference: {fileID: 1913076291}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: VFXParent
+      value: 
+      objectReference: {fileID: 1357063828}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1386923296}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[1]
+      value: 
+      objectReference: {fileID: 894577378}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[2]
+      value: 
+      objectReference: {fileID: 1545798559}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1389239546}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[4]
+      value: 
+      objectReference: {fileID: 883586739}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[5]
+      value: 
+      objectReference: {fileID: 1007333954}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[6]
+      value: 
+      objectReference: {fileID: 55682649}
+    - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: DraftPawnsPositions.Array.data[7]
+      value: 
+      objectReference: {fileID: 1576500897}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1833872376}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: draftCam
+      value: 
+      objectReference: {fileID: 2111485903}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: magicPlacementLight
+      value: 
+      objectReference: {fileID: 149640174}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: sciencePlacementLight
+      value: 
+      objectReference: {fileID: 149640173}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: centralLight
+      value: 
+      objectReference: {fileID: 149640172}
     - target: {fileID: 114122555650413852, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: MagicDraft
