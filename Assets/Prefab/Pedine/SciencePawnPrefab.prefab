@@ -11385,7 +11385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   YOffset: 3.5
   ZOffset: 4
-  MovementClip: {fileID: 8300000, guid: 07b1bc16cd36cf04e810a33810f921af, type: 3}
+  MovementClip: {fileID: 8300000, guid: d8c0d962c9394fd458912eaab2f2c7c1, type: 3}
   AttackCharge: {fileID: 198621207539513528}
   ProjectileVFX: {fileID: 1723281562426588}
   ExplosionVFX: {fileID: 198881954348772156}

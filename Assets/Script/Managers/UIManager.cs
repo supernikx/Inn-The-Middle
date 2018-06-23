@@ -116,6 +116,12 @@ public class UIManager : MonoBehaviour
     MeshRenderer TurnButtonActualMeshRender;
     Animator TurnButtonAnimator;
 
+    [Header("Lamp References")]
+    public MeshRenderer LampRendere;
+    public float maxbrightness;
+    public float minbrightness;
+    bool lampincreasbrightness;    
+
     private void Awake()
     {
         bm = GetComponent<BoardManager>();
@@ -125,6 +131,7 @@ public class UIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SetUpLamp();
         #region WinCondition
         winScreen.SetActive(false);
         MagicWinImage.SetActive(false);
@@ -934,6 +941,44 @@ public class UIManager : MonoBehaviour
         }
         TurnWinText.text = bm.turnManager.numberOfTurns.ToString() + " Turns";
     }
+
+    private void SetUpLamp()
+    {
+        LampRendere.material.SetColor("_EmissionColor", new Color(minbrightness, minbrightness, minbrightness, 1f));
+        lampincreasbrightness = true;
+        StartCoroutine(LightBulbChangeEmission());
+    }
+
+    private IEnumerator LightBulbChangeEmission()
+    {
+        float actualbrightness = minbrightness;
+        while (true)
+        {
+            if (lampincreasbrightness)
+            {
+                while (!Mathf.Approximately(actualbrightness,maxbrightness))
+                {
+                    LampRendere.material.SetColor("_EmissionColor", new Color(actualbrightness,actualbrightness,actualbrightness,1f));
+                    actualbrightness += 0.05f;
+                    yield return new WaitForSeconds(0.05f);
+                }
+                lampincreasbrightness = false;
+                    
+            }
+            else
+            {
+                while (!Mathf.Approximately(actualbrightness, minbrightness))
+                {
+                    LampRendere.material.SetColor("_EmissionColor", new Color(actualbrightness, actualbrightness, actualbrightness, 1f));
+                    actualbrightness -= 0.05f;
+                    yield return new WaitForSeconds(0.1f);
+                }
+                lampincreasbrightness = true;
+            }
+        }
+        
+    }
+
 }
 
 public enum Expressions

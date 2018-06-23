@@ -391,6 +391,10 @@ MonoBehaviour:
   MagicTurnMaterialEmission: {fileID: 2100000, guid: 0de2fe242b0c3f244a3e7886c31d91bf,
     type: 2}
   TurnButton: {fileID: 0}
+  LampRendere: {fileID: 0}
+  maxbrightness: 2.5
+  minbrightness: 1.2
+  tempMaterial: {fileID: 2100000, guid: 4030440ab98a5154996796188de71ced, type: 2}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1
