@@ -733,6 +733,9 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FocusStartButtonMenu());
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando si preme sul pulsante Credits del main menu e avvia la coroutine CreditsCoroutine
+    /// </summary>
     public void Credits()
     {
         foreach (GameObject g in CreditsPage)
@@ -742,6 +745,10 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CreditsCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine che attiva/disattiva tutti i componenti necessari ai credits ed esegue il fade
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CreditsCoroutine()
     {
         EventSystem.current.SetSelectedGameObject(null);        
@@ -768,6 +775,9 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(CreditsAButton);
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata quando viene premuto il pulsante A durante i credits e avvia (se non è in corso il fade) la coroutine CreditsAButtonPressedCoroutine
+    /// </summary>
     bool CreditsFadeInProgress = false;
     public void CreditsAButtonPressed()
     {
@@ -778,6 +788,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine che cambia pagina dei credits
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CreditsAButtonPressedCoroutine()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -842,6 +856,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta la carta in dissolvenza corretta in base all'animella selezionata passandogli l'index del pattern come parametro
+    /// </summary>
+    /// <param name="patternindex"></param>
     public void UpdateDraftDissolvedChoose(int patternindex)
     {
         switch (bm.turnManager.CurrentPlayerTurn)
@@ -1031,6 +1049,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta il WinScreen corretto passandogli la fazione vincitrice (none in caso di pareggio)
+    /// </summary>
+    /// <param name="WinFaction"></param>
     public void SetWinScreen(Factions WinFaction)
     {
         winScreen.SetActive(true);
@@ -1049,6 +1071,9 @@ public class UIManager : MonoBehaviour
         TurnWinText.text = bm.turnManager.numberOfTurns.ToString() + " Turns";
     }
 
+    /// <summary>
+    /// Funzione che imposta l'emissiva della lampada al minio ed avvia la coroutine LightBulbChangeEmission
+    /// </summary>
     private void SetUpLamp()
     {
         LampRendere.material.SetColor("_EmissionColor", new Color(minbrightness, minbrightness, minbrightness, 1f));
@@ -1056,6 +1081,10 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LightBulbChangeEmission());
     }
 
+    /// <summary>
+    /// Coroutine infinita che aumenta/diminuisce l'emissiva della lampada 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator LightBulbChangeEmission()
     {
         float actualbrightness = minbrightness;
