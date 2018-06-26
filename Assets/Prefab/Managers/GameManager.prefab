@@ -324,6 +324,7 @@ MonoBehaviour:
   ScienceChoosingPanel: {fileID: 0}
   TitleScreen: {fileID: 0}
   OptionsMenu: {fileID: 0}
+  CreditsMenu: {fileID: 0}
   factionUI: {fileID: 0}
   draftUI: {fileID: 0}
   choosingUi: {fileID: 0}
@@ -337,6 +338,44 @@ MonoBehaviour:
   StartMenuButton: {fileID: 0}
   soundtogglemenu: {fileID: 0}
   tutorialtogglemenu: {fileID: 0}
+  CreditsPage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Developers:
+  - DeveloperDepartment: Game Designers
+    DeveloperNames:
+    - Andrea Ancona
+    - Tommaso Chiaravalli
+    - "Nicol\xF2 Girotti"
+    - Gabriele Marzagalli
+    - Francesco Rigghi
+    - Lorenzo Scillone
+  - DeveloperDepartment: Programmer
+    DeveloperNames:
+    - Davide Tamagna
+  - DeveloperDepartment: Concept & 2D artists
+    DeveloperNames:
+    - Elisa Bacchin
+    - Stefano Budai
+    - Jacopo Castiglioni
+    - Simone Di Criscito
+    - Julian Kvalvaag
+    - Matteo Parati
+    - Eleonora Surini
+    - Federico Tagliavia
+  - DeveloperDepartment: 3D Artists
+    DeveloperNames:
+    - Alessandra Astrino
+    - Vittorio Quartini
+    - Aleksandr Troianovskyi
+  CreditsDepartmentText: {fileID: 0}
+  CreditsNameText: {fileID: 0}
+  CreditsThanksForPlayingText: {fileID: 0}
+  CreditsFadeImage: {fileID: 0}
+  CreditsAButton: {fileID: 0}
   MagicButton: {fileID: 0}
   ScienceButton: {fileID: 0}
   MagicPickingText: {fileID: 0}
@@ -394,7 +433,6 @@ MonoBehaviour:
   LampRendere: {fileID: 0}
   maxbrightness: 2.5
   minbrightness: 1.2
-  tempMaterial: {fileID: 2100000, guid: 4030440ab98a5154996796188de71ced, type: 2}
 --- !u!114 &114723618909212632
 MonoBehaviour:
   m_ObjectHideFlags: 1

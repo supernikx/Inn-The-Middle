@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     [Header("UI Holders references")]
     public GameObject TitleScreen;
     public GameObject OptionsMenu;
+    public GameObject CreditsMenu;
     public GameObject factionUI;
     public GameObject draftUI;
     public GameObject choosingUi;
@@ -54,6 +55,24 @@ public class UIManager : MonoBehaviour
     public GameObject StartMenuButton;
     public ChangeButtonImage soundtogglemenu;
     public ChangeButtonImage tutorialtogglemenu;
+
+    [Header("Credits Menu")]
+    public List<GameObject> CreditsPage = new List<GameObject>();
+    public List<CreditsName> Developers = new List<CreditsName>();
+    public TextMeshProUGUI CreditsDepartmentText;
+    public TextMeshProUGUI CreditsNameText;
+    public TextMeshProUGUI CreditsThanksForPlayingText;
+    public Animator CreditsFadeImage;
+    public GameObject CreditsAButton;
+    int CreditsPageIndex;
+    int DevelopersIndex;
+    [System.Serializable]
+    public class CreditsName
+    {
+        public string DeveloperDepartment;
+        public List<string> DeveloperNames = new List<string>();
+
+    }
 
     [Header("Faction Chooice")]
     public GameObject MagicButton;
@@ -139,6 +158,9 @@ public class UIManager : MonoBehaviour
         DrawWinImage.SetActive(false);
         #endregion
         OptionsMenu.SetActive(true);
+        #region CreditsMenu
+        CreditsMenu.SetActive(false);
+        #endregion
         gameUI.SetActive(false);
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
@@ -709,6 +731,91 @@ public class UIManager : MonoBehaviour
         TitleScreen.SetActive(false);
         MainMenu.SetActive(true);
         StartCoroutine(FocusStartButtonMenu());
+    }
+
+    public void Credits()
+    {
+        foreach (GameObject g in CreditsPage)
+        {
+            g.SetActive(false);
+        }
+        StartCoroutine(CreditsCoroutine());
+    }
+
+    private IEnumerator CreditsCoroutine()
+    {
+        EventSystem.current.SetSelectedGameObject(null);        
+        fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        CreditsMenu.SetActive(true);
+        CreditsThanksForPlayingText.gameObject.SetActive(false);
+        Title.SetActive(false);
+        MainMenu.SetActive(false);
+        CreditsDepartmentText.gameObject.SetActive(true);
+        CreditsNameText.gameObject.SetActive(true);
+        CreditsPageIndex = 0;
+        DevelopersIndex = 0;
+        CreditsPage[CreditsPageIndex].SetActive(true);
+        CreditsDepartmentText.text = Developers[DevelopersIndex].DeveloperDepartment;
+        string namestring = null;
+        foreach (string s in Developers[DevelopersIndex].DeveloperNames)
+        {
+            namestring += s + "\n";
+        }
+        CreditsNameText.text = namestring;
+        yield return new WaitForSeconds(1f);
+        CreditsFadeInProgress = false;
+        EventSystem.current.SetSelectedGameObject(CreditsAButton);
+    }
+
+    bool CreditsFadeInProgress = false;
+    public void CreditsAButtonPressed()
+    {
+        if (!CreditsFadeInProgress)
+        {
+            CreditsFadeInProgress = true;
+            StartCoroutine(CreditsAButtonPressedCoroutine());
+        }
+    }
+
+    private IEnumerator CreditsAButtonPressedCoroutine()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        if (CreditsPageIndex == CreditsPage.Count - 1)
+        {
+            CreditsMenu.SetActive(false);
+            Title.SetActive(true);
+            MainMenu.SetActive(true);
+            FocusStartButton();
+        }
+        else
+        {
+            CreditsFadeImage.SetTrigger("Fade");
+            yield return new WaitForSeconds(1f);
+            CreditsPage[CreditsPageIndex].SetActive(false);
+            CreditsPageIndex++;
+            CreditsPage[CreditsPageIndex].SetActive(true);
+            if (DevelopersIndex < Developers.Count - 1)
+            {
+                DevelopersIndex++;
+                CreditsDepartmentText.text = Developers[DevelopersIndex].DeveloperDepartment;
+                string namestring = null;
+                foreach (string s in Developers[DevelopersIndex].DeveloperNames)
+                {
+                    namestring += s + "\n";
+                }
+                CreditsNameText.text = namestring;
+            }
+            else
+            {
+                CreditsDepartmentText.gameObject.SetActive(false);
+                CreditsNameText.gameObject.SetActive(false);
+                CreditsThanksForPlayingText.gameObject.SetActive(true);
+            }
+            yield return new WaitForSeconds(1f);
+            EventSystem.current.SetSelectedGameObject(CreditsAButton);
+            CreditsFadeInProgress = false;
+        }
     }
 
     #endregion
