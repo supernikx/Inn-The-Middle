@@ -41,6 +41,9 @@ public class OptionsManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Funzione che imposta le risoluzioni presenti nella lista all'interno del dropdown menu e seleziona quella attuale
+    /// </summary>
     private void LoadResolutions()
     {
         if (resolutions.Count > 0)
@@ -56,6 +59,9 @@ public class OptionsManager : MonoBehaviour
         ResolutionDropdown.RefreshShownValue();
     }
 
+    /// <summary>
+    /// Funzione che carica i settaggi all'avvio del gioco
+    /// </summary>
     private void LoadSettings()
     {
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", -40f);
@@ -80,6 +86,10 @@ public class OptionsManager : MonoBehaviour
         QualityDropdown.RefreshShownValue();
     }
 
+    /// <summary>
+    /// Funzione che imposta la risoluzione passandogli l'index della lista come parametro
+    /// </summary>
+    /// <param name="resolutionIndex"></param>
     public void SetResolution(int resolutionIndex)
     {
         currentResolutionIndex = resolutionIndex;
@@ -87,6 +97,10 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetInt("Resolution", currentResolutionIndex);
     }
 
+    /// <summary>
+    /// Funzione che attiva/disattiva il fullscreen
+    /// </summary>
+    /// <param name="fullscreen"></param>
     public void SetFullScreen(bool fullscreen)
     {
         Screen.fullScreen = fullscreen;
@@ -100,6 +114,10 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta la qualità passandogli l'index della qualità come parametro
+    /// </summary>
+    /// <param name="_qualityIndex"></param>
     public void SetQuality(int _qualityIndex)
     {
         qualityIndex = _qualityIndex;
@@ -107,6 +125,10 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetInt("Quality", qualityIndex);
     }
 
+    /// <summary>
+    /// Funzione che imposta il volume della musica
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetMusicVolume(float volume)
     {
         MusicVolume = volume;
@@ -114,6 +136,10 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
     }
 
+    /// <summary>
+    /// Funzione che imposta il volume degli SFX
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetSFXVolume(float volume)
     {
         EffectsVolume = volume;
@@ -121,6 +147,9 @@ public class OptionsManager : MonoBehaviour
         PlayerPrefs.SetFloat("EffectsVolume", EffectsVolume);
     }
 
+    /// <summary>
+    /// Funzione che salva i settings
+    /// </summary>
     private void SaveSettings()
     {
         PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
@@ -138,6 +167,9 @@ public class OptionsManager : MonoBehaviour
         Debug.Log("Impostazioni salvate");
     }
 
+    /// <summary>
+    /// Funzione che reimposta i settings ai valori di default
+    /// </summary>
     public void ResetToDefault()
     {
         FullScreenToggle.isOn = true;
@@ -158,17 +190,27 @@ public class OptionsManager : MonoBehaviour
 
     #region FocusFix
 
+    /// <summary>
+    /// Funzione che imposta il focus sul dropdown della risoluzione chiamando la corutine SetOptionsCoroutine
+    /// </summary>
     public void SetOptionsFocus()
     {
         StartCoroutine(SetOptionsCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine che imposta il focus sul dropdown della risoluzione
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SetOptionsCoroutine()
     {
         yield return null;
         EventSystem.current.SetSelectedGameObject(ResolutionDropdown.gameObject);
     }
 
+    /// <summary>
+    /// Funzione che disabilita il focus dell'eventsystem
+    /// </summary>
     public void DisableFocus()
     {
         EventSystem.current.SetSelectedGameObject(null);

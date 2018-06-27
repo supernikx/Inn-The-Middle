@@ -82,6 +82,10 @@ public class TurnManager : MonoBehaviour
         EventManager.OnGameEnd -= OnGameEnd;
     }
 
+    /// <summary>
+    /// Funzione che viene chiamata alla fine della partita
+    /// </summary>
+    /// <param name="WinFaction"></param>
     private void OnGameEnd(Factions WinFaction)
     {
         CurrentMacroPhase = MacroPhase.end;

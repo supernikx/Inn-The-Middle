@@ -344,36 +344,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Developers:
-  - DeveloperDepartment: Game Designers
-    DeveloperNames:
-    - Andrea Ancona
-    - Tommaso Chiaravalli
-    - "Nicol\xF2 Girotti"
-    - Gabriele Marzagalli
-    - Francesco Rigghi
-    - Lorenzo Scillone
-  - DeveloperDepartment: Programmer
-    DeveloperNames:
-    - Davide Tamagna
-  - DeveloperDepartment: Concept & 2D artists
-    DeveloperNames:
-    - Elisa Bacchin
-    - Stefano Budai
-    - Jacopo Castiglioni
-    - Simone Di Criscito
-    - Julian Kvalvaag
-    - Matteo Parati
-    - Eleonora Surini
-    - Federico Tagliavia
-  - DeveloperDepartment: 3D Artists
-    DeveloperNames:
-    - Alessandra Astrino
-    - Vittorio Quartini
-    - Aleksandr Troianovskyi
-  CreditsDepartmentText: {fileID: 0}
-  CreditsNameText: {fileID: 0}
-  CreditsThanksForPlayingText: {fileID: 0}
   CreditsFadeImage: {fileID: 0}
   CreditsAButton: {fileID: 0}
   MagicButton: {fileID: 0}
@@ -402,18 +372,20 @@ MonoBehaviour:
   SFrameImage: {fileID: 0}
   SOn: {fileID: 21300000, guid: 6f9b15c1f93142745a638a6d7fdb22b0, type: 3}
   SOff: {fileID: 21300000, guid: f2b1e1ddd8c18714b8d1ed652c2b5fc0, type: 3}
-  SAngry: {fileID: 0}
-  SHappy: {fileID: 0}
-  SSurprised: {fileID: 0}
+  SExpressionChange: {fileID: 0}
+  SAngry: {fileID: 21300000, guid: 72fc7044f6609ce45b090416052740d3, type: 3}
+  SHappy: {fileID: 21300000, guid: 5c87abd717ae5b14c82daef268d70e05, type: 3}
+  SSurprised: {fileID: 21300000, guid: 51af40b175142fe46a5578eb0891602b, type: 3}
   MSuperAttackImage: {fileID: 0}
   MSuperAttackOn: {fileID: 21300000, guid: 37525ae617110af41a6ebb7283cefbe8, type: 3}
   MSuperAttackOff: {fileID: 21300000, guid: 0cf0e4f4c0b430645b5effb8c10e4d89, type: 3}
   MFrameImage: {fileID: 0}
   MOn: {fileID: 21300000, guid: f62409177c527b64b8a0e718b55bb0f5, type: 3}
   MOff: {fileID: 21300000, guid: ce169ce83bf24c04a99791d3a032e627, type: 3}
-  MAngry: {fileID: 0}
-  MHappy: {fileID: 0}
-  MSurprised: {fileID: 0}
+  MExpressionChange: {fileID: 0}
+  MAngry: {fileID: 21300000, guid: 7d8a01a51f4bb0f46b320eff622a4891, type: 3}
+  MHappy: {fileID: 21300000, guid: ffd3142cc0798b24a9ede9f1e94f3cff, type: 3}
+  MSurprised: {fileID: 21300000, guid: 7416cafb18a326644bba063bc181d209, type: 3}
   pausePanel: {fileID: 0}
   ResumePauseButton: {fileID: 0}
   RestartPauseButton: {fileID: 0}

@@ -6,6 +6,10 @@ public class PlayerElements : MonoBehaviour
 {
     public int redElement, blueElement, greenElement;
 
+    /// <summary>
+    /// Funzione che aggiunge 1 all'elemento passato come parametro
+    /// </summary>
+    /// <param name="_element"></param>
     public void AddElement(Element _element)
     {
         switch (_element)
@@ -31,6 +35,10 @@ public class PlayerElements : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che controlla se è possibile eseguire un superattacco
+    /// </summary>
+    /// <returns></returns>
     public bool CheckSuperAttack()
     {
         if ((redElement >= 3 || blueElement >= 3 || greenElement >= 3) || (redElement > 0 && blueElement > 0 && greenElement > 0))
@@ -40,6 +48,9 @@ public class PlayerElements : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Funzione che rimuove gli elementi necessari al superattacco
+    /// </summary>
     public void UseSuperAttack()
     {
         if (redElement > 0 && blueElement > 0 && greenElement > 0)

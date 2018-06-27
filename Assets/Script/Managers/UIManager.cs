@@ -86,6 +86,7 @@ public class UIManager : MonoBehaviour
     public Image SFrameImage;
     public Sprite SOn;
     public Sprite SOff;
+    public Image SExpressionChange;
     public Sprite SAngry;
     public Sprite SHappy;
     public Sprite SSurprised;
@@ -97,6 +98,7 @@ public class UIManager : MonoBehaviour
     public Image MFrameImage;
     public Sprite MOn;
     public Sprite MOff;
+    public Image MExpressionChange;
     public Sprite MAngry;
     public Sprite MHappy;
     public Sprite MSurprised;
@@ -149,7 +151,11 @@ public class UIManager : MonoBehaviour
         #region CreditsMenu
         CreditsMenu.SetActive(false);
         #endregion
+        #region Game
+        SExpressionChange.gameObject.SetActive(false);
+        MExpressionChange.gameObject.SetActive(false);
         gameUI.SetActive(false);
+        #endregion
         placingUI.SetActive(false);
         pausePanel.SetActive(false);
         Title.SetActive(true);
@@ -530,21 +536,24 @@ public class UIManager : MonoBehaviour
                     case Expressions.Off:
                         MFrameImage.sprite = MOff;
                         break;
-                        /*case Expressions.Happy:
-                            MFrameImage.sprite = MHappy;
-                            yield return new WaitForSeconds(1.5f);
-                            MFrameImage.sprite = MOn;
-                            break;
-                        case Expressions.Angry:
-                            MFrameImage.sprite = MAngry;
-                            yield return new WaitForSeconds(1.5f);
-                            MFrameImage.sprite = MOn;
-                            break;
-                        case Expressions.Surprised:
-                            MFrameImage.sprite = MSurprised;
-                            yield return new WaitForSeconds(1.5f);
-                            MFrameImage.sprite = MOn;
-                            break;*/
+                    case Expressions.Happy:
+                        MExpressionChange.gameObject.SetActive(true);
+                        MExpressionChange.sprite = MHappy;
+                        yield return new WaitForSeconds(1.5f);
+                        MExpressionChange.gameObject.SetActive(false);
+                        break;
+                    case Expressions.Angry:
+                        MExpressionChange.gameObject.SetActive(true);
+                        MExpressionChange.sprite = MAngry;
+                        yield return new WaitForSeconds(1.5f);
+                        MExpressionChange.gameObject.SetActive(false);
+                        break;
+                    case Expressions.Surprised:
+                        MExpressionChange.gameObject.SetActive(true);
+                        MExpressionChange.sprite = MSurprised;
+                        yield return new WaitForSeconds(1.5f);
+                        MExpressionChange.gameObject.SetActive(false);
+                        break;
                 }
                 break;
             case Factions.Science:
@@ -556,21 +565,24 @@ public class UIManager : MonoBehaviour
                     case Expressions.Off:
                         SFrameImage.sprite = SOff;
                         break;
-                        /*case Expressions.Happy:
-                            SFrameImage.sprite = SHappy;
-                            yield return new WaitForSeconds(1.5f);
-                            SFrameImage.sprite = SOn;
-                            break;
-                        case Expressions.Angry:
-                            SFrameImage.sprite = SAngry;
-                            yield return new WaitForSeconds(1.5f);
-                            SFrameImage.sprite = SOn;
-                            break;
-                        case Expressions.Surprised:
-                            SFrameImage.sprite = SSurprised;
-                            yield return new WaitForSeconds(1.5f);
-                            SFrameImage.sprite = SOn;
-                            break;*/
+                    case Expressions.Happy:
+                        SExpressionChange.gameObject.SetActive(true);
+                        SExpressionChange.sprite = SHappy;
+                        yield return new WaitForSeconds(1.5f);
+                        SExpressionChange.gameObject.SetActive(false);
+                        break;
+                    case Expressions.Angry:
+                        SExpressionChange.gameObject.SetActive(true);
+                        SExpressionChange.sprite = SAngry;
+                        yield return new WaitForSeconds(1.5f);
+                        SExpressionChange.gameObject.SetActive(false);
+                        break;
+                    case Expressions.Surprised:
+                        SExpressionChange.gameObject.SetActive(true);
+                        SExpressionChange.sprite = SSurprised;
+                        yield return new WaitForSeconds(1.5f);
+                        SExpressionChange.gameObject.SetActive(false);
+                        break;
                 }
                 break;
         }

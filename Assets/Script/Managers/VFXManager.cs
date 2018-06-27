@@ -119,6 +119,10 @@ public class VFXManager : MonoBehaviour
         draftselect = new PoolParticleEffects(PoolState.inPool, instantiatedDraftSelected);
     }
 
+    /// <summary>
+    /// Funzione che muove il vfx MarkPawn alla posizione passata come parametro
+    /// </summary>
+    /// <param name="pawnPosition"></param>
     public void MarkPawn(Vector3 pawnPosition)
     {
         if (CheckOtherMarker(pawnPosition))
@@ -136,6 +140,11 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che controlla se nella posizione passata come parametro è già presente un'altro marchio, torna true se è vero altrimenti false
+    /// </summary>
+    /// <param name="_position"></param>
+    /// <returns></returns>
     bool CheckOtherMarker(Vector3 _position)
     {
         foreach (PoolParticleEffects p in mark)
@@ -148,6 +157,9 @@ public class VFXManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Funzione che toglie tutti i MarkPawnVFX che sono in gioco
+    /// </summary>
     public void ResetMark()
     {
         foreach (PoolParticleEffects p in mark)
@@ -161,6 +173,10 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che sposta il SelectPawnVFX alla pedina passata come parametro
+    /// </summary>
+    /// <param name="pawnSelected"></param>
     public void SelectPawn(Pawn pawnSelected)
     {
         if (select.state == PoolState.inUse)
@@ -171,6 +187,9 @@ public class VFXManager : MonoBehaviour
         select.state = PoolState.inUse;
     }
 
+    /// <summary>
+    /// Funzione che rimuove il SelectPawnVFX
+    /// </summary>
     public void DeselectPawn()
     {
         select.particle.Stop();
@@ -179,6 +198,11 @@ public class VFXManager : MonoBehaviour
         select.state = PoolState.inPool;
     }
 
+    /// <summary>
+    /// Funzione che imposta sul tile passato come parametro il TrapTileVFX se active è true, altrimenti lo rimuove
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <param name="active"></param>
     public void TrapTile(GameObject tile, bool active)
     {
         if (active)
@@ -211,6 +235,10 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che imposta il vfx SelectDraftPawn alla posizione della pedina passata in input
+    /// </summary>
+    /// <param name="pawndraftposition"></param>
     public void SelectDraftPawn(Vector3 pawndraftposition)
     {
         if (draftselect.state == PoolState.inUse)
@@ -220,6 +248,9 @@ public class VFXManager : MonoBehaviour
         draftselect.state = PoolState.inUse;
     }
 
+    /// <summary>
+    /// Funzione che deseleziona il draftpawnvfx 
+    /// </summary>
     public void DeselectDraftPawn()
     {
         draftselect.particle.Stop();
@@ -227,6 +258,10 @@ public class VFXManager : MonoBehaviour
         draftselect.state = PoolState.inPool;
     }
 
+    /// <summary>
+    /// Funzione che attiva alla posione passata come parametro il VFX di cambio pattern durante la partita
+    /// </summary>
+    /// <param name="_PawnPosition"></param>
     public void ReDraftPawn(Vector3 _PawnPosition)
     {
         foreach (PoolParticleEffects p in redraftpawn)
@@ -241,6 +276,11 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine che disabilita il vfx di cambio pattern appna finisce
+    /// </summary>
+    /// <param name="_p"></param>
+    /// <returns></returns>
     private IEnumerator ReDraftPawnCoroutine(PoolParticleEffects _p)
     {
         _p.particle.Play();
@@ -249,6 +289,11 @@ public class VFXManager : MonoBehaviour
         _p.state = PoolState.inPool;
     }
 
+    /// <summary>
+    /// Funzione che attiva alla posizione passata come parametro il VFX di morte della pedina in base alla fazione (passata come parametro)
+    /// </summary>
+    /// <param name="pawnPosition"></param>
+    /// <param name="faction"></param>
     public void DeathVFX (Vector3 pawnPosition, Factions faction)
     {
         switch (faction)
@@ -280,6 +325,11 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine che disabilita il vfx di morte appena finisce
+    /// </summary>
+    /// <param name="_p"></param>
+    /// <returns></returns>
     private IEnumerator DeathVFXCoroutine(PoolParticleEffects _p)
     {
         _p.particle.Play();

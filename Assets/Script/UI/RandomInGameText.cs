@@ -37,6 +37,10 @@ public class RandomInGameText : MonoBehaviour
         bm = BoardManager.Instance;
     }
 
+    /// <summary>
+    /// Funzione che genera una frase random in base al tipo passato come parametro
+    /// </summary>
+    /// <param name="type"></param>
     public void GenerateRandomText(PhraseType type)
     {
         if ((bm.tutorial.TutorialActive && bm.tutorial.DraftTutorialDone && bm.tutorial.ChoosingTutorialDone && bm.tutorial.PlacingTutorialDone && bm.tutorial.SuperAttackTutorialDone && bm.tutorial.GameTutorialDone) || !bm.tutorial.TutorialActive)
@@ -99,6 +103,11 @@ public class RandomInGameText : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine che mostra la frase randomizzata e la fa sparire dopo 2.5s
+    /// </summary>
+    /// <param name="_phrase"></param>
+    /// <returns></returns>
     private IEnumerator ShowPhrase(string _phrase)
     {
         switch (bm.turnManager.CurrentPlayerTurn)

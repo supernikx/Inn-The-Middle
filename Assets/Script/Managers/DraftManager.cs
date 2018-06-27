@@ -44,6 +44,9 @@ public class DraftManager : MonoBehaviour
         p2StartPressed = false;
     }
 
+    /// <summary>
+    /// Funzione che randomizza i pattern delle pedine nella fase di draft
+    /// </summary>
     public void DraftRandomPattern()
     {
         if (!hasDrafted)
@@ -63,6 +66,10 @@ public class DraftManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che seleziona in base alla direction passata come parametro la prossima pedina
+    /// </summary>
+    /// <param name="direction"></param>
     public void SelectNextDraftPawn(Directions direction)
     {
         switch (direction)
@@ -88,6 +95,9 @@ public class DraftManager : MonoBehaviour
         bm.uiManager.UpdateDraftDissolvedChoose(DraftPawns[draftpawnindex].patternindex);
     }
 
+    /// <summary>
+    /// Funzione che seleziona per il giocatore di turno, la pedina evidenziata in questo momento
+    /// </summary>
     public void ChooseSelectedDraftPawn()
     {
         SoundManager.instance.SelectDraftPawn();

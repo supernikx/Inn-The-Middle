@@ -135,11 +135,17 @@ public class SoundManager : MonoBehaviour
         BoardManager.Instance.uiManager.UpdateSoundUI();
     }
 
+    /// <summary>
+    /// Funzione che attiva/disattiva i suoni
+    /// </summary>
     public void ActiveDeactiveSound()
     {
         SoundActive = !SoundActive;
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono ButtonSelection
+    /// </summary>
     public void ButtonSelection()
     {
         if (SoundActive)
@@ -152,6 +158,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono VolumeBar
+    /// </summary>
     public void VolumeBar()
     {
         if (SoundActive)
@@ -164,6 +173,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono StartDraft
+    /// </summary>
     public void StartDraft()
     {
         if (SoundActive)
@@ -176,6 +188,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono SelectDraftPawn
+    /// </summary>
     public void SelectDraftPawn()
     {
         if (SoundActive)
@@ -188,6 +203,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono della fazione selezionata (passata come parametro)
+    /// </summary>
+    /// <param name="faction"></param>
     public void FactionSelected(Factions faction)
     {
         if (SoundActive)
@@ -212,6 +231,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono di attivazione/disattivazione superattacco
+    /// </summary>
     public void ActiveSuperAttack()
     {
         if (SoundActive)
@@ -224,6 +246,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono di attivazione/disattivazione di una casella trappola
+    /// </summary>
+    /// <param name="active"></param>
     public void TrapTile(bool active)
     {
         if (SoundActive)
@@ -247,6 +273,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue l'SFX di una pedina passandogli la clip come parametro
+    /// </summary>
+    /// <param name="ClipToPlay"></param>
     public void PawnSFX(AudioClip ClipToPlay)
     {
         if (SoundActive)
@@ -259,6 +289,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che esegue il suono di morte della pedina passandogli la fazione come parametro
+    /// </summary>
+    /// <param name="faction"></param>
     public void PawnDeathVFX(Factions faction)
     {
         if (SoundActive)
@@ -283,6 +317,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che e stoppa il suono di movimento della pedina una volta finito
+    /// </summary>
     public void PawnMovementEnd()
     {
         if (GameEffectsAudioSource.isPlaying)

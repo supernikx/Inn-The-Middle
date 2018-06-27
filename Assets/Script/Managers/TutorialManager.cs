@@ -117,12 +117,19 @@ public class TutorialManager : MonoBehaviour
         SuperAttackTutorialDone = false;
     }
 
+    /// <summary>
+    /// Funzione che attiva/disattiva il tutorial
+    /// </summary>
     public void ActiveDeactiveTutorial()
     {
         TutorialActive = !TutorialActive;
     }
 
     #region Draft Tutorial
+
+    /// <summary>
+    /// Funzione che avvia il tutorial all'inizio della fase di draft (prima che le pedine vengano randomizzate)
+    /// </summary>
     public void StartDraftTutorial()
     {
         if (TutorialActive)
@@ -142,6 +149,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che continua il tutorial durante la fase di draft
+    /// </summary>
     public void DraftTutorial()
     {
         if (TutorialActive)
@@ -179,6 +189,11 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che disabilia l'ultimo testo della fase di draft senza necessità di premere A
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     IEnumerator LastDraftText(GameObject button)
     {
         yield return new WaitForSeconds(2f);
@@ -189,6 +204,9 @@ public class TutorialManager : MonoBehaviour
 
     #region Choosing Tutorial
 
+    /// <summary>
+    /// Funzione che avvia ed esegue il tutorial della Choosing Phase
+    /// </summary>
     public void ChoosingTutorial()
     {
         if (TutorialActive)
@@ -217,6 +235,9 @@ public class TutorialManager : MonoBehaviour
 
     #region Placing Tutorial
 
+    /// <summary>
+    /// Funzione che avvia ed esegue il tutorial della Placing Phase
+    /// </summary>
     public void PlacingTutorial()
     {
         if (TutorialActive)
@@ -241,6 +262,9 @@ public class TutorialManager : MonoBehaviour
 
     #region Game Tutorial
 
+    /// <summary>
+    /// Funzione che avvia ed esegue il tutorial della fase di gioco
+    /// </summary>
     public void GameTutorial()
     {
         if (TutorialActive)
@@ -283,6 +307,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Funzione che avvia ed esegue il tutorial del super attacco
+    /// </summary>
     public void SuperAttackTutorial()
     {
         if (TutorialActive)
@@ -308,6 +335,9 @@ public class TutorialManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Funzione che controlla alla pressione del tasto A durante i tutorial delle fasi di gioco cosa bisogna fare in base alla fase appunto
+    /// </summary>
     public void AButtonPressed()
     {
         switch (bm.turnManager.CurrentMacroPhase)
