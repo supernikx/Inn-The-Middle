@@ -610,16 +610,16 @@ public class UIManager : MonoBehaviour
     public IEnumerator ChangeTurnButtonCoroutne()
     {
         TurnButtonAnimator.SetTrigger("Flip");
-        yield return new WaitForSeconds(0.23f);
+        yield return new WaitForSecondsRealtime(0.23f);
         switch (bm.turnManager.CurrentPlayerTurn)
         {
             case Factions.Magic:
                 TurnButtonActualMeshRender.material = MagicTurnMaterial;
                 for (int i = 0; i < 3; i++)
                 {
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSecondsRealtime(0.3f);
                     TurnButtonActualMeshRender.material = MagicTurnMaterialEmission;
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSecondsRealtime(0.3f);
                     TurnButtonActualMeshRender.material = MagicTurnMaterial;
                 }
                 break;
@@ -627,9 +627,9 @@ public class UIManager : MonoBehaviour
                 TurnButtonActualMeshRender.material = ScienceTurnMaterial;
                 for (int i = 0; i < 3; i++)
                 {
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSecondsRealtime(0.3f);
                     TurnButtonActualMeshRender.material = ScienceTurnMaterialEmission;
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSecondsRealtime(0.3f);
                     TurnButtonActualMeshRender.material = ScienceTurnMaterial;
                 }
                 break;
@@ -1068,7 +1068,7 @@ public class UIManager : MonoBehaviour
                 {
                     LampRendere.material.SetColor("_EmissionColor", new Color(actualbrightness, actualbrightness, actualbrightness, 1f));
                     actualbrightness += 0.05f;
-                    yield return new WaitForSeconds(0.05f);
+                    yield return new WaitForSecondsRealtime(0.05f);
                 }
                 lampincreasbrightness = false;
 
@@ -1079,7 +1079,7 @@ public class UIManager : MonoBehaviour
                 {
                     LampRendere.material.SetColor("_EmissionColor", new Color(actualbrightness, actualbrightness, actualbrightness, 1f));
                     actualbrightness -= 0.05f;
-                    yield return new WaitForSeconds(0.05f);
+                    yield return new WaitForSecondsRealtime(0.05f);
                 }
                 lampincreasbrightness = true;
             }
