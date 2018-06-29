@@ -566,6 +566,7 @@ public class Pawn : MonoBehaviour
         currentBox = null;
         animators[activePattern].PlayDeathAnimation();
         SoundManager.instance.PawnDeathVFX(faction);
+        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Angry);
     }
 
     /// <summary>

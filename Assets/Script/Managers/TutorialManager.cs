@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     int PlacingTextIndex = 0;
     int GameP1TextIndex = 0;
     int GameP2TextIndex = 0;
+    int SuperAttackTextIndex = 0;
 
     [Header("Draft")]
     public GameObject MagicDraft;
@@ -48,7 +49,7 @@ public class TutorialManager : MonoBehaviour
     public List<string> GameP2Text = new List<string>();
     public bool GameTutorialDone;
 
-    public string SuperAttackText;
+    public List<string> SuperAttackText = new List<string>();
     public bool SuperAttackTutorialDone;
 
     [Header("General")]
@@ -319,13 +320,14 @@ public class TutorialManager : MonoBehaviour
             {
                 case Factions.Magic:
                     MagicGame.SetActive(true);
-                    MagicGameText.text = SuperAttackText;
+                    MagicGameText.text = SuperAttackText[SuperAttackTextIndex];
                     break;
                 case Factions.Science:
                     ScienceGame.SetActive(true);
-                    ScienceGameText.text = SuperAttackText;
+                    ScienceGameText.text = SuperAttackText[SuperAttackTextIndex];
                     break;
             }
+            SuperAttackTextIndex++;
         }
         else
         {
@@ -462,17 +464,24 @@ public class TutorialManager : MonoBehaviour
                 }
                 else if (!SuperAttackTutorialDone)
                 {
-                    switch (bm.turnManager.CurrentPlayerTurn)
+                    if (SuperAttackText.Count > SuperAttackTextIndex)
                     {
-                        case Factions.Magic:
-                            MagicGame.SetActive(false);
-                            break;
-                        case Factions.Science:
-                            ScienceGame.SetActive(false);
-                            break;
+                        SuperAttackTutorial();
                     }
-                    SuperAttackTutorialDone = true;
-                    bm.TutorialInProgress = false;
+                    else
+                    {
+                        switch (bm.turnManager.CurrentPlayerTurn)
+                        {
+                            case Factions.Magic:
+                                MagicGame.SetActive(false);
+                                break;
+                            case Factions.Science:
+                                ScienceGame.SetActive(false);
+                                break;
+                        }
+                        SuperAttackTutorialDone = true;
+                        bm.TutorialInProgress = false;
+                    }
                 }
                 break;
         }

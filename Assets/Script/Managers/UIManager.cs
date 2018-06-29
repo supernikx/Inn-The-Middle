@@ -543,10 +543,10 @@ public class UIManager : MonoBehaviour
                         MExpressionChange.gameObject.SetActive(false);
                         break;
                     case Expressions.Angry:
-                        MExpressionChange.gameObject.SetActive(true);
-                        MExpressionChange.sprite = MAngry;
+                        SExpressionChange.gameObject.SetActive(true);
+                        SExpressionChange.sprite = SAngry;
                         yield return new WaitForSeconds(1.5f);
-                        MExpressionChange.gameObject.SetActive(false);
+                        SExpressionChange.gameObject.SetActive(false);
                         break;
                     case Expressions.Surprised:
                         MExpressionChange.gameObject.SetActive(true);
@@ -572,10 +572,10 @@ public class UIManager : MonoBehaviour
                         SExpressionChange.gameObject.SetActive(false);
                         break;
                     case Expressions.Angry:
-                        SExpressionChange.gameObject.SetActive(true);
-                        SExpressionChange.sprite = SAngry;
+                        MExpressionChange.gameObject.SetActive(true);
+                        MExpressionChange.sprite = MAngry;
                         yield return new WaitForSeconds(1.5f);
-                        SExpressionChange.gameObject.SetActive(false);
+                        MExpressionChange.gameObject.SetActive(false);
                         break;
                     case Expressions.Surprised:
                         SExpressionChange.gameObject.SetActive(true);
@@ -1071,7 +1071,6 @@ public class UIManager : MonoBehaviour
                     yield return new WaitForSecondsRealtime(0.05f);
                 }
                 lampincreasbrightness = false;
-
             }
             else
             {

@@ -104,30 +104,30 @@ MonoBehaviour:
   MagicGameText: {fileID: 0}
   ScienceGameText: {fileID: 0}
   GameP1Text:
-  - "Ok, let\u2019s start from the basics. You can select one of my pawns by pressing
-    L/R bumper buttons and move the selected pawn using the left analog stick"
-  - To win you have to destroy all the enemies pawns using the SPECIAL ATTACK
-  - Normally you can use only the Basic attack. When this one hits an enemy pawn,
-    it forces the hitted pawn to change his pattern and to shift in another box nearby
-    it. The player who attacks also get the box where was the enemy pawn and gain
-    the corrispondent element
-  - The special attack is available only if you have previously took 3 elements with
-    the same colour or 1 element of each colour
-  - If you can attack with one of your pawns, select it by pressing L/R bumper (It
-    will show you his pattern) and then the B button to complete your turn
-  - Be careful! Choose wisely your moves. You can move or attack once per turn!
+  - After selecting a pawn with L1/R1, use the left stick to move it and press A for
+    confirm
+  - Use the B button to do a basic attack once per turn, all enemy pawns hit will
+    be forced to switch to a random pattern and move to an adjacent tile.
+  - "The tile you hit will be added to the corresponding \u201CResource\u201D bar
+    of the same color."
+  - Once you have collected 3 element of the same colour, or one of each type, press
+    Y to activate a special attack and then press B to kill the enemy pawn.
+  - When a grey tile gets hit it will turn into a trap, a pawn hit on a trap will
+    be destroyed and the tile will return to its normal state
+  - You can move or attack once per turn, choose wisely!
   GameP2Text:
   - "Now it\u2019s our turn! My opponent has already explained everything. We just
-    need a little recap"
-  - You can select the pawn with L/R bumper, then you can move it where you want (only
-    in nearby boxes) using the left analog stick. Then, if you have the chance, select
-    which pawn has to attack the enemy, by pressing again L/R bumper and the B button
+    need a little recap."
+  - If you had been attacked your hit pawns need to be moved on a near tile, after
+    that you can play your standard turn
+  - Remember you can move or attack only one time per turn
   GameTutorialDone: 0
-  SuperAttackText: "Ah ah ah now it\u2019s for real! You\u2019ve got enough elements
-    to unleash the SPECIAL ATTACK! Look at the indicator. You have 3 of the same element
-    or one of each type. This powerful attack destroys completely an enemy pawn. It
-    is necessary to gain the victory. To activate it, press the Y button before using
-    the Basic attack"
+  SuperAttackText:
+  - "Ah ah ah now it\u2019s for real! You\u2019ve got enough elements to unleash the
+    SPECIAL ATTACK! Look at the indicator."
+  - Press the Y button before using the Basic attack for destroy an enemy pawn
+  - "You can kill only one pawn per SPECIAL ATTACK, if there\u2019s more than one
+    in your attack pattern use L1/R1 to select which one had to die"
   SuperAttackTutorialDone: 0
   _TutorialActive: 0
 --- !u!114 &114157139931533906

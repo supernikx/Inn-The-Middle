@@ -126,8 +126,7 @@ public class TurnManager : MonoBehaviour
                 if (!CheckAlreadyDone)
                 {
                     if (BoardManager.Instance.superAttack)
-                    {
-                        BoardManager.Instance.uiManager.UpdateExpressions(Expressions.Angry);
+                    {                        
                         BoardManager.Instance.superAttack = false;
                     }
                     BoardManager.Instance.UnmarkAttackMarker();
