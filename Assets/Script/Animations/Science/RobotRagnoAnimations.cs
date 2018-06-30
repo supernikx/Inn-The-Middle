@@ -14,6 +14,7 @@ public class RobotRagnoAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip ProjectileSFX;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
@@ -99,8 +100,9 @@ public class RobotRagnoAnimations : PawnAnimationManager
 
     public IEnumerator Shoot()
     {
-        AttackCharge.Play();
+        AttackCharge.Play();        
         yield return new WaitForSeconds(AttackCharge.main.duration);
+        SoundManager.instance.PawnSFX(ProjectileSFX);
         ShootVFX.Play();
         ProjectileVFX.SetActive(true);
         Tween shoot = ProjectileVFX.transform.DOMove(new Vector3(targetPosition.x+ZOffset, targetPosition.y,targetPosition.z), 0.6f);
