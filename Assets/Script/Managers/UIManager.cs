@@ -738,10 +738,10 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Credits()
     {
-        foreach (GameObject g in CreditsPage)
+        /*foreach (GameObject g in CreditsPage)
         {
             g.SetActive(false);
-        }
+        }*/
         StartCoroutine(CreditsCoroutine());
     }
 
@@ -751,7 +751,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CreditsCoroutine()
     {
-        EventSystem.current.SetSelectedGameObject(null);
+        /*EventSystem.current.SetSelectedGameObject(null);
         fadeinoutmenu.SetTrigger("Fade");
         yield return new WaitForSeconds(1f);
         CreditsMenu.SetActive(true);
@@ -761,10 +761,24 @@ public class UIManager : MonoBehaviour
         CreditsPage[CreditsPageIndex].SetActive(true);
         yield return new WaitForSeconds(1f);
         CreditsFadeInProgress = false;
-        EventSystem.current.SetSelectedGameObject(CreditsAButton);
+        EventSystem.current.SetSelectedGameObject(CreditsAButton);*/
+
+        EventSystem.current.SetSelectedGameObject(null);
+        fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        CreditsMenu.SetActive(true);
+        Title.SetActive(false);
+        MainMenu.SetActive(false);
+        yield return new WaitForSeconds(18f);
+        fadeinoutmenu.SetTrigger("Fade");
+        yield return new WaitForSeconds(1f);
+        CreditsMenu.SetActive(false);
+        Title.SetActive(true);
+        MainMenu.SetActive(true);
+        FocusStartButton();
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Funzione che viene chiamata quando viene premuto il pulsante A durante i credits e avvia (se non è in corso il fade) la coroutine CreditsAButtonPressedCoroutine
     /// </summary>
     bool CreditsFadeInProgress = false;
@@ -775,9 +789,9 @@ public class UIManager : MonoBehaviour
             CreditsFadeInProgress = true;
             StartCoroutine(CreditsAButtonPressedCoroutine());
         }
-    }
+    }*/
 
-    /// <summary>
+    /*/// <summary>
     /// Coroutine che cambia pagina dei credits
     /// </summary>
     /// <returns></returns>
@@ -802,7 +816,7 @@ public class UIManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(CreditsAButton);
             CreditsFadeInProgress = false;
         }
-    }
+    }*/
 
     #endregion
 
