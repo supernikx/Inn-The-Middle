@@ -15,6 +15,8 @@ public class RobotRagnoAnimations : PawnAnimationManager
     [Header("Sound References")]
     public AudioClip MovementClip;
     public AudioClip ProjectileSFX;
+    public AudioClip ImplosionSFX;
+    public AudioClip BeamSFX;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
@@ -110,9 +112,11 @@ public class RobotRagnoAnimations : PawnAnimationManager
         ProjectileVFX.SetActive(false);
         ExplosionVFX.transform.position = targetPosition;
         ExplosionVFX.Play();
+        SoundManager.instance.PawnSFX(ImplosionSFX);
         yield return new WaitForSeconds(0.3f);
         laserVFX.transform.position = lasertargetposition;
         laserVFX.Play();
+        SoundManager.instance.PawnSFX(BeamSFX);
         yield return new WaitForSeconds(0.5f);        
         ShootVFX.Stop();        
         ExplosionVFX.Stop();

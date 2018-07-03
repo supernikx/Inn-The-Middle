@@ -14,6 +14,7 @@ public class RagnoMagicoAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip ProjectileSFX;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
@@ -98,6 +99,7 @@ public class RagnoMagicoAnimations : PawnAnimationManager
         ShootVFX.Play();
         bulletVFX.SetActive(true);
         Tween shoot = bulletVFX.transform.DOMove(targetPosition, 1f);
+        SoundManager.instance.PawnSFX(ProjectileSFX);
         yield return shoot.WaitForCompletion();
         bulletVFX.SetActive(false);
         ExplosionVFX.transform.position = targetPosition;

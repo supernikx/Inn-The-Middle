@@ -751,18 +751,6 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CreditsCoroutine()
     {
-        /*EventSystem.current.SetSelectedGameObject(null);
-        fadeinoutmenu.SetTrigger("Fade");
-        yield return new WaitForSeconds(1f);
-        CreditsMenu.SetActive(true);
-        Title.SetActive(false);
-        MainMenu.SetActive(false);
-        CreditsPageIndex = 0;
-        CreditsPage[CreditsPageIndex].SetActive(true);
-        yield return new WaitForSeconds(1f);
-        CreditsFadeInProgress = false;
-        EventSystem.current.SetSelectedGameObject(CreditsAButton);*/
-
         EventSystem.current.SetSelectedGameObject(null);
         fadeinoutmenu.SetTrigger("Fade");
         yield return new WaitForSeconds(1f);
@@ -777,46 +765,6 @@ public class UIManager : MonoBehaviour
         MainMenu.SetActive(true);
         FocusStartButton();
     }
-
-    /*/// <summary>
-    /// Funzione che viene chiamata quando viene premuto il pulsante A durante i credits e avvia (se non è in corso il fade) la coroutine CreditsAButtonPressedCoroutine
-    /// </summary>
-    bool CreditsFadeInProgress = false;
-    public void CreditsAButtonPressed()
-    {
-        if (!CreditsFadeInProgress)
-        {
-            CreditsFadeInProgress = true;
-            StartCoroutine(CreditsAButtonPressedCoroutine());
-        }
-    }*/
-
-    /*/// <summary>
-    /// Coroutine che cambia pagina dei credits
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator CreditsAButtonPressedCoroutine()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        if (CreditsPageIndex == CreditsPage.Count - 1)
-        {
-            CreditsMenu.SetActive(false);
-            Title.SetActive(true);
-            MainMenu.SetActive(true);
-            FocusStartButton();
-        }
-        else
-        {
-            CreditsFadeImage.SetTrigger("Fade");
-            yield return new WaitForSeconds(1f);
-            CreditsPage[CreditsPageIndex].SetActive(false);
-            CreditsPageIndex++;
-            CreditsPage[CreditsPageIndex].SetActive(true);
-            yield return new WaitForSeconds(1f);
-            EventSystem.current.SetSelectedGameObject(CreditsAButton);
-            CreditsFadeInProgress = false;
-        }
-    }*/
 
     #endregion
 
