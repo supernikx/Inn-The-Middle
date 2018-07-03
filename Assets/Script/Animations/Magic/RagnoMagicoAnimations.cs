@@ -15,6 +15,7 @@ public class RagnoMagicoAnimations : PawnAnimationManager
     [Header("Sound References")]
     public AudioClip MovementClip;
     public AudioClip ProjectileSFX;
+    public AudioClip BeamSFX;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> patternBox, Vector3 _startRotation)
     {
@@ -107,6 +108,7 @@ public class RagnoMagicoAnimations : PawnAnimationManager
         yield return new WaitForSeconds(0.3f);
         laserVFX.transform.position = lasertargetposition;
         laserVFX.Play();
+        SoundManager.instance.PawnSFX(BeamSFX);
         yield return new WaitForSeconds(0.4f);
         ShootVFX.Stop();
         ExplosionVFX.Stop();
