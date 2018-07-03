@@ -13,6 +13,7 @@ public class RobotHumanoidAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip AttckSFX;
 
     protected override void Start()
     {
@@ -23,7 +24,12 @@ public class RobotHumanoidAnimations : PawnAnimationManager
     public override void AttackAnimation(Transform myPosition, List<Box> patternBox, Vector3 startRotation)
     {
         myPosition.eulerAngles = startRotation;
-        PlayAttackAnimation();
+        PlayAttackAnimation();        
+    }
+
+    public void AttackSound()
+    {
+        SoundManager.instance.PawnSFX(AttckSFX);
     }
 
     public override void MovementAnimation(Transform _myPosition, Vector3 targetPosition, float speed, Vector3 _startRotation)
