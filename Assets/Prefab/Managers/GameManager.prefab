@@ -125,7 +125,7 @@ MonoBehaviour:
   SuperAttackText:
   - "Ah ah ah now it\u2019s for real! You\u2019ve got enough elements to unleash the
     SPECIAL ATTACK! Look at the indicator."
-  - Press the Y button before using the Basic attack for destroy an enemy pawn
+  - Press the Y button before using the Basic attack for destroying an enemy pawn
   - "You can kill only one pawn per SPECIAL ATTACK, if there\u2019s more than one
     in your attack pattern use L1/R1 to select which one had to die"
   SuperAttackTutorialDone: 0

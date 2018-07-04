@@ -7821,7 +7821,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1488240126}
+      objectReference: {fileID: 627970486}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1425180ab84f98e46988b12fe66303f9, type: 2}
   m_IsPrefabParent: 0
@@ -8555,6 +8555,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 623279914}
+--- !u!84 &627970486
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!114 &636516081 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114850732598020942, guid: 6625b1a13b3341a4a97e2e1e8b598aa4,
@@ -23260,37 +23291,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1481821026}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
---- !u!84 &1488240126
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1498764116
 GameObject:
   m_ObjectHideFlags: 0
@@ -28320,31 +28320,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: mainCam
+      propertyPath: MagicComic
       value: 
-      objectReference: {fileID: 1833872376}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1360661159}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: draftCam
+      propertyPath: ScienceComic
       value: 
-      objectReference: {fileID: 2111485903}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 881450504}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: magicPlacementLight
+      propertyPath: MagicComicText
       value: 
-      objectReference: {fileID: 149640174}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1325814755}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: sciencePlacementLight
+      propertyPath: ScienceComicText
       value: 
-      objectReference: {fileID: 149640173}
-    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1381430301}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: centralLight
+      propertyPath: MagicAButton
       value: 
-      objectReference: {fileID: 149640172}
+      objectReference: {fileID: 7262025}
+    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+        type: 2}
+      propertyPath: ScienceAButton
+      value: 
+      objectReference: {fileID: 1718853864}
     - target: {fileID: 114893752617296308, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: VFXParent
@@ -28390,36 +28395,31 @@ Prefab:
       propertyPath: DraftPawnsPositions.Array.data[7]
       value: 
       objectReference: {fileID: 1576500897}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MagicComic
+      propertyPath: mainCam
       value: 
-      objectReference: {fileID: 1360661159}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 1833872376}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: ScienceComic
+      propertyPath: draftCam
       value: 
-      objectReference: {fileID: 881450504}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 2111485903}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MagicComicText
+      propertyPath: magicPlacementLight
       value: 
-      objectReference: {fileID: 1325814755}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 149640174}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: ScienceComicText
+      propertyPath: sciencePlacementLight
       value: 
-      objectReference: {fileID: 1381430301}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
+      objectReference: {fileID: 149640173}
+    - target: {fileID: 114723618909212632, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
-      propertyPath: MagicAButton
+      propertyPath: centralLight
       value: 
-      objectReference: {fileID: 7262025}
-    - target: {fileID: 114455771083970490, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: ScienceAButton
-      value: 
-      objectReference: {fileID: 1718853864}
+      objectReference: {fileID: 149640172}
     - target: {fileID: 114963789058692300, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: MagicElements
@@ -28805,41 +28805,6 @@ Prefab:
       propertyPath: tutorialtogglemenu
       value: 
       objectReference: {fileID: 697537777}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsPage.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsPage.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsPage.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsPage.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsPage.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsFadeImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
-        type: 2}
-      propertyPath: CreditsAButton
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114643060664840586, guid: 68f5057250c54534eb0d8e502fc56f25,
         type: 2}
       propertyPath: MagicButton
@@ -31230,6 +31195,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2006068227}
+--- !u!84 &2017742572
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2018805937
 GameObject:
   m_ObjectHideFlags: 0
@@ -31409,37 +31405,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2034789049}
   m_Mesh: {fileID: 4300000, guid: 1630fe9b65b9ecc45ba3c3447da5a2e1, type: 3}
---- !u!84 &2047497168
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2051651403
 GameObject:
   m_ObjectHideFlags: 0
