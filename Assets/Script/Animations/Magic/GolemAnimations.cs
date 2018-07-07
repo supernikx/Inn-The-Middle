@@ -18,6 +18,9 @@ public class GolemAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip RockAttackSFX;
+    public AudioClip RockLaunchSFX;
+    public AudioClip RockBounceSFX;
 
     protected override void Start()
     {
@@ -47,27 +50,32 @@ public class GolemAnimations : PawnAnimationManager
             bouncePositions.Add(box.transform.position);
             bounceCount++;
         }
+        SoundManager.instance.PawnSFX(RockAttackSFX);
     }
 
     public IEnumerator LaunchRock()
     {
         rock.SetActive(true);
+        SoundManager.instance.PawnSFX(RockLaunchSFX);
         Tween launch1 = rock.transform.DOJump(bouncePositions[0], 1.5f, 1, 0.25f);
         yield return launch1.WaitForCompletion();
         bounceeffects[0].transform.position = bouncePositions[0];
         bounceeffects[0].Play();
+        SoundManager.instance.PawnSFX(RockBounceSFX);
         if (bounceCount > 1)
         {
             Tween launch2 = rock.transform.DOJump(bouncePositions[1], 1.3f, 1, 0.25f);
             yield return launch2.WaitForCompletion();
             bounceeffects[1].transform.position = bouncePositions[1];
             bounceeffects[1].Play();
+            SoundManager.instance.PawnSFX(RockBounceSFX);
             if (bounceCount > 2)
             {
                 Tween launch3 = rock.transform.DOJump(bouncePositions[2], 1.2f, 1, 0.25f);
                 yield return launch3.WaitForCompletion();
                 bounceeffects[2].transform.position = bouncePositions[2];
                 bounceeffects[2].Play();
+                SoundManager.instance.PawnSFX(RockBounceSFX);
             }
         }
         rock.SetActive(false);

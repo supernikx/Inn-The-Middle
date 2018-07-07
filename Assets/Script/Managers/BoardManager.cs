@@ -892,7 +892,8 @@ public class BoardManager : MonoBehaviour
                             selected.selected = true;
                             pawnSelected = selected;
                             vfx.SelectPawn(pawnSelected);
-                            pawnSelected.ShowMovementBoxes();
+                            pawnSelected.ShowAttackPattern();
+                            pawnSelected.ShowMovementBoxes();                            
                             break;
                         case TurnManager.PlayTurnState.choosing:
                             if (pawnSelected != null)

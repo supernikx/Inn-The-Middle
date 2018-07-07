@@ -6887,7 +6887,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750791568520612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.99, y: 0, z: 43.15}
+  m_LocalPosition: {x: 24.99, y: 0, z: 5.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4497218526466216}
@@ -11434,7 +11434,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c29e26ad8ddf4d428573c97d0c5e0fa, type: 2}
   - {fileID: 11400000, guid: 97e4e577d2bce1e4988f5c8e3d5af0be, type: 2}
   projectionPlacingStartPositionIndex1: 3
-  projectionPlacingStartPositionIndex2: 7
+  projectionPlacingStartPositionIndex2: 1
   projectionPlacingPositionIndex1: 3
   projectionPlacingPositionIndex2: 1
   projectionTempBox: {fileID: 0}
@@ -11473,6 +11473,8 @@ MonoBehaviour:
   RubbleVFXPrefab: {fileID: 198425953873650164, guid: f915a7b263245b04f961af63b7e76f28,
     type: 2}
   MovementClip: {fileID: 8300000, guid: 18e0a0271f3595149be75c926ef39563, type: 3}
+  BombExplosionSFX: {fileID: 8300000, guid: 068eb048c09d50f4b9765d1f699027ff, type: 3}
+  RubbleSFX: {fileID: 8300000, guid: bc763e7e99ea2544d90b4aaabbadb57e, type: 3}
 --- !u!137 &137000174474106170
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

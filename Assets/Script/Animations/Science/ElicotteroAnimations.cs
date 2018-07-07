@@ -26,6 +26,8 @@ public class ElicotteroAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip BombExplosionSFX;
+    public AudioClip RubbleSFX;
 
     protected override void Start()
     {
@@ -91,11 +93,12 @@ public class ElicotteroAnimations : PawnAnimationManager
     {
         bombToMove.SetActive(true);
         Tween fallBomb = bombToMove.transform.DOMove(bombTargetPosition, 0.3f);
+        SoundManager.instance.PawnSFX(BombExplosionSFX);
         yield return fallBomb.WaitForCompletion();
         bombToMove.SetActive(false);
         bombToMove.transform.position = bombReturnPosition.position;
         ExplosionVFX.transform.position = bombTargetPosition;
-        ExplosionVFX.Play();
+        ExplosionVFX.Play();        
         for (int i = 0; i < patternBox.Count; i++)
         {
             ParticleSystem vfxinstantiated = Instantiate(RubbleVFXPrefab, bombTargetPosition, RubbleVFXPrefab.transform.rotation);
@@ -111,7 +114,8 @@ public class ElicotteroAnimations : PawnAnimationManager
             ParticleSystem vfxinstantiated = Instantiate(TileExplosionVFXPrefab, patternBox[i].transform.position + new Vector3(0, 1f, 0), TileExplosionVFXPrefab.transform.rotation);
             vfxinstantiated.Play();
             TileExplosionVFX.Add(vfxinstantiated);
-        }        
+        }
+        SoundManager.instance.PawnSFX(RubbleSFX);
         yield return new WaitForSeconds(1f);
         ExplosionVFX.Stop();
         for (int i = 0; i < patternBox.Count; i++)

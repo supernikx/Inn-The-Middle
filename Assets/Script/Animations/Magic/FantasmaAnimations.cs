@@ -14,6 +14,9 @@ public class FantasmaAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip FireBallLaunchSFX;
+    public AudioClip FireBallExplosionSFX;
+    public AudioClip RubbleSFX;
 
     public override void AttackAnimation(Transform _myPosition, List<Box> _patternBox, Vector3 _startRotation)
     {
@@ -53,6 +56,7 @@ public class FantasmaAnimations : PawnAnimationManager
         patternBox = _patternBox;
         targetPosition = new Vector3(targetx, _patternBox[0].transform.position.y + fireballYOffset, targetz);
         PlayAttackAnimation();
+        SoundManager.instance.PawnSFX(FireBallLaunchSFX);
     }
 
     public override void MovementAnimation(Transform _myPosition, Vector3 _targetPosition, float _speed, Vector3 _startRotation)
@@ -137,6 +141,7 @@ public class FantasmaAnimations : PawnAnimationManager
         LLaunchFireBall.SetActive(false);
         ExplosionVFX.transform.position = targetPosition;
         ExplosionVFX.Play();
+        SoundManager.instance.PawnSFX(FireBallExplosionSFX);
         for (int i = 0; i < patternBox.Count; i++)
         {
             RubbleVFX[i].transform.position = targetPosition;
@@ -150,6 +155,7 @@ public class FantasmaAnimations : PawnAnimationManager
             TileExplosionVFX[i].transform.position = RubbleVFX[i].transform.position + new Vector3(0, 1f, 0);
             TileExplosionVFX[i].Play();
         }
+        SoundManager.instance.PawnSFX(RubbleSFX);
         yield return new WaitForSeconds(1f);
         ExplosionVFX.Stop();
         foreach (ParticleSystem vfx in TileExplosionVFX)

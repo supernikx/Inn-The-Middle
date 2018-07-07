@@ -1521,7 +1521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.02221918, y: 0.12940298}
   m_AnchorMax: {x: 0.63860965, y: 0.680209}
-  m_AnchoredPosition: {x: 2.2999878, y: 1.3999939}
+  m_AnchoredPosition: {x: 2.3000488, y: 1.3999939}
   m_SizeDelta: {x: -3, y: -3.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &71599336
@@ -4617,7 +4617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.40375, y: 0.9491482}
-  m_AnchoredPosition: {x: -104.3999, y: 0.80000305}
+  m_AnchoredPosition: {x: -104.3999, y: 0.7999878}
   m_SizeDelta: {x: 210.4, y: 1.5999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329288519
@@ -7821,7 +7821,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 799534073}
+      objectReference: {fileID: 1531280118}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1425180ab84f98e46988b12fe66303f9, type: 2}
   m_IsPrefabParent: 0
@@ -7867,11 +7867,6 @@ Prefab:
     - target: {fileID: 1750791568520612, guid: 8be777130cdb015419112095136271fd, type: 2}
       propertyPath: m_Name
       value: Pawn1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
-        type: 2}
-      propertyPath: projectionPlacingStartPositionIndex2
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
@@ -11488,37 +11483,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!84 &799534073
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &819361587
 GameObject:
   m_ObjectHideFlags: 0
@@ -15452,37 +15416,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 993227750}
   m_Mesh: {fileID: 4300000, guid: 32b5968c28a5ec946b63ba0a8ffed6b8, type: 3}
---- !u!84 &1002839657
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1007333953
 GameObject:
   m_ObjectHideFlags: 0
@@ -18163,7 +18096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027, y: 0.142}
   m_AnchorMax: {x: 0.6385616, y: 0.673403}
-  m_AnchoredPosition: {x: 0.7999878, y: 0.3999939}
+  m_AnchoredPosition: {x: 0.8000488, y: 0.3999939}
   m_SizeDelta: {x: 2, y: 2.800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1164786730
@@ -21604,6 +21537,11 @@ Prefab:
       propertyPath: m_Name
       value: Pawn4
       objectReference: {fileID: 0}
+    - target: {fileID: 114526710935387986, guid: 8be777130cdb015419112095136271fd,
+        type: 2}
+      propertyPath: projectionPlacingStartPositionIndex2
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be777130cdb015419112095136271fd, type: 2}
   m_IsPrefabParent: 0
@@ -23646,6 +23584,37 @@ AudioSource:
   m_PrefabParentObject: {fileID: 82585384075700368, guid: 1425180ab84f98e46988b12fe66303f9,
     type: 2}
   m_PrefabInternal: {fileID: 549647556}
+--- !u!84 &1531280118
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1540206933
 GameObject:
   m_ObjectHideFlags: 0
@@ -24818,6 +24787,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1576500896}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &1581256064
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1584318329
 GameObject:
   m_ObjectHideFlags: 0
