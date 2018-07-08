@@ -11372,6 +11372,9 @@ MonoBehaviour:
   bounceVFXeffect: {fileID: 198115564488693574, guid: 92a660529c5160a4aaf644a046976473,
     type: 2}
   MovementClip: {fileID: 8300000, guid: cd5b72e08b667dd4089a48db74dd986e, type: 3}
+  SawThrowSFX: {fileID: 8300000, guid: 52799515276e52e4fbabeda4af216306, type: 3}
+  SawBounceSFX: {fileID: 8300000, guid: db231f8191a1f884cbe8ea8131052eae, type: 3}
+  SawReturnSFX: {fileID: 8300000, guid: 3b98abc95efd5994f92477fa97c015de, type: 3}
 --- !u!114 &114321404835605124
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,6 +20,9 @@ public class RobotLameAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip SawThrowSFX;
+    public AudioClip SawBounceSFX;
+    public AudioClip SawReturnSFX;
 
     protected override void Start()
     {
@@ -49,6 +52,7 @@ public class RobotLameAnimations : PawnAnimationManager
             bounceCount++;
         }
         PlayAttackAnimation();
+        SoundManager.instance.PawnSFX(SawThrowSFX);
     }
 
     public IEnumerator LaunchChainsaw()
@@ -60,22 +64,26 @@ public class RobotLameAnimations : PawnAnimationManager
         yield return launch1.WaitForCompletion();
         bounceeffects[0].transform.position = bouncePositions[0];
         bounceeffects[0].Play();
+        SoundManager.instance.PawnSFX(SawBounceSFX);
         if (bounceCount > 1)
         {
             Tween launch2 = Chainsaw.transform.DOJump(bouncePositions[1], 1.5f, 1, 0.3f);
             yield return launch2.WaitForCompletion();
             bounceeffects[1].transform.position = bouncePositions[1];
             bounceeffects[1].Play();
+            SoundManager.instance.PawnSFX(SawBounceSFX);
             if (bounceCount > 2)
             {
                 Tween launch3 = Chainsaw.transform.DOJump(bouncePositions[2], 1.3f, 1, 0.3f);
                 yield return launch3.WaitForCompletion();
                 bounceeffects[2].transform.position = bouncePositions[2];
                 bounceeffects[2].Play();
+                SoundManager.instance.PawnSFX(SawBounceSFX);
             }
         }
         Tween back = Chainsaw.transform.DOJump(ChainsawkStartPosition, 7, 1, 0.7f);
         yield return back.WaitForCompletion();
+        SoundManager.instance.PawnSFX(SawReturnSFX);
         Chainsaw.SetActive(false);
         rightHand.SetActive(true);
         StartCoroutine(ResetVFX());
