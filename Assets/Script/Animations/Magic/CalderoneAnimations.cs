@@ -12,6 +12,8 @@ public class CalderoneAnimations : PawnAnimationManager
 
     [Header("Sound References")]
     public AudioClip MovementClip;
+    public AudioClip ShieldAttackSFX;
+    public AudioClip MelmaAttackSFX;
 
     [Header("VFX References")]
     public ParticleSystem SpoonAttackVFX;
@@ -74,6 +76,7 @@ public class CalderoneAnimations : PawnAnimationManager
     {
         yield return new WaitForSeconds(0.3f);
         SpoonAttackVFX.Play();
+        SoundManager.instance.PawnSFX(MelmaAttackSFX);
         yield return new WaitForSeconds(0.1f);        
         PoolVFX.Play();
         yield return new WaitForSeconds(0.1f);
@@ -84,6 +87,7 @@ public class CalderoneAnimations : PawnAnimationManager
         PoolVFX.Stop();
         yield return new WaitForSeconds(0.9f);
         ShieldAttackVFX.Play();
+        SoundManager.instance.PawnSFX(ShieldAttackSFX);
         yield return new WaitForSeconds(1f);
         ShieldAttackVFX.Stop();
     }
